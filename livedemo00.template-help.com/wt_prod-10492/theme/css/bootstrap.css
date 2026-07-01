@@ -216,18 +216,18 @@ h5, .h5,
 h6, .h6 {
 	margin-top: 0;
 	margin-bottom: 0.5rem;
-	font-family: "Optima", "Helvetica", sans-serif;
+	font-family: "Optima", "Helvetica", Arial, Helvetica, sans-serif;
 	font-weight: 600;
 	line-height: 1.1;
 	color: var(--bs-heading-color);
 }
 
 body {
-	font-family: "Helvetica", sans-serif;
+	font-family: "Helvetica", Helvetica;
 }
 
 .swiper-title-3 {
-	font-family: "Optima", sans-serif;
+	 font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;
 }
 
 .swiper-title-2 {
@@ -236,6 +236,14 @@ body {
 
 h1, .h1 {
 	font-size: calc(1.75rem + 6vw);
+}
+
+@font-face {
+    font-family: 'Optima';
+    src: url('fonts/Optima-Roman.woff2') format('woff2'),
+         url('fonts/Optima-Roman.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 @media (min-width: 1200px) {
