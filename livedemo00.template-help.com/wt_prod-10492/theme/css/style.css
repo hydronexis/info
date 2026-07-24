@@ -12536,24 +12536,6 @@ html.rd-navbar-fixed-linked .page {
 	transition-delay: .45s;
 }
 
-/*navbarr veeerddde 
-*/ 
-/* Navbar principal */
-.rd-navbar-main-outer {
-    background-color: #173325 !important;
-}
-
-/* Contenedor interno */
-.rd-navbar-main {
-    background-color: #173325 !important;
-}
-
-/* Navbar cuando queda fijo al hacer scroll */
-.rd-navbar-classic.rd-navbar-static.rd-navbar--is-stuck,
-.rd-navbar-classic.rd-navbar-static.rd-navbar--is-clone {
-    background-color: #173325 !important;
-}
-
 
 
 
