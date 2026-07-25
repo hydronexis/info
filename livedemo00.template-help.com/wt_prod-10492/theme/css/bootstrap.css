@@ -179,40 +179,32 @@ hr {
 	margin: 1rem 0;
 	color: inherit;
 	border: 0;
-	border-top: 1px solid #18391C;
+	border-top: 1px solid #ffffff;
 	opacity: 1;
 }
 
-h1, .h1,
-h2, .h2,
-h3, .h3,
-h4, .h4,
-h5, .h5,
-h6, .h6 {
-	margin-top: 0;
-	margin-bottom: 0.5rem;
-	font-family: "Optima", "Helvetica", Arial, Helvetica, ;
-	font-weight: 600;
-	line-height: 1.1;
-	color: var(--bs-heading-color);
+@font-face {
+    font-family: 'Optima';
+    src: url('../fonts/Optima.ttf');
 }
 
-body {
-	font-family: "Helvetica", Helvetica;
+@font-face {
+    font-family: 'Helvetica Thai';
+    src: url('../fonts/HelveticaThai.ttf');
 }
 
-.swiper-title-3 {
-	 font-family: Optima, Segoe, Candara, Calibri, , sans-serif;
+@font-face {
+    font-family: 'Monterchi Serif';
+    src: url('../fonts/MonterchiSerif.ttf');
 }
 
-.swiper-title-2 {
-	font-family: "Monterchi Serif Trial", serif;
+body{
+    font-family:'Muli';
 }
 
-h1, .h1 {
-	font-size: calc(1.75rem + 6vw);
+h1,h2,h3,h4,h5,h6{
+    font-family:'Optima';
 }
-
 
 
 @media (min-width: 1200px) {

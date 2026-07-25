@@ -4,6 +4,28 @@
 * Contexts
 */
 
+@font-face {
+    font-family: 'Optima';
+    src: url('../fonts/Optima.ttf');
+}
+
+@font-face {
+    font-family: 'Helvetica Thai';
+    src: url('../fonts/HelveticaThai.ttf');
+}
+
+@font-face {
+    font-family: 'Monterchi Serif';
+    src: url('../fonts/MonterchiSerif.ttf');
+}
+
+body{
+    font-family:'Muli';
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family:'Optima';
+}
 
 /* COLOR DE LAS LETRITAS DEL PRINCIPIO */
 .context-dark, .bg-gray-700, .bg-gray-3, .bg-brown-1, .bg-primary,
