@@ -5049,7 +5049,7 @@ textarea.textarea-lg {
 	font-weight: 700;
 	font-style: normal;
 	letter-spacing: 0;
-	font-family: "Kalam", cursive;
+    font-family: "Helvetica Thai", sans-serif;
 	color: rgba(118, 170, 111, 0.22);
 	transform: translate3d(-50%, 0, 0);
 }
@@ -5135,7 +5135,7 @@ textarea.textarea-lg {
 	font-weight: 700;
 	font-style: normal;
 	letter-spacing: 0;
-	font-family: "Kalam", cursive;
+	font-family: "Helvetica Thai", sans-serif;
 	color: rgba(198, 140, 73, 0.326);
 	transform: translate3d(-50%, 0, 0);
 }
@@ -5207,7 +5207,7 @@ textarea.textarea-lg {
 	font-weight: 700;
 	font-style: normal;
 	letter-spacing: 0;
-	font-family: "Kalam", cursive;
+	font-family: "Helvetica Thai", sans-serif;
 	color: rgba(198, 140, 73, 0.326);
 	transform: translate3d(-50%, 0, 0);
 }
@@ -5412,7 +5412,7 @@ textarea.textarea-lg {
 	font-weight: 700;
 	font-style: normal;
 	letter-spacing: 0;
-	font-family: "Kalam", cursive;
+	font-family: "Helvetica Thai", sans-serif;
 	color: rgba(118, 170, 111, 0.22);
 	transform: translate3d(-50%, 0, 0);
 }
@@ -7762,7 +7762,7 @@ textarea.textarea-lg {
 .promo-classic-title {
 	letter-spacing: .05em;
 	text-transform: none;
-	font-family: "Kalam", cursive;
+	font-family: "Helvetica Thai", sans-serif;
 	color: #c68c49;
 }
 
@@ -8055,7 +8055,7 @@ textarea.textarea-lg {
 	font-size: 18px;
 	line-height: 1.2;
 	letter-spacing: .025em;
-	font-family: "Kalam", cursive;
+	font-family: "Helvetica Thai", sans-serif;
 	color: #a3a3a3;
 }
 
@@ -8728,7 +8728,7 @@ html.boxed body {
 }
 
 .font-family-cursive {
-	font-family: "Kalam", cursive;
+	font-family: "Helvetica Thai", sans-serif;
 }
 
 /*
@@ -10046,7 +10046,7 @@ p.rights a:hover {
 .title-style-1 {
 	letter-spacing: .05em;
 	text-transform: none;
-	font-family: "Kalam", cursive;
+	font-family: "Helvetica Thai", sans-serif;
 	color: #c68c49;
 }
 
@@ -10073,7 +10073,7 @@ p.rights a:hover {
 
 .title-style-6 {
 	letter-spacing: .02em;
-	font-family: "Kalam", cursive;
+	font-family: "Helvetica Thai", sans-serif;
 	color: #c68c49;
 }
 
@@ -10081,7 +10081,7 @@ p.rights a:hover {
 	font-weight: 700;
 	letter-spacing: .075em;
 	text-transform: none;
-	font-family: "Kalam", cursive;
+	font-family: "Helvetica Thai", sans-serif;
 	color: #c68c49;
 }
 
@@ -14252,7 +14252,7 @@ html.rd-navbar-fixed-linked .page {
 
 .swiper-slider-1 .swiper-title-3 {
 	letter-spacing: .05em;
-	font-family: "Kalam", cursive;
+	font-family: "Helvetica Thai", sans-serif;
 	text-transform: none;
 }
 
