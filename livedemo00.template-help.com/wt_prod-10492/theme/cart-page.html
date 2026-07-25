@@ -199,7 +199,7 @@
         <div class="container">
           <!-- shopping-cart-->
           <div class="table-custom-responsive">
-            <table class="table-custom table-cart">
+            <table class="table-custom table-cart" id="cart-table">
               <thead>
                 <tr>
                   <th>Product name</th>
@@ -209,32 +209,36 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr data-unit-price="20.00">
                   <td><a class="table-cart-figure" href="single-product.html"><img src="images/product-mini-4-146x132.png" alt="" width="146" height="132"/></a><a class="table-cart-link" href="single-product.html">Oranges</a></td>
-                  <td>$20.00</td>
+                  <td class="cart-row-price">$20.00</td>
                   <td>
-                    <div class="table-cart-stepper">
+                    <div class="stepper table-cart-stepper">
+                      <span class="stepper-arrow down"></span>
                       <input class="form-input" type="number" data-zeros="true" value="1" min="1" max="1000">
+                      <span class="stepper-arrow up"></span>
                     </div>
                   </td>
-                  <td>$20</td>
+                  <td class="cart-row-total">$20</td>
                 </tr>
-                <tr>
+                <tr data-unit-price="23.00">
                   <td><a class="table-cart-figure" href="single-product.html"><img src="images/product-mini-5-146x132.png" alt="" width="146" height="132"/></a><a class="table-cart-link" href="single-product.html">Bananas</a></td>
-                  <td>$23.00</td>
+                  <td class="cart-row-price">$23.00</td>
                   <td>
-                    <div class="table-cart-stepper">
+                    <div class="stepper table-cart-stepper">
+                      <span class="stepper-arrow down"></span>
                       <input class="form-input" type="number" data-zeros="true" value="1" min="1" max="1000">
+                      <span class="stepper-arrow up"></span>
                     </div>
                   </td>
-                  <td>$23</td>
+                  <td class="cart-row-total">$23</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div class="group-xl group-justify justify-content-center justify-content-md-between">
             <div>
-              <form class="rd-form rd-mailform rd-form-inline rd-form-coupon">
+              <form class="rd-form rd-mailform rd-form-inline rd-form-inline rd-form-coupon">
                 <div class="form-wrap">
                   <input class="form-input form-input-inverse" id="coupon-code" type="text" name="code">
                   <label class="form-label" for="coupon-code">Coupon code</label>
@@ -249,7 +253,7 @@
                 <div>
                   <div class="group-md group-middle">
                     <div class="heading-5 fw-medium text-gray-500">Total</div>
-                    <div class="heading-3 fw-normal">$43</div>
+                    <div class="heading-3 fw-normal" id="cart-grand-total">$43</div>
                   </div>
                 </div><a class="button button-lg button-primary button-zakaria" href="checkout.html">Proceed to checkout</a>
               </div>
@@ -365,6 +369,127 @@
     <div class="snackbars" id="form-output-global"></div>
     <script src="js/core.min.js"></script>
     <script src="js/script.js"></script>
+
+    <!-- Carrito funcional: suma/resta cantidad y recalcula totales -->
+    <script>
+      (function () {
+        function formatMoney(value) {
+          // Si es entero, sin decimales (igual que el diseño original: "$20" en vez de "$20.00")
+          return value % 1 === 0 ? '$' + value.toFixed(0) : '$' + value.toFixed(2);
+        }
+
+        function clamp(value, min, max) {
+          if (isNaN(value)) value = min;
+          if (value < min) value = min;
+          if (value > max) value = max;
+          return value;
+        }
+
+        function initStepper(stepper) {
+          if (stepper.dataset.stepperInit) return;
+          stepper.dataset.stepperInit = 'true';
+
+          var input = stepper.querySelector('input[type="number"]');
+          var btnDown = stepper.querySelector('.stepper-arrow.down');
+          var btnUp = stepper.querySelector('.stepper-arrow.up');
+          if (!input) return;
+
+          var min = parseInt(input.getAttribute('min'), 10) || 1;
+          var max = parseInt(input.getAttribute('max'), 10) || 1000;
+
+          // step(): cambia el valor y refresca los totales EN EL MISMO instante,
+          // sin esperar ningún otro evento.
+          function step(delta) {
+            if (stepper.classList.contains('disabled')) return;
+            var current = parseInt(input.value, 10);
+            if (isNaN(current)) current = min;
+            input.value = clamp(current + delta, min, max);
+            recalcAll();
+          }
+
+          // wireHold(): responde en pointerdown (no espera al "click", que en
+          // móvil puede tardar) y repite rápido mientras se mantiene presionado.
+          function wireHold(btn, delta) {
+            if (!btn) return;
+            var holdTimeout = null;
+            var holdInterval = null;
+
+            function clearHold() {
+              clearTimeout(holdTimeout);
+              clearInterval(holdInterval);
+              holdTimeout = null;
+              holdInterval = null;
+            }
+
+            btn.addEventListener('pointerdown', function (e) {
+              e.preventDefault();
+              step(delta);
+              clearHold();
+              holdTimeout = setTimeout(function () {
+                holdInterval = setInterval(function () {
+                  step(delta);
+                }, 90);
+              }, 350);
+            });
+
+            ['pointerup', 'pointerleave', 'pointercancel'].forEach(function (evt) {
+              btn.addEventListener(evt, clearHold);
+            });
+
+            // Respaldo para navegadores sin soporte de Pointer Events
+            btn.addEventListener('click', function (e) {
+              e.preventDefault();
+            });
+          }
+
+          wireHold(btnDown, -1);
+          wireHold(btnUp, 1);
+
+          input.addEventListener('input', function () {
+            recalcAll();
+          });
+
+          input.addEventListener('change', function () {
+            input.value = clamp(parseInt(input.value, 10) || min, min, max);
+            recalcAll();
+          });
+        }
+
+        function recalcMainTable() {
+          var table = document.getElementById('cart-table');
+          if (!table) return 0;
+
+          var rows = table.querySelectorAll('tbody tr');
+          var grandTotal = 0;
+
+          rows.forEach(function (row) {
+            var unitPrice = parseFloat(row.getAttribute('data-unit-price')) || 0;
+            var qtyInput = row.querySelector('input[type="number"]');
+            var totalCell = row.querySelector('.cart-row-total');
+            var qty = qtyInput ? (parseInt(qtyInput.value, 10) || 1) : 1;
+            var rowTotal = unitPrice * qty;
+
+            if (totalCell) totalCell.textContent = formatMoney(rowTotal);
+            grandTotal += rowTotal;
+          });
+
+          var grandTotalEl = document.getElementById('cart-grand-total');
+          if (grandTotalEl) grandTotalEl.textContent = formatMoney(grandTotal);
+
+          return grandTotal;
+        }
+
+        function recalcAll() {
+          recalcMainTable();
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+          document.querySelectorAll('#cart-table .table-cart-stepper').forEach(initStepper);
+          recalcAll();
+        });
+      })();
+    </script>
+
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9FT69" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <script>
