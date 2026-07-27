@@ -81,7 +81,7 @@
                       <div class="cart-inline-body">
                         <div class="cart-inline-item">
                           <div class="unit unit-spacing-sm align-items-center">
-                            <div class="unit-left"><a class="cart-inline-figure" href="single-product.html"><img src="images/lecguga-convertido-a-100x90.jpeg" alt="" width="100" height="90"/></a></div>
+                            <div class="unit-left"><a class="cart-inline-figure"><img src="images/lecguga-convertido-a-100x90.jpeg" alt="" width="100" height="90"/></a></div>
                             <div class="unit-body">
                               <h6 class="cart-inline-name"><a href="shop-list.html">Lettuce</a></h6>
                               <div>
@@ -97,9 +97,9 @@
                         </div>
                         <div class="cart-inline-item">
                           <div class="unit unit-spacing-sm align-items-center">
-                            <div class="unit-left"><a class="cart-inline-figure" href="single-product.html"><img src="images/cera-convertido-a-100x90.jpeg" alt="" width="100" height="90"/></a></div>
+                            <div class="unit-left"><a class="cart-inline-figure"><img src="images/cera-convertido-a-100x90.jpeg" alt="" width="100" height="90"/></a></div>
                             <div class="unit-body">
-                              <h6 class="cart-inline-name"><a href="single-product.html">Radish</a></h6>
+                              <h6 class="cart-inline-name"><a>Radish</a></h6>
                               <div>
                                 <div class="group-xs group-middle">
                                   <div class="table-cart-stepper">
@@ -190,29 +190,16 @@
               <div class="aside row row-30 row-md-50 justify-content-md-between">
                 <div class="aside-item col-12">
                   <h6 class="aside-title">Filter by Price</h6>
-                  <!-- RD Range (slider de precio funcional hecho a medida) -->
-                  <div class="rd-range custom-price-range" id="price-range" data-min="0" data-max="350" data-step="1">
-                    <div class="custom-range-track">
-                      <div class="custom-range-highlight" id="price-range-highlight"></div>
+                  <div class="price-slider-box">
+                    <div class="price-slider" id="price-slider">
+                      <div class="price-slider-track"></div>
+                      <div class="price-slider-range" id="price-slider-range"></div>
+                      <input id="price-min" class="price-range-input" type="range" min="0" max="350" step="1" value="0" aria-label="Minimum price">
+                      <input id="price-max" class="price-range-input" type="range" min="0" max="350" step="1" value="350" aria-label="Maximum price">
                     </div>
-                    <input type="range" class="custom-range-input" id="price-range-min" min="0" max="350" step="1" value="0">
-                    <input type="range" class="custom-range-input" id="price-range-max" min="0" max="350" step="1" value="350">
-                  </div>
-                  <div class="group-xs group-justify">
-                    <div>
+                    <div class="price-slider-footer">
                       <button class="button button-sm button-secondary button-zakaria" type="button" id="price-filter-btn">Filter</button>
-                    </div>
-                    <div>
-                      <div class="rd-range-wrap">
-                        <div class="rd-range-title">Price:</div>
-                        <div class="rd-range-form-wrap"><span>$</span>
-                          <input class="rd-range-input rd-range-input-value-1" id="price-value-1" type="text" name="value-1" readonly>
-                        </div>
-                        <div class="rd-range-divider"></div>
-                        <div class="rd-range-form-wrap"><span>$</span>
-                          <input class="rd-range-input rd-range-input-value-2" id="price-value-2" type="text" name="value-2" readonly>
-                        </div>
-                      </div>
+                      <div class="price-slider-values">Price: <strong id="price-filter-status">$0.00 – $350.00</strong></div>
                     </div>
                   </div>
                 </div>
@@ -253,9 +240,13 @@
                       <!-- Producto popular: System Product #1 -->
                       <article class="product-minimal">
                         <div class="unit unit-spacing-sm flex-column flex-md-row align-items-center">
-                          <div class="unit-left"><a class="product-minimal-figure" href="single-product.html"><div class="image-placeholder-sm"><span>Image</span></div></a></div>
+                          <div class="unit-left">
+                            <a class="product-minimal-figure">
+                              <img class="product-image-sm" src="images/producto-1.jpg" alt="Sistema Hidropónico">
+                            </a>
+                          </div>
                           <div class="unit-body">
-                            <p class="product-minimal-title"><a href="single-product.html">System Product #1</a></p>
+                            <p class="product-minimal-title"><a>System Product #1</a></p>
                             <p class="product-minimal-price">$149.00</p>
                           </div>
                         </div>
@@ -265,9 +256,9 @@
                       <!-- Producto popular: System Product #2 -->
                       <article class="product-minimal">
                         <div class="unit unit-spacing-sm flex-column flex-md-row align-items-center">
-                          <div class="unit-left"><a class="product-minimal-figure" href="single-product.html"><div class="image-placeholder-sm"><span>Image</span></div></a></div>
+                          <div class="unit-left"><a class="product-minimal-figure"><img class="product-image-sm" src="images/producto-2.jpg" alt="Sistema Hidropónico Vertical"></a></div>
                           <div class="unit-body">
-                            <p class="product-minimal-title"><a href="single-product.html">System Product #2</a></p>
+                            <p class="product-minimal-title"><a>System Product #2</a></p>
                             <p class="product-minimal-price">$329.00</p>
                           </div>
                         </div>
@@ -277,9 +268,9 @@
                       <!-- Producto popular: Tomato Seeds -->
                       <article class="product-minimal">
                         <div class="unit unit-spacing-sm flex-column flex-md-row align-items-center">
-                          <div class="unit-left"><a class="product-minimal-figure" href="single-product.html"><div class="image-placeholder-sm"><span>Image</span></div></a></div>
+                          <div class="unit-left"><a class="product-minimal-figure"><img class="product-image-sm" src="images/semillas-tomate.jpg" alt="Semillas de Tomate"></a></div>
                           <div class="unit-body">
-                            <p class="product-minimal-title"><a href="single-product.html">Tomato Seeds</a></p>
+                            <p class="product-minimal-title"><a>Tomato Seeds</a></p>
                             <p class="product-minimal-price">$2.50</p>
                           </div>
                         </div>
@@ -295,10 +286,13 @@
                 <div>
                   <div class="group-sm group-middle">
                     <div class="product-top-panel-sorting">
-                      <select id="sort-select">
+                      <label class="visually-hidden" for="sort-select">Sort products</label>
+                      <select id="sort-select" class="product-sort-select">
                         <option value="newness">Sort by newness</option>
                         <option value="popularity">Sort by popularity</option>
                         <option value="alphabet">Sort by alphabet</option>
+                        <option value="price-low">Price: low to high</option>
+                        <option value="price-high">Price: high to low</option>
                       </select>
                     </div>
                     <div class="product-view-toggle"><a class="mdi mdi-apps product-view-link product-view-grid" href="grid-shop.html"></a><a class="mdi mdi-format-list-bulleted product-view-link product-view-list active" href="shop-list.html"></a></div>
@@ -313,10 +307,10 @@
                   <!-- Producto: Sistema Hidropónico Inicial -->
                   <article class="product-modern text-center text-sm-start">
                     <div class="unit unit-spacing-0 flex-column flex-sm-row">
-                      <div class="unit-left"><a class="product-modern-figure" href="single-product.html"><div class="image-placeholder-lg"><span>Image</span></div></a></div>
+                      <div class="unit-left"><a class="product-modern-figure"><img class="product-image-lg" src="images/sistema-starter.jpg" alt="Hydroponic Starter System"></a></div>
                       <div class="unit-body">
                         <div class="product-modern-body">
-                          <h4 class="product-modern-title"><a href="single-product.html">Hydroponic Starter System</a></h4>
+                          <h4 class="product-modern-title"><a>Hydroponic Starter System</a></h4>
                           <div class="product-price-wrap">
                             <div class="product-price">$149.00</div>
                           </div>
@@ -331,10 +325,10 @@
                   <!-- Producto: Sistema de Torre Vertical -->
                   <article class="product-modern text-center text-sm-start">
                     <div class="unit unit-spacing-0 flex-column flex-sm-row">
-                      <div class="unit-left"><a class="product-modern-figure" href="single-product.html"><div class="image-placeholder-lg"><span>Image</span></div></a></div>
+                      <div class="unit-left"><a class="product-modern-figure"><img class="product-image-lg" src="images/torre-vertical.jpg" alt="Vertical Grow Tower System"></a></div>
                       <div class="unit-body">
                         <div class="product-modern-body">
-                          <h4 class="product-modern-title"><a href="single-product.html">Vertical Grow Tower System</a></h4>
+                          <h4 class="product-modern-title"><a>Vertical Grow Tower System</a></h4>
                           <div class="product-price-wrap">
                             <div class="product-price">$329.00</div>
                           </div>
@@ -351,10 +345,10 @@
                   <!-- Producto: Semillas de Tomate -->
                   <article class="product-modern text-center text-sm-start">
                     <div class="unit unit-spacing-0 flex-column flex-sm-row">
-                      <div class="unit-left"><a class="product-modern-figure" href="single-product.html"><div class="image-placeholder-lg"><span>Image</span></div></a></div>
+                      <div class="unit-left"><a class="product-modern-figure"><img class="product-image-lg" src="images/semillas-tomate.jpg" alt="Tomato Seeds"></a></div>
                       <div class="unit-body">
                         <div class="product-modern-body">
-                          <h4 class="product-modern-title"><a href="single-product.html">Tomato Seeds</a></h4>
+                          <h4 class="product-modern-title"><a>Tomato Seeds</a></h4>
                           <div class="product-price-wrap">
                             <div class="product-price">$2.50</div>
                           </div>
@@ -369,10 +363,10 @@
                   <!-- Producto: Semillas de Lechuga -->
                   <article class="product-modern text-center text-sm-start">
                     <div class="unit unit-spacing-0 flex-column flex-sm-row">
-                      <div class="unit-left"><a class="product-modern-figure" href="single-product.html"><div class="image-placeholder-lg"><span>Image</span></div></a></div>
+                      <div class="unit-left"><a class="product-modern-figure"><img class="product-image-lg" src="images/semillas-lechuga.jpg" alt="Lettuce Seeds"></a></div>
                       <div class="unit-body">
                         <div class="product-modern-body">
-                          <h4 class="product-modern-title"><a href="single-product.html">Lettuce Seeds</a></h4>
+                          <h4 class="product-modern-title"><a>Lettuce Seeds</a></h4>
                           <div class="product-price-wrap">
                             <div class="product-price">$1.80</div>
                           </div>
@@ -387,10 +381,10 @@
                   <!-- Producto: Semillas de Pepino -->
                   <article class="product-modern text-center text-sm-start">
                     <div class="unit unit-spacing-0 flex-column flex-sm-row">
-                      <div class="unit-left"><a class="product-modern-figure" href="single-product.html"><div class="image-placeholder-lg"><span>Image</span></div></a></div>
+                      <div class="unit-left"><a class="product-modern-figure"><img class="product-image-lg" src="images/semillas-pepino.jpg" alt="Cucumber Seeds"></a></div>
                       <div class="unit-body">
                         <div class="product-modern-body">
-                          <h4 class="product-modern-title"><a href="single-product.html">Cucumber Seeds</a></h4>
+                          <h4 class="product-modern-title"><a>Cucumber Seeds</a></h4>
                           <div class="product-price-wrap">
                             <div class="product-price">$2.20</div>
                           </div>
@@ -405,10 +399,10 @@
                   <!-- Producto: Semillas de Zanahoria -->
                   <article class="product-modern text-center text-sm-start">
                     <div class="unit unit-spacing-0 flex-column flex-sm-row">
-                      <div class="unit-left"><a class="product-modern-figure" href="single-product.html"><div class="image-placeholder-lg"><span>Image</span></div></a></div>
+                      <div class="unit-left"><a class="product-modern-figure"><img class="product-image-lg" src="images/semillas-zanahoria.jpg" alt="Carrot Seeds"></a></div>
                       <div class="unit-body">
                         <div class="product-modern-body">
-                          <h4 class="product-modern-title"><a href="single-product.html">Carrot Seeds</a></h4>
+                          <h4 class="product-modern-title"><a>Carrot Seeds</a></h4>
                           <div class="product-price-wrap">
                             <div class="product-price">$1.50</div>
                           </div>
@@ -423,10 +417,10 @@
                   <!-- Producto: Semillas de Pimiento -->
                   <article class="product-modern text-center text-sm-start">
                     <div class="unit unit-spacing-0 flex-column flex-sm-row">
-                      <div class="unit-left"><a class="product-modern-figure" href="single-product.html"><div class="image-placeholder-lg"><span>Image</span></div></a></div>
+                      <div class="unit-left"><a class="product-modern-figure"><img class="product-image-lg" src="images/semillas-pimiento.jpg" alt="Bell Pepper Seeds"></a></div>
                       <div class="unit-body">
                         <div class="product-modern-body">
-                          <h4 class="product-modern-title"><a href="single-product.html">Bell Pepper Seeds</a></h4>
+                          <h4 class="product-modern-title"><a>Bell Pepper Seeds</a></h4>
                           <div class="product-price-wrap">
                             <div class="product-price">$2.75</div>
                           </div>
@@ -441,10 +435,10 @@
                   <!-- Producto: Semillas de Espinaca -->
                   <article class="product-modern text-center text-sm-start">
                     <div class="unit unit-spacing-0 flex-column flex-sm-row">
-                      <div class="unit-left"><a class="product-modern-figure" href="single-product.html"><div class="image-placeholder-lg"><span>Image</span></div></a></div>
+                      <div class="unit-left"><a class="product-modern-figure"><img class="product-image-lg" src="images/semillas-espinaca.jpg" alt="Spinach Seeds"></a></div>
                       <div class="unit-body">
                         <div class="product-modern-body">
-                          <h4 class="product-modern-title"><a href="single-product.html">Spinach Seeds</a></h4>
+                          <h4 class="product-modern-title"><a>Spinach Seeds</a></h4>
                           <div class="product-price-wrap">
                             <div class="product-price">$1.90</div>
                           </div>
@@ -459,10 +453,10 @@
                   <!-- Producto: Semillas de Cebolla -->
                   <article class="product-modern text-center text-sm-start">
                     <div class="unit unit-spacing-0 flex-column flex-sm-row">
-                      <div class="unit-left"><a class="product-modern-figure" href="single-product.html"><div class="image-placeholder-lg"><span>Image</span></div></a></div>
+                      <div class="unit-left"><a class="product-modern-figure"><img class="product-image-lg" src="images/semillas-cebolla.jpg" alt="Onion Seeds"></a></div>
                       <div class="unit-body">
                         <div class="product-modern-body">
-                          <h4 class="product-modern-title"><a href="single-product.html">Onion Seeds</a></h4>
+                          <h4 class="product-modern-title"><a>Onion Seeds</a></h4>
                           <div class="product-price-wrap">
                             <div class="product-price">$1.60</div>
                           </div>
@@ -477,10 +471,10 @@
                   <!-- Producto: Semillas de Fresa -->
                   <article class="product-modern text-center text-sm-start">
                     <div class="unit unit-spacing-0 flex-column flex-sm-row">
-                      <div class="unit-left"><a class="product-modern-figure" href="single-product.html"><div class="image-placeholder-lg"><span>Image</span></div></a></div>
+                      <div class="unit-left"><a class="product-modern-figure"><img class="product-image-lg" src="images/semillas-fresa.jpg" alt="Strawberry Seeds"></a></div>
                       <div class="unit-body">
                         <div class="product-modern-body">
-                          <h4 class="product-modern-title"><a href="single-product.html">Strawberry Seeds</a></h4>
+                          <h4 class="product-modern-title"><a>Strawberry Seeds</a></h4>
                           <div class="product-price-wrap">
                             <div class="product-price">$3.20</div>
                           </div>
@@ -495,10 +489,10 @@
                   <!-- Producto: Semillas de Sandía -->
                   <article class="product-modern text-center text-sm-start">
                     <div class="unit unit-spacing-0 flex-column flex-sm-row">
-                      <div class="unit-left"><a class="product-modern-figure" href="single-product.html"><div class="image-placeholder-lg"><span>Image</span></div></a></div>
+                      <div class="unit-left"><a class="product-modern-figure"><img class="product-image-lg" src="images/semillas-sandia.jpg" alt="Watermelon Seeds"></a></div>
                       <div class="unit-body">
                         <div class="product-modern-body">
-                          <h4 class="product-modern-title"><a href="single-product.html">Watermelon Seeds</a></h4>
+                          <h4 class="product-modern-title"><a>Watermelon Seeds</a></h4>
                           <div class="product-price-wrap">
                             <div class="product-price">$2.90</div>
                           </div>
@@ -632,20 +626,58 @@
  
     <div class="snackbars" id="form-output-global"></div>
 
-    <!-- Estilos propios para el slider de precio y los placeholders de imagen -->
+    <!-- Estilos propios para filtros, orden e imágenes -->
     <style>
-      .custom-price-range{position:relative;height:36px;margin:10px 0 6px;}
-      .custom-range-track{position:absolute;top:50%;left:0;right:0;height:4px;background:#e4e0d9;border-radius:4px;transform:translateY(-50%);}
-      .custom-range-highlight{position:absolute;top:0;bottom:0;left:0;right:0;background:#c99356;border-radius:4px;}
-      .custom-range-input{position:absolute;top:50%;left:0;width:100%;margin:0;transform:translateY(-50%);appearance:none;-webkit-appearance:none;background:transparent;pointer-events:none;height:20px;}
-      .custom-range-input::-webkit-slider-runnable-track{-webkit-appearance:none;background:transparent;}
-      .custom-range-input::-webkit-slider-thumb{-webkit-appearance:none;pointer-events:auto;width:16px;height:16px;border-radius:50%;background:#c99356;cursor:pointer;box-shadow:0 0 0 2px #fff, 0 1px 3px rgba(0,0,0,.25);margin-top:0;}
-      .custom-range-input::-moz-range-track{background:transparent;border:none;}
-      .custom-range-input::-moz-range-thumb{pointer-events:auto;width:16px;height:16px;border-radius:50%;background:#c99356;cursor:pointer;box-shadow:0 0 0 2px #fff, 0 1px 3px rgba(0,0,0,.25);border:none;}
-      .rd-range-input[readonly]{background:transparent;cursor:default;}
-      .image-placeholder-lg{width:328px;max-width:100%;height:330px;background:#f4f2ee;border:1px dashed #c9c2b6;display:flex;align-items:center;justify-content:center;color:#a39d8f;font-size:14px;letter-spacing:.05em;text-transform:uppercase;}
-      .image-placeholder-sm{width:106px;height:104px;background:#f4f2ee;border:1px dashed #c9c2b6;display:flex;align-items:center;justify-content:center;color:#a39d8f;font-size:10px;letter-spacing:.05em;text-transform:uppercase;}
+      .price-slider-box{margin-top:6px;}
+      .price-slider{position:relative;height:44px;margin:8px 0 24px;}
+      .price-slider-track,
+      .price-slider-range{position:absolute;top:20px;left:0;width:100%;height:7px;border-radius:10px;}
+      .price-slider-track{background:#f1f1f1;}
+      .price-slider-range{background:#ce934c;left:0;right:0;width:auto;}
+      .price-range-input{position:absolute;top:10px;left:0;width:100%;height:27px;margin:0;background:transparent;pointer-events:none;-webkit-appearance:none;appearance:none;outline:none;}
+      .price-range-input::-webkit-slider-runnable-track{height:7px;background:transparent;border:0;}
+      .price-range-input::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;margin-top:-8px;border:2px solid #fff;border-radius:50%;background:#ce934c;box-shadow:0 1px 4px rgba(0,0,0,.22);cursor:pointer;pointer-events:auto;}
+      .price-range-input::-moz-range-track{height:7px;background:transparent;border:0;}
+      .price-range-input::-moz-range-thumb{width:18px;height:18px;border:2px solid #fff;border-radius:50%;background:#ce934c;box-shadow:0 1px 4px rgba(0,0,0,.22);cursor:pointer;pointer-events:auto;}
+      .price-slider-footer{display:flex;align-items:center;justify-content:space-between;gap:18px;}
+      .price-slider-footer .button{flex:0 0 auto;}
+      .price-slider-values{font-size:16px;line-height:1.4;white-space:nowrap;color:#111;}
+      .price-slider-values strong{font-weight:400;}
+      @media (max-width:1199px) and (min-width:992px){
+        .price-slider-footer{align-items:flex-start;flex-direction:column;gap:14px;}
+      }
+      @media (max-width:420px){
+        .price-slider-footer{align-items:flex-start;flex-direction:column;gap:14px;}
+        .price-slider-values{font-size:15px;}
+      }
+      .product-sort-select{
+        min-width:220px;
+        padding:11px 42px 11px 14px;
+        border:1px solid #d9d9d9;
+        background:#fff;
+        font:inherit;
+        cursor:pointer;
+      }
+      .product-image-lg{
+        display:block;
+        width:328px;
+        max-width:100%;
+        height:330px;
+        object-fit:cover;
+        background:#f4f2ee;
+      }
+      .product-image-sm{
+        display:block;
+        width:106px;
+        height:104px;
+        object-fit:cover;
+        background:#f4f2ee;
+      }
       #product-list [data-category][style*="display: none"]{display:none;}
+      @media (max-width:575px){
+        .product-sort-select{width:100%;min-width:0;}
+        .product-image-lg{width:100%;height:260px;}
+      }
     </style>
 
     <script src="js/core.min.js"></script>
@@ -654,164 +686,162 @@
     <!-- Filtros y orden funcionales de la tienda -->
     <script>
       document.addEventListener('DOMContentLoaded', function () {
-        var minInput = document.getElementById('price-range-min');
-        var maxInput = document.getElementById('price-range-max');
-        var highlight = document.getElementById('price-range-highlight');
-        var valueDisplay1 = document.getElementById('price-value-1');
-        var valueDisplay2 = document.getElementById('price-value-2');
-        var filterBtn = document.getElementById('price-filter-btn');
-        var checkboxList = document.getElementById('category-filter-list');
-        var productContainer = document.getElementById('product-list');
-        var sortSelect = document.getElementById('sort-select');
-        var resultsText = document.getElementById('results-count-text');
-        var noResultsMsg = document.getElementById('no-results-message');
+        const productContainer = document.getElementById('product-list');
+        const minInput = document.getElementById('price-min');
+        const maxInput = document.getElementById('price-max');
+        const filterBtn = document.getElementById('price-filter-btn');
+        const sliderRange = document.getElementById('price-slider-range');
+        const filterStatus = document.getElementById('price-filter-status');
+        const checkboxList = document.getElementById('category-filter-list');
+        const sortSelect = document.getElementById('sort-select');
+        const resultsText = document.getElementById('results-count-text');
+        const noResultsMsg = document.getElementById('no-results-message');
 
-        if (!minInput || !maxInput || !productContainer) { return; }
+        if (!productContainer || !minInput || !maxInput) return;
 
-        var rangeMin = parseFloat(minInput.min);
-        var rangeMax = parseFloat(minInput.max);
+        const products = Array.from(productContainer.querySelectorAll('[data-category]'));
 
-        function formatPrice(v) {
-          return v.toFixed(2);
+        function getSelectedCategories() {
+          if (!checkboxList) return ['all'];
+          const checked = Array.from(
+            checkboxList.querySelectorAll('input[type="checkbox"]:checked')
+          );
+          return checked.map(input => input.dataset.cat);
         }
 
-        function updateSliderVisual() {
-          var minVal = parseFloat(minInput.value);
-          var maxVal = parseFloat(maxInput.value);
+        function normalizePrices() {
+          let min = Number(minInput.value);
+          let max = Number(maxInput.value);
+          const lowerLimit = Number(minInput.min);
+          const upperLimit = Number(minInput.max);
 
-          if (minVal > maxVal) {
-            var tmp = minVal;
-            minVal = maxVal;
-            maxVal = tmp;
-          }
+          if (min > max) [min, max] = [max, min];
+          min = Math.max(lowerLimit, min);
+          max = Math.min(upperLimit, max);
 
-          var minPercent = ((minVal - rangeMin) / (rangeMax - rangeMin)) * 100;
-          var maxPercent = ((maxVal - rangeMin) / (rangeMax - rangeMin)) * 100;
-
-          highlight.style.left = minPercent + '%';
-          highlight.style.right = (100 - maxPercent) + '%';
-
-          valueDisplay1.value = formatPrice(minVal);
-          valueDisplay2.value = formatPrice(maxVal);
+          minInput.value = String(min);
+          maxInput.value = String(max);
+          return { min, max };
         }
 
-        minInput.addEventListener('input', function () {
-          if (parseFloat(minInput.value) > parseFloat(maxInput.value)) {
-            minInput.value = maxInput.value;
-          }
-          updateSliderVisual();
-        });
+        function updatePriceSlider() {
+          const { min, max } = normalizePrices();
+          const lowerLimit = Number(minInput.min);
+          const upperLimit = Number(minInput.max);
+          const minPercent = ((min - lowerLimit) / (upperLimit - lowerLimit)) * 100;
+          const maxPercent = ((max - lowerLimit) / (upperLimit - lowerLimit)) * 100;
 
-        maxInput.addEventListener('input', function () {
-          if (parseFloat(maxInput.value) < parseFloat(minInput.value)) {
-            maxInput.value = minInput.value;
+          if (sliderRange) {
+            sliderRange.style.left = minPercent + '%';
+            sliderRange.style.right = (100 - maxPercent) + '%';
           }
-          updateSliderVisual();
-        });
 
-        function getActiveCategories() {
-          var checked = checkboxList.querySelectorAll('input[type="checkbox"]:checked');
-          var cats = [];
-          checked.forEach(function (cb) {
-            cats.push(cb.getAttribute('data-cat'));
+          if (filterStatus) {
+            filterStatus.textContent = '$' + min.toFixed(2) + ' – $' + max.toFixed(2);
+          }
+
+          minInput.style.zIndex = min > upperLimit - 25 ? '5' : '3';
+          maxInput.style.zIndex = '4';
+        }
+
+        function sortProducts() {
+          if (!sortSelect) return;
+
+          const criterion = sortSelect.value;
+          const sorted = [...products].sort(function (a, b) {
+            if (criterion === 'alphabet') {
+              return a.dataset.name.localeCompare(b.dataset.name);
+            }
+            if (criterion === 'popularity') {
+              return Number(b.dataset.popularity) - Number(a.dataset.popularity);
+            }
+            if (criterion === 'price-low') {
+              return Number(a.dataset.price) - Number(b.dataset.price);
+            }
+            if (criterion === 'price-high') {
+              return Number(b.dataset.price) - Number(a.dataset.price);
+            }
+            return Number(a.dataset.order) - Number(b.dataset.order);
           });
-          return cats;
+
+          sorted.forEach(product => productContainer.appendChild(product));
         }
 
         function applyFilters() {
-          var min = parseFloat(valueDisplay1.value || minInput.value);
-          var max = parseFloat(valueDisplay2.value || maxInput.value);
-          var activeCats = getActiveCategories();
-          var showAll = activeCats.length === 0 || activeCats.indexOf('all') !== -1;
-          var visibleCount = 0;
-          var items = productContainer.querySelectorAll('[data-category]');
+          const { min, max } = normalizePrices();
+          const categories = getSelectedCategories();
+          const showAll = categories.length === 0 || categories.includes('all');
+          let visible = 0;
 
-          items.forEach(function (item) {
-            var price = parseFloat(item.getAttribute('data-price'));
-            var category = item.getAttribute('data-category');
-            var matchesPrice = price >= min && price <= max;
-            var matchesCategory = showAll || activeCats.indexOf(category) !== -1;
+          products.forEach(function (product) {
+            const price = Number(product.dataset.price);
+            const categoryMatches = showAll || categories.includes(product.dataset.category);
+            const priceMatches = price >= min && price <= max;
+            const shouldShow = categoryMatches && priceMatches;
 
-            if (matchesPrice && matchesCategory) {
-              item.style.display = '';
-              visibleCount++;
-            } else {
-              item.style.display = 'none';
-            }
+            product.style.display = shouldShow ? '' : 'none';
+            if (shouldShow) visible++;
           });
 
+          updatePriceSlider();
+
           if (resultsText) {
-            resultsText.textContent = visibleCount === 0
+            resultsText.textContent = visible === 0
               ? 'No results'
-              : 'Showing 1–' + visibleCount + ' of ' + visibleCount + ' results';
+              : 'Showing 1–' + visible + ' of ' + visible + ' results';
           }
 
           if (noResultsMsg) {
-            noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+            noResultsMsg.style.display = visible === 0 ? 'block' : 'none';
           }
         }
 
-        checkboxList.addEventListener('change', function (e) {
-          var target = e.target;
-          if (target.tagName !== 'INPUT') { return; }
-          var allCheckbox = checkboxList.querySelector('input[data-cat="all"]');
+        if (checkboxList) {
+          checkboxList.addEventListener('change', function (event) {
+            const target = event.target;
+            if (!(target instanceof HTMLInputElement)) return;
 
-          if (target.getAttribute('data-cat') === 'all') {
-            if (target.checked) {
-              checkboxList.querySelectorAll('input[type="checkbox"]').forEach(function (cb) {
-                if (cb !== target) { cb.checked = false; }
-              });
-            }
-          } else {
-            if (target.checked && allCheckbox) {
+            const allCheckbox = checkboxList.querySelector('input[data-cat="all"]');
+            const categoryCheckboxes = Array.from(
+              checkboxList.querySelectorAll('input[type="checkbox"]:not([data-cat="all"])')
+            );
+
+            if (target.dataset.cat === 'all' && target.checked) {
+              categoryCheckboxes.forEach(cb => cb.checked = false);
+            } else if (target.dataset.cat !== 'all' && target.checked && allCheckbox) {
               allCheckbox.checked = false;
             }
-            var anyChecked = Array.prototype.some.call(
-              checkboxList.querySelectorAll('input[type="checkbox"]'),
-              function (cb) { return cb.checked; }
-            );
-            if (!anyChecked && allCheckbox) {
-              allCheckbox.checked = true;
-            }
-          }
 
-          applyFilters();
-        });
+            const anyCategoryChecked = categoryCheckboxes.some(cb => cb.checked);
+            if (!anyCategoryChecked && allCheckbox) allCheckbox.checked = true;
 
-        if (filterBtn) {
-          filterBtn.addEventListener('click', applyFilters);
-        }
-
-        function applySort() {
-          if (!sortSelect) { return; }
-          var criteria = sortSelect.value;
-          var items = Array.prototype.slice.call(productContainer.querySelectorAll('[data-category]'));
-
-          items.sort(function (a, b) {
-            if (criteria === 'alphabet') {
-              return a.getAttribute('data-name').localeCompare(b.getAttribute('data-name'));
-            }
-            if (criteria === 'popularity') {
-              return parseInt(a.getAttribute('data-popularity'), 10) - parseInt(b.getAttribute('data-popularity'), 10);
-            }
-            return parseInt(a.getAttribute('data-order'), 10) - parseInt(b.getAttribute('data-order'), 10);
-          });
-
-          items.forEach(function (item) {
-            productContainer.appendChild(item);
-          });
-        }
-
-        if (sortSelect) {
-          sortSelect.addEventListener('change', function () {
-            applySort();
             applyFilters();
           });
         }
 
-        // Inicializacion
-        updateSliderVisual();
-        applySort();
+        filterBtn?.addEventListener('click', applyFilters);
+
+        minInput.addEventListener('input', function () {
+          if (Number(minInput.value) > Number(maxInput.value)) {
+            minInput.value = maxInput.value;
+          }
+          updatePriceSlider();
+        });
+
+        maxInput.addEventListener('input', function () {
+          if (Number(maxInput.value) < Number(minInput.value)) {
+            maxInput.value = minInput.value;
+          }
+          updatePriceSlider();
+        });
+
+        sortSelect?.addEventListener('change', function () {
+          sortProducts();
+          applyFilters();
+        });
+
+        updatePriceSlider();
+        sortProducts();
         applyFilters();
       });
     </script>
