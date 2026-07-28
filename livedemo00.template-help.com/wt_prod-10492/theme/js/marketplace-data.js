@@ -257,17 +257,18 @@ const MARKETPLACE_DATA = {
       {
         id: 'alberto-martinez',
         name: 'Alberto Martínez',
+        photo: 'images/vendedores/Alberto_Cortez_color.jpg',
         price: '0.75',
-        description: 'Lechuga mantecosa con hojas suaves y forma compacta. Textura mantecosa ideal para ensaladas gourmet y wraps saludables.',
-        sellerInfo: 'Productor con 8 años de experiencia en hidroponía.',
+        description: 'Butterhead lettuce with soft leaves and a compact shape. Its creamy texture makes it ideal for gourmet salads and healthy wraps.',
+        sellerInfo: 'Producer with 8 years of experience in hydroponics and a strong focus on leafy crops.',
         location: {
           name: 'La Ciudad del Niño',
           address: 'V68H+CH3, La Chorrera, Panamá',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5!2d-79.783!3d8.88!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8faca3c3c3c3c3c3%3A0x0!2sLa%20Ciudad%20del%20Ni%C3%B1o!5e0!3m2!1ses!2spa!4v1700000000000',
-          directions: 'Desde la autopista Panamericana, salida La Chorrera. 2 km hasta mercado comunitario.'
+          directions: 'From the Pan-American Highway, take the exit toward La Chorrera. Continue 2 km to the community market.'
         },
         reviews: [
-          { author: 'Velinda Guitierres', stars: 5, date: 'september 1st, 2026', text: 'Me súper gusto, Amazing!!!!!!!!' }
+          { author: 'Velinda Guitierres', stars: 5, date: 'september 1st, 2026', text: 'I really liked it, amazing!' }
         ]
       },
       {
