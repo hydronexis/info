@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Hydronexis Profile Dashboard</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <link rel="icon" href="images/futurehydri.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CLato%7CKalam:300,400,700">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/styles_Chat.css">
+  <link rel="stylesheet" href="css/profile-dashboard.css">
+</head>
+
+<body>
+  <div class="preloader"></div>
+
+  <div class="page">
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+    <header class="section page-header">
+      <div class="rd-navbar-wrap">
+        <nav class="rd-navbar rd-navbar-classic"
+             data-layout="rd-navbar-fixed"
+             data-sm-layout="rd-navbar-fixed"
+             data-md-layout="rd-navbar-fixed"
+             data-md-device-layout="rd-navbar-fixed"
+             data-lg-layout="rd-navbar-static"
+             data-lg-device-layout="rd-navbar-fixed"
+             data-xl-layout="rd-navbar-static"
+             data-xl-device-layout="rd-navbar-static"
+             data-xxl-layout="rd-navbar-static"
+             data-xxl-device-layout="rd-navbar-static"
+             data-lg-stick-up-offset="100px"
+             data-xl-stick-up-offset="100px"
+             data-xxl-stick-up-offset="100px"
+             data-lg-stick-up="true"
+             data-xl-stick-up="true"
+             data-xxl-stick-up="true">
+
+          <div class="rd-navbar-main-outer">
+            <div class="rd-navbar-main">
+
+              <div class="rd-navbar-panel">
+                <button class="rd-navbar-toggle"
+                        data-rd-navbar-toggle=".rd-navbar-nav-wrap">
+                  <span></span>
+                </button>
+
+                <div class="rd-navbar-brand">
+                  <a class="brand" href="index.html">
+                    <img class="brand-logo"
+                         src="images/logo20.png"
+                         alt="Hydronexis logo"
+                         width="240"
+                         height="86">
+                  </a>
+                </div>
+              </div>
+
+              <div class="rd-navbar-nav-wrap">
+                <ul class="rd-navbar-nav">
+                  <li class="rd-nav-item">
+                    <a class="rd-nav-link" href="index.html">Home</a>
+                  </li>
+                  <li class="rd-nav-item">
+                    <a class="rd-nav-link" href="about-us.html">About Us</a>
+                  </li>
+                  <li class="rd-nav-item">
+                    <a class="rd-nav-link" href="grid-blog.html">Tutorials</a>
+                  </li>
+                  <li class="rd-nav-item">
+                    <a class="rd-nav-link" href="what-we-offer.html">Offerings</a>
+                  </li>
+                  <li class="rd-nav-item">
+                    <a class="rd-nav-link" href="grid-shop.html">Marketplace</a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="rd-navbar-main-element">
+
+                <div class="rd-navbar-search rd-navbar-search-2">
+                  <button class="rd-navbar-search-toggle rd-navbar-fixed-element-3"
+                          data-rd-navbar-toggle=".rd-navbar-search">
+                    <span></span>
+                  </button>
+
+                  <form class="rd-search"
+                        action="index.html"
+                        data-search-live="rd-search-results-live"
+                        method="GET">
+                    <div class="form-wrap">
+                      <input class="rd-navbar-search-form-input form-input"
+                             id="rd-navbar-search-form-input"
+                             type="text"
+                             name="s"
+                             autocomplete="off">
+                      <label class="form-label"
+                             for="rd-navbar-search-form-input">
+                        Search...
+                      </label>
+                      <div class="rd-search-results-live"
+                           id="rd-search-results-live"></div>
+                      <button class="rd-search-form-submit fl-bigmug-line-search74"
+                              type="submit"></button>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="rd-navbar-basket-wrap">
+                  <button class="rd-navbar-basket fl-bigmug-line-shopping202"
+                          data-rd-navbar-toggle=".cart-inline">
+                    <span id="cartIcon">2</span>
+                  </button>
+
+                  <div class="cart-inline">
+                    <div class="cart-inline-header">
+                      <h5 class="cart-inline-title">
+                        In cart: <span id="cartCount">2</span> Products
+                      </h5>
+                      <h6 class="cart-inline-title">
+                        Total price: <span id="totalPrice">$7.00</span>
+                      </h6>
+                    </div>
+
+                    <div class="cart-inline-body">
+                      <p>Your shopping cart products will appear here.</p>
+                    </div>
+
+                    <div class="cart-inline-footer">
+                      <a class="button button-primary button-sm"
+                         href="cart-page.html">
+                        View Cart
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+
+    <!-- =========================
+         PROFILE DASHBOARD
+    ========================== -->
+    <main class="hydro-dashboard">
+
+      <section class="hydro-profile-card">
+        <div class="hydro-cover">
+          <img src="images/profile-cover.jpg"
+               alt="Hydronexis profile cover"
+               class="hydro-cover-image">
+
+          <button class="hydro-cover-edit"
+                  type="button"
+                  aria-label="Change cover image">
+            <span></span>
+          </button>
+        </div>
+
+        <div class="hydro-profile-content">
+
+          <div class="hydro-avatar-wrapper">
+            <img src="images/user-profile.jpg"
+                 alt="Fatima Abed"
+                 class="hydro-avatar">
+
+            <button class="hydro-avatar-edit"
+                    type="button"
+                    aria-label="Change profile image">
+              <span></span>
+            </button>
+          </div>
+
+          <div class="hydro-profile-heading">
+            <div>
+              <h1>Fatima Abed</h1>
+              <p>Hydroponic Grower</p>
+            </div>
+
+            <button class="hydro-outline-button" type="button">
+              Edit Profile
+            </button>
+          </div>
+
+          <div class="hydro-profile-introduction">
+            <div class="hydro-introduction-icon"></div>
+
+            <div>
+              <h2>Welcome to your Hydronexis profile</h2>
+              <p>
+                Share your experience, connect with growers and help the
+                agricultural community grow.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <div class="hydro-dashboard-grid">
+
+        <section class="hydro-section-card hydro-activity-panel">
+
+          <div class="hydro-tabs">
+            <button class="hydro-tab active"
+                    type="button"
+                    data-tab="activity">
+              Activity
+            </button>
+
+            <button class="hydro-tab"
+                    type="button"
+                    data-tab="related">
+              Related
+            </button>
+          </div>
+
+          <div class="hydro-tab-content active" id="activity">
+
+            <div class="hydro-post-box">
+              <div class="hydro-post-tabs">
+                <button class="active" type="button">Post</button>
+                <button type="button">Poll</button>
+                <button type="button">Question</button>
+              </div>
+
+              <div class="hydro-post-form">
+                <img src="images/user-profile.jpg"
+                     alt="Fatima Abed"
+                     class="hydro-post-avatar">
+
+                <textarea id="hydro-post-message"
+                          placeholder="Share an update with the community..."
+                          rows="3"></textarea>
+              </div>
+
+              <div class="hydro-post-actions">
+                <div class="hydro-post-tools">
+                  <button type="button">Image</button>
+                  <button type="button">File</button>
+                </div>
+
+                <button class="hydro-primary-button" type="button">
+                  Share
+                </button>
+              </div>
+            </div>
+
+            <div class="hydro-feed-empty">
+              <div class="hydro-feed-empty-icon">💬</div>
+              <h3>No activity yet</h3>
+              <p>Your posts and community interactions will appear here.</p>
+            </div>
+          </div>
+
+          <div class="hydro-tab-content" id="related">
+            <div class="hydro-related-list">
+              <a href="#">
+                <span>Marketplace Products</span>
+                <strong>2</strong>
+              </a>
+
+              <a href="#">
+                <span>Saved Tutorials</span>
+                <strong>4</strong>
+              </a>
+
+              <a href="#">
+                <span>Community Questions</span>
+                <strong>1</strong>
+              </a>
+            </div>
+          </div>
+
+        </section>
+
+
+        <aside class="hydro-section-card hydro-details-panel">
+          <div class="hydro-details-header">
+            <h2>Profile Details</h2>
+            <button type="button">Edit</button>
+          </div>
+
+          <div class="hydro-detail-item">
+            <span>Full Name</span>
+            <strong>Fatima Abed</strong>
+          </div>
+
+          <div class="hydro-detail-item">
+            <span>Plan</span>
+            <strong>Plan 2</strong>
+          </div>
+
+          <div class="hydro-detail-item">
+            <span>Email Address</span>
+            <a href="mailto:fabed@example.com">fabed@example.com</a>
+          </div>
+
+          <div class="hydro-detail-item">
+            <span>Phone Number</span>
+            <a href="tel:+ 507 62358 - 5897">+ 507 62358-5897</a>
+          </div>
+
+          <div class="hydro-detail-item">
+            <span>Location</span>
+            <strong>La Chorrera , Panama</strong>
+          </div>
+
+          <div class="hydro-detail-item">
+            <span>Member Since</span>
+            <strong>June 2026</strong>
+          </div>
+
+          <div class="hydro-profile-progress">
+            <div class="hydro-progress-heading">
+              <span>Profile Completion</span>
+              <strong>75%</strong>
+            </div>
+
+            <div class="hydro-progress-bar">
+              <span style="width: 75%;"></span>
+            </div>
+
+            <p>Add more information to complete your profile.</p>
+          </div>
+        </aside>
+
+      </div>
+    </main>
+
+  </div>
+
+
+  <!-- Template scripts -->
+  <script src="js/core.min.js"></script>
+  <script src="js/script.js"></script>
+
+  <!-- Dashboard tabs -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const tabs = document.querySelectorAll(".hydro-tab");
+      const contents = document.querySelectorAll(".hydro-tab-content");
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          const selectedTab = this.getAttribute("data-tab");
+
+          tabs.forEach(function (item) {
+            item.classList.remove("active");
+          });
+
+          contents.forEach(function (content) {
+            content.classList.remove("active");
+          });
+
+          this.classList.add("active");
+
+          const selectedContent = document.getElementById(selectedTab);
+          if (selectedContent) {
+            selectedContent.classList.add("active");
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

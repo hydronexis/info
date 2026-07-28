@@ -6,292 +6,170 @@
 
 <title>Login</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
-
-body{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(135deg,#18391c,#18391c);
-}
-
-.container{
-    width:420px;
-    background:#fff;
-    border-radius:25px;
-    padding:40px;
-    box-shadow:0 20px 60px rgba(0,0,0,.18);
-}
-
-.logo{
-    display:flex;
-    justify-content:center;
-    margin-bottom:20px;
-}
-
-.logo img{
-    width:120px;
-    height:auto;
-    filter:drop-shadow(0 5px 10px rgba(0,0,0,.15));
-}
-
-.title{
-    text-align:center;
-    color:#18391c;
-    font-size:30px;
-    font-weight:700;
-}
-
-.subtitle{
-    text-align:center;
-    color:#777;
-    margin:8px 0 30px;
-}
-
-form{
-    display:none;
-}
-
-form.active{
-    display:block;
-}
-
-.input-box{
-    margin-bottom:18px;
-}
-
-.input-box input{
-    width:100%;
-    padding:15px;
-    border:2px solid #ddd;
-    border-radius:12px;
-    outline:none;
-    font-size:15px;
-    transition:.3s;
-}
-
-.input-box input:focus{
-    border: color #18391c;;
-}
-
-.main-btn{
-    width:100%;
-    padding:15px;
-    border:none;
-    border-radius:12px;
-    background:#18391c;
-    color:#fff;
-    font-size:16px;
-    font-weight:600;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.main-btn:hover{
-    background:#18391c;
-}
-
-.separator{
-    text-align:center;
-    margin:25px 0;
-    color:#888;
-    position:relative;
-}
-
-.separator::before,
-.separator::after{
-    content:"";
-    position:absolute;
-    top:50%;
-    width:38%;
-    height:1px;
-    background:#ddd;
-}
-
-.separator::before{
-    left:0;
-}
-
-.separator::after{
-    right:0;
-}
-
-.social{
-    width:100%;
-    padding:13px;
-    border:2px solid #ddd;
-    border-radius:12px;
-    background:#fff;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
-    cursor:pointer;
-    font-size:15px;
-    margin-bottom:12px;
-    transition:.3s;
-}
-
-.social:hover{
-    border-color:#18391c;
-}
-
-.toggle{
-    margin-top:25px;
-    text-align:center;
-    color:#666;
-}
-
-.toggle button{
-    background:none;
-    border:none;
-    color:#18391c;
-    font-weight:600;
-    cursor:pointer;
-    font-size:15px;
-}
-
-</style>
+<link rel="stylesheet" href="css/login.css">
 </head>
 
-<body>
+<body class="auth-page">
+  <div class="auth-shell">
+    <section class="auth-visual">
+      <span class="eyebrow">Secure access</span>
+      <h2>Welcome to your workspace</h2>
+      <p>Sign in to continue or create an account to unlock your personalized dashboard and plan-based experience.</p>
+    </section>
 
-<div class="container">
+    <div class="auth-card">
+      <div class="logo">
+        <img src="images/logo20.png" alt="Logo">
+      </div>
 
-<div class="logo">
-<img src="images/logo20.png" alt="Logo">
-</div>
+      <h1 class="title" id="title">Sign In</h1>
 
-<h1 class="title" id="title">Sign In</h1>
+      <p class="subtitle" id="subtitle">
+        Welcome Back
+      </p>
 
-<p class="subtitle" id="subtitle">
-Welcome Back
-</p>
+      <form id="signin" class="active" onsubmit="handleSignIn(event)">
+        <div class="message" id="signinMessage"></div>
 
-<!-- SIGN IN -->
+        <div class="input-box">
+          <input type="email" id="signinEmail" placeholder="Email Address" required>
+        </div>
 
-<form id="signin" class="active">
+        <div class="input-box">
+          <input type="password" id="signinPassword" placeholder="Password" required>
+        </div>
 
-<div class="input-box">
-<input type="email" placeholder="Email Address">
-</div>
+        <button type="submit" class="main-btn">Sign In</button>
 
-<div class="input-box">
-<input type="password" placeholder="Password">
-</div>
+        <div class="separator">OR</div>
 
-<button class="main-btn">
-Sign In
-</button>
+        <button type="button" class="main-btn" style="margin-bottom: 10px; background: linear-gradient(135deg, #ffffff, #f7f3eb); color: var(--primary); box-shadow: none; border: 1px solid var(--border);">Continue with Google</button>
+        <button type="button" class="main-btn" style="background: linear-gradient(135deg, #ffffff, #f7f3eb); color: var(--primary); box-shadow: none; border: 1px solid var(--border);">Continue with Apple</button>
+      </form>
 
-<div class="separator">
-OR
-</div>
+      <form id="signup" onsubmit="handleSignUp(event)">
+        <div class="message" id="signupMessage"></div>
 
-<button type="button" class="social">
-<img src="https://www.svgrepo.com/show/475656/google-color.svg" width="22">
-Continue with Google
-</button>
+        <div class="input-box">
+          <input type="text" id="signupName" placeholder="Full Name" required>
+        </div>
 
-<button type="button" class="social">
-<img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" width="18">
-Continue with Apple
-</button>
+        <div class="input-box">
+          <input type="email" id="signupEmail" placeholder="Email Address" required>
+        </div>
 
-</form>
+        <div class="input-box">
+          <input type="password" id="signupPassword" placeholder="Password" required>
+        </div>
 
-<!-- SIGN UP -->
+        <div class="input-box">
+          <input type="password" id="signupConfirm" placeholder="Confirm Password" required>
+        </div>
 
-<form id="signup">
+        <div class="input-box">
+          <select id="signupPlan" required>
+            <option value="">Select a plan</option>
+            <option value="plan1">Plan 1</option>
+            <option value="plan2">Plan 2</option>
+            <option value="plan3">Plan 3</option>
+          </select>
+        </div>
 
-<div class="input-box">
-<input type="text" placeholder="Full Name">
-</div>
+        <button type="submit" class="main-btn">Create Account</button>
+      </form>
 
-<div class="input-box">
-<input type="email" placeholder="Email Address">
-</div>
+      <div class="toggle">
+        <span id="toggleText">Don't have an account?</span>
+        <button type="button" onclick="changeForm()" id="toggleButton">Sign Up</button>
+      </div>
+    </div>
+  </div>
 
-<div class="input-box">
-<input type="password" placeholder="Password">
-</div>
+  <script>
+    let login = true;
 
-<div class="input-box">
-<input type="password" placeholder="Confirm Password">
-</div>
+    function changeForm() {
+      const signin = document.getElementById("signin");
+      const signup = document.getElementById("signup");
+      const title = document.getElementById("title");
+      const subtitle = document.getElementById("subtitle");
+      const text = document.getElementById("toggleText");
+      const button = document.getElementById("toggleButton");
+      const signinMessage = document.getElementById("signinMessage");
+      const signupMessage = document.getElementById("signupMessage");
 
-<button class="main-btn">
-Create Account
-</button>
+      signinMessage.className = "message";
+      signupMessage.className = "message";
+      signinMessage.textContent = "";
+      signupMessage.textContent = "";
 
-</form>
+      if (login) {
+        signin.classList.remove("active");
+        signup.classList.add("active");
+        title.innerHTML = "Sign Up";
+        subtitle.innerHTML = "Create your account";
+        text.innerHTML = "Already have an account? ";
+        button.innerHTML = "Sign In";
+      } else {
+        signup.classList.remove("active");
+        signin.classList.add("active");
+        title.innerHTML = "Sign In";
+        subtitle.innerHTML = "Welcome Back";
+        text.innerHTML = "Don't have an account? ";
+        button.innerHTML = "Sign Up";
+      }
 
-<div class="toggle">
+      login = !login;
+    }
 
-<span id="toggleText">
-Don't have an account?
-</span>
+    function handleSignIn(event) {
+      event.preventDefault();
+      const email = document.getElementById("signinEmail").value.trim();
+      const password = document.getElementById("signinPassword").value.trim();
+      const message = document.getElementById("signinMessage");
 
-<button onclick="changeForm()" id="toggleButton">
-Sign Up
-</button>
+      if (!email || !password) {
+        message.className = "message error";
+        message.textContent = "Please complete both fields to continue.";
+        return;
+      }
 
-</div>
+      message.className = "message success";
+      message.textContent = "Login successful. Redirecting to your dashboard...";
+      const plan = localStorage.getItem("selectedPlan") || "plan1";
+      setTimeout(() => {
+        window.location.href = `dashboard.html?username=${encodeURIComponent(email.split('@')[0])}&plan=${plan}`;
+      }, 700);
+    }
 
-</div>
+    function handleSignUp(event) {
+      event.preventDefault();
+      const name = document.getElementById("signupName").value.trim();
+      const email = document.getElementById("signupEmail").value.trim();
+      const password = document.getElementById("signupPassword").value.trim();
+      const confirm = document.getElementById("signupConfirm").value.trim();
+      const plan = document.getElementById("signupPlan").value;
+      const message = document.getElementById("signupMessage");
 
-<script>
+      if (!name || !email || !password || !confirm || !plan) {
+        message.className = "message error";
+        message.textContent = "Please complete every field before creating your account.";
+        return;
+      }
 
-let login = true;
+      if (password !== confirm) {
+        message.className = "message error";
+        message.textContent = "Passwords do not match.";
+        return;
+      }
 
-function changeForm(){
-
-const signin = document.getElementById("signin");
-const signup = document.getElementById("signup");
-const title = document.getElementById("title");
-const subtitle = document.getElementById("subtitle");
-const text = document.getElementById("toggleText");
-const button = document.getElementById("toggleButton");
-
-if(login){
-
-signin.classList.remove("active");
-signup.classList.add("active");
-
-title.innerHTML="Sign Up";
-subtitle.innerHTML="Create your account";
-
-text.innerHTML="Already have an account? ";
-button.innerHTML="Sign In";
-
-}else{
-
-signup.classList.remove("active");
-signin.classList.add("active");
-
-title.innerHTML="Sign In";
-subtitle.innerHTML="Welcome Back";
-
-text.innerHTML="Don't have an account? ";
-button.innerHTML="Sign Up";
-
-}
-
-login = !login;
-
-}
-
-</script>
-
+      localStorage.setItem("selectedPlan", plan);
+      message.className = "message success";
+      message.textContent = "Account created successfully. Redirecting to your dashboard...";
+      setTimeout(() => {
+        window.location.href = `dashboard.html?username=${encodeURIComponent(name)}&plan=${plan}`;
+      }, 700);
+    }
+  </script>
 </body>
 </html>
