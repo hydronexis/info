@@ -14,7 +14,7 @@ const BOT_AVATAR = "images/lechugaj.png";
 
 // API Configuración
 // Reemplaza este texto con una clave nueva.
-const API_KEY = "AQ.Ab8RN6Ixf-wQ0IpnQnCnadgfFtGPrnVoh-Nj9jXhprGJrr3rSw";
+const API_KEY = "APIII ";
 
 const API_URL =
     "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
