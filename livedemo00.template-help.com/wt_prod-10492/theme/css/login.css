@@ -45,8 +45,8 @@ body.auth-page {
     linear-gradient(
       rgba(12, 35, 17, 0.7),
       rgba(12, 35, 17, 0.7)
-    ),
-    url("../images/login-page-bg.jpg");
+    );
+    /* url("../images/login-page-bg.jpg"); */
 
   background-size: cover;
   background-position: center;
