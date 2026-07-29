@@ -4,46 +4,26 @@
 <head>
   <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <meta
-    http-equiv="X-UA-Compatible"
-    content="IE=edge"
-  >
-
-  <link
-    rel="icon"
-    href="images/futurehydri.ico"
-    type="image/x-icon"
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="images/futurehydri.ico" type="image/x-icon">
   <title>Login | HYDRONEXIS</title>
-
-  <link
-    rel="stylesheet"
-    href="css/login.css"
-  >
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CLato%7CKalam:300,400,700">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/firebase-config.js"></script>
+  <link rel="stylesheet" href="css/login.css">
 </head>
 
 <body class="auth-page">
-
   <main class="auth-shell">
 
     <!-- PANEL IZQUIERDO -->
     <section class="auth-visual">
-
-        <div class="visual-logo">
-            <img
-                src="images/logo2.png"
-                alt="HYDRONEXIS Logo"
-                width="1000000"
-                height="auto"
-            >
-        </div>
-
+      <div class="visual-logo">
+        <img src="images/logo2.png" alt="HYDRONEXIS Logo" width="1000000" height="auto">
+      </div>
       <span class="eyebrow">
         Secure Access
       </span>
@@ -61,91 +41,35 @@
 
     <!-- PANEL DERECHO -->
     <section class="auth-card">
-
-
-      <h1
-        class="title"
-        id="title"
-      >
-        Sign In
-      </h1>
-
-      <p
-        class="subtitle"
-        id="subtitle"
-      >
+      <h1 class="title" id="title">Sign In</h1>
+      <p class="subtitle" id="subtitle">
         Welcome Back
       </p>
 
       <!-- FORMULARIO DE INICIO DE SESIÓN -->
-      <form
-        id="signin"
-        class="active"
-        onsubmit="handleSignIn(event)"
-      >
-
-        <div
-          class="message"
-          id="signinMessage"
-        ></div>
+      <form id="signin" class="active">
+        <div class="message" id="signinMessage"></div>
 
         <div class="input-box">
-          <input
-            type="email"
-            id="signinEmail"
-            placeholder="Email Address"
-            autocomplete="email"
-            required
-          >
+          <input type="email" id="signinEmail" placeholder="Email Address" autocomplete="email" required>
         </div>
 
         <div class="input-box">
-          <input
-            type="password"
-            id="signinPassword"
-            placeholder="Password"
-            autocomplete="current-password"
-            required
-          >
+          <input type="password" id="signinPassword" placeholder="Password" autocomplete="current-password" required>          >
         </div>
 
-        <button
-          type="submit"
-          class="main-btn"
-        >
-          Sign In
-        </button>
+        <button type="submit" class="main-btn" id="signinButton">Sign In</button>
 
-        <div class="separator">
-          OR
-        </div>
+        <div class="separator">OR</div>
 
-        <button
-          type="button"
-          class="social-btn"
-        >
-          Continue with Google
-        </button>
-
-        <button
-          type="button"
-          class="social-btn"
-        >
-          Continue with Apple
-        </button>
+        <button type="button" class="main-btn social-btn">Continue with Google</button>
+        <button type="button" class="main-btn social-btn">Continue as Guest</button>
 
       </form>
 
       <!-- FORMULARIO DE REGISTRO -->
-      <form
-        id="signup"
-        onsubmit="handleSignUp(event)"
-      >
-
-        <div
-          class="message"
-          id="signupMessage"
-        ></div>
+      <form id="signup">
+        <div class="message" id="signupMessage"></div>
 
         <div class="input-box">
           <input
@@ -285,120 +209,8 @@
 
       login = !login;
     }
-
-    function handleSignIn(event) {
-      event.preventDefault();
-
-      const email =
-        document
-          .getElementById("signinEmail")
-          .value
-          .trim();
-
-      const password =
-        document
-          .getElementById("signinPassword")
-          .value
-          .trim();
-
-      const message =
-        document.getElementById("signinMessage");
-
-      if (!email || !password) {
-        message.className = "message error";
-        message.textContent =
-          "Please complete both fields to continue.";
-
-        return;
-      }
-
-      message.className = "message success";
-      message.textContent =
-        "Login successful. Redirecting to your dashboard...";
-
-      const plan =
-        localStorage.getItem("selectedPlan") || "plan1";
-
-      setTimeout(() => {
-        window.location.href =
-          `dashboard.html?username=${encodeURIComponent(
-            email.split("@")[0]
-          )}&plan=${encodeURIComponent(plan)}`;
-      }, 700);
-    }
-
-    function handleSignUp(event) {
-      event.preventDefault();
-
-      const name =
-        document
-          .getElementById("signupName")
-          .value
-          .trim();
-
-      const email =
-        document
-          .getElementById("signupEmail")
-          .value
-          .trim();
-
-      const password =
-        document
-          .getElementById("signupPassword")
-          .value
-          .trim();
-
-      const confirm =
-        document
-          .getElementById("signupConfirm")
-          .value
-          .trim();
-
-      const plan =
-        document.getElementById("signupPlan").value;
-
-      const message =
-        document.getElementById("signupMessage");
-
-      if (
-        !name ||
-        !email ||
-        !password ||
-        !confirm ||
-        !plan
-      ) {
-        message.className = "message error";
-
-        message.textContent =
-          "Please complete every field before creating your account.";
-
-        return;
-      }
-
-      if (password !== confirm) {
-        message.className = "message error";
-
-        message.textContent =
-          "Passwords do not match.";
-
-        return;
-      }
-
-      localStorage.setItem("selectedPlan", plan);
-
-      message.className = "message success";
-
-      message.textContent =
-        "Account created successfully. Redirecting to your dashboard...";
-
-      setTimeout(() => {
-        window.location.href =
-          `dashboard.html?username=${encodeURIComponent(
-            name
-          )}&plan=${encodeURIComponent(plan)}`;
-      }, 700);
-    }
   </script>
-
+  <script type="module" src="js/login.js"></script>
+  <script type="module" src="js/register.js"></script>
 </body>
 </html>
