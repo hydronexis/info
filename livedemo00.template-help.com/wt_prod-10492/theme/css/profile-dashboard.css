@@ -4,13 +4,13 @@
 
 :root {
   --hydro-secondary: #679e5a;
-  --hydro-accent: #20a464;
+  --hydro-accent: #1e3b17;
   --hydro-background: #edf3eb;
   --hydro-card: #ffffff;
   --hydro-border: #dce5da;
   --hydro-text: #263024;
   --hydro-muted: #6c786a;
-  --hydro-link: #1976d2;
+  --hydro-link: #1e3b17;
   --hydro-shadow: 0 5px 18px rgba(30, 59, 23, 0.09);
 }
 
@@ -34,7 +34,9 @@
 }
 
 /* General cards */
-
+.material-symbols-rounded {
+  color:#1e3b17
+}
 .hydro-profile-card,
 .hydro-section-card {
   width: 100%;
@@ -121,7 +123,7 @@
 .hydro-profile-content {
   position: relative;
   min-height: 245px;
-  padding: 30px 35px 35px 260px;
+  padding: 30px 35px 35px;
 }
 
 .hydro-avatar-wrapper {
@@ -166,6 +168,7 @@
 
 .hydro-profile-heading {
   min-height: 68px;
+  margin-left: 260px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -222,47 +225,36 @@
 }
 
 .hydro-profile-introduction {
-  margin-top: 30px;
+  width: 100%;
+  margin-top: 40px;
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 24px;
+  text-align: center;
 }
 
-.hydro-introduction-icon {
-  width: 92px;
-  min-width: 92px;
-  height: 74px;
-  display: grid;
-  place-items: center;
-  color: var(--hydro-secondary);
-  background: #f0f6ee;
-  border: 1px solid #dcebd7;
-  border-radius: 8px;
-}
-
-.hydro-introduction-icon svg {
-  width: 62px;
-  height: 62px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.hydro-profile-introduction-content {
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
 }
 
 .hydro-profile-introduction h2 {
-  margin: 0 0 6px;
+  margin: 0 0 10px;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 600;
+  line-height: 1.35;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .hydro-profile-introduction p {
-  max-width: 700px;
   margin: 0;
   color: var(--hydro-muted);
   font-size: 15px;
   line-height: 1.7;
 }
+
 
 /* ==================================================
    QUICK LINKS
@@ -352,41 +344,6 @@
   width: 18px;
   height: 18px;
   fill: currentColor;
-}
-
-.hydro-icon-purple {
-  color: #7667ca;
-  background: #eeeafd;
-}
-
-.hydro-icon-gold {
-  color: #a88235;
-  background: #f7efd9;
-}
-
-.hydro-icon-blue {
-  color: #327bba;
-  background: #e3f1fd;
-}
-
-.hydro-icon-cyan {
-  color: #318e9d;
-  background: #def4f6;
-}
-
-.hydro-icon-green {
-  color: #4d9140;
-  background: #e4f4df;
-}
-
-.hydro-icon-orange {
-  color: #c97a33;
-  background: #fff0df;
-}
-
-.hydro-icon-red {
-  color: #cc4f63;
-  background: #fde6ea;
 }
 
 /* ==================================================
@@ -730,8 +687,12 @@
     padding: 16px;
   }
 
-  .hydro-profile-content {
+.hydro-profile-content {
     padding: 105px 25px 30px;
+  }
+
+  .hydro-profile-heading {
+    margin-left: 150px;
   }
 
   .hydro-avatar-wrapper {
@@ -783,6 +744,7 @@
   }
 
   .hydro-profile-heading {
+    margin-left: 0;
     flex-direction: column;
     align-items: center;
     text-align: center;

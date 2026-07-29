@@ -157,30 +157,34 @@
 
       <section class="hydro-profile-card">
         <div class="hydro-cover">
-          <img src="images/profile-cover.jpg"
+          <img src="images/encabezados/Dashboard.png"
                alt="Hydronexis profile cover"
                class="hydro-cover-image">
 
-          <button class="hydro-cover-edit"
-                  type="button"
-                  aria-label="Change cover image">
-            <span></span>
-          </button>
         </div>
 
         <div class="hydro-profile-content">
 
           <div class="hydro-avatar-wrapper">
-            <img src="images/user-profile.jpg"
+            <img src="images/vendedores/Patricia_Nunez_color.png"
                  alt="Fatima Abed"
                  class="hydro-avatar">
 
-            <button class="hydro-avatar-edit"
-                    type="button"
-                    aria-label="Change profile image">
-              <span></span>
-            </button>
-          </div>
+          <!-- Input oculto -->
+          <input
+              type="file"
+              id="avatarInput"
+              accept="image/*"
+              hidden>
+
+          <!-- Botón -->
+          <button class="hydro-avatar-edit"
+                  id="avatarEditBtn"
+                  type="button"
+                  aria-label="Change profile image">
+              <span class="material-symbols-rounded">photo_camera</span>
+          </button>
+      </div>
 
           <div class="hydro-profile-heading">
             <div>
@@ -194,16 +198,15 @@
           </div>
 
           <div class="hydro-profile-introduction">
-            <div class="hydro-introduction-icon"></div>
-
-            <div>
-              <h2>Welcome to your Hydronexis profile</h2>
-              <p>
-                Share your experience, connect with growers and help the
-                agricultural community grow.
-              </p>
-            </div>
+              <div class="hydro-profile-introduction-content">
+                  <h2>Welcome to your Hydronexis profile</h2>
+                  <p>
+                      Share your experience, connect with growers and help the
+                      agricultural community grow.
+                  </p>
+              </div>
           </div>
+
         </div>
       </section>
 
@@ -236,7 +239,7 @@
               </div>
 
               <div class="hydro-post-form">
-                <img src="images/user-profile.jpg"
+                <img src="images/vendedores/Patricia_Nunez_color.png""
                      alt="Fatima Abed"
                      class="hydro-post-avatar">
 
@@ -258,7 +261,9 @@
             </div>
 
             <div class="hydro-feed-empty">
-              <div class="hydro-feed-empty-icon">💬</div>
+              <div class="hydro-feed-empty-icon">
+                <img src="images/logo.png" alt="Fatima Abed" />
+              </div>
               <h3>No activity yet</h3>
               <p>Your posts and community interactions will appear here.</p>
             </div>
