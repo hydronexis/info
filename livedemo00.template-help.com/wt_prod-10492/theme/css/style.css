@@ -19836,3 +19836,355 @@ html#ecwid_html body#ecwid_body .ec-size.ec-size--m .ec-store .details-gallery__
   font-size: 12px;
   opacity: 0.78;
 }
+
+
+/* =====================================================
+   NAVBAR HYDRONEXIS: ALINEACIÓN DE ICONOS
+===================================================== */
+
+/* Contenedor principal derecho */
+.rd-navbar-main-element {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+/* Lupa, carrito, usuario y hamburguesa */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+  height: 100%;
+}
+
+.navbar-action {
+  position: relative;
+  flex: 0 0 auto;
+  margin: 0 !important;
+}
+
+
+/* =====================================================
+   LUPA
+===================================================== */
+
+.navbar-actions .rd-navbar-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.navbar-actions .rd-navbar-search-toggle {
+  position: relative !important;
+
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+
+  padding: 0;
+  margin: 0;
+
+  border: 0;
+  background: transparent;
+}
+
+
+/* =====================================================
+   CARRITO
+===================================================== */
+
+.navbar-actions .rd-navbar-basket-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.navbar-actions .rd-navbar-basket-wrap > .rd-navbar-basket {
+  position: relative !important;
+
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+
+  padding: 0;
+  margin: 0;
+
+  color: #151515;
+  border: 0;
+  background: transparent;
+
+  font-size: 28px;
+  line-height: 1;
+}
+
+/* Cantidad del carrito */
+.navbar-actions .rd-navbar-basket-wrap > .rd-navbar-basket > span {
+  position: absolute;
+
+  top: 0;
+  right: -1px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 16px;
+  height: 16px;
+  padding: 0 3px;
+
+  color: #c68c49;
+  background: #ffffff;
+  border-radius: 50%;
+
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+
+/* =====================================================
+   USUARIO
+===================================================== */
+
+.navbar-user-link {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+
+  padding: 0;
+  margin: 0;
+
+  overflow: hidden;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.navbar-user-image {
+  display: block;
+
+  width: 27px;
+  height: 27px;
+
+  margin: 0 !important;
+
+  object-fit: contain;
+  object-position: center;
+  border-radius: 50%;
+}
+
+.navbar-user-link:hover {
+  opacity: 0.7;
+}
+
+
+/* =====================================================
+   HAMBURGUESA
+===================================================== */
+
+.navbar-actions .rd-navbar-project-hamburger-open {
+  position: relative !important;
+
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+
+  padding: 0;
+  margin: 0;
+
+  border: 0;
+  background: transparent;
+}
+
+/* =====================================================
+   ESCRITORIO
+===================================================== */
+
+@media (min-width: 992px) {
+
+  .rd-navbar-static .rd-navbar-main {
+    display: flex;
+    align-items: center;
+  }
+
+  .rd-navbar-static .rd-navbar-panel {
+    display: flex;
+    align-items: center;
+  }
+
+  .rd-navbar-static .rd-navbar-nav-wrap {
+    display: flex;
+    align-items: center;
+  }
+
+  .rd-navbar-static .rd-navbar-main-element {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+  }
+
+  .rd-navbar-static .navbar-actions {
+    min-height: 86px;
+  }
+
+  /* Anula posiciones absolutas del tema */
+  .rd-navbar-static .navbar-actions .rd-navbar-fixed-element-1,
+  .rd-navbar-static .navbar-actions .rd-navbar-fixed-element-2,
+  .rd-navbar-static .navbar-actions .rd-navbar-fixed-element-3 {
+    position: relative !important;
+
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+  }
+
+  /* El carrito móvil no aparece en escritorio */
+  .rd-navbar-static .rd-navbar-basket-mobile {
+    display: none !important;
+  }
+
+}
+
+
+/* =====================================================
+   MÓVIL Y TABLET
+===================================================== */
+
+@media (max-width: 991px) {
+
+  .navbar-actions {
+    gap: 8px;
+  }
+
+  /* El carrito desplegable de escritorio no se muestra */
+  .rd-navbar-basket-wrap {
+    display: none !important;
+  }
+
+  .navbar-user-link {
+    position: fixed;
+
+    top: 4px;
+    right: 102px;
+
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+
+    z-index: 1080;
+  }
+
+  .navbar-user-image {
+    width: 24px;
+    height: 24px;
+  }
+
+}
+
+
+/* =====================================================
+   PANEL LATERAL DE CONTACTOS
+===================================================== */
+
+.rd-navbar-project-content {
+  text-align: center;
+}
+
+.navbar-contact-logo {
+  margin-bottom: 30px;
+}
+
+.navbar-contact-logo img {
+  display: block;
+  width: 220px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto !important;
+}
+
+.navbar-contact-image {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.navbar-contact-image img {
+  display: block;
+  width: 350px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto !important;
+  object-fit: cover;
+}
+
+.navbar-contact-info {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.navbar-contact-info li {
+  display: block;
+}
+
+.navbar-contact-info li + li {
+  margin-top: 15px;
+}
+
+.navbar-contact-info a {
+  color: #777777;
+}
+
+.navbar-contact-info a:hover {
+  color: #c68c49;
+}
+
+.navbar-contact-social {
+  margin-top: 35px;
+  text-align: center;
+}
+
+.navbar-contact-social .list-inline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
