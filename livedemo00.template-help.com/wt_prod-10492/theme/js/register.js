@@ -128,9 +128,12 @@ signupForm?.addEventListener("submit", async (event) => {
 
     window.location.replace("dashboard.html");
   } catch (error) {
-    console.error("Registration error:", error);
-    showSignupMessage(getRegisterErrorMessage(error.code));
-  } finally {
-    setSignupLoading(false);
-  }
+    console.error("Registration error completo:", error);
+  console.error("Código:", error.code);
+  console.error("Mensaje:", error.message);
+
+  showSignupMessage(
+    `${error.code}: ${error.message}`
+  );
+}
 });
