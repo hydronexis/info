@@ -13422,6 +13422,114 @@ html.rd-navbar-fixed-linked .page {
 	padding-right: 10px;
 }
 
+/* ========================================
+   ICONO DE USUARIO
+   ======================================== */
+
+/* ICONO DE USUARIO */
+/* ICONO DE USUARIO BIGMUG */
+.rd-navbar-user-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.rd-navbar-user {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+  padding: 0;
+
+  color: #151515;
+  font-size: 25px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.rd-navbar-user::before {
+  display: inline-block;
+  font-family: "fl-bigmug-line";
+  font-size: inherit;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1;
+}
+
+.rd-navbar-user:hover {
+  color: #c68c49;
+}
+
+/* Accesos móviles ocultos en escritorio */
+.mobile-nav-action {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .rd-navbar-static .rd-navbar-nav > li.mobile-nav-action {
+    display: none !important;
+  }
+
+  .rd-navbar-static .rd-navbar-nav > li.mobile-nav-action > .rd-nav-link {
+    display: none !important;
+  }
+}
+
+@media (max-width: 991px) {
+
+  /* Oculta los iconos de escritorio */
+  .rd-navbar-fixed .rd-navbar-main-element {
+    display: none;
+  }
+
+  /* Muestra Search, Cart y Account dentro del menú */
+  .rd-navbar-fixed .mobile-nav-action {
+    display: block;
+  }
+
+  .rd-navbar-fixed .mobile-nav-action .rd-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 14px 18px;
+  }
+
+  .mobile-menu-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    min-width: 25px;
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  .mobile-cart-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    margin-left: auto;
+    padding: 0 6px;
+    border-radius: 10px;
+    background: #c68c49;
+    color: #ffffff;
+    font-size: 11px;
+  }
+  .mobile-nav-action {
+        display: block;
+  }
+  .mobile-nav-action-first {
+    margin-top: 18px !important;
+    padding-top: 10px;
+    border-top: 1px solid #e7e7e7;
+  }
+}
+
 .contacts-amber {
 	color: #151515;
 	margin-bottom: -10px;
