@@ -3,8 +3,11 @@ import requests
  
 app = Flask(__name__)
  
-GEMINI_API_KEY = "APII "
-GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"
+GEMINI_API_KEY = "AQ.Ab8RN6Ixf-wQ0IpnQnCnadgfFtGPrnVoh-Nj9jXhprGJrr3rSw "
+GEMINI_URL = (
+    "https://generativelanguage.googleapis.com/v1beta/"
+    "models/gemini-3.1-flash-lite:generateContent"
+)
 
 
 
