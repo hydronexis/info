@@ -8962,11 +8962,10 @@ h1,h2,h3,h4,h5,h6{
  * License:  CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
  */
 @font-face {
-	font-family: "fl-bigmug-line";
-	src: url("../fonts/fl-bigmug-line.eot");
-	src: url("../fonts/fl-bigmug-line.eot#iefix") format("embedded-opentype"), url("../fonts/fl-bigmug-line.woff") format("woff"), url("../fonts/fl-bigmug-line.ttf") format("truetype"), url("../fonts/fl-bigmug-line.svg") format("svg");
-	font-weight: normal;
-	font-style: normal;
+    font-family: "Optima Italic";
+    src: url("../fonts/Optima_Italic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: italic;
 }
 
 .fl-bigmug-line-ico,

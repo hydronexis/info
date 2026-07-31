@@ -17192,11 +17192,18 @@ h3 + .card-group-corporate {
 }
 
 @font-face {
-	font-family: lg;
-	src: url(../fonts/lgd641.eot?n1z373);
-	src: url(../fonts/lgd41d.eot?#iefixn1z373) format("embedded-opentype"), url(../fonts/lgd641.woff?n1z373) format("woff"), url(../fonts/lgd641.ttf?n1z373) format("truetype"), url(../fonts/lgd641.svg?n1z373#lg) format("svg");
-	font-weight: 400;
-	font-style: normal;
+    font-family: "Optima Italic";
+    src: url("../fonts/Optima_Italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "HelveticaThai";
+    src: url("../fonts/helvetica-light-587ebe5a59211.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Helvetica";
+    src: url("../fonts/Helvetica.ttf") format("truetype");
 }
 
 .lg-icon {
