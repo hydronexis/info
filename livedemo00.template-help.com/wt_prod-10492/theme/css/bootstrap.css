@@ -6,17 +6,17 @@
 
 @font-face {
     font-family: 'Optima Italic';
-    src: url('../fonts/Optima_italic.ttf');
+    src: url('../fonts/Optima_Italic.ttf');
 }
 
 @font-face {
     font-family: "HelveticaThai";
-    src: url("../fonts/Helvetica Neue LT Pro 35 Thin.otf");
+    src: url("../fonts/helvetica-light-587ebe5a59211.ttf");
 }
 
 @font-face {
     font-family: 'Monterchi Serif';
-    src: url('../fonts/MonterchiSerif.ttf');
+    src: url('../fonts/Helvetica.ttf');
 }
 
 body{
@@ -116,7 +116,7 @@ h1,h2,h3,h4,h5,h6{
         serif;
 
     --bs-title-font-family:
-        "Monterchi Serif",
+        "Helvetica",
         Georgia,
         serif;
 

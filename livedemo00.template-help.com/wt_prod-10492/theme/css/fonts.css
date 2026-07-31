@@ -6,17 +6,17 @@
 */
 @font-face {
     font-family: 'Optima';
-    src: url('../fonts/Optima.ttf');
+    src: url('../fonts/OPTIMA.TTF');
 }
 
 @font-face {
     font-family: 'Helvetica';
-    src: url('../fonts/Helvetica.ttf');
+    src: url('../fonts/helvetica-light-587ebe5a59211.ttf')
 }
 
 @font-face {
     font-family: 'Monterchi Serif';
-    src: url('../fonts/MonterchiSerif.ttf');
+    src: url('../fonts/Helvetica.ttf');
 }
 
 body{

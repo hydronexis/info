@@ -1,20 +1,20 @@
 @font-face {
     font-family: "Optima";
-    src: url("../fonts/Optima.ttf") format("truetype");
+    src: url("../fonts/OPTIMA.TTF") format("truetype");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Optima Italic";
-    src: url("../fonts/Optima_italic.ttf") format("truetype");
+    src: url("../fonts/Optima_Italic.ttf") format("truetype");
     font-weight: normal;
     font-style: italic;
 }
 
 @font-face {
     font-family: "HelveticaThai";
-    src: url("../fonts/Helvetica%20Neue%20LT%20Pro%2035%20Thin.otf")
+    src: url("../fonts/helvetica-light-587ebe5a59211.ttf")
         format("opentype");
     font-weight: 300;
     font-style: normal;
@@ -22,7 +22,7 @@
 
 @font-face {
     font-family: "Monterchi Serif";
-    src: url("../fonts/MonterchiSerif.ttf") format("truetype");
+    src: url("../fonts/Helvetica.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
 }
