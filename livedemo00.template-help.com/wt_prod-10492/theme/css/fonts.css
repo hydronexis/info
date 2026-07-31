@@ -16,11 +16,11 @@
 
 @font-face {
     font-family: 'Monterchi Serif';
-    src: url('../fonts/Helvetica.ttf');
+    src: url('../fonts/MonterchiSerif.ttf');
 }
 
 body{
-    font-family:'Muli';
+    font-family:'Monterchi Serif';
 }
 
 h1,h2,h3,h4,h5,h6{
