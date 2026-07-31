@@ -1,152 +1,109 @@
 import os
-import requests
+
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+from google import genai
 
 
-# Cargar las variables del archivo .env
+# Cargar variables del archivo .env
 load_dotenv()
 
 app = Flask(__name__)
-
-# Permitir que Live Server, normalmente en el puerto 5500,
-# se comunique con Flask en el puerto 5000
 CORS(app)
 
 
-# Leer la clave desde el archivo .env
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+# Leer la clave del archivo .env
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "").strip()
 
-GEMINI_URL = (
-    "https://generativelanguage.googleapis.com/v1beta/"
-    "models/gemini-3.1-flash-lite:generateContent"
-)
+# Modelo actual y económico
+GEMINI_MODEL = "gemini-3.5-flash-lite"
+
+
+def create_gemini_client():
+    """
+    Crea el cliente de Gemini usando la clave guardada en .env.
+    """
+    if not GEMINI_API_KEY:
+        raise RuntimeError(
+            "No se encontró GEMINI_API_KEY en el archivo .env."
+        )
+
+    return genai.Client(api_key=GEMINI_API_KEY)
 
 
 @app.route("/", methods=["GET"])
 def home():
     return jsonify({
         "message": "El servidor del chatbot está funcionando."
-    })
+    }), 200
 
 
 @app.route("/chat", methods=["POST"])
 def chat():
-    if not GEMINI_API_KEY:
-        return jsonify({
-            "error": "No se encontró GEMINI_API_KEY en el archivo .env."
-        }), 500
-
-    data = request.get_json(silent=True) or {}
-    prompt = str(data.get("prompt", "")).strip()
-
-    if not prompt:
-        return jsonify({
-            "error": "No prompt provided"
-        }), 400
-
-    headers = {
-        "Content-Type": "application/json",
-        "x-goog-api-key": GEMINI_API_KEY.strip()
-    }
-
-    payload = {
-        "contents": [
-            {
-                "role": "user",
-                "parts": [
-                    {
-                        "text": prompt
-                    }
-                ]
-            }
-        ]
-    }
-
     try:
-        response = requests.post(
-            GEMINI_URL,
-            headers=headers,
-            json=payload,
-            timeout=30
+        data = request.get_json(silent=True) or {}
+        prompt = str(data.get("prompt", "")).strip()
+
+        if not prompt:
+            return jsonify({
+                "error": "No se proporcionó ningún mensaje."
+            }), 400
+
+        client = create_gemini_client()
+
+        response = client.models.generate_content(
+            model=GEMINI_MODEL,
+            contents=prompt
         )
 
-        # Mostrar la respuesta en la terminal para diagnosticar errores
-        print("Código de Gemini:", response.status_code)
-        print("Respuesta de Gemini:", response.text)
-
-        try:
-            result = response.json()
-        except ValueError:
-            return jsonify({
-                "error": "Gemini devolvió una respuesta inválida."
-            }), 500
-
-        if not response.ok:
-            error_message = (
-                result.get("error", {}).get("message")
-                or "Gemini no pudo procesar la solicitud."
-            )
-
-            return jsonify({
-                "error": error_message
-            }), response.status_code
-
-        candidates = result.get("candidates", [])
-
-        if not candidates:
-            return jsonify({
-                "error": "Gemini no devolvió candidatos."
-            }), 500
-
-        parts = (
-            candidates[0]
-            .get("content", {})
-            .get("parts", [])
-        )
-
-        text = "".join(
-            part.get("text", "")
-            for part in parts
-            if isinstance(part, dict)
+        response_text = str(
+            getattr(response, "text", "") or ""
         ).strip()
 
-        if not text:
+        if not response_text:
             return jsonify({
                 "error": "Gemini devolvió una respuesta vacía."
-            }), 500
+            }), 502
 
         return jsonify({
-            "response": text
+            "response": response_text
         }), 200
 
-    except requests.exceptions.Timeout:
-        return jsonify({
-            "error": "Gemini tardó demasiado en responder."
-        }), 504
-
-    except requests.exceptions.ConnectionError:
-        return jsonify({
-            "error": "No se pudo conectar con Gemini."
-        }), 503
-
-    except requests.exceptions.RequestException as error:
-        print("Error de conexión:", error)
+    except RuntimeError as error:
+        print("Error de configuración:", error)
 
         return jsonify({
             "error": str(error)
         }), 500
 
     except Exception as error:
-        print("Error inesperado:", error)
+        print("Error de Gemini:", repr(error))
+
+        error_text = str(error)
+
+        if (
+            "invalid authentication credentials" in error_text.lower()
+            or "unauthenticated" in error_text.lower()
+            or "access token" in error_text.lower()
+        ):
+            return jsonify({
+                "error": (
+                    "Google rechazó la API key. "
+                    "Crea una clave nueva en Google AI Studio y "
+                    "reemplázala en el archivo .env."
+                )
+            }), 401
 
         return jsonify({
-            "error": str(error)
+            "error": error_text or "Ocurrió un error al consultar Gemini."
         }), 500
 
 
 if __name__ == "__main__":
+    print("API key cargada:", bool(GEMINI_API_KEY))
+    print("Modelo:", GEMINI_MODEL)
+
     app.run(
         host="127.0.0.1",
         port=5000,

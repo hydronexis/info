@@ -8,11 +8,7 @@ const chatbotToggler = document.querySelector("#chatbot-toggler");
 const closeChatbot = document.querySelector("#close-chatbot");
 const chatForm = document.querySelector(".chat-form");
 
-// Imagen que aparece junto a las respuestas del bot
 const BOT_AVATAR = "images/lechugaj.png";
-
-// El JavaScript se conecta a Flask.
-// La clave de Gemini NO debe estar aquí.
 const API_URL = "http://127.0.0.1:5000/chat";
 
 const userData = {
@@ -23,16 +19,8 @@ const userData = {
     }
 };
 
-const chatHistory = [];
-
 const initialInputHeight = messageInput.scrollHeight;
 
-
-/* =========================================================
-   FUNCIONES GENERALES
-========================================================= */
-
-// Desplazarse hasta el último mensaje
 const scrollToLatestMessage = () => {
     chatBody.scrollTo({
         top: chatBody.scrollHeight,
@@ -40,19 +28,13 @@ const scrollToLatestMessage = () => {
     });
 };
 
-
-// Crear un elemento para los mensajes
 const createMessageElement = (content, ...classes) => {
     const div = document.createElement("div");
-
     div.classList.add("message", ...classes);
     div.innerHTML = content;
-
     return div;
 };
 
-
-// Limpiar la imagen seleccionada
 const resetSelectedFile = () => {
     userData.file = {
         data: null,
@@ -70,11 +52,6 @@ const resetSelectedFile = () => {
     fileInput.value = "";
 };
 
-
-/* =========================================================
-   RESPUESTA DEL CHATBOT
-========================================================= */
-
 const generateBotResponse = async (
     incomingMessageDiv,
     userMessage
@@ -85,11 +62,9 @@ const generateBotResponse = async (
     try {
         const response = await fetch(API_URL, {
             method: "POST",
-
             headers: {
                 "Content-Type": "application/json"
             },
-
             body: JSON.stringify({
                 prompt: userMessage
             })
@@ -99,16 +74,14 @@ const generateBotResponse = async (
 
         if (!response.ok) {
             throw new Error(
-                data?.error ||
-                "No se pudo obtener una respuesta del chatbot."
+                data.error ||
+                "No se pudo obtener una respuesta."
             );
         }
 
         const apiResponseText = String(
-            data?.response || ""
-        )
-            .replace(/\*\*(.*?)\*\*/g, "$1")
-            .trim();
+            data.response || ""
+        ).trim();
 
         if (!apiResponseText) {
             throw new Error(
@@ -116,25 +89,14 @@ const generateBotResponse = async (
             );
         }
 
-        // Mostrar respuesta del bot
         messageElement.textContent = apiResponseText;
-
-        // Guardar respuesta en el historial local
-        chatHistory.push({
-            role: "model",
-            parts: [
-                {
-                    text: apiResponseText
-                }
-            ]
-        });
 
     } catch (error) {
         console.error("Error del chatbot:", error);
 
         messageElement.textContent =
             error.message ||
-            "Ocurrió un error al conectar con el chatbot.";
+            "No se pudo conectar con el servidor.";
 
         messageElement.style.color = "#ff0000";
 
@@ -144,18 +106,12 @@ const generateBotResponse = async (
     }
 };
 
-
-/* =========================================================
-   ENVIAR MENSAJE
-========================================================= */
-
 const handleOutgoingMessage = (event) => {
     event.preventDefault();
 
     const currentMessage = messageInput.value.trim();
     const hasFile = Boolean(userData.file.data);
 
-    // El backend actual necesita texto.
     if (!currentMessage) {
         if (hasFile) {
             alert(
@@ -169,10 +125,8 @@ const handleOutgoingMessage = (event) => {
 
     userData.message = currentMessage;
 
-    // Guardar una copia antes de limpiar el input
     const messageToSend = currentMessage;
 
-    // Contenido que se mostrará en el mensaje del usuario
     const messageContent = `
         <div class="message-text"></div>
 
@@ -201,26 +155,12 @@ const handleOutgoingMessage = (event) => {
 
     chatBody.appendChild(outgoingMessageDiv);
 
-    // Guardar mensaje del usuario en historial local
-    chatHistory.push({
-        role: "user",
-        parts: [
-            {
-                text: messageToSend
-            }
-        ]
-    });
-
-    // Limpiar campo de texto
     messageInput.value = "";
     messageInput.dispatchEvent(new Event("input"));
 
-    // Limpiar imagen después de mostrarla
     resetSelectedFile();
-
     scrollToLatestMessage();
 
-    // Crear mensaje del bot con los puntos de carga
     setTimeout(() => {
         const botMessageContent = `
             <img
@@ -245,23 +185,15 @@ const handleOutgoingMessage = (event) => {
         );
 
         chatBody.appendChild(incomingMessageDiv);
-
         scrollToLatestMessage();
 
         generateBotResponse(
             incomingMessageDiv,
             messageToSend
         );
-
     }, 600);
 };
 
-
-/* =========================================================
-   CAMPO DE MENSAJE
-========================================================= */
-
-// Enviar con Enter
 messageInput.addEventListener("keydown", (event) => {
     const userMessage = event.target.value.trim();
 
@@ -276,8 +208,6 @@ messageInput.addEventListener("keydown", (event) => {
     }
 });
 
-
-// Ajustar automáticamente la altura del textarea
 messageInput.addEventListener("input", () => {
     messageInput.style.height = `${initialInputHeight}px`;
     messageInput.style.height =
@@ -288,11 +218,6 @@ messageInput.addEventListener("input", () => {
             ? "15px"
             : "32px";
 });
-
-
-/* =========================================================
-   SUBIR IMÁGENES
-========================================================= */
 
 fileInput.addEventListener("change", () => {
     const file = fileInput.files[0];
@@ -336,22 +261,13 @@ fileInput.addEventListener("change", () => {
     reader.readAsDataURL(file);
 });
 
-
-// Cancelar imagen seleccionada
 fileCancelButton.addEventListener("click", () => {
     resetSelectedFile();
 });
 
-
-// Abrir el explorador de archivos
 fileUploadButton.addEventListener("click", () => {
     fileInput.click();
 });
-
-
-/* =========================================================
-   SELECTOR DE EMOJIS
-========================================================= */
 
 const picker = new EmojiMart.Picker({
     theme: "light",
@@ -371,10 +287,7 @@ const picker = new EmojiMart.Picker({
             "end"
         );
 
-        messageInput.dispatchEvent(
-            new Event("input")
-        );
-
+        messageInput.dispatchEvent(new Event("input"));
         messageInput.focus();
     },
 
@@ -393,25 +306,15 @@ const picker = new EmojiMart.Picker({
 
 chatForm.appendChild(picker);
 
-
-/* =========================================================
-   EVENTOS DEL CHATBOT
-========================================================= */
-
-// Enviar mensaje mediante el formulario
 chatForm.addEventListener(
     "submit",
     handleOutgoingMessage
 );
 
-
-// Abrir o cerrar chatbot
 chatbotToggler.addEventListener("click", () => {
     document.body.classList.toggle("show-chatbot");
 });
 
-
-// Cerrar chatbot
 closeChatbot.addEventListener("click", () => {
     document.body.classList.remove("show-chatbot");
 });

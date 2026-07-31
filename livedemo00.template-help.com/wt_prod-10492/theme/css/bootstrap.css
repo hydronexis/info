@@ -5,13 +5,13 @@
    */
 
 @font-face {
-    font-family: 'Optima';
-    src: url('../fonts/Optima.woff');
+    font-family: 'Optima Italic';
+    src: url('../fonts/Optima_italic.ttf');
 }
 
 @font-face {
-    font-family: 'Helvetica';
-    src: url('../fonts/Helvetica.ttf');
+    font-family: "HelveticaThai";
+    src: url("../fonts/Helvetica Neue LT Pro 35 Thin.otf");
 }
 
 @font-face {
@@ -100,10 +100,25 @@ h1,h2,h3,h4,h5,h6{
 	--bs-black-rgb: 0,0,0;
 
 	/* ===== FUENTES ===== */
-	--bs-font-sans-serif: "Helvetica";
-	--bs-body-font-family: "Helvetica";
-	--bs-heading-font-family: "Optima";
-	--bs-title-font-family: "Monterchi Serif Trial";
+    --bs-font-sans-serif:
+        "HelveticaThai",
+        Arial,
+        sans-serif;
+
+    --bs-body-font-family:
+        "HelveticaThai",
+        Arial,
+        sans-serif;
+
+    --bs-heading-font-family:
+        "Optima",
+        Georgia,
+        serif;
+
+    --bs-title-font-family:
+        "Monterchi Serif",
+        Georgia,
+        serif;
 
 	--bs-font-monospace: monospace;
 
@@ -481,7 +496,8 @@ button,
 [type="button"],
 [type="reset"],
 [type="submit"] {
-	-webkit-appearance: button;
+    -webkit-appearance: button;
+    appearance: button;
 }
 
 button:not(:disabled),
@@ -541,8 +557,9 @@ legend + * {
 }
 
 [type="search"] {
-	-webkit-appearance: textfield;
-	outline-offset: -2px;
+    -webkit-appearance: textfield;
+    appearance: textfield;
+    outline-offset: -2px;
 }
 
 /* rtl:raw:
@@ -562,8 +579,9 @@ legend + * {
 }
 
 ::file-selector-button {
-	font: inherit;
-	-webkit-appearance: button;
+    font: inherit;
+    -webkit-appearance: button;
+    appearance: button;
 }
 
 output {
