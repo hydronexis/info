@@ -34,3 +34,44 @@ body{
 h1,h2,h3,h4,h5,h6{
     font-family:'Optima';
 }
+
+.product-price,
+.product-price-old,/* Fuente general segura para textos y números */
+html,
+body {
+    font-family: "HelveticaThai", Arial, Helvetica, sans-serif !important;
+}
+
+/* Títulos */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Optima", Georgia, serif !important;
+}
+
+/* Teléfonos, horarios, correos y precios */
+.contacts-creative,
+.contacts-creative a,
+.contacts-creative span,
+.contacts-creative-title,
+.product-price,
+.product-price-old,
+.product-creative-price,
+.product-dawn-price,
+.product-terri-price {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+.product-creative-price,
+.product-creative-price-old,
+.product-dawn-price,
+.product-terri-price,
+.product-minimal-price,
+.single-product-price,
+.pricing-classic-price {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-variant-numeric: normal;
+    font-feature-settings: normal;
+}
