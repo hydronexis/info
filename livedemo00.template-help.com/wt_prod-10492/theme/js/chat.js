@@ -1,23 +1,19 @@
 const chatBody = document.querySelector(".chat-body");
 const messageInput = document.querySelector(".message-input");
-const sendMessageButton = document.querySelector("#send-message");
 const fileInput = document.querySelector("#file-input");
 const fileUploadWrapper = document.querySelector(".file-upload-wrapper");
 const fileCancelButton = document.querySelector("#file-cancel");
+const fileUploadButton = document.querySelector("#file-upload");
 const chatbotToggler = document.querySelector("#chatbot-toggler");
 const closeChatbot = document.querySelector("#close-chatbot");
-const fileUploadButton = document.querySelector("#file-upload");
 const chatForm = document.querySelector(".chat-form");
 
-// Ruta de la imagen del bot
+// Imagen que aparece junto a las respuestas del bot
 const BOT_AVATAR = "images/lechugaj.png";
 
-// API Configuración
-// Reemplaza este texto con una clave nueva.
-const API_KEY = "AQ.Ab8RN6Ixf-wQ0IpnQnCnadgfFtGPrnVoh-Nj9jXhprGJrr3rSw ";
-
-const API_URL =
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent";
+// El JavaScript se conecta a Flask.
+// La clave de Gemini NO debe estar aquí.
+const API_URL = "http://127.0.0.1:5000/chat";
 
 const userData = {
     message: "",
@@ -31,6 +27,11 @@ const chatHistory = [];
 
 const initialInputHeight = messageInput.scrollHeight;
 
+
+/* =========================================================
+   FUNCIONES GENERALES
+========================================================= */
+
 // Desplazarse hasta el último mensaje
 const scrollToLatestMessage = () => {
     chatBody.scrollTo({
@@ -39,7 +40,8 @@ const scrollToLatestMessage = () => {
     });
 };
 
-// Crear un elemento de mensaje
+
+// Crear un elemento para los mensajes
 const createMessageElement = (content, ...classes) => {
     const div = document.createElement("div");
 
@@ -49,7 +51,8 @@ const createMessageElement = (content, ...classes) => {
     return div;
 };
 
-// Limpiar el archivo seleccionado
+
+// Limpiar la imagen seleccionada
 const resetSelectedFile = () => {
     userData.file = {
         data: null,
@@ -63,90 +66,62 @@ const resetSelectedFile = () => {
     if (previewImage) {
         previewImage.src = "";
     }
+
+    fileInput.value = "";
 };
 
-// Generar respuesta del bot usando la API
-const generateBotResponse = async (incomingMessageDiv) => {
+
+/* =========================================================
+   RESPUESTA DEL CHATBOT
+========================================================= */
+
+const generateBotResponse = async (
+    incomingMessageDiv,
+    userMessage
+) => {
     const messageElement =
         incomingMessageDiv.querySelector(".message-text");
 
-    const userParts = [];
-
-    // Agregar texto solamente si existe
-    if (userData.message) {
-        userParts.push({
-            text: userData.message
-        });
-    }
-
-    // Agregar imagen si el usuario seleccionó una
-    if (userData.file.data && userData.file.mime_type) {
-        userParts.push({
-            inline_data: {
-                data: userData.file.data,
-                mime_type: userData.file.mime_type
-            }
-        });
-    }
-
-    // Agregar mensaje del usuario al historial
-    chatHistory.push({
-        role: "user",
-        parts: userParts
-    });
-
-const requestOptions = {
-    method: "POST",
-
-    headers: {
-        "Content-Type": "application/json",
-        "x-goog-api-key": API_KEY
-    },
-
-    body: JSON.stringify({
-        contents: chatHistory
-    })
-};
-
     try {
-        const response = await fetch(API_URL, requestOptions);
+        const response = await fetch(API_URL, {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                prompt: userMessage
+            })
+        });
+
         const data = await response.json();
 
         if (!response.ok) {
             throw new Error(
-                data?.error?.message ||
+                data?.error ||
                 "No se pudo obtener una respuesta del chatbot."
             );
         }
 
-        const responseParts =
-            data?.candidates?.[0]?.content?.parts;
-
-        if (!responseParts || responseParts.length === 0) {
-            throw new Error(
-                "El chatbot no devolvió ninguna respuesta."
-            );
-        }
-
-        // Unir todas las partes de texto de la respuesta
-        const apiResponseText = responseParts
-            .map((part) => part.text || "")
-            .join("")
+        const apiResponseText = String(
+            data?.response || ""
+        )
             .replace(/\*\*(.*?)\*\*/g, "$1")
             .trim();
 
         if (!apiResponseText) {
             throw new Error(
-                "La respuesta del chatbot está vacía."
+                "El chatbot devolvió una respuesta vacía."
             );
         }
 
+        // Mostrar respuesta del bot
         messageElement.textContent = apiResponseText;
 
-        // Agregar respuesta del bot al historial
+        // Guardar respuesta en el historial local
         chatHistory.push({
             role: "model",
-
             parts: [
                 {
                     text: apiResponseText
@@ -159,34 +134,45 @@ const requestOptions = {
 
         messageElement.textContent =
             error.message ||
-            "Ocurrió un error al generar la respuesta.";
+            "Ocurrió un error al conectar con el chatbot.";
 
         messageElement.style.color = "#ff0000";
 
     } finally {
-        resetSelectedFile();
-
         incomingMessageDiv.classList.remove("thinking");
-
         scrollToLatestMessage();
     }
 };
 
-// Gestionar mensajes enviados por el usuario
+
+/* =========================================================
+   ENVIAR MENSAJE
+========================================================= */
+
 const handleOutgoingMessage = (event) => {
     event.preventDefault();
 
     const currentMessage = messageInput.value.trim();
     const hasFile = Boolean(userData.file.data);
 
-    // Evitar enviar si no hay texto ni imagen
-    if (!currentMessage && !hasFile) {
+    // El backend actual necesita texto.
+    if (!currentMessage) {
+        if (hasFile) {
+            alert(
+                "Escribe un mensaje junto con la imagen. " +
+                "El backend todavía no procesa imágenes."
+            );
+        }
+
         return;
     }
 
     userData.message = currentMessage;
 
-    // Crear contenido del mensaje del usuario
+    // Guardar una copia antes de limpiar el input
+    const messageToSend = currentMessage;
+
+    // Contenido que se mostrará en el mensaje del usuario
     const messageContent = `
         <div class="message-text"></div>
 
@@ -211,26 +197,30 @@ const handleOutgoingMessage = (event) => {
     const outgoingMessageText =
         outgoingMessageDiv.querySelector(".message-text");
 
-    // Mostrar texto solamente si existe
-    if (currentMessage) {
-        outgoingMessageText.textContent = currentMessage;
-    } else {
-        outgoingMessageText.remove();
-    }
+    outgoingMessageText.textContent = messageToSend;
 
     chatBody.appendChild(outgoingMessageDiv);
 
-    // Limpiar el campo de texto
+    // Guardar mensaje del usuario en historial local
+    chatHistory.push({
+        role: "user",
+        parts: [
+            {
+                text: messageToSend
+            }
+        ]
+    });
+
+    // Limpiar campo de texto
     messageInput.value = "";
     messageInput.dispatchEvent(new Event("input"));
 
-    // Ocultar la vista previa, pero conservar temporalmente
-    // los datos para enviarlos a la API
-    fileUploadWrapper.classList.remove("file-uploaded");
+    // Limpiar imagen después de mostrarla
+    resetSelectedFile();
 
     scrollToLatestMessage();
 
-    // Mostrar indicador de escritura del bot
+    // Crear mensaje del bot con los puntos de carga
     setTimeout(() => {
         const botMessageContent = `
             <img
@@ -258,31 +248,40 @@ const handleOutgoingMessage = (event) => {
 
         scrollToLatestMessage();
 
-        generateBotResponse(incomingMessageDiv);
+        generateBotResponse(
+            incomingMessageDiv,
+            messageToSend
+        );
 
     }, 600);
 };
 
-// Enviar mensaje presionando Enter
+
+/* =========================================================
+   CAMPO DE MENSAJE
+========================================================= */
+
+// Enviar con Enter
 messageInput.addEventListener("keydown", (event) => {
     const userMessage = event.target.value.trim();
-    const hasFile = Boolean(userData.file.data);
 
     if (
         event.key === "Enter" &&
         !event.shiftKey &&
         window.innerWidth > 768 &&
-        (userMessage || hasFile)
+        userMessage
     ) {
         event.preventDefault();
         handleOutgoingMessage(event);
     }
 });
 
+
 // Ajustar automáticamente la altura del textarea
 messageInput.addEventListener("input", () => {
     messageInput.style.height = `${initialInputHeight}px`;
-    messageInput.style.height = `${messageInput.scrollHeight}px`;
+    messageInput.style.height =
+        `${messageInput.scrollHeight}px`;
 
     chatForm.style.borderRadius =
         messageInput.scrollHeight > initialInputHeight
@@ -290,7 +289,11 @@ messageInput.addEventListener("input", () => {
             : "32px";
 });
 
-// Seleccionar y mostrar una imagen
+
+/* =========================================================
+   SUBIR IMÁGENES
+========================================================= */
+
 fileInput.addEventListener("change", () => {
     const file = fileInput.files[0];
 
@@ -298,7 +301,6 @@ fileInput.addEventListener("change", () => {
         return;
     }
 
-    // Verificar que sea una imagen
     if (!file.type.startsWith("image/")) {
         alert("Selecciona un archivo de imagen válido.");
         fileInput.value = "";
@@ -311,7 +313,9 @@ fileInput.addEventListener("change", () => {
         const previewImage =
             fileUploadWrapper.querySelector("img");
 
-        previewImage.src = event.target.result;
+        if (previewImage) {
+            previewImage.src = event.target.result;
+        }
 
         fileUploadWrapper.classList.add("file-uploaded");
 
@@ -322,8 +326,6 @@ fileInput.addEventListener("change", () => {
             data: base64String,
             mime_type: file.type
         };
-
-        fileInput.value = "";
     };
 
     reader.onerror = () => {
@@ -334,12 +336,23 @@ fileInput.addEventListener("change", () => {
     reader.readAsDataURL(file);
 });
 
-// Cancelar archivo seleccionado
+
+// Cancelar imagen seleccionada
 fileCancelButton.addEventListener("click", () => {
     resetSelectedFile();
 });
 
-// Inicializar selector de emojis
+
+// Abrir el explorador de archivos
+fileUploadButton.addEventListener("click", () => {
+    fileInput.click();
+});
+
+
+/* =========================================================
+   SELECTOR DE EMOJIS
+========================================================= */
+
 const picker = new EmojiMart.Picker({
     theme: "light",
     skinTonePosition: "none",
@@ -358,7 +371,10 @@ const picker = new EmojiMart.Picker({
             "end"
         );
 
-        messageInput.dispatchEvent(new Event("input"));
+        messageInput.dispatchEvent(
+            new Event("input")
+        );
+
         messageInput.focus();
     },
 
@@ -375,24 +391,25 @@ const picker = new EmojiMart.Picker({
     }
 });
 
-// Agregar selector de emojis al formulario
 chatForm.appendChild(picker);
 
-// Enviar desde el formulario
+
+/* =========================================================
+   EVENTOS DEL CHATBOT
+========================================================= */
+
+// Enviar mensaje mediante el formulario
 chatForm.addEventListener(
     "submit",
     handleOutgoingMessage
 );
 
-// Abrir selector de archivos
-fileUploadButton.addEventListener("click", () => {
-    fileInput.click();
-});
 
 // Abrir o cerrar chatbot
 chatbotToggler.addEventListener("click", () => {
     document.body.classList.toggle("show-chatbot");
 });
+
 
 // Cerrar chatbot
 closeChatbot.addEventListener("click", () => {
