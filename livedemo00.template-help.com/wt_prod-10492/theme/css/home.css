@@ -75,3 +75,149 @@ h6 {
     font-variant-numeric: normal;
     font-feature-settings: normal;
 }
+
+/* =====================================
+   LOGO HYDRONEXIS
+===================================== */
+
+/* Mueve el logo más a la izquierda */
+.rd-navbar-static .rd-navbar-panel{
+    padding-left: 0px !important;
+    margin-left: -55px !important;   /* Cambia este valor */
+}
+
+/* Contenedor del logo */
+.rd-navbar-static .rd-navbar-brand{
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Tamaño del logo */
+.rd-navbar-static .brand-logo{
+    width: 250px !important;         /* Cambia este valor */
+    height: auto !important;
+    max-width: none !important;
+    display: block !important;
+}
+
+
+.submit-icon{
+    width: 24px !important;
+    height: 24px !important;
+
+    display: block !important;
+    object-fit: contain !important;
+}
+
+.button-icon-2{
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    width: 58px !important;
+    height: 58px !important;
+
+    padding: 0 !important;
+}
+
+/* ==================================================
+   CONTACTOS DEL PIE DE PÁGINA
+================================================== */
+
+.contacts-creative {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.contacts-creative li {
+  width: 100%;
+}
+
+.contacts-creative li + li {
+  margin-top: 22px;
+}
+
+/* Cada fila de contacto */
+.footer-contact-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 14px;
+  width: 100%;
+}
+
+/* Contenedor que mantiene los iconos alineados */
+.footer-contact-icon-box {
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
+  margin-top: 2px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tamaño general de los iconos */
+.footer-contact-icon {
+  display: block;
+  width: 19px;
+  height: 19px;
+  object-fit: contain;
+}
+
+/* Ajuste independiente para el icono de Gmail */
+.footer-gmail-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Texto de los contactos */
+.contacts-creative .unit-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.contacts-creative .unit-body a {
+  display: inline-block;
+  line-height: 1.6;
+  text-decoration: none;
+  word-break: break-word;
+}
+
+/* ==================================================
+   AJUSTES PARA CELULARES
+================================================== */
+
+@media (max-width: 767px) {
+
+  .footer-contact-item {
+    flex-direction: row !important;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .footer-contact-icon-box {
+    width: 22px;
+    min-width: 22px;
+    height: 22px;
+  }
+
+  .footer-contact-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .footer-gmail-icon {
+    width: 19px;
+    height: 19px;
+  }
+
+  .submit-icon {
+    width: 20px;
+    height: 20px;
+  }
+}

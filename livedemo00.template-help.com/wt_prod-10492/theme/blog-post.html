@@ -57,7 +57,7 @@
                PANEL: BOTÓN MÓVIL Y LOGO
           ========================================== -->
           <div class="rd-navbar-panel">
-
+          
             <button
               class="rd-navbar-toggle"
               type="button"
@@ -86,19 +86,14 @@
           </div>
 
 
-          <!-- =========================================
-               MENÚ PRINCIPAL
-          ========================================== -->
+          <!--MENÚ PRINCIPAL-->
           <div class="rd-navbar-nav-wrap">
 
             <ul class="rd-navbar-nav">
 
               <li class="rd-nav-item active">
                 <a
-                  class="rd-nav-link"
-                  href="index.html"
-                  aria-current="page"
-                >
+                  class="rd-nav-link" href="index.html"aria-current="page">
                   Home
                 </a>
               </li>
@@ -132,295 +127,303 @@
           </div>
 
 
-          <!-- =========================================
-               ICONOS DEL NAVBAR
-          ========================================== -->
-          <div class="rd-navbar-main-element">
+<!-- =========================================
+     ICONOS DEL NAVBAR
+========================================== -->
+<div class="rd-navbar-main-element">
 
-            <div class="navbar-actions">
+  <div class="navbar-actions">
 
-              <!-- ===============================
-                   BÚSQUEDA
-              ================================ -->
-              <div class="rd-navbar-search rd-navbar-search-2 navbar-action">
+    <!-- ===============================
+         BÚSQUEDA
+    ================================ -->
+    <div class="rd-navbar-search rd-navbar-search-2 navbar-action">
 
-                <button
-                  class="rd-navbar-search-toggle rd-navbar-fixed-element-3"
-                  type="button"
-                  data-rd-navbar-toggle=".rd-navbar-search"
-                  aria-label="Abrir búsqueda"
+      <button
+        class="rd-navbar-search-toggle rd-navbar-fixed-element-3"
+        type="button"
+        data-rd-navbar-toggle=".rd-navbar-search"
+        aria-label="Abrir búsqueda"
+      >
+        <img
+          src="images/icon/lupa.png" class="navbar-icon"
+        >
+      </button>
+
+      <form
+        class="rd-search"
+        action="index.html"
+        data-search-live="rd-search-results-live"
+        method="GET"
+      >
+
+        <div class="form-wrap">
+
+          <input
+            class="rd-navbar-search-form-input form-input"
+            id="rd-navbar-search-form-input"
+            type="text"
+            name="s"
+            autocomplete="off"
+          >
+
+          <label
+            class="form-label"
+            for="rd-navbar-search-form-input"
+          >
+            Search...
+          </label>
+
+          <div
+            class="rd-search-results-live"
+            id="rd-search-results-live"
+          ></div>
+
+          <button
+            class="rd-search-form-submit"
+            type="submit"
+            aria-label="Buscar"
+          >
+            <img
+              src="images/icon/Lupa.png"
+              alt=""
+              class="navbar-icon-small"
+            >
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+
+    <!-- ===============================
+         CARRITO DE ESCRITORIO
+    ================================ -->
+    <div class="rd-navbar-basket-wrap navbar-action">
+
+      <button
+        class="rd-navbar-basket"
+        type="button"
+        data-rd-navbar-toggle=".cart-inline"
+        aria-label="Abrir carrito"
+      >
+
+        <img
+          src="images/icon/shopping-cart.png"
+          alt=""
+          class="navbar-icon"
+        >
+
+        <span id="cartIcon">2</span>
+
+      </button>
+
+
+      <!-- VENTANA DESPLEGABLE DEL CARRITO -->
+      <div class="cart-inline">
+
+        <div class="cart-inline-header">
+
+          <h5 class="cart-inline-title">
+            In cart:
+            <span id="cartCount">2</span>
+            Products
+          </h5>
+
+          <h6 class="cart-inline-title">
+            Total price:
+            <span id="totalPrice">$7.00</span>
+          </h6>
+
+        </div>
+
+
+        <div class="cart-inline-body">
+
+          <!-- PRODUCTO 1 -->
+          <div class="cart-inline-item">
+
+            <div class="unit unit-spacing-sm align-items-center">
+
+              <div class="unit-left">
+
+                <a
+                  class="cart-inline-figure"
+                  href="single-product.html"
                 >
-                  <span></span>
-                </button>
-
-                <form
-                  class="rd-search"
-                  action="index.html"
-                  data-search-live="rd-search-results-live"
-                  method="GET"
-                >
-
-                  <div class="form-wrap">
-
-                    <input
-                      class="rd-navbar-search-form-input form-input"
-                      id="rd-navbar-search-form-input"
-                      type="text"
-                      name="s"
-                      autocomplete="off"
-                    >
-
-                    <label
-                      class="form-label"
-                      for="rd-navbar-search-form-input"
-                    >
-                      Search...
-                    </label>
-
-                    <div
-                      class="rd-search-results-live"
-                      id="rd-search-results-live"
-                    ></div>
-
-                    <button
-                      class="rd-search-form-submit fl-bigmug-line-search74"
-                      type="submit"
-                      aria-label="Buscar"
-                    ></button>
-
-                  </div>
-
-                </form>
+                  <img
+                    src="images/product-mini-1-106x104.png"
+                    alt="Tomatoes"
+                    width="100"
+                    height="90"
+                  >
+                </a>
 
               </div>
 
+              <div class="unit-body">
 
-              <!-- ===============================
-                   CARRITO DE ESCRITORIO
-              ================================ -->
-              <div class="rd-navbar-basket-wrap navbar-action">
+                <h6 class="cart-inline-name">
+                  <a href="shop-list.html">
+                    Tomatoes
+                  </a>
+                </h6>
 
-                <button
-                  class="rd-navbar-basket fl-bigmug-line-shopping202"
-                  type="button"
-                  data-rd-navbar-toggle=".cart-inline"
-                  aria-label="Abrir carrito"
-                >
-                  <span id="cartIcon">2</span>
-                </button>
+                <div class="group-xs group-middle">
 
+                  <div class="table-cart-stepper"></div>
 
-                <!-- VENTANA DESPLEGABLE DEL CARRITO -->
-                <div class="cart-inline">
-
-                  <!-- CABECERA DEL CARRITO -->
-                  <div class="cart-inline-header">
-
-                    <h5 class="cart-inline-title">
-                      In cart:
-                      <span id="cartCount">2</span>
-                      Products
-                    </h5>
-
-                    <h6 class="cart-inline-title">
-                      Total price:
-                      <span id="totalPrice">$7.00</span>
-                    </h6>
-
-                  </div>
-
-
-                  <!-- PRODUCTOS DEL CARRITO -->
-                  <div class="cart-inline-body">
-
-                    <!-- PRODUCTO 1 -->
-                    <div class="cart-inline-item">
-
-                      <div class="unit unit-spacing-sm align-items-center">
-
-                        <div class="unit-left">
-
-                          <a
-                            class="cart-inline-figure"
-                            href="single-product.html"
-                          >
-
-                            <img
-                              src="images/product-mini-4-146x132.png"
-                              alt="Tomatoes"
-                              width="100"
-                              height="90"
-                            >
-
-                          </a>
-
-                        </div>
-
-
-                        <div class="unit-body">
-
-                          <h6 class="cart-inline-name">
-
-                            <a href="shop-list.html">
-                              Tomatoes
-                            </a>
-
-                          </h6>
-
-                          <div class="group-xs group-middle">
-
-                            <div class="table-cart-stepper"></div>
-
-                            <h6 class="cart-inline-title item-price">
-                              $2.00
-                            </h6>
-
-                          </div>
-
-                        </div>
-
-                      </div>
-
-                    </div>
-
-
-                    <!-- PRODUCTO 2 -->
-                    <div class="cart-inline-item">
-
-                      <div class="unit unit-spacing-sm align-items-center">
-
-                        <div class="unit-left">
-
-                          <a
-                            class="cart-inline-figure"
-                            href="single-product.html"
-                          >
-
-                            <img
-                              src="images/product-mini-5-146x132.png"
-                              alt="Bananas"
-                              width="100"
-                              height="90"
-                            >
-
-                          </a>
-
-                        </div>
-
-
-                        <div class="unit-body">
-
-                          <h6 class="cart-inline-name">
-
-                            <a href="single-product.html">
-                              Bananas
-                            </a>
-
-                          </h6>
-
-                          <div class="group-xs group-middle">
-
-                            <div class="table-cart-stepper"></div>
-
-                            <h6 class="cart-inline-title item-price">
-                              $5.00
-                            </h6>
-
-                          </div>
-
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-
-
-                  <!-- PIE DEL CARRITO -->
-                  <div class="cart-inline-footer">
-
-                    <div class="group-sm">
-
-                      <a
-                        class="button button-default-outline-2 button-zakaria"
-                        href="cart-page.html"
-                      >
-                        Go to cart
-                      </a>
-
-                      <a
-                        class="button button-primary button-zakaria"
-                        href="checkout.html"
-                      >
-                        Checkout
-                      </a>
-
-                    </div>
-
-                  </div>
+                  <h6 class="cart-inline-title item-price">
+                    $2.00
+                  </h6>
 
                 </div>
 
               </div>
 
+            </div>
 
-              <!-- ===============================
-                   CARRITO PARA MÓVIL
-              ================================ -->
-              <a
-                class="rd-navbar-basket rd-navbar-basket-mobile fl-bigmug-line-shopping202 rd-navbar-fixed-element-2"
-                href="cart-page.html"
-                aria-label="Ir al carrito"
-              >
-                <span id="cartIconMobile">2</span>
-              </a>
+          </div>
 
 
-              <!-- ===============================
-                   USUARIO CON IMAGEN
-              ================================ -->
-              <a
-                class="navbar-user-link navbar-action"
-                href="login.html"
-                aria-label="Iniciar sesión"
-              >
+          <!-- PRODUCTO 2 -->
+          <div class="cart-inline-item">
 
-                <img
-                  class="navbar-user-image"
-                  src="images/user-icon.png"
-                  alt="Usuario"
+            <div class="unit unit-spacing-sm align-items-center">
+
+              <div class="unit-left">
+
+                <a
+                  class="cart-inline-figure"
+                  href="single-product.html"
                 >
+                  <img
+                    src="images/product-mini-3-106x104.png"
+                    alt="Bananas"
+                    width="100"
+                    height="90"
+                  >
+                </a>
 
-              </a>
+              </div>
 
+              <div class="unit-body">
 
-              <!-- ===============================
-                   MENÚ HAMBURGUESA LATERAL
-              ================================ -->
-              <button
-                class="rd-navbar-project-hamburger rd-navbar-project-hamburger-open rd-navbar-fixed-element-1 navbar-action"
-                type="button"
-                data-multitoggle=".rd-navbar-main"
-                data-multitoggle-blur=".rd-navbar-wrap"
-                data-multitoggle-isolate="data-multitoggle-isolate"
-                aria-label="Abrir panel lateral"
-              >
+                <h6 class="cart-inline-name">
+                  <a href="single-product.html">
+                    Bananas
+                  </a>
+                </h6>
 
-                <span class="project-hamburger">
+                <div class="group-xs group-middle">
 
-                  <span class="project-hamburger-line"></span>
-                  <span class="project-hamburger-line"></span>
-                  <span class="project-hamburger-line"></span>
-                  <span class="project-hamburger-line"></span>
+                  <div class="table-cart-stepper"></div>
 
-                </span>
+                  <h6 class="cart-inline-title item-price">
+                    $5.00
+                  </h6>
 
-              </button>
+                </div>
+
+              </div>
 
             </div>
 
           </div>
+
+        </div>
+
+
+        <div class="cart-inline-footer">
+
+          <div class="group-sm">
+
+            <a
+              class="button button-default-outline-2 button-zakaria"
+              href="cart-page.html"
+            >
+              Go to cart
+            </a>
+
+            <a
+              class="button button-primary button-zakaria"
+              href="checkout.html"
+            >
+              Checkout
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ===============================
+         CARRITO PARA MÓVIL
+    ================================ -->
+    <a
+      class="rd-navbar-basket rd-navbar-basket-mobile rd-navbar-fixed-element-2"
+      href="cart-page.html"
+      aria-label="Ir al carrito"
+    >
+
+      <img
+        src="images/icon/shopping-cart.png"
+        alt=""
+        class="navbar-icon"
+      >
+
+      <span id="cartIconMobile">2</span>
+
+    </a>
+<!-- ===============================
+     USUARIO
+================================ -->
+<div class="navbar-action">
+
+    <a
+        class="navbar-user-link"
+        href="login.html"
+        aria-label="Iniciar sesión">
+
+        <img
+            src="images/icon/user-icon.png"
+            alt="Usuario"
+            class="navbar-icon">
+
+    </a>
+
+</div>
+
+    <!-- ===============================
+         MENÚ HAMBURGUESA LATERAL
+    ================================ -->
+    <button
+      class="rd-navbar-project-hamburger rd-navbar-project-hamburger-open rd-navbar-fixed-element-1 navbar-action"
+      type="button"
+      data-multitoggle=".rd-navbar-main"
+      data-multitoggle-blur=".rd-navbar-wrap"
+      data-multitoggle-isolate="data-multitoggle-isolate"
+      aria-label="Abrir panel lateral"
+    >
+
+      <span class="project-hamburger">
+        <span class="project-hamburger-line"></span>
+        <span class="project-hamburger-line"></span>
+        <span class="project-hamburger-line"></span>
+        <span class="project-hamburger-line"></span>
+      </span>
+
+    </button>
+
+  </div>
+
+</div>
           <!-- PANEL LATERAL -->
           <div class="rd-navbar-project">
 

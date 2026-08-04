@@ -14,7 +14,9 @@
   --border: #dcd6c7;
 }
 
-/* CONFIGURACIÓN GENERAL */
+/* ================================
+   CONFIGURACIÓN GENERAL
+================================ */
 
 * {
   box-sizing: border-box;
@@ -32,21 +34,23 @@ body {
   font-family: Georgia, "Times New Roman", serif;
 }
 
-/* FONDO GENERAL DE LA PÁGINA */
+/* ================================
+   FONDO GENERAL
+================================ */
 
 body.auth-page {
   display: flex;
   align-items: center;
   justify-content: center;
 
+  min-height: 100vh;
   padding: 30px;
 
   background:
     linear-gradient(
-      rgba(12, 35, 17, 0.7),
-      rgba(12, 35, 17, 0.7)
+      rgba(12, 35, 17, 0.72),
+      rgba(12, 35, 17, 0.72)
     );
-    /* url("../images/login-page-bg.jpg"); */
 
   background-size: cover;
   background-position: center;
@@ -54,7 +58,25 @@ body.auth-page {
   background-attachment: fixed;
 }
 
-/* CONTENEDOR PRINCIPAL */
+/* Para colocar una imagen detrás de toda la página:
+
+body.auth-page {
+  background:
+    linear-gradient(
+      rgba(12, 35, 17, 0.72),
+      rgba(12, 35, 17, 0.72)
+    ),
+    url("../images/login-page-bg.jpg");
+
+  background-size: cover;
+  background-position: center;
+}
+
+*/
+
+/* ================================
+   CONTENEDOR PRINCIPAL
+================================ */
 
 .auth-shell {
   width: min(100%, 1120px);
@@ -63,9 +85,9 @@ body.auth-page {
   display: grid;
   grid-template-columns: 1.08fr 0.92fr;
 
-  background: rgba(255, 255, 255, 0.97);
+  background: rgba(255, 255, 255, 0.98);
 
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 30px;
 
   overflow: hidden;
@@ -74,33 +96,37 @@ body.auth-page {
     0 30px 80px rgba(0, 0, 0, 0.3);
 }
 
-/* PANEL IZQUIERDO */
+/* ================================
+   PANEL IZQUIERDO
+================================ */
 
 .auth-visual {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+  position: relative;
 
-    padding: 55px;
-    color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 
-    /* Imagen de fondo */
-    background: linear-gradient(
-        rgba(9, 34, 14, 0.35),
-        rgba(9, 34, 14, 0.35)
+  padding: 55px 55px 60px;
+
+  color: var(--white);
+
+  background:
+    linear-gradient(
+      rgba(9, 34, 14, 0.48),
+      rgba(9, 34, 14, 0.58)
     ),
     url("../images/hydro.png");
 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-    overflow: hidden;
+  overflow: hidden;
 }
 
-/* EFECTO DECORATIVO */
+/* CAPA DECORATIVA */
 
 .auth-visual::after {
   content: "";
@@ -111,39 +137,54 @@ body.auth-page {
   background:
     radial-gradient(
       circle at top left,
-      rgba(215, 179, 106, 0.18),
-      transparent 42%
+      rgba(215, 179, 106, 0.2),
+      transparent 43%
+    ),
+    linear-gradient(
+      to top,
+      rgba(5, 22, 9, 0.22),
+      transparent 50%
     );
 
   pointer-events: none;
 }
 
-/* COLOCA EL CONTENIDO ENCIMA DE LA CAPA */
+/* CONTENIDO SOBRE LAS CAPAS */
 
 .auth-visual > * {
   position: relative;
   z-index: 1;
 }
 
-/* LOGO GRANDE DEL PANEL IZQUIERDO */
+/* ================================
+   LOGO
+================================ */
 
 .visual-logo {
-  width: 150%;
-  margin-bottom: 50px;
+  width: 100%;
+  margin-bottom: 36px;
+}
+
+.visual-logo a {
+  display: inline-block;
 }
 
 .visual-logo img {
   display: block;
 
-  width: 310px;
+  width: 365px;
   max-width: 100%;
   height: auto;
 
   object-fit: contain;
 
+  filter:
+    drop-shadow(0 5px 12px rgba(0, 0, 0, 0.18));
 }
 
-/* ETIQUETA SECURE ACCESS */
+/* ================================
+   ETIQUETA SECURE ACCESS
+================================ */
 
 .eyebrow {
   display: inline-flex;
@@ -152,56 +193,76 @@ body.auth-page {
 
   width: fit-content;
 
+  margin-bottom: 18px;
   padding: 10px 16px;
 
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.42);
   border-radius: 999px;
 
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.13);
 
   font-family: "Segoe UI", Arial, sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
+  font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 
   backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
-/* TÍTULO DEL PANEL IZQUIERDO */
+/* ================================
+   TÍTULO DEL PANEL IZQUIERDO
+================================ */
 
 .auth-visual h2 {
-  max-width: 560px;
+  max-width: 540px;
+
+  margin-bottom: 18px;
+
+  color: var(--white);
 
   font-family: Optima, "Segoe UI", Candara, sans-serif;
-  font-size: clamp(2rem, 3vw, 3rem);
-  line-height: 1.1;
+  font-size: clamp(2.35rem, 4vw, 3.25rem);
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
 
-  color: white;
-
-  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.28);
+  text-shadow:
+    0 4px 18px rgba(0, 0, 0, 0.32);
 }
 
-/* TEXTO DEL PANEL IZQUIERDO */
+/* ================================
+   TEXTO DEL PANEL IZQUIERDO
+================================ */
 
 .auth-visual p {
-  max-width: 560px;
+  max-width: 520px;
 
-  font-size: 1.05rem;
-  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.94);
 
-  color: rgba(255, 255, 255, 0.93);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 1.04rem;
+  line-height: 1.72;
 
-  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.24);
+  text-shadow:
+    0 3px 14px rgba(0, 0, 0, 0.25);
 }
 
-/* PANEL DERECHO */
+/* ================================
+   PANEL DERECHO
+================================ */
 
 .auth-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
 
-  padding: 44px 48px;
+  padding: 48px;
 
   background:
     linear-gradient(
@@ -211,36 +272,35 @@ body.auth-page {
     );
 }
 
-
-
-/* TÍTULO */
+/* ================================
+   TÍTULO Y SUBTÍTULO
+================================ */
 
 .title {
   margin-bottom: 8px;
-
-  text-align: center;
 
   color: var(--primary);
 
   font-family: Optima, "Segoe UI", Candara, sans-serif;
   font-size: 2rem;
   font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
 }
 
-/* SUBTÍTULO */
-
 .subtitle {
-  margin-bottom: 26px;
-
-  text-align: center;
+  margin-bottom: 28px;
 
   color: var(--muted);
 
   font-family: "Segoe UI", Arial, sans-serif;
   font-size: 1rem;
+  text-align: center;
 }
 
-/* FORMULARIOS */
+/* ================================
+   FORMULARIOS
+================================ */
 
 form {
   display: none;
@@ -250,7 +310,9 @@ form.active {
   display: block;
 }
 
-/* CAMPOS */
+/* ================================
+   CAMPOS
+================================ */
 
 .input-box {
   margin-bottom: 14px;
@@ -260,14 +322,14 @@ form.active {
 .input-box select {
   width: 100%;
 
-  padding: 15px 16px;
+  padding: 16px;
 
   border: 1.5px solid var(--border);
   border-radius: 13px;
 
   outline: none;
 
-  background: white;
+  background: var(--white);
   color: var(--text);
 
   font-family: "Segoe UI", Arial, sans-serif;
@@ -293,7 +355,9 @@ form.active {
   transform: translateY(-1px);
 }
 
-/* BOTÓN PRINCIPAL */
+/* ================================
+   BOTÓN PRINCIPAL
+================================ */
 
 .main-btn {
   width: 100%;
@@ -310,7 +374,7 @@ form.active {
       var(--primary-dark)
     );
 
-  color: white;
+  color: var(--white);
 
   font-family: "Segoe UI", Arial, sans-serif;
   font-size: 1rem;
@@ -340,19 +404,20 @@ form.active {
   transform: translateY(0);
 }
 
-/* SEPARADOR */
+/* ================================
+   SEPARADOR
+================================ */
 
 .separator {
   position: relative;
 
   margin: 22px 0;
 
-  text-align: center;
-
   color: var(--muted);
 
   font-family: "Segoe UI", Arial, sans-serif;
   font-size: 0.9rem;
+  text-align: center;
 }
 
 .separator::before,
@@ -376,16 +441,15 @@ form.active {
   right: 0;
 }
 
-/* BOTONES SOCIALES */
+/* ================================
+   BOTONES SECUNDARIOS
+================================ */
 
 .social-btn {
-  width: 100%;
-
   margin-bottom: 11px;
   padding: 14px 16px;
 
   border: 1px solid var(--border);
-  border-radius: 13px;
 
   background:
     linear-gradient(
@@ -396,28 +460,20 @@ form.active {
 
   color: var(--primary);
 
-  font-family: "Segoe UI", Arial, sans-serif;
-  font-size: 0.97rem;
-  font-weight: 700;
-
-  cursor: pointer;
-
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+  box-shadow:
+    0 8px 18px rgba(0, 0, 0, 0.06);
 }
 
 .social-btn:hover {
-  transform: translateY(-2px);
-
   border-color: var(--accent);
 
   box-shadow:
-    0 10px 22px rgba(0, 0, 0, 0.08);
+    0 12px 24px rgba(0, 0, 0, 0.1);
 }
 
-/* MENSAJES */
+/* ================================
+   MENSAJES
+================================ */
 
 .message {
   display: none;
@@ -454,16 +510,18 @@ form.active {
   color: #2b6637;
 }
 
-/* CAMBIO LOGIN / REGISTRO */
+/* ================================
+   CAMBIO LOGIN / REGISTRO
+================================ */
 
 .toggle {
   margin-top: 22px;
 
-  text-align: center;
-
   color: var(--muted);
 
+  font-family: "Segoe UI", Arial, sans-serif;
   font-size: 0.95rem;
+  text-align: center;
 }
 
 .toggle button {
@@ -474,6 +532,7 @@ form.active {
   background: none;
   color: var(--primary);
 
+  font-family: "Segoe UI", Arial, sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
 
@@ -484,7 +543,9 @@ form.active {
   text-decoration: underline;
 }
 
-/* TABLET */
+/* ================================
+   TABLET
+================================ */
 
 @media (max-width: 900px) {
   body.auth-page {
@@ -494,24 +555,42 @@ form.active {
 
   .auth-shell {
     grid-template-columns: 1fr;
+
+    width: min(100%, 700px);
     min-height: auto;
   }
 
   .auth-visual {
-    min-height: 460px;
-    padding: 42px;
+    min-height: 480px;
+
+    justify-content: center;
+
+    padding: 48px 42px;
+
+    background-position: center;
+  }
+
+  .visual-logo {
+    margin-bottom: 28px;
   }
 
   .visual-logo img {
-    width: 3000px;
+    width: 340px;
+  }
+
+  .auth-visual h2 {
+    max-width: 570px;
+    font-size: clamp(2.2rem, 7vw, 3.1rem);
   }
 
   .auth-card {
-    padding: 810px;
+    padding: 50px 42px;
   }
 }
 
-/* CELULARES */
+/* ================================
+   CELULARES
+================================ */
 
 @media (max-width: 560px) {
   body.auth-page {
@@ -523,39 +602,81 @@ form.active {
   }
 
   .auth-visual {
-    min-height: 390px;
+    min-height: 430px;
 
-    padding: 30px 24px;
+    padding: 32px 24px;
 
     background-position: center;
   }
 
   .visual-logo {
-    margin-bottom: 8px;
+    margin-bottom: 24px;
   }
 
   .visual-logo img {
-    width: 3000px;
+    width: 285px;
+  }
+
+  .eyebrow {
+    margin-bottom: 15px;
+    padding: 9px 14px;
+
+    font-size: 0.68rem;
   }
 
   .auth-visual h2 {
+    margin-bottom: 15px;
+
     font-size: 2rem;
+    line-height: 1.08;
   }
 
   .auth-visual p {
-    font-size: 0.96rem;
-    line-height: 1.6;
+    font-size: 0.94rem;
+    line-height: 1.55;
   }
 
   .auth-card {
-    padding: 34px 22px;
-  }
-
-  .form-logo img {
-    width: 1200px;
+    padding: 38px 22px;
   }
 
   .title {
     font-size: 1.8rem;
+  }
+
+  .subtitle {
+    margin-bottom: 24px;
+  }
+
+  .input-box input,
+  .input-box select {
+    padding: 14px;
+  }
+}
+
+/* ================================
+   CELULARES PEQUEÑOS
+================================ */
+
+@media (max-width: 380px) {
+  body.auth-page {
+    padding: 8px;
+  }
+
+  .auth-visual {
+    min-height: 410px;
+    padding: 28px 20px;
+  }
+
+  .visual-logo img {
+    width: 250px;
+  }
+
+  .auth-visual h2 {
+    font-size: 1.75rem;
+  }
+
+  .auth-card {
+    padding: 32px 18px;
   }
 }
