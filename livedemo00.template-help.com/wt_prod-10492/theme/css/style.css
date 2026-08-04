@@ -18308,6 +18308,11 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 	position: relative;
 	z-index: 1;
 }
+#banner_terms .parallax-content {
+    position: relative;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.6);
+}
 
 .material-parallax img {
 	display: none;
