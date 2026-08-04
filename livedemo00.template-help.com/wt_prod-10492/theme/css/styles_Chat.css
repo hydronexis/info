@@ -162,7 +162,7 @@ body.show-chatbot .chatbot-popup {
 .chatbot-popup *::before,
 .chatbot-popup *::after {
     box-sizing: border-box !important;
-    font-family: "Inter", sans-serif;
+    font-family: "Monterchi Serif", sans-serif;
 }
 
 /* =====================================================
@@ -221,7 +221,7 @@ body.show-chatbot .chatbot-popup {
     margin: 0 !important;
 
     color: var(--chat-white) !important;
-    font-family: "Inter", sans-serif !important;
+    font-family: "Monterchi Serif", sans-serif !important;
     font-size: 18px !important;
     font-weight: 700 !important;
     line-height: 1.2 !important;
@@ -347,7 +347,7 @@ body.show-chatbot .chatbot-popup {
     padding: 10px 14px !important;
     margin: 0 !important;
 
-    font-family: "Inter", sans-serif !important;
+    font-family: "Monterchi Serif", sans-serif !important;
     font-size: 14px !important;
     font-weight: 400 !important;
     line-height: 1.5 !important;
@@ -509,7 +509,7 @@ body.show-chatbot .chatbot-popup {
     border-radius: 25px !important;
     outline: none !important;
 
-    font-family: "Inter", sans-serif !important;
+    font-family: "Monterchi Serif", sans-serif !important;
     font-size: 14px !important;
     font-weight: 400 !important;
     line-height: 20px !important;
