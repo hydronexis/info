@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Terms and Conditions | HYDRONEXIS</title>
+
+  <style>
+    /* ================================
+       GENERAL SETTINGS
+    ================================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #ffffff;
+      color: #565b62;
+    }
+
+    button,
+    input {
+      font-family: inherit;
+    }
+
+    /* ================================
+       HEADER
+    ================================= */
+
+    .terms-header {
+      min-height: 310px;
+      padding: 45px 20px;
+      background-color: #f6f7f8;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+    }
+
+    /* Space for the image or icon */
+    .terms-icon {
+      width: 125px;
+      height: 125px;
+      margin-bottom: 18px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      overflow: hidden;
+      border-radius: 14px;
+    }
+
+    .terms-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Delete this div when you add your real image */
+    .icon-placeholder {
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 12px;
+      border: 2px dashed #aeb5bd;
+      border-radius: 14px;
+
+      background-color: #ffffff;
+      color: #8a9199;
+
+      font-size: 14px;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .terms-header h1 {
+      color: #4f5358;
+      font-size: clamp(29px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    /* ================================
+       MAIN CONTENT
+    ================================= */
+
+    .terms-main {
+      width: 100%;
+      padding: 75px 30px;
+    }
+
+    .terms-container {
+      width: min(100%, 1050px);
+      margin: 0 auto;
+    }
+
+    .intro-text {
+      margin-bottom: 34px;
+
+      color: #5b5f64;
+      font-size: clamp(18px, 2.2vw, 26px);
+      line-height: 1.65;
+      letter-spacing: 0.1px;
+    }
+
+    /* ================================
+       MORE INFORMATION BUTTON
+    ================================= */
+
+    .more-info-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+
+      padding: 5px 0;
+
+      border: none;
+      border-bottom: 3px solid #d7dadd;
+
+      background: transparent;
+      color: #555a60;
+
+      font-size: clamp(19px, 2vw, 26px);
+      cursor: pointer;
+
+      transition:
+        color 0.25s ease,
+        border-color 0.25s ease;
+    }
+
+    .more-info-button:hover {
+      color: #2e9571;
+      border-color: #2e9571;
+    }
+
+    .more-info-button:focus-visible {
+      outline: 3px solid rgba(50, 145, 107, 0.25);
+      outline-offset: 7px;
+    }
+
+    .more-info-button .arrow {
+      display: inline-block;
+      font-size: 32px;
+      line-height: 1;
+
+      transition: transform 0.3s ease;
+    }
+
+    .more-info-button.active .arrow {
+      transform: rotate(90deg);
+    }
+
+    /* ================================
+       COMPLETE TERMS
+    ================================= */
+
+    .complete-terms {
+      display: none;
+
+      margin-top: 50px;
+      padding: 45px;
+
+      border: 1px solid #e1e5e8;
+      border-radius: 18px;
+
+      background-color: #fafbfb;
+      box-shadow: 0 12px 35px rgba(35, 50, 60, 0.07);
+    }
+
+    .complete-terms.visible {
+      display: block;
+      animation: showTerms 0.45s ease;
+    }
+
+    @keyframes showTerms {
+      from {
+        opacity: 0;
+        transform: translateY(-12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .complete-terms h2 {
+      margin-bottom: 12px;
+
+      color: #34393e;
+      font-size: clamp(26px, 3vw, 35px);
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .last-update {
+      margin-bottom: 35px;
+      color: #7a8086;
+      font-size: 15px;
+    }
+
+    .term-section {
+      margin-bottom: 38px;
+      scroll-margin-top: 30px;
+    }
+
+    .term-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .term-section h3 {
+      margin-bottom: 14px;
+
+      color: #343a40;
+      font-size: 21px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .term-section p {
+      margin-bottom: 14px;
+
+      color: #5d6369;
+      font-size: 17px;
+      line-height: 1.8;
+      text-align: justify;
+    }
+
+    .term-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ================================
+       ACCEPTANCE AREA
+    ================================= */
+
+    .acceptance-section {
+      margin-top: 60px;
+      padding-top: 40px;
+
+      border-top: 1px solid #e0e3e5;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .acceptance-label {
+      max-width: 780px;
+      margin-bottom: 26px;
+
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 13px;
+
+      color: #4f555a;
+      font-size: 18px;
+      line-height: 1.55;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .acceptance-label input {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      margin-top: 3px;
+
+      accent-color: #55c395;
+      cursor: pointer;
+    }
+
+    .acceptance-label a {
+      color: #2879b9;
+      text-decoration: underline;
+    }
+
+    .acceptance-label a:hover {
+      color: #1b5b8c;
+    }
+
+    .accept-button {
+      min-width: 370px;
+      min-height: 76px;
+      padding: 18px 42px;
+
+      border: none;
+      border-radius: 45px;
+
+      background-color: #5ac69a;
+      color: #ffffff;
+
+      font-size: 25px;
+      font-weight: 500;
+
+      cursor: pointer;
+
+      box-shadow: 0 9px 22px rgba(61, 166, 123, 0.24);
+
+      transition:
+        background-color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        opacity 0.25s ease;
+    }
+
+    .accept-button:hover:not(:disabled) {
+      background-color: #42ae82;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 27px rgba(61, 166, 123, 0.32);
+    }
+
+    .accept-button:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .accept-button:focus-visible {
+      outline: 4px solid rgba(54, 159, 116, 0.25);
+      outline-offset: 5px;
+    }
+
+    .accept-button:disabled {
+      background-color: #addbc8;
+      opacity: 0.65;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .acceptance-message {
+      min-height: 24px;
+      margin-top: 15px;
+
+      color: #c24444;
+      font-size: 15px;
+      text-align: center;
+    }
+
+    /* ================================
+       RESPONSIVE DESIGN
+    ================================= */
+
+    @media (max-width: 768px) {
+      .terms-header {
+        min-height: 260px;
+        padding: 35px 20px;
+      }
+
+      .terms-icon {
+        width: 105px;
+        height: 105px;
+      }
+
+      .terms-main {
+        padding: 50px 20px;
+      }
+
+      .complete-terms {
+        margin-top: 40px;
+        padding: 30px 24px;
+        border-radius: 14px;
+      }
+
+      .term-section p {
+        font-size: 16px;
+        text-align: left;
+      }
+
+      .acceptance-label {
+        font-size: 16px;
+      }
+
+      .accept-button {
+        width: 100%;
+        min-width: 0;
+        min-height: 64px;
+        padding: 16px 24px;
+        font-size: 21px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .terms-main {
+        padding: 40px 16px;
+      }
+
+      .complete-terms {
+        padding: 25px 18px;
+      }
+
+      .more-info-button {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .acceptance-section {
+        margin-top: 45px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================================
+       TOP SECTION
+  ================================= -->
+
+  <header class="terms-header">
+
+    <div class="terms-icon">
+
+      <!--
+        To use your own image, delete the icon-placeholder div
+        and place the following code:
+
+        <img
+          src="images/terms-icon.png"
+          alt="Terms and Conditions icon"
+        >
+      -->
+
+      <div class="icon-placeholder">
+        Place your image or icon here
+      </div>
+
+    </div>
+
+    <h1>Terms and Conditions</h1>
+
+  </header>
+
+  <!-- ================================
+       MAIN CONTENT
+  ================================= -->
+
+  <main class="terms-main">
+
+    <div class="terms-container">
+
+      <!-- Short introductory text -->
+      <p class="intro-text">
+        These Terms and Conditions establish the rules governing access to and
+        use of the HYDRONEXIS platform. They explain the responsibilities of
+        users, buyers and sellers, as well as the conditions applicable to
+        product listings, electronic payments, geolocation and account
+        management.
+      </p>
+
+      <!-- More information button -->
+      <button
+        type="button"
+        class="more-info-button"
+        id="moreInfoButton"
+        aria-expanded="false"
+        aria-controls="completeTerms"
+      >
+        <span class="arrow">→</span>
+        <span id="moreInfoText">More Information</span>
+      </button>
+
+      <!-- ================================
+           COMPLETE TERMS AND CONDITIONS
+      ================================= -->
+
+      <section
+        class="complete-terms"
+        id="completeTerms"
+        aria-hidden="true"
+      >
+
+        <h2>
+          Terms and Conditions of Use for the HYDRONEXIS Platform
+        </h2>
+
+        <p class="last-update">
+          Last updated: August 3, 2026
+        </p>
+
+        <article class="term-section">
+          <h3>1. Acceptance of the Terms and Conditions</h3>
+
+          <p>
+            These Terms and Conditions govern access to, navigation of, and use
+            of the HYDRONEXIS digital platform, available through its website
+            and, where applicable, its mobile applications. By registering,
+            accessing, or using any of the services offered by HYDRONEXIS, the
+            user declares that they have read, understood, and fully accepted
+            the provisions contained herein.
+          </p>
+
+          <p>
+            If the user does not agree with any of these provisions, they must
+            refrain from accessing or using the platform and its associated
+            services.
+          </p>
+        </article>
+
+        <article class="term-section">
+          <h3>2. Purpose of the Platform</h3>
+
+          <p>
+            HYDRONEXIS is a technology platform designed to facilitate
+            interaction between users who wish to offer, promote, and sell
+            products and users interested in purchasing them.
+          </p>
+
+          <p>
+            The platform provides tools for listing products, approximately
+            locating sellers, managing orders, and integrating electronic
+            payment services. HYDRONEXIS acts exclusively as a technological
+            intermediary between buyers and sellers and does not assume the role
+            of seller, distributor, manufacturer, or direct supplier of products
+            listed by third parties.
+          </p>
+        </article>
+
+        <article class="term-section">
+          <h3>3. User Registration</h3>
+
+          <p>
+            To access certain features of the platform, the user must create an
+            account. Registration may be completed using a Google account or an
+            email address and password, depending on the options enabled by
+            HYDRONEXIS.
+          </p>
+
+          <p>
+            The user agrees to provide truthful, accurate, complete, and
+            up-to-date information and shall be solely responsible for the
+            authenticity and accuracy of the data provided.
+          </p>
+
+          <p>
+            The user is also responsible for maintaining the confidentiality of
+            their login credentials and for all activities carried out through
+            their account. HYDRONEXIS assumes no liability for unauthorized use
+            resulting from the user’s failure to comply with this obligation.
+          </p>
+        </article>
+
+        <article class="term-section">
+          <h3>4. User Obligations</h3>
+
+          <p>
+            The user agrees to use the platform diligently, ethically, and in
+            accordance with applicable laws. The user shall refrain from any
+            conduct that may affect the proper functioning of the platform,
+            infringe the rights of third parties, or violate applicable legal
+            provisions.
+          </p>
+
+          <p>
+            It is expressly prohibited to publish false or misleading
+            information, use another person’s identity, distribute illegal,
+            offensive, or discriminatory content, attempt to gain unauthorized
+            access to computer systems, introduce malicious software, manipulate
+            prices or ratings, or engage in activities intended to disrupt the
+            normal operation of HYDRONEXIS.
+          </p>
+        </article>
+
+        <article class="term-section">
+          <h3>5. Product Listings</h3>
+
+          <p>
+            Sellers shall be solely responsible for the information, images,
+            descriptions, prices, availability, and other characteristics of
+            the products they list on the platform.
+          </p>
+
+          <p>
+            All listings must correspond to products that may be lawfully sold,
+            and the information provided must accurately and faithfully reflect
+            their actual characteristics.
+          </p>
+
+          <p>
+            HYDRONEXIS reserves the right to review, suspend, modify, or remove
+            any listing it considers contrary to these Terms and Conditions,
+            applicable law, or the security, integrity, or reputation of the
+            platform, without incurring any obligation to provide compensation.
+          </p>
+        </article>
+
+        <article class="term-section">
+          <h3>6. Electronic Payments</h3>
+
+          <p>
+            Financial transactions conducted through HYDRONEXIS will be
+            processed by specialized third-party electronic payment providers,
+            which will apply the relevant international security standards and
+            protocols.
+          </p>
+
+          <p>
+            HYDRONEXIS does not store confidential credit or debit card
+            information, including the full card number, security code (CVV), or
+            other sensitive financial data. Payment information will be handled
+            directly by the authorized payment provider in accordance with its
+            own security and privacy policies.
+          </p>
+        </article>
+
+        <article class="term-section">
+          <h3>7. Geolocation</h3>
+
+          <p>
+            To help users locate nearby products and sellers, HYDRONEXIS may
+            request permission to access the user’s approximate geographic
+            location through the mechanisms provided by the browser or device
+            being used.
+          </p>
+
+          <p>
+            Location information will be used to improve the browsing
+            experience, display relevant results, and facilitate delivery
+            coordination. Such information will be processed in accordance with
+            applicable personal data protection regulations.
+          </p>
+
+          <p>
+            The user may revoke location permission at any time through their
+            browser or device settings.
+          </p>
+        </article>
+
+        <article class="term-section">
+          <h3>8. Registration via Google</h3>
+
+          <p>
+            When the user chooses to sign in using a Google account, they
+            authorize HYDRONEXIS to access only the information strictly
+            necessary for creating and managing their account, including, where
+            applicable, their name, email address, and profile photo.
+          </p>
+
+          <p>
+            HYDRONEXIS will not access additional information from the user’s
+            Google account without their express consent and will not take
+            actions on the user’s behalf within Google services.
+          </p>
+        </article>
+
+        <article class="term-section">
+          <h3>9. Sellers’ Liability</h3>
+
+          <p>
+            Each seller acknowledges and agrees that they are solely responsible
+            for the products offered through the platform, the accuracy of
+            published information, the quality of the products sold, compliance
+            with applicable legal and tax obligations, and the proper
+            fulfillment of orders placed by buyers.
+          </p>
+
+          <p>
+            HYDRONEXIS does not guarantee the quality, authenticity, legality,
+            safety, or suitability of products listed by third parties. Its role
+            is limited to providing the technological infrastructure that
+            enables interaction between buyers and sellers.
+          </p>
+        </article>
+
+        <article class="term-section">
+          <h3>10. Buyers’ Responsibilities</h3>
+
+          <p>
+            Buyers are responsible for carefully reviewing the information
+            provided by the seller before making a purchase, providing accurate
+            billing and delivery information, and fulfilling the payment
+            obligations arising from the transaction.
+          </p>
+
+          <p>
+            Any dispute concerning the quality, condition, description, or
+            delivery of a product must initially be addressed between the buyer
+            and the seller, without prejudice to any support tools HYDRONEXIS
+            may make available.
+          </p>
+        </article>
+
+        <article class="term-section">
+          <h3>11. Intellectual Property</h3>
+
+          <p>
+            All elements comprising the HYDRONEXIS platform, including its
+            design, structure, interfaces, logos, trade names, trademarks,
+            texts, images, software, databases, source code, and other content
+            developed by HYDRONEXIS, constitute intellectual property protected
+            by applicable law.
+          </p>
+
+          <p>
+            Their reproduction, distribution, modification, commercial
+            exploitation, or unauthorized use is strictly prohibited without
+            the prior written consent of the owner of the corresponding rights.
+          </p>
+        </article>
+
+        <article class="term-section">
+          <h3>12. Service Availability</h3>
+
+          <p>
+            HYDRONEXIS will make reasonable efforts to maintain the continuous
+            availability of the platform. However, temporary interruptions may
+            occur due to maintenance, updates, technical failures, connectivity
+            issues, security measures, or force majeure.
+          </p>
+
+          <p>
+            Such interruptions shall not automatically give rise to liability
+            or an obligation to compensate users.
+          </p>
+        </article>
+
+        <article class="term-section">
+          <h3>13. Limitation of Liability</h3>
+
+          <p>
+            HYDRONEXIS does not guarantee that the platform will operate without
+            interruption or be completely free of errors. It also does not
+            guarantee that products listed by third parties will meet the
+            specific expectations or requirements of buyers.
+          </p>
+
+          <p>
+            To the extent permitted by applicable law, HYDRONEXIS shall not be
+            liable for direct, indirect, incidental, special, or consequential
+            damages, loss of profits, or losses arising from the use or
+            inability to use the platform.
+          </p>
+
+          <p>
+            HYDRONEXIS shall not be liable for breaches, errors, omissions, or
+            damages attributable exclusively to buyers, sellers, payment
+            providers, delivery providers, or other third parties.
+          </p>
+        </article>
+
+        <article class="term-section">
+          <h3>14. Suspension or Cancellation of Accounts</h3>
+
+          <p>
+            HYDRONEXIS may temporarily or permanently suspend or cancel a user
+            account where there is reasonable evidence of fraud, illegal
+            activity, breach of these Terms and Conditions, misuse of the
+            platform, provision of false information, or conduct that
+            compromises the security of users or the proper functioning of the
+            service.
+          </p>
+        </article>
+
+        <article class="term-section">
+          <h3>15. Modifications to the Terms and Conditions</h3>
+
+          <p>
+            HYDRONEXIS may modify, update, or supplement these Terms and
+            Conditions when necessary to adapt them to regulatory,
+            technological, commercial, security, or functional changes to the
+            platform.
+          </p>
+
+          <p>
+            Modifications will be published through the platform and will take
+            effect on the date indicated in the corresponding update. Continued
+            use of the platform after such changes take effect shall constitute
+            acceptance of the revised Terms and Conditions.
+          </p>
+        </article>
+
+        <article class="term-section">
+          <h3>16. Governing Law and Jurisdiction</h3>
+
+          <p>
+            These Terms and Conditions shall be governed by and construed in
+            accordance with the laws of the Republic of Panama.
+          </p>
+
+          <p>
+            Any dispute arising from the interpretation, execution, or
+            enforcement of these terms shall be subject to the jurisdiction of
+            the competent courts of the Republic of Panama, unless otherwise
+            required by mandatory applicable law.
+          </p>
+        </article>
+
+        <article class="term-section">
+          <h3>17. Contact Information</h3>
+
+          <p>
+            For questions, requests, complaints, or communications related to
+            these Terms and Conditions, users may contact HYDRONEXIS through the
+            official customer service channels published on the platform.
+          </p>
+
+          <p>
+            Continued use of HYDRONEXIS implies full and unconditional
+            acceptance of these Terms and Conditions, together with any
+            supplementary policies forming an integral part of the platform.
+          </p>
+        </article>
+
+      </section>
+
+      <!-- ================================
+           ACCEPTANCE
+      ================================= -->
+
+      <section class="acceptance-section">
+
+        <label class="acceptance-label">
+
+          <input
+            type="checkbox"
+            id="acceptTerms"
+          >
+
+          <span>
+            I have read and accept the
+            <a href="#completeTerms" id="termsLink">
+              Terms and Conditions
+            </a>
+            of the HYDRONEXIS platform.
+          </span>
+
+        </label>
+
+        <button
+          type="button"
+          class="accept-button"
+          id="acceptButton"
+          disabled
+        >
+          Accept and Continue
+        </button>
+
+        <p
+          class="acceptance-message"
+          id="acceptanceMessage"
+          aria-live="polite"
+        ></p>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <script>
+    const moreInfoButton = document.getElementById("moreInfoButton");
+    const moreInfoText = document.getElementById("moreInfoText");
+    const completeTerms = document.getElementById("completeTerms");
+
+    const acceptTerms = document.getElementById("acceptTerms");
+    const acceptButton = document.getElementById("acceptButton");
+    const acceptanceMessage = document.getElementById(
+      "acceptanceMessage"
+    );
+
+    const termsLink = document.getElementById("termsLink");
+
+    /*
+      Shows or hides the complete Terms and Conditions.
+    */
+    function toggleCompleteTerms(forceOpen = false) {
+      const isCurrentlyVisible =
+        completeTerms.classList.contains("visible");
+
+      const shouldOpen = forceOpen || !isCurrentlyVisible;
+
+      completeTerms.classList.toggle("visible", shouldOpen);
+      completeTerms.setAttribute(
+        "aria-hidden",
+        String(!shouldOpen)
+      );
+
+      moreInfoButton.classList.toggle("active", shouldOpen);
+      moreInfoButton.setAttribute(
+        "aria-expanded",
+        String(shouldOpen)
+      );
+
+      moreInfoText.textContent = shouldOpen
+        ? "Show Less"
+        : "More Information";
+
+      if (shouldOpen) {
+        completeTerms.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    }
+
+    moreInfoButton.addEventListener("click", function () {
+      toggleCompleteTerms();
+    });
+
+    /*
+      Opens the full terms when the Terms and Conditions
+      link beside the checkbox is selected.
+    */
+    termsLink.addEventListener("click", function (event) {
+      event.preventDefault();
+      toggleCompleteTerms(true);
+    });
+
+    /*
+      Enables the green button only when the checkbox
+      has been selected.
+    */
+    acceptTerms.addEventListener("change", function () {
+      acceptButton.disabled = !this.checked;
+      acceptanceMessage.textContent = "";
+    });
+
+    /*
+      Redirects the user to index.html after acceptance.
+    */
+    acceptButton.addEventListener("click", function () {
+      if (!acceptTerms.checked) {
+        acceptanceMessage.textContent =
+          "You must accept the Terms and Conditions to continue.";
+
+        return;
+      }
+
+      /*
+        Stores the acceptance in the browser.
+        This is optional and may be removed.
+      */
+      localStorage.setItem(
+        "hydronexisTermsAccepted",
+        "true"
+      );
+
+      localStorage.setItem(
+        "hydronexisTermsAcceptanceDate",
+        new Date().toISOString()
+      );
+
+      window.location.href = "index.html";
+    });
+  </script>
+
+</body>
+</html>
