@@ -163,7 +163,7 @@ body.show-chatbot .chatbot-popup {
 .chatbot-popup *::before,
 .chatbot-popup *::after {
     box-sizing: border-box !important;
-    font-family: "Monterchi Serif", sans-serif;
+    font-family: "Optima", sans-serif;
 }
 
 /* =====================================================
@@ -202,9 +202,9 @@ body.show-chatbot .chatbot-popup {
 .chatbot-popup .chatbot-logo {
     display: block !important;
 
-    width: 36px !important;
-    height: 36px !important;
-    min-width: 36px !important;
+    width: 50px !important;
+    height: 50px !important;
+    min-width: 50px !important;
 
     padding: 7px !important;
     margin: 0 !important;
@@ -222,7 +222,7 @@ body.show-chatbot .chatbot-popup {
     margin: 0 !important;
 
     color: var(--chat-white) !important;
-    font-family: "Monterchi Serif", sans-serif !important;
+    font-family: "Optima", sans-serif !important;
     font-size: 18px !important;
     font-weight: 700 !important;
     line-height: 1.2 !important;
@@ -322,9 +322,9 @@ body.show-chatbot .chatbot-popup {
 .chatbot-popup .bot-avatar {
     display: block !important;
 
-    width: 34px !important;
-    height: 34px !important;
-    min-width: 34px !important;
+    width: 60px !important;
+    height: 60px !important;
+    min-width: 60px !important;
 
     padding: 6px !important;
     margin: 0 0 2px 0 !important;
@@ -348,7 +348,7 @@ body.show-chatbot .chatbot-popup {
     padding: 10px 14px !important;
     margin: 0 !important;
 
-    font-family: "Monterchi Serif", sans-serif !important;
+    font-family: "Optima", sans-serif !important;
     font-size: 14px !important;
     font-weight: 400 !important;
     line-height: 1.5 !important;
@@ -510,7 +510,7 @@ body.show-chatbot .chatbot-popup {
     border-radius: 25px !important;
     outline: none !important;
 
-    font-family: "Monterchi Serif", sans-serif !important;
+    font-family: "Optima", sans-serif !important;
     font-size: 14px !important;
     font-weight: 400 !important;
     line-height: 20px !important;
