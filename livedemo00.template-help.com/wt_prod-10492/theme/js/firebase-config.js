@@ -1,10 +1,19 @@
-// Import Firebase
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+// Firebase SDK
+import { initializeApp } from
+  "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 
-// Configuración
-const firebaseConfig = {
+import { getAuth } from
+  "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+
+import { getFirestore } from
+  "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+
+/* =========================
+   CONFIGURACIÓN FIREBASE
+========================= */
+
+export const firebaseConfig = {
   apiKey: "AIzaSyCcuy8Wtbhn72dU6ayYqfcYN8bbRSeauSw",
   authDomain: "hydronexis-ch.firebaseapp.com",
   projectId: "hydronexis-ch",
@@ -14,16 +23,33 @@ const firebaseConfig = {
   measurementId: "G-QMH74LWN26"
 };
 
-// Inicializar Firebase
-const app = initializeApp(firebaseConfig);
 
-// Authentication
-const auth = getAuth(app);
+/* =========================
+   FIREBASE CONFIGURADO
+========================= */
 
-// Firestore
-const db = getFirestore(app);
+export const firebaseConfigured = true;
 
-console.log("Firebase conectado");
 
-// Exportar
-export { app, auth, db };
+/* =========================
+   INICIALIZAR FIREBASE
+========================= */
+
+export const app = initializeApp(firebaseConfig);
+
+
+/* =========================
+   AUTHENTICATION
+========================= */
+
+export const auth = getAuth(app);
+
+
+/* =========================
+   FIRESTORE
+========================= */
+
+export const db = getFirestore(app);
+
+
+console.log("Firebase conectado correctamente");
