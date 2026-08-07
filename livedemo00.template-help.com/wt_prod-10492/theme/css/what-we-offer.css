@@ -1,0 +1,1693 @@
+/* =========================================================
+   HYDRONEXIS PLANS
+========================================================= */
+
+
+/* =========================================================
+   FUENTES
+========================================================= */
+
+@font-face {
+  font-family: 'Optima';
+  src: url('../fonts/OPTIMA.TTF');
+}
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url('../fonts/helvetica-light-587ebe5a59211.ttf');
+}
+
+@font-face {
+  font-family: 'Monterchi Serif';
+  src: url('../fonts/MonterchiSerif.ttf');
+}
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+  --hydro-green: #679e5a;
+  --hydro-green-dark: #1e3b17;
+  --hydro-mustard: #c68c49;
+  --hydro-white: #ffffff;
+
+  --hydro-text: #182116;
+  --hydro-text-soft: #697066;
+
+  --hydro-border: rgba(30, 59, 23, 0.11);
+}
+
+
+/* =========================================================
+   SECCIÓN COMPLETA
+========================================================= */
+
+.hydro-plans {
+  position: relative;
+
+  width: 100%;
+
+  margin: 0 !important;
+
+  padding:
+    110px 25px
+    120px;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      circle at 12% 18%,
+      rgba(255, 255, 255, 0.06),
+      transparent 25%
+    ),
+
+    radial-gradient(
+      circle at 92% 78%,
+      rgba(198, 140, 73, 0.18),
+      transparent 28%
+    ),
+
+    linear-gradient(
+      135deg,
+      #1e3b17 0%,
+      #315c27 43%,
+      #679e5a 100%
+    );
+}
+
+
+/* =========================================================
+   TEXTURA DE PUNTOS
+========================================================= */
+
+.hydro-plans::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -2;
+
+  background-image:
+    radial-gradient(
+      rgba(255, 255, 255, 0.23) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    30px 30px;
+
+  opacity: 0.45;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   EFECTOS DE LUZ
+========================================================= */
+
+.hydro-plans::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -1;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 18% 24%,
+      rgba(255, 255, 255, 0.08),
+      transparent 27%
+    ),
+
+    radial-gradient(
+      circle at 82% 75%,
+      rgba(255, 255, 255, 0.07),
+      transparent 30%
+    );
+}
+
+
+/* =========================================================
+   CONTENEDOR
+========================================================= */
+
+.hydro-plans-container {
+  position: relative;
+
+  z-index: 5;
+
+  width: 100%;
+
+  max-width: 1250px;
+
+  margin:
+    0 auto;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.hydro-plans-header {
+  position: relative;
+
+  max-width: 780px;
+
+  margin:
+    0 auto 75px;
+
+  text-align: center;
+
+  color: white;
+}
+
+
+.hydro-eyebrow {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 20px;
+
+  padding:
+    10px 19px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.23);
+
+  border-radius: 100px;
+
+  color:
+    rgba(255, 255, 255, 0.92);
+
+  background:
+    rgba(255, 255, 255, 0.09);
+
+  backdrop-filter:
+    blur(12px);
+
+  -webkit-backdrop-filter:
+    blur(12px);
+
+  font-family:
+    'Helvetica',
+    sans-serif;
+
+  font-size:
+    11px;
+
+  font-weight:
+    600;
+
+  letter-spacing:
+    2.4px;
+}
+
+
+/* =========================================================
+   TÍTULO
+========================================================= */
+
+.hydro-plans-header h1 {
+  margin:
+    0;
+
+  color:
+    white;
+
+  font-family:
+    'Optima',
+    sans-serif;
+
+  font-size:
+    clamp(48px, 5.3vw, 76px);
+
+  font-weight:
+    400;
+
+  line-height:
+    0.98;
+
+  letter-spacing:
+    -2px;
+
+  text-transform:
+    uppercase;
+}
+
+
+.hydro-plans-header h1 span {
+  color:
+    #dcebd7;
+}
+
+
+/* =========================================================
+   DESCRIPCIÓN ENCABEZADO
+========================================================= */
+
+.hydro-plans-header p {
+  max-width:
+    620px;
+
+  margin:
+    26px auto 0;
+
+  color:
+    rgba(255, 255, 255, 0.68);
+
+  font-family:
+    'Helvetica',
+    sans-serif;
+
+  font-size:
+    16px;
+
+  line-height:
+    1.7;
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.hydro-plans-grid {
+  position:
+    relative;
+
+  z-index:
+    10;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap:
+    22px;
+
+  align-items:
+    stretch;
+}
+
+
+/* =========================================================
+   TARJETAS
+========================================================= */
+
+.hydro-plan-card {
+  position:
+    relative;
+
+  min-width:
+    0;
+
+  padding:
+    34px 31px
+    28px;
+
+  overflow:
+    hidden;
+
+  border:
+    1px solid var(--hydro-border);
+
+  border-radius:
+    27px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #fafbf8
+    );
+
+  box-shadow:
+    0 28px 70px rgba(10, 28, 7, 0.22),
+    0 5px 15px rgba(10, 28, 7, 0.08);
+
+  transform-style:
+    preserve-3d;
+
+  will-change:
+    transform;
+
+  transition:
+    transform 0.4s cubic-bezier(.2, .8, .2, 1),
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+
+
+/* LUZ INTERNA */
+
+.hydro-plan-card::before {
+  content: "";
+
+  position:
+    absolute;
+
+  width:
+    190px;
+
+  height:
+    190px;
+
+  right:
+    -95px;
+
+  top:
+    -95px;
+
+  border-radius:
+    50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(103, 158, 90, 0.16),
+      transparent 68%
+    );
+
+  transition:
+    0.5s ease;
+
+  pointer-events:
+    none;
+}
+
+
+/* HOVER */
+
+.hydro-plan-card:hover {
+  transform:
+    translateY(-11px);
+
+  border-color:
+    rgba(103, 158, 90, 0.32);
+
+  box-shadow:
+    0 40px 95px rgba(10, 28, 7, 0.29),
+    0 8px 22px rgba(10, 28, 7, 0.10);
+}
+
+
+.hydro-plan-card:hover::before {
+  transform:
+    scale(1.5);
+}
+
+
+/* =========================================================
+   PLAN PRINCIPAL
+========================================================= */
+
+.hydro-plan-featured {
+  z-index:
+    5;
+
+  margin-top:
+    -30px;
+
+  margin-bottom:
+    -18px;
+
+  padding-top:
+    59px;
+
+  border:
+    2px solid var(--hydro-green);
+
+  box-shadow:
+    0 45px 100px rgba(10, 28, 7, 0.34),
+    0 12px 28px rgba(10, 28, 7, 0.14);
+}
+
+
+/* BARRA INFERIOR */
+
+.hydro-plan-featured::after {
+  content: "";
+
+  position:
+    absolute;
+
+  left:
+    0;
+
+  bottom:
+    0;
+
+  width:
+    100%;
+
+  height:
+    7px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #1e3b17,
+      #679e5a,
+      #c68c49
+    );
+}
+
+
+/* =========================================================
+   MOST COMPLETE
+========================================================= */
+
+.hydro-most-popular {
+  position:
+    absolute;
+
+  top:
+    0;
+
+  left:
+    0;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    8px;
+
+  width:
+    100%;
+
+  height:
+    38px;
+
+  color:
+    white;
+
+  background:
+    linear-gradient(
+      90deg,
+      #1e3b17,
+      #679e5a
+    );
+
+  font-family:
+    'Helvetica',
+    sans-serif;
+
+  font-size:
+    10px;
+
+  font-weight:
+    600;
+
+  letter-spacing:
+    1.8px;
+}
+
+
+/* PUNTO */
+
+.hydro-popular-dot {
+  width:
+    7px;
+
+  height:
+    7px;
+
+  border-radius:
+    50%;
+
+  background:
+    white;
+
+  animation:
+    hydroPulse 2s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   CABECERA DE PLAN
+========================================================= */
+
+.hydro-plan-top {
+  position:
+    relative;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    16px;
+}
+
+
+/* =========================================================
+   TEXTO PEQUEÑO
+========================================================= */
+
+.hydro-plan-level {
+  display:
+    block;
+
+  margin-bottom:
+    5px;
+
+  color:
+    var(--hydro-green);
+
+  font-family:
+    'Helvetica',
+    sans-serif;
+
+  font-size:
+    9px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    1.6px;
+}
+
+
+/* =========================================================
+   NOMBRE DEL PLAN
+========================================================= */
+
+.hydro-plan-card h2 {
+  margin:
+    0;
+
+  color:
+    var(--hydro-green-dark);
+
+  font-family:
+    'Optima',
+    sans-serif;
+
+  font-size:
+    35px;
+
+  font-weight:
+    400;
+
+  line-height:
+    1;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   ICONOS
+========================================================= */
+
+.hydro-plan-icon {
+  flex:
+    0 0 52px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  width:
+    52px;
+
+  height:
+    52px;
+
+  border-radius:
+    16px;
+
+  color:
+    var(--hydro-green-dark);
+
+  background:
+    rgba(103, 158, 90, 0.12);
+}
+
+
+.hydro-plan-icon svg {
+  width:
+    25px;
+
+  height:
+    25px;
+
+  fill:
+    none;
+
+  stroke:
+    currentColor;
+
+  stroke-width:
+    1.7;
+
+  stroke-linecap:
+    round;
+
+  stroke-linejoin:
+    round;
+}
+
+
+.hydro-plan-icon-featured {
+  color:
+    white;
+
+  background:
+    linear-gradient(
+      145deg,
+      #679e5a,
+      #1e3b17
+    );
+
+  box-shadow:
+    0 9px 21px rgba(30, 59, 23, 0.23);
+}
+
+
+/* =========================================================
+   DESCRIPCIÓN
+========================================================= */
+
+.hydro-plan-description {
+  min-height:
+    82px;
+
+  margin:
+    26px 0 0;
+
+  color:
+    var(--hydro-text-soft);
+
+  font-family:
+    'Helvetica',
+    sans-serif;
+
+  font-size:
+    14px;
+
+  line-height:
+    1.65;
+}
+
+
+/* =========================================================
+   DIVISOR
+========================================================= */
+
+.hydro-plan-divider {
+  width:
+    100%;
+
+  height:
+    1px;
+
+  margin:
+    23px 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(30, 59, 23, 0.15),
+      transparent
+    );
+}
+
+
+/* =========================================================
+   ACCESS LEVEL
+========================================================= */
+
+.hydro-plan-access {
+  display:
+    flex;
+
+  align-items:
+    flex-end;
+
+  justify-content:
+    space-between;
+
+  gap:
+    15px;
+
+  margin-bottom:
+    22px;
+}
+
+
+.hydro-plan-access span {
+  color:
+    #858b82;
+
+  font-family:
+    'Helvetica',
+    sans-serif;
+
+  font-size:
+    12px;
+}
+
+
+.hydro-plan-access strong {
+  color:
+    var(--hydro-green-dark);
+
+  font-family:
+    'Optima',
+    sans-serif;
+
+  font-size:
+    17px;
+
+  font-weight:
+    400;
+}
+
+
+/* =========================================================
+   BOTONES
+========================================================= */
+
+.hydro-plan-button {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  width:
+    100%;
+
+  margin-bottom:
+    29px;
+
+  padding:
+    15px 18px;
+
+  border-radius:
+    12px;
+
+  text-decoration:
+    none !important;
+
+  font-family:
+    'Helvetica',
+    sans-serif;
+
+  font-size:
+    13px;
+
+  font-weight:
+    600;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+
+.hydro-plan-button svg {
+  width:
+    18px;
+
+  height:
+    18px;
+
+  fill:
+    none;
+
+  stroke:
+    currentColor;
+
+  stroke-width:
+    1.8;
+
+  stroke-linecap:
+    round;
+
+  stroke-linejoin:
+    round;
+
+  transition:
+    transform 0.3s ease;
+}
+
+
+.hydro-plan-button:hover svg {
+  transform:
+    translateX(4px);
+}
+
+
+/* BOTÓN NORMAL */
+
+.hydro-plan-button-outline {
+  color:
+    var(--hydro-green-dark);
+
+  border:
+    1px solid rgba(30, 59, 23, 0.28);
+
+  background:
+    white;
+}
+
+
+.hydro-plan-button-outline:hover {
+  color:
+    white;
+
+  background:
+    var(--hydro-green-dark);
+
+  border-color:
+    var(--hydro-green-dark);
+
+  transform:
+    translateY(-2px);
+}
+
+
+/* BOTÓN CENTRAL */
+
+.hydro-plan-button-main {
+  color:
+    white;
+
+  border:
+    1px solid var(--hydro-green-dark);
+
+  background:
+    linear-gradient(
+      100deg,
+      #1e3b17,
+      #3e7432
+    );
+
+  box-shadow:
+    0 10px 24px rgba(30, 59, 23, 0.20);
+}
+
+
+.hydro-plan-button-main:hover {
+  color:
+    white;
+
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 14px 30px rgba(30, 59, 23, 0.28);
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.hydro-features {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    14px;
+
+  margin:
+    0;
+
+  padding:
+    0;
+
+  list-style:
+    none;
+}
+
+
+.hydro-features li {
+  display:
+    flex;
+
+  align-items:
+    flex-start;
+
+  gap:
+    10px;
+
+  color:
+    #444b41;
+
+  font-family:
+    'Helvetica',
+    sans-serif;
+
+  font-size:
+    13px;
+
+  line-height:
+    1.5;
+}
+
+
+/* =========================================================
+   CHECK
+========================================================= */
+
+.hydro-check {
+  flex:
+    0 0 21px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  width:
+    21px;
+
+  height:
+    21px;
+
+  margin-top:
+    -1px;
+
+  border-radius:
+    50%;
+
+  color:
+    var(--hydro-green-dark);
+
+  background:
+    rgba(103, 158, 90, 0.13);
+}
+
+
+.hydro-check svg {
+  width:
+    12px;
+
+  height:
+    12px;
+
+  fill:
+    none;
+
+  stroke:
+    currentColor;
+
+  stroke-width:
+    2.2;
+
+  stroke-linecap:
+    round;
+
+  stroke-linejoin:
+    round;
+}
+
+
+/* =========================================================
+   FOOTER DE LAS CARDS
+========================================================= */
+
+.hydro-card-footer {
+  margin-top:
+    30px;
+
+  padding:
+    17px 18px;
+
+  border-radius:
+    14px;
+
+  color:
+    #747b71;
+
+  background:
+    rgba(30, 59, 23, 0.05);
+
+  font-family:
+    'Helvetica',
+    sans-serif;
+
+  font-size:
+    11px;
+
+  line-height:
+    1.5;
+}
+
+
+.hydro-card-footer-featured {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    10px;
+
+  color:
+    var(--hydro-green-dark);
+
+  background:
+    rgba(103, 158, 90, 0.11);
+}
+
+
+.hydro-community-indicator {
+  width:
+    8px;
+
+  height:
+    8px;
+
+  border-radius:
+    50%;
+
+  background:
+    var(--hydro-green);
+
+  box-shadow:
+    0 0 0 5px
+    rgba(103, 158, 90, 0.10);
+}
+
+
+/* =========================================================
+   CUADRADOS ANIMADOS DEL FONDO
+========================================================= */
+
+.hydro-decoration {
+  position:
+    absolute;
+
+  z-index:
+    0;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.16);
+
+  border-radius:
+    35px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.10),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  backdrop-filter:
+    blur(3px);
+
+  -webkit-backdrop-filter:
+    blur(3px);
+
+  pointer-events:
+    none;
+}
+
+
+/* IZQUIERDA 1 */
+
+.hydro-decoration-1 {
+  width:
+    270px;
+
+  height:
+    370px;
+
+  left:
+    -100px;
+
+  top:
+    250px;
+
+  animation:
+    hydroFloatOne 10s
+    ease-in-out infinite;
+}
+
+
+/* IZQUIERDA 2 */
+
+.hydro-decoration-2 {
+  width:
+    180px;
+
+  height:
+    270px;
+
+  left:
+    70px;
+
+  top:
+    390px;
+
+  animation:
+    hydroFloatTwo 13s
+    ease-in-out infinite;
+}
+
+
+/* DERECHA 1 */
+
+.hydro-decoration-3 {
+  width:
+    270px;
+
+  height:
+    390px;
+
+  right:
+    -90px;
+
+  top:
+    210px;
+
+  animation:
+    hydroFloatOne 11s
+    ease-in-out infinite reverse;
+}
+
+
+/* DERECHA 2 */
+
+.hydro-decoration-4 {
+  width:
+    180px;
+
+  height:
+    290px;
+
+  right:
+    70px;
+
+  top:
+    420px;
+
+  animation:
+    hydroFloatTwo 14s
+    ease-in-out infinite reverse;
+}
+
+
+/* =========================================================
+   FRASE FINAL
+========================================================= */
+
+.hydro-plans-note {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    24px;
+
+  margin-top:
+    80px;
+
+  text-align:
+    center;
+}
+
+
+.hydro-plans-note p {
+  flex:
+    0 0 auto;
+
+  margin:
+    0;
+
+  color:
+    rgba(255, 255, 255, 0.67);
+
+  font-family:
+    'Helvetica',
+    sans-serif;
+
+  font-size:
+    12px;
+
+  letter-spacing:
+    0.3px;
+}
+
+
+.hydro-plans-note strong {
+  color:
+    white;
+
+  font-weight:
+    500;
+}
+
+
+.hydro-note-line {
+  width:
+    90px;
+
+  height:
+    1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.42),
+      transparent
+    );
+}
+
+
+/* =========================================================
+   ANIMACIONES
+========================================================= */
+
+@keyframes hydroFloatOne {
+
+  0%,
+  100% {
+
+    transform:
+      translate3d(0, 0, 0)
+      scale(1)
+      rotate(4deg);
+
+    opacity:
+      0.58;
+
+  }
+
+
+  50% {
+
+    transform:
+      translate3d(
+        28px,
+        -38px,
+        0
+      )
+      scale(1.13)
+      rotate(0deg);
+
+    opacity:
+      0.28;
+
+  }
+
+}
+
+
+@keyframes hydroFloatTwo {
+
+  0%,
+  100% {
+
+    transform:
+      translate3d(0, 0, 0)
+      scale(0.94)
+      rotate(-3deg);
+
+    opacity:
+      0.36;
+
+  }
+
+
+  50% {
+
+    transform:
+      translate3d(
+        -18px,
+        30px,
+        0
+      )
+      scale(1.12)
+      rotate(3deg);
+
+    opacity:
+      0.65;
+
+  }
+
+}
+
+
+@keyframes hydroPulse {
+
+  0%,
+  100% {
+
+    box-shadow:
+      0 0 0 3px
+      rgba(255, 255, 255, 0.16);
+
+  }
+
+
+  50% {
+
+    box-shadow:
+      0 0 0 8px
+      rgba(255, 255, 255, 0);
+
+  }
+
+}
+
+
+/* =========================================================
+   ANIMACIÓN AL ENTRAR
+========================================================= */
+
+.hydro-reveal {
+  opacity:
+    0;
+
+  transform:
+    translateY(38px);
+
+  transition:
+    opacity 0.85s
+    cubic-bezier(.2, .8, .2, 1),
+
+    transform 0.85s
+    cubic-bezier(.2, .8, .2, 1);
+}
+
+
+.hydro-reveal.hydro-visible {
+  opacity:
+    1;
+
+  transform:
+    translateY(0);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1050px) {
+
+  .hydro-plans {
+    padding:
+      95px 25px
+      105px;
+  }
+
+
+  .hydro-plans-grid {
+    gap:
+      15px;
+  }
+
+
+  .hydro-plan-card {
+    padding:
+      30px 23px
+      25px;
+  }
+
+
+  .hydro-plan-featured {
+    padding-top:
+      57px;
+  }
+
+
+  .hydro-plan-card h2 {
+    font-size:
+      30px;
+  }
+
+
+  .hydro-plan-description {
+    min-height:
+      100px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 850px) {
+
+  .hydro-plans {
+    padding:
+      75px 20px
+      85px;
+  }
+
+
+  .hydro-plans-header {
+    margin-bottom:
+      55px;
+  }
+
+
+  .hydro-plans-header h1 {
+    font-size:
+      clamp(
+        40px,
+        10vw,
+        58px
+      );
+
+    letter-spacing:
+      -1.5px;
+  }
+
+
+  .hydro-plans-grid {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      24px;
+
+    max-width:
+      560px;
+
+    margin:
+      auto;
+  }
+
+
+  /* Go Green aparece primero */
+
+  .hydro-plan-featured {
+    order:
+      -1;
+
+    margin:
+      0;
+  }
+
+
+  .hydro-plan-card {
+    padding:
+      32px 27px;
+  }
+
+
+  .hydro-plan-featured {
+    padding-top:
+      58px;
+  }
+
+
+  .hydro-plan-description {
+    min-height:
+      initial;
+  }
+
+
+  .hydro-decoration-1 {
+    left:
+      -190px;
+  }
+
+
+  .hydro-decoration-2 {
+    left:
+      -120px;
+  }
+
+
+  .hydro-decoration-3 {
+    right:
+      -190px;
+  }
+
+
+  .hydro-decoration-4 {
+    right:
+      -120px;
+  }
+
+
+  .hydro-plans-note {
+    margin-top:
+      55px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE PEQUEÑO
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .hydro-plans {
+    padding:
+      65px 14px
+      75px;
+  }
+
+
+  .hydro-plans-header {
+    padding:
+      0 8px;
+  }
+
+
+  .hydro-plans-header h1 {
+    font-size:
+      40px;
+  }
+
+
+  .hydro-plans-header p {
+    font-size:
+      14px;
+  }
+
+
+  .hydro-plan-card {
+    padding:
+      29px 22px
+      25px;
+
+    border-radius:
+      22px;
+  }
+
+
+  .hydro-plan-featured {
+    padding-top:
+      58px;
+  }
+
+
+  .hydro-plans-note {
+    gap:
+      10px;
+  }
+
+
+  .hydydro-note-line,
+  .hydro-note-line {
+    width:
+      30px;
+  }
+
+
+  .hydro-plans-note p {
+    font-size:
+      10px;
+  }
+
+}
+
+
+/* =========================================================
+   ACCESIBILIDAD
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hydro-decoration,
+  .hydro-popular-dot {
+    animation:
+      none !important;
+  }
+
+
+  .hydro-reveal {
+    opacity:
+      1;
+
+    transform:
+      none;
+
+    transition:
+      none;
+  }
+
+
+  .hydro-plan-card {
+    transition:
+      none;
+  }
+
+}
