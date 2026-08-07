@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrar vendedor | HydroNexis Maps</title>
+  <link rel="stylesheet" href="css/styles_maps.css">
+</head>
+<body class="form-page">
+  <header class="topbar">
+    <a class="brand brand-link" href="maps.html" aria-label="Volver al mapa">
+      <div class="brand-mark">HN</div>
+      <div>
+        <strong>HydroNexis Maps</strong>
+        <span>Registro de vendedores</span>
+      </div>
+    </a>
+    <a class="topbar-link" href="maps.html">Ver mapa</a>
+  </header>
+
+  <main class="form-shell">
+    <section class="form-card">
+      <div class="form-card-header">
+        <span class="eyebrow">Marketplace local</span>
+        <h1>Registrar producto y ubicación</h1>
+        <p>Inicia sesión con Google y completa los datos del vendedor. El nuevo marcador aparecerá automáticamente en el mapa.</p>
+      </div>
+
+      <div class="auth-panel">
+        <div>
+          <strong id="authTitle">Inicia sesión para continuar</strong>
+          <p id="authDescription">Firebase requiere una cuenta autenticada para guardar ubicaciones.</p>
+        </div>
+        <button id="googleLoginButton" class="button button-gold" type="button">Continuar con Google</button>
+        <button id="logoutButton" class="button button-mint hidden" type="button">Cerrar sesión</button>
+      </div>
+
+      <form id="sellerForm" class="seller-form" novalidate>
+        <fieldset id="sellerFieldset" disabled>
+          <div class="form-grid">
+            <label class="form-field form-field-wide">
+              Nombre del negocio
+              <input id="businessName" type="text" maxlength="120" placeholder="Ej. Finca Verde Panamá" required>
+            </label>
+
+            <label class="form-field">
+              Nombre del vendedor
+              <input id="sellerName" type="text" maxlength="100" placeholder="Ej. María González" required>
+            </label>
+
+            <label class="form-field">
+              Producto principal
+              <input id="product" type="text" maxlength="80" placeholder="Ej. Lechuga romana" required>
+            </label>
+
+            <label class="form-field">
+              Distrito
+              <input id="district" type="text" maxlength="80" placeholder="Ej. La Chorrera" required>
+            </label>
+
+            <label class="form-field">
+              Corregimiento
+              <input id="township" type="text" maxlength="80" placeholder="Ej. Barrio Colón">
+            </label>
+
+            <label class="form-field form-field-wide">
+              Dirección
+              <input id="address" type="text" maxlength="180" placeholder="Dirección o referencia del lugar" required>
+            </label>
+
+            <label class="form-field">
+              Teléfono
+              <input id="phone" type="tel" maxlength="30" placeholder="+507 6000-0000">
+            </label>
+
+            <label class="form-field">
+              Palabras clave
+              <input id="keywords" type="text" maxlength="220" placeholder="lechuga, hidroponía, vegetales">
+            </label>
+
+            <label class="form-field">
+              Latitud
+              <input id="latitude" type="number" step="any" placeholder="8.8812" required>
+            </label>
+
+            <label class="form-field">
+              Longitud
+              <input id="longitude" type="number" step="any" placeholder="-79.7795" required>
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button id="currentLocationButton" class="button button-mint" type="button">Usar mi ubicación actual</button>
+            <button id="saveButton" class="button button-dark" type="submit">Guardar vendedor</button>
+          </div>
+        </fieldset>
+      </form>
+
+      <p id="formMessage" class="form-message" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <script type="module" src="js/registrar.js"></script>
+</body>
+</html>
