@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="icon" type="image/png" href="images/logo.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0">
+
+  <!-- Estilos generales -->
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard2.css">
+  <link rel="stylesheet" href="css/styles_Chat2.css">
+  <link rel="stylesheet" href="css/home.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">
+    <a href="index.html">
+        <img src="images/logo20.png" alt="HydroNexis Logo">
+    </a>
+</div>
+        <span></span>
+      </div>
+
+      <nav class="nav-list">
+        <a class="nav-item" href="grid-blog.html"><i data-lucide="book-open"></i><span>Tutorials</span></a>
+        <a class="nav-item" href="grid-shop.html"shopping-bag"></i><span>Marketplace</span></a>
+
+        <div class="nav-divider"></div>
+
+        <a class="nav-item muted" href="shop-list.html"><i data-lucide="shopping-cart"></i><span>Buy Products</span><i class="lock" data-lucide="lock-keyhole"></i></a>
+        <a class="nav-item muted" href="grid-shop.html"><i data-lucide="store"></i><span>Sell Products</span><i class="lock" data-lucide="lock-keyhole"></i></a>
+        <div class="nav-divider"></div>
+
+        <a class="nav-item" href="what-we-offer.html"><i data-lucide="package"></i><span>My Orders</span></a>
+        <a class="nav-item" href="dashboard.html"><i data-lucide="settings"></i><span>Settings</span></a>
+      </nav>
+
+      <div class="upgrade-mini">
+        <div class="upgrade-emoji"> <img src="images/icon/pimiento.png" width="34" height="68" alt="Upgrade"> </div>
+        <div>
+          <strong>Upgrade your plan</strong>
+          <p>Unlock all features with Go green or Bloomy.</p>
+        </div>
+        <a href="what-we-offer.html">
+    <button>    Upgrade Now     </button>
+</a>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Abrir menú"><i data-lucide="menu"></i></button>
+        <div>
+          <h1>Welcome back, Fatima Abed! </h1>
+          <p>Here’s what’s happening in your Hydronexis journey today.</p>
+        </div>
+        <div class="top-actions">
+          <button class="icon-btn"><i data-lucide="bell"></i></button>
+          <button class="icon-btn"><i data-lucide="message-square"></i></button>
+          <div class="profile-box">
+            <div class="avatar">FA</div>
+            <div class="profile-copy"><strong>Fatima Abed</strong><span> Explorer</span></div>
+            <i data-lucide="chevron-down"></i>
+          </div>
+        </div>
+      </header>
+
+      <section class="dashboard-grid">
+        <div class="left-column">
+          <article class="plan-card card">
+            <div class="plan-intro">
+              <small>Your Current Plan</small>
+              <h2> <img src="images/icon/sprout.png" width="34" height="68" alt="Sprout"> Sprout </h2>
+              <p>You’re exploring Hydronexis.<br>Upgrade to unlock more powerful features.</p>
+              <a href="grid-shop.html" class="primary-btn">
+    Upgrade to Shopper
+    <i data-lucide="chevron-right"></i>
+</a>
+            </div>
+
+            <img class="hero-nexis" src="images/Nexis2.png" alt="Nexis señalando" />
+
+            <div class="plan-benefits">
+              <small>Your Plan Benefits</small>
+              <ul>
+                <li><span>✓</span> Browse Hydronexis</li>
+                <li><span>✓</span> Read public articles</li>
+                <li><span>✓</span> View tutorials preview</li>
+                <li><span>✓</span> Explore Marketplace</li>
+              </ul>
+            </div>
+
+            <div class="coming-soon">
+              <small>Coming Soon</small>
+              <ul>
+                <li><i data-lucide="lock-keyhole"></i> Buy products</li>
+                <li><i data-lucide="lock-keyhole"></i> Sell products</li>
+                <li><i data-lucide="lock-keyhole"></i> Trade / Exchange</li>
+                <li><i data-lucide="lock-keyhole"></i> AI Maintenance</li>
+                <li><i data-lucide="lock-keyhole"></i> Full Tutorials</li>
+              </ul>
+              <p>Get Go green to unlock everything!</p>
+            </div>
+          </article>
+
+          <section class="stats-grid">
+            <article class="stat-card card">
+              <div class="round-icon"><i data-lucide="book-open"></i></div>
+              <div><h3>Tutorials</h3><strong>1</strong><p>In Progress</p></div>
+              <a href="#">Continue Learning <i data-lucide="arrow-right"></i></a>
+            </article>
+            <article class="stat-card card">
+              <div class="round-icon"><i data-lucide="shopping-bag"></i></div>
+              <div><h3>Marketplace</h3><strong>12</strong><p>New Products</p></div>
+              <a href="#">Explore Now <i data-lucide="arrow-right"></i></a>
+            </article>
+            <article class="stat-card card">
+              <div class="round-icon dark"><i data-lucide="bot"></i></div>
+              <div><h3>Nexis AI</h3><p>New recommendation for your garden</p></div>
+              <a href="#">Ask Nexis <i data-lucide="arrow-right"></i></a>
+            </article>
+          </section>
+
+          <section class="lower-grid">
+            <article class="unlock-card card">
+              <h3>Unlock More with Go green</h3>
+              <div class="unlock-items">
+                <div class="unlock-item"><span><img src="images/icon/candado.png" width="15.76" height="17.6"></span><i data-lucide="shopping-cart"></i><strong>Buy Products</strong><small>Available on Shopper Plan</small><button>Upgrade Now</button></div>
+                <div class="unlock-item"><span><img src="images/icon/candado.png" width="15.76" height="17.6"></span><i data-lucide="store"></i><strong>Sell Products</strong><small>Available on Grower Pro Plan</small><button>Upgrade Now</button></div>
+                <div class="unlock-item"><span><img src="images/icon/candado.png" width="15.76" height="17.6"></span><i data-lucide="arrow-left-right"></i><strong>Trade / Exchange</strong><small>Available on Grower Pro Plan</small><button>Upgrade Now</button></div>
+                <div class="unlock-item"><span><img src="images/icon/candado.png" width="15.76" height="17.6"></span><i data-lucide="settings-2"></i><strong>AI Maintenance</strong><small>Available on Grower Pro Plan</small><button>Upgrade Now</button></div>
+              </div>
+            </article>
+
+            <article class="activity-card card">
+              <h3>Recent Activity</h3>
+              <div class="activity"><span class="activity-icon"><img src="images/icon/user-icon.png" width="25" height="25" alt=""></span><div><strong>Welcome to Hydronexis!</strong><small>Your profile Hydronexis</small></div><time>2 days ago</time></div>
+              <div class="activity"><span class="activity-icon"><img src="images/icon/sprout.png" width="25" height="25" alt=""></span><div><strong>Started Tutorial</strong><small>Intro to Hydroponics</small></div><time>3 days ago</time></div>
+              <div class="activity"><span class="activity-icon"><img src="images/icon/caja.png" width="25" height="25" alt=""></span><div><strong>Saved Product</strong><small>Nutrient Solution A</small></div><time>4 days ago</time></div>
+            </article>
+          </section>
+
+          <article class="bottom-banner">
+            <div><h3>Ready to grow without limits?</h3><p>Upgrade to Go green and take full control of your hydroponic journey.</p></div>
+            <a href="what-we-offer.html" class="primary-btn">Upgrade to Go green </a>
+            <img src="images/nexis1.png" alt="Nexis feliz" />
+          </article>
+        </div>
+
+        <aside class="right-column">
+          <article class="grow-card card">
+            <h2>Grow More with<br>Gro Green</h2>
+            <p>Unlock all features and grow without limits.</p>
+            <div class="plant-stage"><img src="images/icon/premiun.png" width="48.81" height="56"><span><img src="images/icon/bloomy.png" width="48.81" height="56"></span><img src="images/icon/sprout.png" width="48.81" height="56"></div>
+            <a href="what-we-offer.html" class="primary-btn">View Plans <i data-lucide="chevron-right"></i></a>
+          </article>
+
+          
+  <!-- ============================= -->
+  <!-- Chatbot -->
+      <button id="chatbot-toggler">
+        <span class="material-symbols-rounded">mode_comment</span>
+        <span class="material-symbols-rounded">close</span>
+    </button>
+
+<div class="chatbot-popup">
+
+    <!-- Chatbot Header -->
+    <div class="chat-header">
+        <div class="header-info">
+            <img class="chatbot-logo"
+                 src="images/Nexis_bot.png"
+                 alt="HYDRONEXIS Bot">
+
+            <h2 class="logo-text">NEXIS</h2>
+        </div>
+
+        <button id="close-chatbot" class="material-symbols-rounded">
+            keyboard_arrow_down
+        </button>
+    </div>
+
+    <!-- Chatbot Body -->
+    <div class="chat-body">
+        <div class="message bot-message">
+            <img class="bot-avatar"
+                 src="images/Nexis_bot.png"
+                 alt="HYDRONEXIS Bot">
+
+            <div class="message-text">
+                Hello! 👋 <br>
+                How can I help you today?
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot Footer -->
+    <div class="chat-footer">
+        <form action="#" class="chat-form">
+            <textarea placeholder="Message..." class="message-input" required></textarea>
+
+            <div class="chat-controls">
+            <button type="button" id="emoji-picker" class="emoji-button">
+                😊
+            </button>
+
+                <div class="file-upload-wrapper">
+                    <input type="file" accept="image/*" id="file-input" hidden>
+                    <img src="" alt="">
+                    <button type="button" id="file-upload" class="material-symbols-rounded">
+                        attach_file
+                    </button>
+                    <button type="button" id="file-cancel" class="material-symbols-rounded">
+                        close
+                    </button>
+                </div>
+
+                <button type="submit" id="send-message" class="material-symbols-rounded">
+                    arrow_upward
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <!-- Linking Emoji Mart script for emoji picker -->
+    <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
+    <!-- Linking custom script -->
+
+
+    <div class="snackbars" id="form-output-global"></div>
+
+<div class="snackbars" id="form-output-global"></div>
+
+<script src="js/core.min.js"></script>
+<script src="js/script.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/chat.js"></script>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9FT69" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P9FT69');
+  </script>
+  <!-- End Google Tag Manager -->
+</body>
+
+<!-- Mirrored from livedemo00.template-help.com/wt_prod-10492/theme/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Jun 2026 15:35:30 GMT -->
+</html>
+
+  <script>
+    lucide.createIcons();
+    const sidebar = document.getElementById('sidebar');
+    document.getElementById('menuBtn').addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+    });
+  </script>
+</body>
+</html>

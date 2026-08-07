@@ -45,8 +45,9 @@
 
 #chatbot-toggler {
     position: fixed !important;
-    left: 25px !important;
-    right: auto !important;
+
+    left: auto !important;
+    right: 25px !important;
     bottom: 25px !important;
 
     width: 54px !important;
@@ -109,8 +110,8 @@ body.show-chatbot #chatbot-toggler span:last-child {
 .chatbot-popup {
     position: fixed !important;
 
-    left: 25px !important;
-    right: auto !important;
+    left: auto !important;
+    right: 25px !important;
     bottom: 92px !important;
     top: auto !important;
 
@@ -134,7 +135,7 @@ body.show-chatbot #chatbot-toggler span:last-child {
     pointer-events: none;
 
     transform: scale(0.7);
-    transform-origin: bottom left;
+    transform-origin: bottom right !important;
 
     z-index: 999998 !important;
 
@@ -203,6 +204,7 @@ body.show-chatbot .chatbot-popup {
 
     width: 50px !important;
     height: 50px !important;
+    min-width: 50px !important;
 
     padding: 7px !important;
     margin: 0 !important;
@@ -700,19 +702,30 @@ body.show-emoji-picker .chatbot-popup em-emoji-picker {
 ===================================================== */
 
 @media screen and (max-width: 768px) {
+
     #chatbot-toggler {
-        left: 15px !important;
-        right: auto !important;
-        bottom: 15px !important;
+        position: fixed !important;
+
+        left: auto !important;
+        right: 20px !important;
+        bottom: 20px !important;
+        top: auto !important;
+
+        margin: 0 !important;
+        transform: none !important;
     }
 
     .chatbot-popup {
-        left: 15px !important;
-        right: auto !important;
+        left: auto !important;
+        right: 15px !important;
         bottom: 78px !important;
+        top: auto !important;
 
         width: min(360px, calc(100vw - 30px)) !important;
         height: min(540px, calc(100dvh - 100px)) !important;
+        max-height: calc(100dvh - 100px) !important;
+
+        transform-origin: bottom right !important;
     }
 }
 
@@ -721,10 +734,12 @@ body.show-emoji-picker .chatbot-popup em-emoji-picker {
 ===================================================== */
 
 @media screen and (max-width: 520px) {
+
     #chatbot-toggler {
-        left: 12px !important;
-        right: auto !important;
+        left: auto !important;
+        right: 12px !important;
         bottom: 12px !important;
+        top: auto !important;
 
         width: 50px !important;
         height: 50px !important;
@@ -733,15 +748,17 @@ body.show-emoji-picker .chatbot-popup em-emoji-picker {
     }
 
     .chatbot-popup {
-        left: 8px !important;
-        right: auto !important;
+        left: auto !important;
+        right: 8px !important;
         bottom: 70px !important;
+        top: auto !important;
 
         width: calc(100vw - 16px) !important;
         height: min(520px, calc(100dvh - 85px)) !important;
         max-height: calc(100dvh - 85px) !important;
 
         border-radius: 16px !important;
+        transform-origin: bottom right !important;
     }
 
     .chatbot-popup .chat-header {
