@@ -1,16 +1,13 @@
 const quantities = document.querySelectorAll(".quantity");
-
 const totalPrice = document.getElementById("totalPrice");
-const cartCount = document.getElementById("cartCount");
-const cartIcon = document.getElementById("cartIcon");
-const cartIconMobile = document.getElementById("cartIconMobile");
 
-function actualizarCarrito(){
+
+function actualizarCarrito() {
 
     let total = 0;
     let cantidad = 0;
 
-    quantities.forEach(input=>{
+    quantities.forEach(input => {
 
         const precio = parseFloat(input.dataset.price);
         const cant = parseInt(input.value);
@@ -18,27 +15,53 @@ function actualizarCarrito(){
         cantidad += cant;
         total += precio * cant;
 
-        input.closest(".group-middle")
-             .querySelector(".item-price")
-             .textContent="$"+(precio*cant).toFixed(2);
+        const itemPrice = input
+            .closest(".group-middle")
+            ?.querySelector(".item-price");
+
+        if (itemPrice) {
+            itemPrice.textContent = "$" + (precio * cant).toFixed(2);
+        }
 
     });
 
-    totalPrice.textContent="$"+total.toFixed(2);
 
-    cartCount.textContent=cantidad;
-    cartIcon.textContent=cantidad;
-    cartIconMobile.textContent=cantidad;
+    // TOTAL DEL CARRITO
+    if (totalPrice) {
+        totalPrice.textContent = "$" + total.toFixed(2);
+    }
+
+
+    // Estos elementos están dentro de header.html,
+    // por eso los buscamos CADA VEZ que actualizamos.
+    const cartCount = document.getElementById("cartCount");
+    const cartIcon = document.getElementById("cartIcon");
+    const cartIconMobile = document.getElementById("cartIconMobile");
+
+
+    if (cartCount) {
+        cartCount.textContent = cantidad;
+    }
+
+    if (cartIcon) {
+        cartIcon.textContent = cantidad;
+    }
+
+    if (cartIconMobile) {
+        cartIconMobile.textContent = cantidad;
+    }
 
 }
 
-document.querySelectorAll(".mas").forEach(btn=>{
 
-    btn.addEventListener("click",()=>{
+// BOTÓN +
+document.querySelectorAll(".mas").forEach(btn => {
 
-        const input=btn.previousElementSibling;
+    btn.addEventListener("click", () => {
 
-        input.value=parseInt(input.value)+1;
+        const input = btn.previousElementSibling;
+
+        input.value = parseInt(input.value) + 1;
 
         actualizarCarrito();
 
@@ -46,15 +69,17 @@ document.querySelectorAll(".mas").forEach(btn=>{
 
 });
 
-document.querySelectorAll(".menos").forEach(btn=>{
 
-    btn.addEventListener("click",()=>{
+// BOTÓN -
+document.querySelectorAll(".menos").forEach(btn => {
 
-        const input=btn.nextElementSibling;
+    btn.addEventListener("click", () => {
 
-        if(parseInt(input.value)>1){
+        const input = btn.nextElementSibling;
 
-            input.value=parseInt(input.value)-1;
+        if (parseInt(input.value) > 1) {
+
+            input.value = parseInt(input.value) - 1;
 
             actualizarCarrito();
 
@@ -64,12 +89,15 @@ document.querySelectorAll(".menos").forEach(btn=>{
 
 });
 
-quantities.forEach(input=>{
 
-    input.addEventListener("change",()=>{
+// CAMBIO MANUAL DE CANTIDAD
+quantities.forEach(input => {
 
-        if(input.value<1)
-            input.value=1;
+    input.addEventListener("change", () => {
+
+        if (input.value < 1) {
+            input.value = 1;
+        }
 
         actualizarCarrito();
 
@@ -77,4 +105,16 @@ quantities.forEach(input=>{
 
 });
 
+
+// CUANDO EL HEADER TERMINE DE CARGAR
+document.addEventListener("headerLoaded", () => {
+
+    console.log("Header listo → actualizando carrito");
+
+    actualizarCarrito();
+
+});
+
+
+// ACTUALIZAR EL RESTO DE LA PÁGINA
 actualizarCarrito();
