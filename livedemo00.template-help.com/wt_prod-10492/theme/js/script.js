@@ -1099,16 +1099,7 @@
 							current: 0, processed: 0, timer: {}
 						};
 
-					var $toggle = $('.rd-navbar-search-toggle');
-					if ($toggle.length) {
-						$toggle.on('click', (function (searchItem) {
-							return function () {
-								if (!($(this).hasClass('active'))) {
-									searchItem.find('input').val('').trigger('propertychange');
-								}
-							}
-						})(searchItem));
-					}
+					
 
 					if (options.live) {
 						var clearHandler = false;

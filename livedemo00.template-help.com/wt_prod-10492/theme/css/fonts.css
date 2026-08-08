@@ -24,12 +24,6 @@ h1,h2,h3,h4,h5,h6{
     font-family:'Optima';
 }
 
-.rd-navbar-search-toggle .fa-user {
-  font-size: 26px;
-  font-style: normal !important;
-  line-height: 1;
-}
-
 .fa {
 	display: inline-block;
 	font-family: 'FontAwesome';
