@@ -32,17 +32,17 @@ function parseKeywords(value) {
 
 function validateCoordinates(latitude, longitude) {
   if (!Number.isFinite(latitude) || latitude < -90 || latitude > 90) {
-    throw new Error("La latitud debe ser un número entre -90 y 90.");
+    throw new Error("Latitude must be a number between -90 and 90.");
   }
 
   if (!Number.isFinite(longitude) || longitude < -180 || longitude > 180) {
-    throw new Error("La longitud debe ser un número entre -180 y 180.");
+    throw new Error("Longitude must be a number between -180 and 180.");
   }
 }
 
 async function start() {
   if (!isFirebaseConfigured()) {
-    setMessage("Firebase no está configurado. Completa js/firebase-config.js.", "error");
+    setMessage("Firebase is not configured. Complete js/firebase-config.js.", "error");
     elements.googleLoginButton.disabled = true;
     return;
   }
@@ -53,17 +53,17 @@ async function start() {
 
     elements.googleLoginButton.addEventListener("click", async () => {
       try {
-        setMessage("Abriendo acceso con Google...");
+        setMessage("Opening Google sign-in...");
         await authApi.signInWithPopup(auth, provider);
       } catch (error) {
         console.error(error);
-        setMessage("No fue posible iniciar sesión con Google.", "error");
+        setMessage("Could not sign in with Google.", "error");
       }
     });
 
     elements.logoutButton.addEventListener("click", async () => {
       await authApi.signOut(auth);
-      setMessage("Sesión cerrada.");
+      setMessage("Signed out.");
     });
 
     authApi.onAuthStateChanged(auth, user => {
@@ -73,34 +73,34 @@ async function start() {
       elements.logoutButton.classList.toggle("hidden", !signedIn);
 
       if (signedIn) {
-        elements.authTitle.textContent = user.displayName || "Usuario conectado";
-        elements.authDescription.textContent = user.email || "Ya puedes registrar vendedores.";
+        elements.authTitle.textContent = user.displayName || "Signed-in user";
+        elements.authDescription.textContent = user.email || "You can now register sellers.";
         if (!getValue("sellerName") && user.displayName) {
           document.getElementById("sellerName").value = user.displayName;
         }
       } else {
-        elements.authTitle.textContent = "Inicia sesión para continuar";
-        elements.authDescription.textContent = "Firebase requiere una cuenta autenticada para guardar ubicaciones.";
+        elements.authTitle.textContent = "Sign in to continue";
+        elements.authDescription.textContent = "Firebase requires an authenticated account to save locations.";
       }
     });
 
     elements.currentLocationButton.addEventListener("click", () => {
       if (!navigator.geolocation) {
-        setMessage("Tu navegador no permite obtener la ubicación.", "error");
+        setMessage("Your browser doesn't support getting your location.", "error");
         return;
       }
 
-      setMessage("Obteniendo ubicación...");
+      setMessage("Getting location...");
 
       navigator.geolocation.getCurrentPosition(
         position => {
           document.getElementById("latitude").value = position.coords.latitude.toFixed(7);
           document.getElementById("longitude").value = position.coords.longitude.toFixed(7);
-          setMessage("Ubicación obtenida correctamente.", "success");
+          setMessage("Location obtained successfully.", "success");
         },
         error => {
           console.error(error);
-          setMessage("No se pudo obtener la ubicación. Usa HTTPS o localhost y concede el permiso.", "error");
+          setMessage("Could not get your location. Use HTTPS or localhost and grant permission.", "error");
         },
         { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
       );
@@ -111,7 +111,7 @@ async function start() {
 
       const user = auth.currentUser;
       if (!user) {
-        setMessage("Debes iniciar sesión antes de guardar.", "error");
+        setMessage("You must sign in before saving.", "error");
         return;
       }
 
@@ -126,8 +126,8 @@ async function start() {
       try {
         validateCoordinates(latitude, longitude);
         elements.saveButton.disabled = true;
-        elements.saveButton.textContent = "Guardando...";
-        setMessage("Guardando vendedor en Firestore...");
+        elements.saveButton.textContent = "Saving...";
+        setMessage("Saving seller to Firestore...");
 
         await firestore.addDoc(firestore.collection(db, "locations"), {
           businessName: getValue("businessName"),
@@ -150,18 +150,18 @@ async function start() {
         if (user.displayName) {
           document.getElementById("sellerName").value = user.displayName;
         }
-        setMessage("Vendedor guardado. Ya debe aparecer en el mapa.", "success");
+        setMessage("Seller saved. It should now appear on the map.", "success");
       } catch (error) {
         console.error(error);
-        setMessage(error.message || "No fue posible guardar el vendedor.", "error");
+        setMessage(error.message || "Could not save the seller.", "error");
       } finally {
         elements.saveButton.disabled = false;
-        elements.saveButton.textContent = "Guardar vendedor";
+        elements.saveButton.textContent = "Save seller";
       }
     });
   } catch (error) {
     console.error(error);
-    setMessage("Firebase no pudo iniciar. Revisa la configuración del proyecto.", "error");
+    setMessage("Firebase could not start. Check the project configuration.", "error");
   }
 }
 

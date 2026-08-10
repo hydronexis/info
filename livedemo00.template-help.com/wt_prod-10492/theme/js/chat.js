@@ -8,7 +8,7 @@ const chatbotToggler = document.querySelector("#chatbot-toggler");
 const closeChatbot = document.querySelector("#close-chatbot");
 const chatForm = document.querySelector(".chat-form");
 
-const BOT_AVATAR = "images/lechugaj.png";
+const BOT_AVATAR = "images/Nexis_bot.png";
 const API_URL = "http://127.0.0.1:5000/chat";
 
 const userData = {
