@@ -77,10 +77,10 @@ function populateFilters() {
 function popup(place) {
   return `<div class="place-popup">
     <h3>${escapeHtml(place.name)}</h3>
-    <p><strong>Vendedor:</strong> ${escapeHtml(place.seller)}</p>
-    <p><strong>Producto:</strong> ${escapeHtml(place.product)}</p>
-    <p><strong>Ubicación:</strong> ${escapeHtml(place.address)}</p>
-    <p><strong>Teléfono:</strong> ${escapeHtml(place.phone || "No disponible")}</p>
+    <p><strong>Seller:</strong> ${escapeHtml(place.seller)}</p>
+    <p><strong>Product:</strong> ${escapeHtml(place.product)}</p>
+    <p><strong>Location:</strong> ${escapeHtml(place.address)}</p>
+    <p><strong>Phone:</strong> ${escapeHtml(place.phone || "Not available")}</p>
   </div>`;
 }
 

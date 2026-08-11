@@ -221,3 +221,310 @@ h6 {
     height: 20px;
   }
 }
+
+/* =========================================================
+   HYDRONEXIS - AJUSTE DE IMÁGENES SHOP LIST
+   Este archivo fuerza todos los tamaños para que
+   las imágenes se vean uniformes.
+   ========================================================= */
+
+
+/* =========================================================
+   PRODUCTOS GRANDES
+   ========================================================= */
+
+.product-modern {
+    width: 100% !important;
+    overflow: hidden !important;
+    background: #ffffff !important;
+    border-radius: 8px !important;
+}
+
+
+/* Contenedor horizontal de imagen + información */
+.product-modern > .unit {
+    display: flex !important;
+    align-items: stretch !important;
+    width: 100% !important;
+}
+
+
+/* =========================================================
+   PARTE IZQUIERDA - IMAGEN
+   ========================================================= */
+
+.product-modern .unit-left {
+    flex: 0 0 460px !important;
+    width: 460px !important;
+    max-width: 460px !important;
+}
+
+
+/* Cuadro donde entra la imagen */
+.product-modern-figure {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 360px !important;
+    height: 400px !important;
+
+    max-width: 100% !important;
+
+    overflow: hidden !important;
+
+    background: #f4f2ee !important;
+}
+
+
+/* Imagen grande */
+.product-image-lg {
+    display: block !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    max-width: 100% !important;
+    max-height: 100% !important;
+
+    object-fit: contain !important;
+    object-position: center !important;
+
+    padding: 20px !important;
+
+    margin: 0 !important;
+
+    background: transparent !important;
+}
+
+
+/* =========================================================
+   PARTE DERECHA - INFORMACIÓN
+   ========================================================= */
+
+.product-modern .unit-body {
+    display: flex !important;
+    flex: 1 1 auto !important;
+
+    width: auto !important;
+    min-width: 0 !important;
+}
+
+
+/* Contenido interior */
+.product-modern-body {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    padding: 35px 38px !important;
+}
+
+
+/* =========================================================
+   TÍTULOS
+   ========================================================= */
+
+.product-modern-title {
+    margin-top: 0 !important;
+}
+
+
+/* =========================================================
+   TEXTO
+   ========================================================= */
+
+.product-modern-text {
+    max-width: 100% !important;
+}
+
+
+/* =========================================================
+   BOTÓN ADD TO CART
+   ========================================================= */
+
+.product-modern-body .button {
+    align-self: flex-start !important;
+}
+
+
+/* =========================================================
+   POPULAR PRODUCTS - IMÁGENES PEQUEÑAS
+   ========================================================= */
+
+.product-minimal-figure {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 145px !important;
+    height: 130px !important;
+
+    min-width: 145px !important;
+    min-height: 130px !important;
+
+    max-width: 145px !important;
+    max-height: 130px !important;
+
+    overflow: hidden !important;
+
+    background: #f4f2ee !important;
+}
+
+
+/* Imagen pequeña */
+.product-image-sm {
+    display: block !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    max-width: 100% !important;
+    max-height: 100% !important;
+
+    object-fit: contain !important;
+    object-position: center !important;
+
+    padding: 7px !important;
+
+    margin: 0 !important;
+
+    background: transparent !important;
+}
+
+
+/* =========================================================
+   EVITA QUE LAS IMÁGENES SE DEFORMEN
+   ========================================================= */
+
+.product-modern-figure img,
+.product-minimal-figure img {
+    object-fit: contain !important;
+    object-position: center center !important;
+}
+
+
+/* =========================================================
+   TABLETS GRANDES
+   ========================================================= */
+
+@media (max-width: 1199px) {
+
+    .product-modern .unit-left {
+        flex: 0 0 400px !important;
+        width: 400px !important;
+        max-width: 400px !important;
+    }
+
+    .product-modern-figure {
+        width: 400px !important;
+        height: 370px !important;
+    }
+
+    .product-image-lg {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET / MÓVIL
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    .product-modern > .unit {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+
+    .product-modern .unit-left {
+        width: 100% !important;
+        max-width: 100% !important;
+
+        flex: 0 0 auto !important;
+    }
+
+    .product-modern-figure {
+        width: 100% !important;
+        max-width: 100% !important;
+
+        height: 350px !important;
+    }
+
+    .product-image-lg {
+        width: 100% !important;
+        height: 100% !important;
+
+        object-fit: contain !important;
+
+        padding: 18px !important;
+    }
+
+    .product-modern .unit-body {
+        width: 100% !important;
+    }
+
+    .product-modern-body {
+        width: 100% !important;
+
+        padding: 25px !important;
+    }
+
+}
+
+
+/* =========================================================
+   CELULARES
+   ========================================================= */
+
+@media (max-width: 575px) {
+
+    .product-modern-figure {
+        width: 100% !important;
+        height: 300px !important;
+    }
+
+    .product-image-lg {
+        width: 100% !important;
+        height: 100% !important;
+
+        padding: 15px !important;
+
+        object-fit: contain !important;
+    }
+
+    .product-modern-body {
+        padding: 22px 20px !important;
+    }
+
+
+    /* Popular products */
+    .product-minimal-figure {
+        width: 110px !important;
+        height: 105px !important;
+
+        min-width: 110px !important;
+        min-height: 105px !important;
+
+        max-width: 110px !important;
+        max-height: 105px !important;
+    }
+
+    .product-image-sm {
+        width: 100% !important;
+        height: 100% !important;
+
+        padding: 5px !important;
+
+        object-fit: contain !important;
+    }
+
+}

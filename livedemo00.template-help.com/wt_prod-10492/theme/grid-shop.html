@@ -143,19 +143,41 @@
                     </div>
                   </div>
                 </div>
+                <!-- Buyers Map preview: links out to the real interactive map (maps.html) -->
+                <div class="aside-item col-sm-6 col-lg-12">
+                  <h6 class="aside-title">Buyer Locations</h6>
+                  <p class="buyers-map-text">Here you can see our buyers and where they're located.</p>
+                  <a href="maps.html" class="buyers-map-preview" aria-label="Open interactive buyers map">
+                    <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" class="buyers-map-svg" role="img" aria-hidden="true">
+                      <rect width="400" height="260" fill="#eee9e0"/>
+                      <path d="M0,130 C80,105 150,190 230,155 C290,130 350,175 400,150" stroke="#cfe3d0" stroke-width="20" fill="none"/>
+                      <path d="M55,0 L75,260" stroke="#f2c9a0" stroke-width="7" fill="none" opacity="0.55"/>
+                      <path d="M0,55 L400,85" stroke="#e3dac8" stroke-width="4" fill="none"/>
+                      <path d="M0,195 L400,215" stroke="#e3dac8" stroke-width="4" fill="none"/>
+                      <g>
+                        <circle cx="115" cy="75" r="9" fill="#c99356"/>
+                        <circle cx="115" cy="75" r="3" fill="#fff"/>
+                      </g>
+                      <g>
+                        <circle cx="235" cy="150" r="9" fill="#c99356"/>
+                        <circle cx="235" cy="150" r="3" fill="#fff"/>
+                      </g>
+                      <g>
+                        <circle cx="305" cy="95" r="9" fill="#c99356"/>
+                        <circle cx="305" cy="95" r="3" fill="#fff"/>
+                      </g>
+                    </svg>
+                    <span class="buyers-map-overlay">
+                      <span class="mdi mdi-map-marker"></span> View interactive map
+                    </span>
+                  </a>
+                </div>
               </div>
             </div>
             <div class="col-lg-8 col-xl-9">
               <div class="product-top-panel group-md">
                 <div>
                   <div class="group-sm group-middle">
-                    <div class="product-top-panel-sorting">
-                      <select>
-                        <option value="1">Sort by newness</option>
-                        <option value="2">Sort by popularity</option>
-                        <option value="3">Sort by alphabet</option>
-                      </select>
-                    </div>
                     <div class="product-view-toggle"><a class="mdi mdi-apps product-view-link product-view-grid active" href="grid-shop.html"></a><a class="mdi mdi-format-list-bulleted product-view-link product-view-list" href="shop-list.html"></a></div>
                   </div>
                 </div>
@@ -686,6 +708,14 @@
         object-fit: contain;
         display: block;
       }
+
+      /* Tarjeta de vista previa del mapa de compradores (enlaza a maps.html) */
+      .buyers-map-text{font-size:14px;line-height:1.5;color:#7a7a7a;margin-bottom:14px;}
+      .buyers-map-preview{position:relative;display:block;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.15);transition:box-shadow .2s ease;}
+      .buyers-map-preview:hover{box-shadow:0 4px 14px rgba(0,0,0,.2);}
+      .buyers-map-svg{display:block;width:100%;height:auto;}
+      .buyers-map-overlay{position:absolute;left:0;right:0;bottom:0;padding:10px 14px;background:linear-gradient(0deg, rgba(0,0,0,.6), rgba(0,0,0,0));color:#fff;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;}
+      .buyers-map-overlay .mdi{font-size:16px;}
     </style>
     <script src="js/header.js"></script>
     <script src="js/script.js"></script> 
@@ -706,9 +736,26 @@
 
         var rangeMin = parseFloat(minInput.min);
         var rangeMax = parseFloat(minInput.max);
+        var rangeMid = (rangeMin + rangeMax) / 2;
 
         function formatPrice(v) {
           return v.toFixed(2);
+        }
+
+        // Corrige el problema de los sliders superpuestos: cuando el handle
+        // "min" y el "max" están cerca uno del otro, el que esté encima en
+        // el DOM bloqueaba los clics del otro y parecía que no se podía
+        // arrastrar / filtrar bien. Ajustamos el z-index dinámicamente
+        // según qué tan cerca esté cada valor del centro del rango.
+        function updateThumbStacking() {
+          var minVal = parseFloat(minInput.value);
+          if (minVal > rangeMid) {
+            minInput.style.zIndex = 4;
+            maxInput.style.zIndex = 3;
+          } else {
+            minInput.style.zIndex = 3;
+            maxInput.style.zIndex = 4;
+          }
         }
 
         function updateSliderVisual() {
@@ -730,6 +777,8 @@
 
           valueDisplay1.value = formatPrice(minVal);
           valueDisplay2.value = formatPrice(maxVal);
+
+          updateThumbStacking();
         }
 
         minInput.addEventListener('input', function () {
@@ -737,6 +786,7 @@
             minInput.value = maxInput.value;
           }
           updateSliderVisual();
+          applyFilters();
         });
 
         maxInput.addEventListener('input', function () {
@@ -744,6 +794,7 @@
             maxInput.value = minInput.value;
           }
           updateSliderVisual();
+          applyFilters();
         });
 
         function getActiveCategories() {
