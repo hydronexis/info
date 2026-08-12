@@ -463,9 +463,9 @@
   background:
     linear-gradient(
       90deg,
-      #1e3b17,
-      #679e5a,
-      #c68c49
+      #679e5a 0%,
+      #c68c49 50%,
+      #e0b979 100%
     );
 }
 
@@ -508,8 +508,9 @@
   background:
     linear-gradient(
       90deg,
-      #1e3b17,
-      #679e5a
+      #c68c49 0%,
+      #d9aa70 50%,
+      #c68c49 100%
     );
 
   font-family:
@@ -689,12 +690,16 @@
   background:
     linear-gradient(
       145deg,
-      #679e5a,
-      #1e3b17
+      #d7aa68 0%,
+      #c68c49 55%,
+      #a96e32 100%
     );
 
+  border:
+    1px solid rgba(255, 255, 255, 0.28);
+
   box-shadow:
-    0 9px 21px rgba(30, 59, 23, 0.23);
+    0 9px 21px rgba(166, 109, 49, 0.28);
 }
 
 
@@ -897,46 +902,58 @@
     white;
 
   background:
-    var(--hydro-green-dark);
+    #679e5a;
 
   border-color:
-    var(--hydro-green-dark);
+    #679e5a;
 
   transform:
     translateY(-2px);
+
+  box-shadow:
+    0 10px 22px rgba(103, 158, 90, 0.28);
 }
 
 
 /* BOTÓN CENTRAL */
 
 .hydro-plan-button-main {
-  color:
-    white;
+  color: white;
 
   border:
-    1px solid var(--hydro-green-dark);
+    1px solid #c68c49;
 
   background:
     linear-gradient(
       100deg,
-      #1e3b17,
-      #3e7432
+      #c68c49 0%,
+      #d9aa70 50%,
+      #b77837 100%
     );
 
   box-shadow:
-    0 10px 24px rgba(30, 59, 23, 0.20);
+    0 10px 24px rgba(198, 140, 73, 0.28);
 }
 
 
 .hydro-plan-button-main:hover {
-  color:
-    white;
+  color: white;
+
+  background:
+    linear-gradient(
+      100deg,
+      #d5a15f 0%,
+      #c68c49 50%,
+      #a9682d 100%
+    );
+
+  border-color: #c68c49;
 
   transform:
     translateY(-3px);
 
   box-shadow:
-    0 14px 30px rgba(30, 59, 23, 0.28);
+    0 14px 30px rgba(198, 140, 73, 0.38);
 }
 
 

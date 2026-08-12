@@ -677,3 +677,15 @@ select:focus {
         flex-direction: column;
     }
 }
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.brand-logo img {
+  width: 180px;  /* cambia este valor para hacerla más grande o pequeña */
+  height: auto;
+  display: block;
+}
