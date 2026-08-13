@@ -14,13 +14,13 @@ const MARKETPLACE_DATA = {
     sellers: [
       {
         id: 'alberto-martinez',
-        name: 'Alberto Martínez',
+        name: 'Alberto Martinez',
         price: '0.75',
         description: 'Hydroponically grown Romaine lettuce using an advanced nutrient-flow growing system. Crisp, vibrant green leaves with exceptional freshness and long-lasting quality. Perfect for Caesar salads, wraps, and more.',
         sellerInfo: 'Hydroponic grower with over 8 years of experience, specializing in premium leafy lettuce. Fresh deliveries every Tuesday and Friday throughout La Chorrera.',
         location: {
           name: 'La Ciudad del Niño',
-          address: 'V68H+CH3, La Chorrera, Panamá',
+          address: 'V68H+CH3, La Chorrera, Panama',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5!2d-79.783!3d8.88!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8faca3c3c3c3c3c3%3A0x0!2sLa%20Ciudad%20del%20Ni%C3%B1o!5e0!3m2!1ses!2spa!4v1700000000000',
           directions: 'From the Pan-American Highway, take the exit toward La Chorrera. Continue for 2 km along the main road to the community market. The pickup location is clearly marked with a green Hydronexis sign.'
         },
@@ -31,15 +31,15 @@ const MARKETPLACE_DATA = {
       },
       {
         id: 'maria-rodriguez',
-        name: 'María Rodríguez',
+        name: 'María Rodriguez',
         price: '0.60',
         description: 'Organic Romaine lettuce, grown without pesticides. Cultivated in a climate-controlled greenhouse using a perfectly balanced nutrient solution for a tender texture and delicate flavor.',
         sellerInfo: 'Family-owned hydroponic farm since 2019. Certified in Good Agricultural Practices (GAP). Orders are conveniently accepted via WhatsApp.',
         location: {
-          name: 'Mercado de Arraiján',
-          address: 'Arraiján, Panamá Oeste',
+          name: 'Mercado de Arraijan',
+          address: 'Arraijan, Panama Oeste',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3941!2d-79.65!3d8.95!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sArraij%C3%A1n!5e0!3m2!1ses!2spa!4v1700000000001',
-          directions: 'Located at Stall #12 in the Arraiján Municipal Market. Convenient parking is available behind the building for easy pickup.'
+          directions: 'Located at Stall #12 in the Arraijan Municipal Market. Convenient parking is available behind the building for easy pickup.'
         },
         reviews: [
           { author: 'Ana Torres', stars: 4, date: 'july 20th, 2026', text: 'Excellent quality at a fair price. I will definitely be buying again!' }
@@ -47,19 +47,19 @@ const MARKETPLACE_DATA = {
       },
       {
         id: 'jose-hernandez',
-        name: 'José Hernández',
+        name: 'Jose Hernandez',
         price: '0.55',
         description: 'Freshly harvested Romaine lettuce, picked daily for peak freshness. Grown using an advanced Deep Water Culture (DWC) hydroponic system, it is perfect for immediate enjoyment or stays fresh for up to 5–7 days when properly stored.',
         sellerInfo: 'Agricultural Engineer and UDELAS graduate. Operates a 200 m² hydroponic farm dedicated to producing high-quality, fresh produce. Volume discounts are available for bulk orders.',
         location: {
           name: 'Finca Hydronexis West',
-          address: 'Vía Centenario, Panamá Oeste',
+          address: 'Vía Centenario, Panama Oeste',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3942!2d-79.70!3d8.92!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sPanam%C3%A1%20Oeste!5e0!3m2!1ses!2spa!4v1700000000002',
           directions: 'Located at Km 12.5 on Vía Centenario. Turn right at the white entrance gate, then give us a call upon arrival for access.'
         },
         reviews: [
-          { author: 'Pedro Sánchez', stars: 5, date: 'june 10th, 2026', text: 'Outstanding quality at an excellent price. The freshest lettuce on the market.' },
-          { author: 'Lucía Vega', stars: 4, date: 'may 28th, 2026', text: 'Great quality, though the pickup location is a bit out of the way.' }
+          { author: 'Pedro Sanchez', stars: 5, date: 'june 10th, 2026', text: 'Outstanding quality at an excellent price. The freshest lettuce on the market.' },
+          { author: 'Lucia Vega', stars: 4, date: 'may 28th, 2026', text: 'Great quality, though the pickup location is a bit out of the way.' }
         ]
       }
     ]
@@ -76,13 +76,13 @@ const MARKETPLACE_DATA = {
     sellers: [
       {
         id: 'alberto-martinez',
-        name: 'Alberto Martínez',
+        name: 'Alberto Martinez',
         price: '1.25',
         description: 'Hydroponically grown red tomatoes with a naturally sweet, juicy flavor. Perfect for fresh salads and harvested on the very day of delivery for peak freshness.',
         sellerInfo: 'Hydroponic grower with over 5 years of experience, specializing in premium greenhouse tomatoes.',
         location: {
           name: 'La Ciudad del Niño',
-          address: 'V68H+CH3, La Chorrera, Panamá',
+          address: 'V68H+CH3, La Chorrera, Panama',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5!2d-79.783!3d8.88!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8faca3c3c3c3c3c3%3A0x0!2sLa%20Ciudad%20del%20Ni%C3%B1o!5e0!3m2!1ses!2spa!4v1700000000000',
           directions: 'Take the La Chorrera exit from the Pan-American Highway. Continue for 2 km along the main road until you reach the community market.'
         },
@@ -95,10 +95,10 @@ const MARKETPLACE_DATA = {
         name: 'Carmen Vega',
         price: '1.15',
         description: 'Large, premium Beefsteak tomatoes grown hydroponically. Exceptionally juicy and perfect for sandwiches, burgers, and homemade sauces. Cultivated in a soilless system with precise EC and pH control to ensure outstanding quality and flavor.',
-        sellerInfo: 'Agricultural entrepreneur since 2020 and an active participant in eco-friendly agricultural fairs across Panamá Oeste.',
+        sellerInfo: 'Agricultural entrepreneur since 2020 and an active participant in eco-friendly agricultural fairs across Panama Oeste.',
         location: {
           name: 'Capira Centro',
-          address: 'Capira, Panamá Oeste',
+          address: 'Capira, Panama Oeste',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3943!2d-79.58!3d8.75!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCapira!5e0!3m2!1ses!2spa!4v1700000000003',
           directions: 'Located in Capira Central Park, next to the organic produce stand. Pickup is available from 7:00 AM to 2:00 PM.'
         },
@@ -114,7 +114,7 @@ const MARKETPLACE_DATA = {
         sellerInfo: 'Former chef turned hydroponic grower, dedicated to producing gourmet-quality tomatoes for local restaurants and discerning home cooks.',
         location: {
           name: 'San Carlos',
-          address: 'San Carlos, Panamá Oeste',
+          address: 'San Carlos, Panama Oeste',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944!2d-79.73!3d8.78!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sSan%20Carlos!5e0!3m2!1ses!2spa!4v1700000000004',
           directions: 'Located at the end of the main road in San Carlos. Look for the "Tomates LM" sign to easily find the farm.'
         },
@@ -142,7 +142,7 @@ const MARKETPLACE_DATA = {
         sellerInfo: 'Nutritionist and hydroponic grower with a passion for locally grown superfoods. Committed to producing fresh, nutrient-rich greens that support a healthy lifestyle.',
         location: {
           name: 'La Chorrera Centro',
-          address: 'La Chorrera, Panamá Oeste',
+          address: 'La Chorrera, Panama Oeste',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5!2d-79.783!3d8.88!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sLa%20Chorrera!5e0!3m2!1ses!2spa!4v1700000000005',
           directions: 'Located at Stall #5 in the leafy greens section of the Municipal Market.'
         },
@@ -157,10 +157,10 @@ const MARKETPLACE_DATA = {
         description: 'Traditional large-leaf spinach with a mild flavor and consistently tender texture. Perfect for cooking, sautéing, or adding to your favorite recipes.',
         sellerInfo: 'Third-generation farmer who has successfully transitioned to hydroponic farming, combining generations of agricultural expertise with modern growing techniques.',
         location: {
-          name: 'Arraiján',
-          address: 'Arraiján, Panamá Oeste',
+          name: 'Arraijan',
+          address: 'Arraijan, Panama Oeste',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3941!2d-79.65!3d8.95!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sArraij%C3%A1n!5e0!3m2!1ses!2spa!4v1700000000001',
-          directions: 'Located at Module 3 of the Arraiján Agricultural Cooperative.'
+          directions: 'Located at Module 3 of the Arraijan Agricultural Cooperative.'
         },
         reviews: [
           { author: 'Felipe Ortiz', stars: 4, date: 'july 8th, 2026', text: 'Great quality at a great price.' }
@@ -168,13 +168,13 @@ const MARKETPLACE_DATA = {
       },
       {
         id: 'sofia-ramirez',
-        name: 'Sofía Ramírez',
+        name: 'Sofia Ramírez',
         price: '2.80',
         description: 'Certified organic spinach, grown without synthetic chemicals. Enjoy a guaranteed weekly harvest of fresh, premium-quality greens.',
         sellerInfo: 'Marine biologist turned sustainable hydroponic grower, passionate about producing fresh, environmentally responsible food.',
         location: {
           name: 'Vista Alegre',
-          address: 'Vista Alegre, Arraiján',
+          address: 'Vista Alegre, Arraijan',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945!2d-79.68!3d8.97!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sVista%20Alegre!5e0!3m2!1ses!2spa!4v1700000000006',
           directions: 'Located at 45 Third Street in Vista Alegre. The greenhouse is clearly visible from the street, making it easy to find.'
         },
@@ -202,7 +202,7 @@ const MARKETPLACE_DATA = {
         sellerInfo: 'Specialist in hydroponically grown aromatic herbs, dedicated to producing fresh, flavorful, and high-quality greens.',
         location: {
           name: 'La Chorrera',
-          address: 'La Chorrera, Panamá Oeste',
+          address: 'La Chorrera, Panama Oeste',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5!2d-79.783!3d8.88!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sLa%20Chorrera!5e0!3m2!1ses!2spa!4v1700000000005',
           directions: 'Located at the market of farmers, herb aisle, Green Stall.'
         },
@@ -212,12 +212,12 @@ const MARKETPLACE_DATA = {
       },
       {
         id: 'ana-lopez',
-        name: 'Ana López',
+        name: 'Ana Lopez',
         price: '0.30',
         description: 'Fresh chives available in 100g bundles. Grown in vertical hydroponic towers for maximum space efficiency while maintaining premium freshness and quality.',
         sellerInfo: 'Emprendedora en agricultura vertical urbana.',
         location: {
-          name: 'Panamá Oeste',
+          name: 'Panama Oeste',
           address: 'Vía Israel, La Chorrera',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5!2d-79.783!3d8.88!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sLa%20Chorrera!5e0!3m2!1ses!2spa!4v1700000000005',
           directions: 'Located on the second floor of the Vía Israel commercial building, Suite 4B.'
@@ -234,7 +234,7 @@ const MARKETPLACE_DATA = {
         sellerInfo: 'Food technologist and innovator specializing in advanced packaging solutions for fresh herbs.',
         location: {
           name: 'Feria del Agricultor',
-          address: 'Panamá Oeste',
+          address: 'Panama Oeste',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3941!2d-79.65!3d8.95!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sArraij%C3%A1n!5e0!3m2!1ses!2spa!4v1700000000001',
           directions: 'Farmers Market every Saturday from 6:00 AM to 12:00 PM. Stall #22.'
         },
@@ -256,14 +256,14 @@ const MARKETPLACE_DATA = {
     sellers: [
       {
         id: 'alberto-martinez',
-        name: 'Alberto Martínez',
+        name: 'Alberto Martinez',
         photo: 'images/vendedores/Alberto_Cortez_color.jpg',
         price: '0.75',
         description: 'Butterhead lettuce with soft leaves and a compact shape. Its creamy texture makes it ideal for gourmet salads and healthy wraps.',
         sellerInfo: 'Producer with 8 years of experience in hydroponics and a strong focus on leafy crops.',
         location: {
           name: 'La Ciudad del Niño',
-          address: 'V68H+CH3, La Chorrera, Panamá',
+          address: 'V68H+CH3, La Chorrera, Panama',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5!2d-79.783!3d8.88!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8faca3c3c3c3c3c3%3A0x0!2sLa%20Ciudad%20del%20Ni%C3%B1o!5e0!3m2!1ses!2spa!4v1700000000000',
           directions: 'From the Pan-American Highway, take the exit toward La Chorrera. Continue 2 km to the community market.'
         },
@@ -279,7 +279,7 @@ const MARKETPLACE_DATA = {
         sellerInfo: 'Nurse and hydroponic grower. Delivery service available every Wednesday.',
         location: {
           name: 'Nuevo Emperador',
-          address: 'Nuevo Emperador, Panamá Oeste',
+          address: 'Nuevo Emperador, Panama Oeste',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946!2d-79.72!3d8.98!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sNuevo%20Emperador!5e0!3m2!1ses!2spa!4v1700000000007',
           directions: 'Located at Los Olivos Residential, House #8. Ring the green doorbell upon arrival.'
         },
@@ -295,7 +295,7 @@ const MARKETPLACE_DATA = {
         sellerInfo: 'Innovator in the sale of live plants for fresh consumption.',
         location: {
           name: 'Chame',
-          address: 'Chame, Panamá Oeste',
+          address: 'Chame, Panama Oeste',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3947!2d-79.88!3d8.58!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sChame!5e0!3m2!1ses!2spa!4v1700000000008',
           directions: 'Located along the Interamerican Highway, km 52. Look for the greenhouse with the white dome.'
         },
@@ -309,7 +309,7 @@ const MARKETPLACE_DATA = {
   'radish': {
     id: 'radish',
     name: 'Radish',
-    nameEs: 'Rábano',
+    nameEs: 'Rabano',
     image: 'images/product-6-237x156.png',
     basePrice: '0.65',
     category: 'Root Vegetables',
@@ -323,7 +323,7 @@ const MARKETPLACE_DATA = {
         sellerInfo: 'Specialist in short-cycle hydroponic crops, focused on efficient and sustainable fresh produce cultivation.',
         location: {
           name: 'La Chorrera',
-          address: 'La Chorrera, Panamá Oeste',
+          address: 'La Chorrera, Panama Oeste',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5!2d-79.783!3d8.88!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sLa%20Chorrera!5e0!3m2!1ses!2spa!4v1700000000005',
           directions: 'Located at the Municipal Market, roots and tubers section.'
         },
@@ -338,8 +338,8 @@ const MARKETPLACE_DATA = {
         description: 'Hydroponic white daikon radishes. Mild and versatile, perfect for Asian cuisine and pickling.',
         sellerInfo: 'Chef and producer of specialty vegetables.',
         location: {
-          name: 'Arraiján',
-          address: 'Arraiján, Panamá Oeste',
+          name: 'Arraijan',
+          address: 'Arraijan, Panama Oeste',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3941!2d-79.65!3d8.95!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sArraij%C3%A1n!5e0!3m2!1ses!2spa!4v1700000000001',
           directions: 'La Huerta Restaurant, purchases available at the reception desk from 9:00 AM to 5:00 PM.'
         },
@@ -355,7 +355,7 @@ const MARKETPLACE_DATA = {
         sellerInfo: 'Supplier of fresh produce for restaurants in West Panama.',
         location: {
           name: 'Vista Alegre',
-          address: 'Vista Alegre, Arraiján',
+          address: 'Vista Alegre, Arraijan',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945!2d-79.68!3d8.97!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sVista%20Alegre!5e0!3m2!1ses!2spa!4v1700000000006',
           directions: 'Vista Alegre Warehouse, main street, blue gate.'
         },
@@ -377,13 +377,13 @@ const MARKETPLACE_DATA = {
     sellers: [
       {
         id: 'alberto-martinez',
-        name: 'Alberto Martínez',
+        name: 'Alberto Martinez',
         price: '2.15',
         description: 'Ripe red bell peppers, sweet and fleshy with a high vitamin C content. Perfect for roasting, stuffing, or enjoying fresh.',
         sellerInfo: 'Farmer with 10 years of experience, specializing in growing solanaceous crops with care and dedication.',
         location: {
           name: 'La Ciudad del Niño',
-          address: 'V68H+CH3, La Chorrera, Panamá',
+          address: 'V68H+CH3, La Chorrera, Panama',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5!2d-79.783!3d8.88!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8faca3c3c3c3c3c3%3A0x0!2sLa%20Ciudad%20del%20Ni%C3%B1o!5e0!3m2!1ses!2spa!4v1700000000000',
           directions: 'Sales point in Ciudad del Niño, La Chorrera. Local growers’ area.'
         },
@@ -399,7 +399,7 @@ const MARKETPLACE_DATA = {
         sellerInfo: 'Local exporter of hydroponic vegetables.',
         location: {
           name: 'Capira',
-          address: 'Capira, Panamá Oeste',
+          address: 'Capira, Panama Oeste',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3943!2d-79.58!3d8.75!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCapira!5e0!3m2!1ses!2spa!4v1700000000003',
           directions: 'Capira packing facility, industrial area.'
         },
@@ -415,7 +415,7 @@ const MARKETPLACE_DATA = {
         sellerInfo: 'Executive chef and small-scale producer.',
         location: {
           name: 'San Carlos',
-          address: 'San Carlos, Panamá Oeste',
+          address: 'San Carlos, Panama Oeste',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944!2d-79.73!3d8.78!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sSan%20Carlos!5e0!3m2!1ses!2spa!4v1700000000004',
           directions: 'San Carlos gourmet farm. Appointments available by WhatsApp.'
         },
@@ -437,13 +437,13 @@ const MARKETPLACE_DATA = {
     sellers: [
       {
         id: 'alberto-martinez',
-        name: 'Alberto Martínez',
+        name: 'Alberto Martinez',
         price: '2.10',
         description: 'Sweet yellow bell peppers with a hint of citrus flavor. Perfect for stir-fries, pizzas, and Mediterranean dishes.',
         sellerInfo: 'Farmer with 4 years of experience, dedicated to growing fresh and quality produce.',
         location: {
           name: 'La Ciudad del Niño',
-          address: 'V68H+CH3, La Chorrera, Panamá',
+          address: 'V68H+CH3, La Chorrera, Panama',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5!2d-79.783!3d8.88!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8faca3c3c3c3c3c3%3A0x0!2sLa%20Ciudad%20del%20Ni%C3%B1o!5e0!3m2!1ses!2spa!4v1700000000000',
           directions: 'Local community market, fresh bell pepper section.'
         },
@@ -458,10 +458,10 @@ const MARKETPLACE_DATA = {
         description: 'Thick-walled yellow bell peppers, perfect for stuffing. Grown in coconut coir with an automated irrigation system for careful and consistent cultivation.',
         sellerInfo: 'Small family grower with experience caring for irrigation and hydroponic crops. A home-based farm dedicated to producing fresh, quality vegetables with care.',
         location: {
-          name: 'Nuevo Arraiján',
-          address: 'Nuevo Arraiján, Panamá Oeste',
+          name: 'Nuevo Arraijan',
+          address: 'Nuevo Arraijan, Panama Oeste',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3941!2d-79.65!3d8.95!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sArraij%C3%A1n!5e0!3m2!1ses!2spa!4v1700000000001',
-          directions: 'Nuevo Arraiján neighborhood, block 4, lot 12.'
+          directions: 'Nuevo Arraijan neighborhood, block 4, lot 12.'
         },
         reviews: [
           { author: 'Sandra Ortiz', stars: 4, date: 'august 14th, 2026', text: 'Perfect for stuffing, with a thick and juicy texture.' }
@@ -475,7 +475,7 @@ const MARKETPLACE_DATA = {
         sellerInfo: 'Agricultor certificado en producción ecológica.',
         location: {
           name: 'La Chorrera',
-          address: 'La Chorrera, Panamá Oeste',
+          address: 'La Chorrera, Panama Oeste',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5!2d-79.783!3d8.88!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sLa%20Chorrera!5e0!3m2!1ses!2spa!4v1700000000005',
           directions: 'Eco-store in La Chorrera, right in front of the central park.'
         },
@@ -497,13 +497,13 @@ const MARKETPLACE_DATA = {
     sellers: [
       {
         id: 'alberto-martinez',
-        name: 'Alberto Martínez',
+        name: 'Alberto Martinez',
         price: '2.05',
         description: 'Fresh green bell peppers, firm and crisp with a natural flavor. Perfect for traditional Latin dishes, homemade sofritos, and family recipes.',
         sellerInfo: 'Farmer with 3 years of experience, dedicated to caring for crops and providing fresh produce with hard work and love for farming.',
         location: {
           name: 'La Ciudad del Niño',
-          address: 'V68H+CH3, La Chorrera, Panamá',
+          address: 'V68H+CH3, La Chorrera, Panama',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5!2d-79.783!3d8.88!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8faca3c3c3c3c3c3%3A0x0!2sLa%20Ciudad%20del%20Ni%C3%B1o!5e0!3m2!1ses!2spa!4v1700000000000',
           directions: 'Calle del Puerto, La Chorrera, West Panama.'
         },
@@ -518,10 +518,10 @@ const MARKETPLACE_DATA = {
         description: 'Large green bell peppers carefully grown for quality. Selected by size and packed with care in 5 kg boxes for delivery.',
         sellerInfo: 'Small local seller offering fresh hydroponic vegetables in larger quantities.',
         location: {
-          name: 'Arraiján',
-          address: 'Arraiján, Panamá Oeste',
+          name: 'Arraijan',
+          address: 'Arraijan, Panama Oeste',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3941!2d-79.65!3d8.95!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sArraij%C3%A1n!5e0!3m2!1ses!2spa!4v1700000000001',
-          directions: 'Arraiján collection center, warehouse #7.'
+          directions: 'Arraijan collection center, warehouse #7.'
         },
         reviews: [
           { author: 'Distribuidora Fresh', stars: 4, date: 'august 20th, 2026', text: 'Good size and quality, perfect for local resale.' }
@@ -534,7 +534,7 @@ const MARKETPLACE_DATA = {
         description: 'Fresh Asian green bell peppers with a thin wall and delicate flavor. Perfect for homemade stir-fries, wok dishes, and quick cooking with a touch of tradition.',
         sellerInfo: 'Local farmer dedicated to growing Asian vegetables with care and passion for fresh produce.',
         location: {
-          name: 'Panamá Oeste',
+          name: 'Panama Oeste',
           address: 'Vía Centenario, La Chorrera',
           embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3942!2d-79.70!3d8.92!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sPanam%C3%A1%20Oeste!5e0!3m2!1ses!2spa!4v1700000000002',
           directions: 'Wong greenhouse, km 10 along Vía Centenario.'

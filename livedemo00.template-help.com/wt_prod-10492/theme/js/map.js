@@ -62,8 +62,8 @@ function showMessage(text) {
 }
 
 function populateFilters() {
-  elements.product.innerHTML = '<option value="">Todos</option>';
-  elements.district.innerHTML = '<option value="">Todos</option>';
+  elements.product.innerHTML = '<option value="">All</option>';
+  elements.district.innerHTML = '<option value="">All</option>';
 
   [...new Set(placesDatabase.map(place => place.product).filter(Boolean))]
     .sort()
