@@ -106,6 +106,30 @@ The preventive maintenance routine requires daily checks to verify the reservoir
 15. DIAGNOSIS AND TROUBLESHOOTING OF COMMON PROBLEMS
 
 The presence of yellowing lower leaves or generalized chlorosis points to a nitrogen deficiency or an elevated pH above 6.8 that blocks its absorption; the corrective action is to measure and adjust pH to 5.8, and if the level is already correct, to raise electrical conductivity by adding more Solution A and B. When young leaves or apical shoots appear wrinkled or show necrosis at the edges, the cause is usually a calcium deficiency caused by low transpiration or an unadjusted pH; the solution requires checking calcium concentration in the water, ensuring a pH of 5.8, and improving ventilation in the growing space to reactivate plant transpiration. If roots show a brown color, slimy texture, and an unpleasant smell, this indicates root rot caused by the Pythium fungus, due to water temperatures above 25 degrees Celsius or lack of oxygenation; the corrective action involves applying diluted hydrogen peroxide to the tank, actively oxygenating the reservoir, cooling the water, or fully disinfecting the system. The development of a layer of green algae on the substrate or inside the pipes is caused by direct sunlight reaching the nutrient solution, and it is solved by covering all exposed water reservoirs, hoses, and substrates with dark, light-blocking covers or plastic. Finally, the symptom of burnt leaf tips on mature plants indicates over-fertilization or electrical conductivity above 2.5 milliSiemens per centimeter; the immediate solution is to dilute the nutrient solution by adding clean, mineral-free water to restore electrical conductivity to the optimal range.
+What to Grow?
+
+In HYDRONEXIS hydroponic systems, crops such as lettuce, spinach, cilantro, basil, scallions, parsley, and other leafy vegetables can be grown. Crop selection depends on the system’s capacity and the space available for each plant to develop. 
+
+How to Grow?
+
+Planting begins by germinating seeds in a moist growing medium. One or two seeds are placed in each cell. After germination, the seedlings are exposed to light. They can be transplanted into the HYDRONEXIS system once they develop their second pair of true leaves and visible roots approximately 3–5 cm long. 
+
+Nutrients
+
+Hydroponic plants require nutrients dissolved in water, mainly nitrogen, phosphorus, potassium, calcium, magnesium, and sulfur, along with micronutrients such as iron, manganese, zinc, copper, boron, and molybdenum. Proper nutrition requires monitoring the pH and electrical conductivity (EC) of the nutrient solution. 
+
+Problems
+
+Common hydroponic problems include yellow leaves caused by nutrient deficiencies or incorrect pH, brown and slimy roots associated with root rot, algae growth caused by light reaching the nutrient solution, and burned leaf tips caused by excessive salt concentration. 
+
+Pests
+
+Hydroponic crops can develop pests that mainly affect leaves, stems, and young shoots. Plants should be inspected frequently, affected plant material should be removed, and the growing environment should be kept clean to reduce the risk of pest infestations.
+
+Maintenance
+
+HYDRONEXIS systems require regular monitoring of the water level, pH, EC, and pump operation. Roots and pipes should also be inspected, the nutrient solution should be periodically replaced, and the system should be cleaned and disinfected between growing cycles. 
+
 """
 
 
