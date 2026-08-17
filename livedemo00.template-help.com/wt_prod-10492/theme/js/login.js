@@ -41,7 +41,7 @@ function setButtonLoading(button, loading, loadingText, normalText) {
 }
 
 function redirectToDashboard() {
-  window.location.replace("dashboard.html");
+  window.location.replace("about-us.html");
 }
 
 function getLoginErrorMessage(code) {
