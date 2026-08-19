@@ -719,8 +719,9 @@ h6 {
 /* WEEK 3 */
 
 .nexis-character-week3 {
-  left: -2px;
-  bottom: 20px;
+    left: auto;
+    right: -2px;
+    bottom: 20px;
 }
 
 
@@ -1086,37 +1087,27 @@ h6 {
 
 }
 
-/* CÍRCULO NARANJA DEL ICONO */
 .nexis-stage-icon {
   position: relative;
-
   width: 60px;
   height: 60px;
-
   margin: -2px auto 15px;
-
   border-radius: 50%;
   background: #c68c49;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   overflow: hidden;
-
   box-shadow:
     0 8px 20px rgba(198, 140, 73, 0.20);
 }
 
-
-/* IMAGEN / ICONO DENTRO DEL CÍRCULO */
 .nexis-stage-icon-img {
-  width: 34px;
-  height: 34px;
-
+  width: 60px;
+  height: 60px;
   object-fit: contain;
-
   display: block;
+  transform: scale(1.45);
 }
 
 /* -----------------------------------------
