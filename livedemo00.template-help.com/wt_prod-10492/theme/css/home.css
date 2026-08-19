@@ -12,13 +12,7 @@
     font-style: italic;
 }
 
-@font-face {
-    font-family: "HelveticaThai";
-    src: url("../fonts/helvetica-light-587ebe5a59211.ttf")
-        format("opentype");
-    font-weight: 300;
-    font-style: normal;
-}
+
 
 body{
     font-family:'Optima';
@@ -32,7 +26,7 @@ h1,h2,h3,h4,h5,h6{
 .product-price-old,/* Fuente general segura para textos y números */
 html,
 body {
-    font-family: "HelveticaThai", Arial, Helvetica, sans-serif !important;
+    font-family: "Optima", Arial, Helvetica, sans-serif !important;
 }
 
 /* Títulos */
@@ -519,5 +513,719 @@ h6 {
 
         object-fit: contain !important;
     }
+
+}
+
+/* =====================================================
+   HYDRONEXIS - 4 WEEK GROWTH PROCESS
+===================================================== */
+
+.nexis-growth-process {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+
+  padding: 85px 20px 100px;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(255,255,255,0.95) 0%,
+      rgba(250,246,238,0.96) 45%,
+      rgba(242,234,220,0.98) 100%
+    );
+}
+
+
+/* CONTAINER */
+
+.nexis-growth-wrapper {
+  width: min(1550px, 96%);
+  margin: 0 auto;
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.nexis-growth-heading {
+  text-align: center;
+  margin-bottom: 55px;
+  color: #c68c49;
+}
+
+/* "From seed to table," */
+.nexis-growth-heading p {
+  margin: 0 0 2px;
+
+  font-size: clamp(20px, 2vw, 32px);
+
+  line-height: 1.1;
+  font-weight: 400;
+}
+
+/* "we cultivate wellness" */
+.nexis-growth-heading h2 {
+  margin: 0;
+
+  font-size: clamp(32px, 3.5vw, 55px);
+
+  line-height: 1.05;
+  font-weight: 700;
+
+  color: #1e3b17;
+}
+
+
+/* =====================================================
+   STEPS
+===================================================== */
+
+.nexis-growth-steps {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    55px
+    minmax(0, 1fr)
+    55px
+    minmax(0, 1fr)
+    55px
+    minmax(0, 1fr);
+
+  align-items: center;
+
+  width: 100%;
+}
+
+
+/* INDIVIDUAL STEP */
+
+.nexis-growth-step {
+  position: relative;
+  min-width: 0;
+  text-align: center;
+}
+
+
+/* =====================================================
+   SYSTEM AREA
+===================================================== */
+
+.nexis-system-area {
+  position: relative;
+
+  width: 100%;
+  height: 430px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* =====================================================
+   LARGE ORANGE CIRCLE
+===================================================== */
+
+.nexis-orange-circle {
+  position: absolute;
+
+  width: 290px;
+  height: 290px;
+
+  border-radius: 50%;
+
+  background: #c68c49;
+
+  left: 50%;
+  top: 53%;
+
+  transform: translate(-50%, -50%);
+
+  z-index: 1;
+
+  box-shadow:
+    inset 0 0 30px rgba(255,255,255,0.08),
+    0 15px 35px rgba(98, 67, 31, 0.08);
+}
+
+
+/* =====================================================
+   HYDROPONIC SYSTEM
+===================================================== */
+
+.nexis-system-image {
+  position: relative;
+  z-index: 2;
+
+  width: auto;
+  height: 390px;
+
+  max-width: 100%;
+
+  object-fit: contain;
+
+  filter: drop-shadow(
+    0 14px 12px rgba(55, 43, 27, 0.15)
+  );
+}
+
+
+/* =====================================================
+   NEXIS CHARACTER
+===================================================== */
+
+.nexis-character {
+  position: absolute;
+
+  z-index: 5;
+
+  width: 92px;
+
+  pointer-events: none;
+}
+
+
+.nexis-character img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  filter: drop-shadow(
+    0 5px 6px rgba(0,0,0,0.12)
+  );
+}
+
+
+/* WEEK 1 */
+
+.nexis-character-week1 {
+  left: 0;
+  bottom: 22px;
+}
+
+
+/* WEEK 2 */
+
+.nexis-character-week2 {
+  right: -5px;
+  bottom: 25px;
+}
+
+
+/* WEEK 3 */
+
+.nexis-character-week3 {
+  left: -2px;
+  bottom: 20px;
+}
+
+
+/* WEEK 4 */
+
+.nexis-character-week4 {
+  right: -3px;
+  bottom: 20px;
+}
+
+
+/* =====================================================
+   SPEECH BUBBLE
+===================================================== */
+
+.nexis-speech {
+  position: absolute;
+
+  min-width: 105px;
+
+  bottom: calc(100% - 15px);
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  padding: 8px 11px;
+
+  background: #ffffff;
+
+  border: 2px solid #c68c49;
+  border-radius: 14px;
+
+  color: #1e3b17;
+
+  font-size: 11px;
+  line-height: 1.25;
+
+  text-align: center;
+
+  white-space: nowrap;
+
+  box-shadow:
+    0 7px 18px rgba(0,0,0,0.10);
+}
+
+
+.nexis-speech strong {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+/* BUBBLE TAIL */
+
+.nexis-speech::before {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: -8px;
+
+  width: 13px;
+  height: 13px;
+
+  background: #ffffff;
+
+  border-right: 2px solid #c68c49;
+  border-bottom: 2px solid #c68c49;
+
+  transform:
+    translateX(-50%)
+    rotate(45deg);
+}
+
+
+/* =====================================================
+   ARROWS
+===================================================== */
+
+.nexis-growth-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: -60px;
+}
+
+
+.nexis-growth-arrow span {
+  position: relative;
+
+  display: block;
+
+  width: 34px;
+  height: 2px;
+
+  background: #1e3b17;
+
+  border-radius: 10px;
+}
+
+
+.nexis-growth-arrow span::before,
+.nexis-growth-arrow span::after {
+  content: "";
+
+  position: absolute;
+
+  right: -1px;
+
+  width: 13px;
+  height: 2px;
+
+  background: #1e3b17;
+
+  border-radius: 10px;
+}
+
+
+.nexis-growth-arrow span::before {
+  top: -4px;
+  transform: rotate(40deg);
+}
+
+
+.nexis-growth-arrow span::after {
+  bottom: -4px;
+  transform: rotate(-40deg);
+}
+
+
+/* =====================================================
+   SMALL ICON CIRCLE
+===================================================== */
+
+.nexis-stage-icon {
+  position: relative;
+
+  width: 60px;
+  height: 60px;
+
+  margin:
+    -2px auto
+    15px;
+
+  border-radius: 50%;
+
+  background: #c68c49;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow:
+    0 8px 20px rgba(198,140,73,0.20);
+}
+
+
+/*
+   WHEN YOU ADD YOUR ICON:
+
+   <div class="nexis-stage-icon">
+      <img src="images/your-icon.png" alt="">
+   </div>
+*/
+
+.nexis-stage-icon img {
+  width: 80px;
+  height: 80px;
+
+  object-fit: contain;
+}
+
+
+/* =====================================================
+   STEP TEXT
+===================================================== */
+
+.nexis-growth-step h3 {
+  margin: 0;
+
+  color: #1e3b17;
+
+  font-size: 21px;
+  line-height: 1.15;
+
+  font-weight: 600;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1200px) {
+
+  .nexis-growth-wrapper {
+    width: min(1100px, 96%);
+  }
+
+  .nexis-growth-steps {
+    grid-template-columns:
+      minmax(0, 1fr)
+      35px
+      minmax(0, 1fr)
+      35px
+      minmax(0, 1fr)
+      35px
+      minmax(0, 1fr);
+  }
+
+  .nexis-system-area {
+    height: 360px;
+  }
+
+  .nexis-system-image {
+    height: 325px;
+  }
+
+  .nexis-orange-circle {
+    width: 235px;
+    height: 235px;
+  }
+
+  .nexis-character {
+    width: 75px;
+  }
+
+  .nexis-speech {
+    min-width: 90px;
+    font-size: 9px;
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 900px) {
+
+  .nexis-growth-process {
+    padding:
+      65px 20px
+      80px;
+  }
+
+  .nexis-growth-heading {
+    margin-bottom: 35px;
+  }
+
+
+  .nexis-growth-steps {
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+  }
+
+
+  .nexis-growth-step {
+    width: min(420px, 100%);
+  }
+
+
+  .nexis-system-area {
+    height: 430px;
+  }
+
+
+  .nexis-system-image {
+    height: 390px;
+  }
+
+
+  .nexis-orange-circle {
+    width: 290px;
+    height: 290px;
+  }
+
+
+  .nexis-character {
+    width: 90px;
+  }
+
+
+  /* ARROWS VERTICAL */
+
+  .nexis-growth-arrow {
+    width: 50px;
+    height: 70px;
+
+    margin: 0;
+
+    transform: rotate(90deg);
+  }
+
+
+  .nexis-stage-icon {
+    margin-top: 0;
+  }
+
+
+  .nexis-growth-step h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+  .nexis-growth-heading p {
+    font-size: 25px;
+  }
+
+
+  .nexis-growth-heading h2 {
+    font-size: 40px;
+  }
+
+
+  .nexis-system-area {
+    height: 365px;
+  }
+
+
+  .nexis-system-image {
+    height: 330px;
+  }
+
+
+  .nexis-orange-circle {
+    width: 245px;
+    height: 245px;
+  }
+
+
+  .nexis-character {
+    width: 72px;
+  }
+
+
+  .nexis-speech {
+    min-width: 85px;
+
+    padding: 6px 8px;
+
+    font-size: 9px;
+  }
+
+
+  .nexis-speech strong {
+    font-size: 10px;
+  }
+
+}
+
+/* CÍRCULO NARANJA DEL ICONO */
+.nexis-stage-icon {
+  position: relative;
+
+  width: 60px;
+  height: 60px;
+
+  margin: -2px auto 15px;
+
+  border-radius: 50%;
+  background: #c68c49;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 8px 20px rgba(198, 140, 73, 0.20);
+}
+
+
+/* IMAGEN / ICONO DENTRO DEL CÍRCULO */
+.nexis-stage-icon-img {
+  width: 34px;
+  height: 34px;
+
+  object-fit: contain;
+
+  display: block;
+}
+
+/* -----------------------------------------
+   LARGE ORANGE CIRCLE
+----------------------------------------- */
+
+.nexis-orange-circle {
+  animation: nexisCirclePulse 5s ease-in-out infinite;
+}
+
+@keyframes nexisCirclePulse {
+
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.035);
+  }
+
+}
+
+
+/* -----------------------------------------
+   SPEECH BUBBLE
+----------------------------------------- */
+
+.nexis-speech {
+  animation: nexisBubbleFloat 3.5s ease-in-out infinite;
+}
+
+@keyframes nexisBubbleFloat {
+
+  0%,
+  100% {
+    transform:
+      translateX(-50%)
+      translateY(0)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translateX(-50%)
+      translateY(-4px)
+      scale(1.03);
+  }
+
+}
+
+
+/* -----------------------------------------
+   ARROWS
+----------------------------------------- */
+
+.nexis-growth-arrow span {
+  animation: nexisArrowMove 1.6s ease-in-out infinite;
+}
+
+@keyframes nexisArrowMove {
+
+  0%,
+  100% {
+    transform: translateX(0);
+    opacity: 0.65;
+  }
+
+  50% {
+    transform: translateX(7px);
+    opacity: 1;
+  }
+
+}
+
+
+/* -----------------------------------------
+   TEXT HOVER
+----------------------------------------- */
+
+.nexis-growth-step h3 {
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
+}
+
+.nexis-growth-step:hover h3 {
+  transform: translateY(-3px);
+  color: #c68c49;
+}
+
+
+/* -----------------------------------------
+   ACCESSIBILITY
+   DISABLE ANIMATIONS IF USER PREFERS
+----------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .nexis-growth-heading,
+  .nexis-growth-heading p,
+  .nexis-growth-heading h2,
+  .nexis-growth-step,
+  .nexis-system-image,
+  .nexis-orange-circle,
+  .nexis-character,
+  .nexis-speech,
+  .nexis-growth-arrow span {
+    animation: none !important;
+  }
 
 }
