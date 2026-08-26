@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="plan-guard-pending">
 <head>
     <title>Seller Details | Hydronexis</title>
     <meta charset="utf-8">
@@ -11,9 +11,11 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/marketplace-sellers.css">
     <link rel="stylesheet" href="css/home.css">
+    <style>.plan-guard-pending body { visibility: hidden; }</style>
+    <script type="module" src="js/plan-guard.js"></script>
 
 </head>
-<body>
+<body data-required-permission="product_details">
 
 
     <div id="header"></div>
@@ -48,7 +50,12 @@
               <div class="product-description-box" id="product-description">
                 <!-- Product description loaded dynamically -->
               </div>
-              <a class="btn-add-cart"  href="hydrochat.html">Contact Seller</a>
+              <div class="seller-detail-actions">
+                <a class="btn-add-cart" id="btn-add-cart" href="cart-page.html">Add to Cart</a>
+                <a class="btn-contact-seller" id="btn-contact-seller" href="hydrochat.html">Contact Seller</a>
+                <a class="btn-exchange plan-protected" id="btn-start-exchange" data-requires-permission="exchange" href="exchanges.html" hidden>Start Exchange</a>
+              </div>
+              <p class="marketplace-action-feedback" id="marketplaceActionFeedback" role="status" hidden></p>
             </div>
           </div>
 
@@ -59,14 +66,14 @@
 
           <!-- SECCIÓN: Tabs - Ubicación, Reviews, Enviar review -->
           <div class="seller-tabs-section">
-            <nav class="seller-tabs-nav">
-              <button class="seller-tab-btn active" data-tab="ubicacion">Location</button>
-              <button class="seller-tab-btn" data-tab="reviews">Reviews</button>
-              <button class="seller-tab-btn" data-tab="enviar-review">Send a review</button>
+            <nav class="seller-tabs-nav" role="tablist" aria-label="Seller information">
+              <button class="seller-tab-btn active" id="seller-tab-location" type="button" role="tab" aria-selected="true" aria-controls="tab-ubicacion" data-tab="ubicacion">Location</button>
+              <button class="seller-tab-btn" id="seller-tab-reviews" type="button" role="tab" aria-selected="false" aria-controls="tab-reviews" data-tab="reviews">Reviews</button>
+              <button class="seller-tab-btn" id="seller-tab-send-review" type="button" role="tab" aria-selected="false" aria-controls="tab-enviar-review" data-tab="enviar-review">Send a review</button>
             </nav>
 
             <!-- TAB: Ubicación con mapa -->
-            <div class="seller-tab-panel active" id="tab-ubicacion">
+            <div class="seller-tab-panel active" id="tab-ubicacion" role="tabpanel" aria-labelledby="seller-tab-location">
               <div class="location-row">
                 <div class="location-map">
                   <iframe id="location-map" src="" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Seller location map"></iframe>
@@ -79,39 +86,24 @@
             </div>
 
             <!-- TAB: Reviews existentes -->
-            <div class="seller-tab-panel" id="tab-reviews">
+            <div class="seller-tab-panel" id="tab-reviews" role="tabpanel" aria-labelledby="seller-tab-reviews" hidden>
               <div id="reviews-list">
                 <!-- Reviews cargadas dinámicamente -->
               </div>
             </div>
 
             <!-- TAB: Formulario para enviar review -->
-            <div class="seller-tab-panel" id="tab-enviar-review">
+            <div class="seller-tab-panel" id="tab-enviar-review" role="tabpanel" aria-labelledby="seller-tab-send-review" hidden>
               <div class="review-form-section">
                 <h4>Leave a Review</h4>
-                <form class="review-form-grid" action="#" method="post">
-                  <div class="form-field">
-                    <label for="review-first-name">First Name</label>
-                    <input type="text" id="review-first-name" name="first-name" required>
-                  </div>
-                  <div class="form-field">
-                    <label for="review-last-name">Last Name</label>
-                    <input type="text" id="review-last-name" name="last-name" required>
-                  </div>
+                <p class="account-feedback" id="reviewAvailability">[BACKEND REQUIRED] Review submission is not connected. No information entered here is sent or stored.</p>
+                <form class="review-form-grid" aria-describedby="reviewAvailability">
                   <div class="form-field message-field">
                     <label for="review-message">Message</label>
-                    <textarea id="review-message" name="message" required></textarea>
-                  </div>
-                  <div class="form-field">
-                    <label for="review-email">E-mail</label>
-                    <input type="email" id="review-email" name="email" required>
-                  </div>
-                  <div class="form-field">
-                    <label for="review-phone">Phone</label>
-                    <input type="tel" id="review-phone" name="phone">
+                    <textarea id="review-message" name="message" disabled></textarea>
                   </div>
                   <div class="form-field" style="grid-column: 1;">
-                    <button class="btn-submit-review" type="submit">SUBMIT</button>
+                    <button class="btn-submit-review" type="button" disabled>UNAVAILABLE</button>
                   </div>
                 </form>
               </div>
@@ -411,5 +403,6 @@
   <!-- <script src="js/script.js"></script> -->
     <script src="js/marketplace-data.js"></script>
     <script src="js/seller-detail.js"></script>
+    <script type="module" src="js/marketplace-actions.js"></script>
 </body>
 </html>
