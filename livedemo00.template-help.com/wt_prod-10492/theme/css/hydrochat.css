@@ -2118,3 +2118,62 @@ button {
     }
 
 }
+
+.hydrochat-plan-access {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px 12px;
+    margin: 0 18px 16px;
+    padding: 14px;
+    border: 1px solid var(--hydro-border);
+    border-radius: 14px;
+    background: var(--hydro-soft);
+}
+
+.hydrochat-plan-access span,
+.hydrochat-plan-access strong {
+    display: block;
+}
+
+.hydrochat-plan-access span {
+    color: var(--hydro-muted);
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.hydrochat-plan-access strong {
+    color: var(--hydro-dark);
+}
+
+.hydrochat-plan-access > a {
+    align-self: center;
+    color: var(--hydro-gold);
+    font-weight: 700;
+}
+
+#hydrochatPlanActions {
+    display: flex;
+    grid-column: 1 / -1;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+#hydrochatPlanActions a {
+    padding: 5px 8px;
+    border-radius: 999px;
+    background: #e7efe3;
+    color: var(--hydro-dark);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.hydrochat-storage-note {
+    margin: 0;
+    padding: 8px 18px;
+    border-top: 1px solid rgba(30, 59, 23, .1);
+    background: #fff9ed;
+    color: #756749;
+    font-size: 11px;
+    line-height: 1.35;
+    text-align: center;
+}

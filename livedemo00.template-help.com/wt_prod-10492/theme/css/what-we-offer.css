@@ -1,1710 +1,646 @@
-/* =========================================================
-   HYDRONEXIS PLANS
-========================================================= */
-
-
-/* =========================================================
-   FUENTES
-========================================================= */
-
+/* Hydronexis plans */
 @font-face {
-  font-family: 'Optima';
-  src: url('../fonts/OPTIMA.TTF');
+  font-family: "Optima";
+  src: url("../fonts/OPTIMA.TTF");
+  font-display: swap;
 }
 
 @font-face {
-  font-family: 'Helvetica';
-  src: url('../fonts/helvetica-light-587ebe5a59211.ttf');
+  font-family: "Helvetica";
+  src: url("../fonts/helvetica-light-587ebe5a59211.ttf");
+  font-display: swap;
 }
-
-@font-face {
-  font-family: 'Monterchi Serif';
-  src: url('../fonts/MonterchiSerif.ttf');
-}
-
-
-/* =========================================================
-   VARIABLES
-========================================================= */
 
 :root {
   --hydro-green: #679e5a;
-  --hydro-green-dark: #1e3b17;
   --hydro-mustard: #c68c49;
-  --hydro-white: #ffffff;
-
-  --hydro-text: #182116;
-  --hydro-text-soft: #697066;
-
-  --hydro-border: rgba(30, 59, 23, 0.11);
+  --hydro-green-dark: #1e3b17;
+  --hydro-card: #fbfaf5;
+  --hydro-text: #172515;
+  --hydro-text-soft: #3f493d;
 }
 
-
-/* =========================================================
-   SECCIÓN COMPLETA
-========================================================= */
-
+/* The original What We Offer background is intentionally preserved. */
 .hydro-plans {
   position: relative;
-
-  width: 100%;
-
-  margin: 0 !important;
-
-  padding:
-    110px 25px
-    120px;
-
-  overflow: hidden;
-
   isolation: isolate;
-
+  width: 100%;
+  margin: 0 !important;
+  padding: 92px 24px 108px;
+  overflow: hidden;
   background:
-    radial-gradient(
-      circle at 12% 18%,
-      rgba(255, 255, 255, 0.06),
-      transparent 25%
-    ),
-
-    radial-gradient(
-      circle at 92% 78%,
-      rgba(198, 140, 73, 0.18),
-      transparent 28%
-    ),
-
-    linear-gradient(
-      135deg,
-      #1e3b17 0%,
-      #315c27 43%,
-      #679e5a 100%
-    );
+    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.06), transparent 25%),
+    radial-gradient(circle at 92% 78%, rgba(198, 140, 73, 0.18), transparent 28%),
+    linear-gradient(135deg, #1e3b17 0%, #315c27 43%, #679e5a 100%);
 }
-
-
-/* =========================================================
-   TEXTURA DE PUNTOS
-========================================================= */
 
 .hydro-plans::before {
   content: "";
-
   position: absolute;
-
   inset: 0;
-
   z-index: -2;
-
-  background-image:
-    radial-gradient(
-      rgba(255, 255, 255, 0.23) 1px,
-      transparent 1px
-    );
-
-  background-size:
-    30px 30px;
-
+  background-image: radial-gradient(rgba(255, 255, 255, 0.23) 1px, transparent 1px);
+  background-size: 30px 30px;
   opacity: 0.45;
-
   pointer-events: none;
 }
-
-
-/* =========================================================
-   EFECTOS DE LUZ
-========================================================= */
 
 .hydro-plans::after {
   content: "";
-
   position: absolute;
-
   inset: 0;
-
   z-index: -1;
-
-  pointer-events: none;
-
   background:
-    radial-gradient(
-      circle at 18% 24%,
-      rgba(255, 255, 255, 0.08),
-      transparent 27%
-    ),
-
-    radial-gradient(
-      circle at 82% 75%,
-      rgba(255, 255, 255, 0.07),
-      transparent 30%
-    );
+    radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.08), transparent 27%),
+    radial-gradient(circle at 82% 75%, rgba(255, 255, 255, 0.07), transparent 30%);
+  pointer-events: none;
 }
-
-
-/* =========================================================
-   CONTENEDOR
-========================================================= */
 
 .hydro-plans-container {
   position: relative;
-
   z-index: 5;
-
-  width: 100%;
-
-  max-width: 1250px;
-
-  margin:
-    0 auto;
+  width: min(100%, 1390px);
+  margin: 0 auto;
 }
 
+.hydro-access-notice {
+  width: min(100%, 820px);
+  margin: 0 auto 36px;
+  padding: 20px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-left: 5px solid var(--hydro-mustard);
+  border-radius: 14px;
+  color: #fff;
+  background: rgba(13, 42, 10, 0.72);
+  box-shadow: 0 14px 32px rgba(10, 28, 7, 0.2);
+  backdrop-filter: blur(8px);
+}
 
-/* =========================================================
-   HEADER
-========================================================= */
+.hydro-access-notice strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #fff;
+  font-family: "Optima", Georgia, serif;
+  font-size: 23px;
+}
+
+.hydro-access-notice p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: "Helvetica", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+}
 
 .hydro-plans-header {
   position: relative;
-
-  max-width: 780px;
-
-  margin:
-    0 auto 75px;
-
+  margin: 0 auto 58px;
+  color: #fff;
   text-align: center;
-
-  color: white;
 }
-
-
-.hydro-eyebrow {
-  display: inline-flex;
-
-  align-items: center;
-  justify-content: center;
-
-  margin-bottom: 20px;
-
-  padding:
-    10px 19px;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.23);
-
-  border-radius: 100px;
-
-  color:
-    rgba(255, 255, 255, 0.92);
-
-  background:
-    rgba(255, 255, 255, 0.09);
-
-  backdrop-filter:
-    blur(12px);
-
-  -webkit-backdrop-filter:
-    blur(12px);
-
-  font-family:
-    'Helvetica',
-    sans-serif;
-
-  font-size:
-    11px;
-
-  font-weight:
-    600;
-
-  letter-spacing:
-    2.4px;
-}
-
-
-/* =========================================================
-   TÍTULO
-========================================================= */
 
 .hydro-plans-header h1 {
-  margin:
-    0;
-
-  color:
-    white;
-
-  font-family:
-    'Optima',
-    sans-serif;
-
-  font-size:
-    clamp(48px, 5.3vw, 76px);
-
-  font-weight:
-    400;
-
-  line-height:
-    0.98;
-
-  letter-spacing:
-    -2px;
-
-  text-transform:
-    uppercase;
+  margin: 0;
+  color: #fff;
+  font-family: "Optima", Georgia, serif;
+  font-size: clamp(60px, 7vw, 100px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: 0 4px 20px rgba(10, 28, 7, 0.22);
 }
 
-
-.hydro-plans-header h1 span {
-  color:
-    #dcebd7;
+.hydro-plans-header::after {
+  content: "";
+  display: block;
+  width: min(240px, 42vw);
+  height: 2px;
+  margin: 26px auto 0;
+  background: linear-gradient(90deg, transparent, var(--hydro-green), transparent);
 }
 
-
-/* =========================================================
-   DESCRIPCIÓN ENCABEZADO
-========================================================= */
-
+.hydro-eyebrow,
 .hydro-plans-header p {
-  max-width:
-    620px;
-
-  margin:
-    26px auto 0;
-
-  color:
-    rgba(255, 255, 255, 0.68);
-
-  font-family:
-    'Helvetica',
-    sans-serif;
-
-  font-size:
-    16px;
-
-  line-height:
-    1.7;
+  display: none;
 }
-
-
-/* =========================================================
-   GRID
-========================================================= */
 
 .hydro-plans-grid {
-  position:
-    relative;
-
-  z-index:
-    10;
-
-  display:
-    grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
-  gap:
-    22px;
-
-  align-items:
-    stretch;
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
 }
-
-
-/* =========================================================
-   TARJETAS
-========================================================= */
 
 .hydro-plan-card {
-  position:
-    relative;
-
-  min-width:
-    0;
-
-  padding:
-    34px 31px
-    28px;
-
-  overflow:
-    hidden;
-
-  border:
-    1px solid var(--hydro-border);
-
-  border-radius:
-    27px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #ffffff,
-      #fafbf8
-    );
-
-  box-shadow:
-    0 28px 70px rgba(10, 28, 7, 0.22),
-    0 5px 15px rgba(10, 28, 7, 0.08);
-
-  transform-style:
-    preserve-3d;
-
-  will-change:
-    transform;
-
-  transition:
-    transform 0.4s cubic-bezier(.2, .8, .2, 1),
-    box-shadow 0.4s ease,
-    border-color 0.4s ease;
+  --plan-accent: var(--hydro-green);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 690px;
+  padding: 44px 38px 26px;
+  overflow: hidden;
+  border: 2px solid var(--plan-accent);
+  border-radius: 27px;
+  background: linear-gradient(150deg, #fffefa 0%, var(--hydro-card) 100%);
+  box-shadow: 0 24px 55px rgba(10, 28, 7, 0.24), 0 4px 12px rgba(10, 28, 7, 0.1);
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
 }
 
-
-/* LUZ INTERNA */
-
-.hydro-plan-card::before {
-  content: "";
-
-  position:
-    absolute;
-
-  width:
-    190px;
-
-  height:
-    190px;
-
-  right:
-    -95px;
-
-  top:
-    -95px;
-
-  border-radius:
-    50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(103, 158, 90, 0.16),
-      transparent 68%
-    );
-
-  transition:
-    0.5s ease;
-
-  pointer-events:
-    none;
+.hydro-plan-sprout {
+  --plan-accent: #679e5a;
 }
 
+.hydro-plan-blooming {
+  --plan-accent: #c68c49;
+}
 
-/* HOVER */
+.hydro-plan-go-green {
+  --plan-accent: #1e3b17;
+}
 
 .hydro-plan-card:hover {
-  transform:
-    translateY(-11px);
-
-  border-color:
-    rgba(103, 158, 90, 0.32);
-
-  box-shadow:
-    0 40px 95px rgba(10, 28, 7, 0.29),
-    0 8px 22px rgba(10, 28, 7, 0.10);
+  transform: translateY(-8px);
+  box-shadow: 0 34px 72px rgba(10, 28, 7, 0.3), 0 8px 18px rgba(10, 28, 7, 0.12);
 }
-
-
-.hydro-plan-card:hover::before {
-  transform:
-    scale(1.5);
-}
-
-
-/* =========================================================
-   PLAN PRINCIPAL
-========================================================= */
 
 .hydro-plan-featured {
-  z-index:
-    5;
-
-  margin-top:
-    -30px;
-
-  margin-bottom:
-    -18px;
-
-  padding-top:
-    59px;
-
-  border:
-    2px solid var(--hydro-green);
-
-  box-shadow:
-    0 45px 100px rgba(10, 28, 7, 0.34),
-    0 12px 28px rgba(10, 28, 7, 0.14);
+  padding-top: 68px;
+  border-width: 3px;
 }
-
-
-/* BARRA INFERIOR */
-
-.hydro-plan-featured::after {
-  content: "";
-
-  position:
-    absolute;
-
-  left:
-    0;
-
-  bottom:
-    0;
-
-  width:
-    100%;
-
-  height:
-    7px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #679e5a 0%,
-      #c68c49 50%,
-      #e0b979 100%
-    );
-}
-
-
-/* =========================================================
-   MOST COMPLETE
-========================================================= */
 
 .hydro-most-popular {
-  position:
-    absolute;
-
-  top:
-    0;
-
-  left:
-    0;
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    center;
-
-  gap:
-    8px;
-
-  width:
-    100%;
-
-  height:
-    38px;
-
-  color:
-    white;
-
-  background:
-    linear-gradient(
-      90deg,
-      #c68c49 0%,
-      #d9aa70 50%,
-      #c68c49 100%
-    );
-
-  font-family:
-    'Helvetica',
-    sans-serif;
-
-  font-size:
-    10px;
-
-  font-weight:
-    600;
-
-  letter-spacing:
-    1.8px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: min(76%, 290px);
+  min-height: 45px;
+  padding: 8px 20px;
+  border-radius: 0 0 15px 15px;
+  color: #142a0f;
+  background: #c68c49;
+  font-family: "Helvetica", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  transform: translateX(-50%);
 }
-
-
-/* PUNTO */
 
 .hydro-popular-dot {
-  width:
-    7px;
-
-  height:
-    7px;
-
-  border-radius:
-    50%;
-
-  background:
-    white;
-
-  animation:
-    hydroPulse 2s ease-in-out infinite;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.16);
 }
-
-
-/* =========================================================
-   CABECERA DE PLAN
-========================================================= */
 
 .hydro-plan-top {
-  position:
-    relative;
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  gap:
-    16px;
+  order: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  text-align: center;
 }
 
-
-/* =========================================================
-   TEXTO PEQUEÑO
-========================================================= */
-
-.hydro-plan-level {
-  display:
-    block;
-
-  margin-bottom:
-    5px;
-
-  color:
-    var(--hydro-green);
-
-  font-family:
-    'Helvetica',
-    sans-serif;
-
-  font-size:
-    9px;
-
-  font-weight:
-    700;
-
-  letter-spacing:
-    1.6px;
+.hydro-plan-top > div:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
-
-/* =========================================================
-   NOMBRE DEL PLAN
-========================================================= */
-
-.hydro-plan-card h2 {
-  margin:
-    0;
-
-  color:
-    var(--hydro-green-dark);
-
-  font-family:
-    'Optima',
-    sans-serif;
-
-  font-size:
-    35px;
-
-  font-weight:
-    400;
-
-  line-height:
-    1;
-
-  text-transform:
-    uppercase;
-}
-
-
-/* =========================================================
-   ICONOS
-========================================================= */
 
 .hydro-plan-icon {
-  flex:
-    0 0 52px;
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    center;
-
-  width:
-    52px;
-
-  height:
-    52px;
-
-  border-radius:
-    16px;
-
-  color:
-    var(--hydro-green-dark);
-
-  background:
-    rgba(103, 158, 90, 0.12);
+  display: block;
+  flex: 0 0 108px;
+  width: 108px;
+  height: 108px;
+  border: 0;
+  border-radius: 50%;
+  color: transparent;
+  background: var(--plan-accent);
+  box-shadow: 0 12px 26px color-mix(in srgb, var(--plan-accent) 28%, transparent);
 }
 
-
-.hydro-plan-icon svg {
-  width:
-    25px;
-
-  height:
-    25px;
-
-  fill:
-    none;
-
-  stroke:
-    currentColor;
-
-  stroke-width:
-    1.7;
-
-  stroke-linecap:
-    round;
-
-  stroke-linejoin:
-    round;
+.hydro-plan-icon svg,
+.hydro-check svg,
+.hydro-plan-button svg {
+  display: none;
 }
 
-
-.hydro-plan-icon-featured {
-  color:
-    white;
-
-  background:
-    linear-gradient(
-      145deg,
-      #d7aa68 0%,
-      #c68c49 55%,
-      #a96e32 100%
-    );
-
-  border:
-    1px solid rgba(255, 255, 255, 0.28);
-
-  box-shadow:
-    0 9px 21px rgba(166, 109, 49, 0.28);
+.hydro-plan-card h2 {
+  order: 1;
+  margin: 0;
+  color: var(--hydro-green-dark);
+  font-family: "Optima", Georgia, serif;
+  font-size: clamp(34px, 3.1vw, 46px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
 }
 
+.hydro-plan-level {
+  order: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 9px;
+  color: #1e3b17;
+  font-family: "Helvetica", Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.045em;
+}
 
-/* =========================================================
-   DESCRIPCIÓN
-========================================================= */
+.hydro-plan-level::before,
+.hydro-plan-level::after {
+  content: "";
+  width: 30px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.75;
+}
 
 .hydro-plan-description {
-  min-height:
-    82px;
-
-  margin:
-    26px 0 0;
-
-  color:
-    var(--hydro-text-soft);
-
-  font-family:
-    'Helvetica',
-    sans-serif;
-
-  font-size:
-    14px;
-
-  line-height:
-    1.65;
+  order: 2;
+  min-height: 76px;
+  margin: 22px 0 0;
+  color: #263124;
+  font-family: "Helvetica", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+  text-align: center;
 }
-
-
-/* =========================================================
-   DIVISOR
-========================================================= */
 
 .hydro-plan-divider {
-  width:
-    100%;
-
-  height:
-    1px;
-
-  margin:
-    23px 0;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(30, 59, 23, 0.15),
-      transparent
-    );
+  order: 3;
+  width: 100%;
+  height: 1px;
+  margin: 23px 0 26px;
+  background: color-mix(in srgb, var(--plan-accent) 52%, transparent);
 }
 
-
-/* =========================================================
-   ACCESS LEVEL
-========================================================= */
-
-.hydro-plan-access {
-  display:
-    flex;
-
-  align-items:
-    flex-end;
-
-  justify-content:
-    space-between;
-
-  gap:
-    15px;
-
-  margin-bottom:
-    22px;
+.hydro-plan-access,
+.hydro-card-footer {
+  display: none;
 }
-
-
-.hydro-plan-access span {
-  color:
-    #858b82;
-
-  font-family:
-    'Helvetica',
-    sans-serif;
-
-  font-size:
-    12px;
-}
-
-
-.hydro-plan-access strong {
-  color:
-    var(--hydro-green-dark);
-
-  font-family:
-    'Optima',
-    sans-serif;
-
-  font-size:
-    17px;
-
-  font-weight:
-    400;
-}
-
-
-/* =========================================================
-   BOTONES
-========================================================= */
-
-.hydro-plan-button {
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    space-between;
-
-  width:
-    100%;
-
-  margin-bottom:
-    29px;
-
-  padding:
-    15px 18px;
-
-  border-radius:
-    12px;
-
-  text-decoration:
-    none !important;
-
-  font-family:
-    'Helvetica',
-    sans-serif;
-
-  font-size:
-    13px;
-
-  font-weight:
-    600;
-
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    background 0.3s ease,
-    color 0.3s ease;
-}
-
-
-.hydro-plan-button svg {
-  width:
-    18px;
-
-  height:
-    18px;
-
-  fill:
-    none;
-
-  stroke:
-    currentColor;
-
-  stroke-width:
-    1.8;
-
-  stroke-linecap:
-    round;
-
-  stroke-linejoin:
-    round;
-
-  transition:
-    transform 0.3s ease;
-}
-
-
-.hydro-plan-button:hover svg {
-  transform:
-    translateX(4px);
-}
-
-
-/* BOTÓN NORMAL */
-
-.hydro-plan-button-outline {
-  color:
-    var(--hydro-green-dark);
-
-  border:
-    1px solid rgba(30, 59, 23, 0.28);
-
-  background:
-    white;
-}
-
-
-.hydro-plan-button-outline:hover {
-  color:
-    white;
-
-  background:
-    #679e5a;
-
-  border-color:
-    #679e5a;
-
-  transform:
-    translateY(-2px);
-
-  box-shadow:
-    0 10px 22px rgba(103, 158, 90, 0.28);
-}
-
-
-/* BOTÓN CENTRAL */
-
-.hydro-plan-button-main {
-  color: white;
-
-  border:
-    1px solid #c68c49;
-
-  background:
-    linear-gradient(
-      100deg,
-      #c68c49 0%,
-      #d9aa70 50%,
-      #b77837 100%
-    );
-
-  box-shadow:
-    0 10px 24px rgba(198, 140, 73, 0.28);
-}
-
-
-.hydro-plan-button-main:hover {
-  color: white;
-
-  background:
-    linear-gradient(
-      100deg,
-      #d5a15f 0%,
-      #c68c49 50%,
-      #a9682d 100%
-    );
-
-  border-color: #c68c49;
-
-  transform:
-    translateY(-3px);
-
-  box-shadow:
-    0 14px 30px rgba(198, 140, 73, 0.38);
-}
-
-
-/* =========================================================
-   FEATURES
-========================================================= */
 
 .hydro-features {
-  display:
-    flex;
-
-  flex-direction:
-    column;
-
-  gap:
-    14px;
-
-  margin:
-    0;
-
-  padding:
-    0;
-
-  list-style:
-    none;
+  order: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 0 0 28px;
+  padding: 0;
+  list-style: none;
 }
-
 
 .hydro-features li {
-  display:
-    flex;
-
-  align-items:
-    flex-start;
-
-  gap:
-    10px;
-
-  color:
-    #444b41;
-
-  font-family:
-    'Helvetica',
-    sans-serif;
-
-  font-size:
-    13px;
-
-  line-height:
-    1.5;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #263124;
+  font-family: "Helvetica", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.38;
 }
-
-
-/* =========================================================
-   CHECK
-========================================================= */
 
 .hydro-check {
-  flex:
-    0 0 21px;
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    center;
-
-  width:
-    21px;
-
-  height:
-    21px;
-
-  margin-top:
-    -1px;
-
-  border-radius:
-    50%;
-
-  color:
-    var(--hydro-green-dark);
-
-  background:
-    rgba(103, 158, 90, 0.13);
+  flex: 0 0 28px;
+  display: block;
+  width: 28px;
+  height: 28px;
+  border: 7px solid color-mix(in srgb, var(--plan-accent) 20%, #fff);
+  border-radius: 50%;
+  background: var(--plan-accent);
 }
 
-
-.hydro-check svg {
-  width:
-    12px;
-
-  height:
-    12px;
-
-  fill:
-    none;
-
-  stroke:
-    currentColor;
-
-  stroke-width:
-    2.2;
-
-  stroke-linecap:
-    round;
-
-  stroke-linejoin:
-    round;
+.hydro-plan-blooming .hydro-features li:nth-child(n + 5) {
+  display: none;
 }
 
-
-/* =========================================================
-   FOOTER DE LAS CARDS
-========================================================= */
-
-.hydro-card-footer {
-  margin-top:
-    30px;
-
-  padding:
-    17px 18px;
-
-  border-radius:
-    14px;
-
-  color:
-    #747b71;
-
-  background:
-    rgba(30, 59, 23, 0.05);
-
-  font-family:
-    'Helvetica',
-    sans-serif;
-
-  font-size:
-    11px;
-
-  line-height:
-    1.5;
+.hydro-plan-button {
+  order: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 66px;
+  margin: auto 0 0;
+  padding: 14px 18px;
+  border: 0;
+  border-radius: 13px;
+  color: #fff !important;
+  background: var(--plan-accent);
+  box-shadow: 0 12px 24px color-mix(in srgb, var(--plan-accent) 24%, transparent);
+  font-family: "Helvetica", Arial, sans-serif;
+  font-size: 29px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.035em;
+  text-align: center;
+  text-decoration: none !important;
+  transition: transform 0.25s ease, filter 0.25s ease, box-shadow 0.25s ease;
 }
 
-
-.hydro-card-footer-featured {
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  gap:
-    10px;
-
-  color:
-    var(--hydro-green-dark);
-
-  background:
-    rgba(103, 158, 90, 0.11);
+.hydro-plan-button:hover {
+  color: #fff !important;
+  filter: brightness(1.07);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px color-mix(in srgb, var(--plan-accent) 34%, transparent);
 }
 
-
-.hydro-community-indicator {
-  width:
-    8px;
-
-  height:
-    8px;
-
-  border-radius:
-    50%;
-
-  background:
-    var(--hydro-green);
-
-  box-shadow:
-    0 0 0 5px
-    rgba(103, 158, 90, 0.10);
+.hydro-plan-sprout .hydro-plan-button,
+.hydro-plan-blooming .hydro-plan-button,
+.hydro-plan-sprout .hydro-plan-button:hover,
+.hydro-plan-blooming .hydro-plan-button:hover {
+  color: #142a0f !important;
 }
 
-
-/* =========================================================
-   CUADRADOS ANIMADOS DEL FONDO
-========================================================= */
+.hydro-plan-button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 7px var(--plan-accent);
+}
 
 .hydro-decoration {
-  position:
-    absolute;
-
-  z-index:
-    0;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.16);
-
-  border-radius:
-    35px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.10),
-      rgba(255, 255, 255, 0.025)
-    );
-
-  backdrop-filter:
-    blur(3px);
-
-  -webkit-backdrop-filter:
-    blur(3px);
-
-  pointer-events:
-    none;
+  position: absolute;
+  z-index: 0;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 35px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.025));
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  pointer-events: none;
 }
-
-
-/* IZQUIERDA 1 */
 
 .hydro-decoration-1 {
-  width:
-    270px;
-
-  height:
-    370px;
-
-  left:
-    -100px;
-
-  top:
-    250px;
-
-  animation:
-    hydroFloatOne 10s
-    ease-in-out infinite;
+  top: 250px;
+  left: -100px;
+  width: 270px;
+  height: 370px;
+  animation: hydroFloatOne 10s ease-in-out infinite;
 }
-
-
-/* IZQUIERDA 2 */
 
 .hydro-decoration-2 {
-  width:
-    180px;
-
-  height:
-    270px;
-
-  left:
-    70px;
-
-  top:
-    390px;
-
-  animation:
-    hydroFloatTwo 13s
-    ease-in-out infinite;
+  top: 390px;
+  left: 70px;
+  width: 180px;
+  height: 270px;
+  animation: hydroFloatTwo 13s ease-in-out infinite;
 }
-
-
-/* DERECHA 1 */
 
 .hydro-decoration-3 {
-  width:
-    270px;
-
-  height:
-    390px;
-
-  right:
-    -90px;
-
-  top:
-    210px;
-
-  animation:
-    hydroFloatOne 11s
-    ease-in-out infinite reverse;
+  top: 210px;
+  right: -90px;
+  width: 270px;
+  height: 390px;
+  animation: hydroFloatOne 11s ease-in-out infinite reverse;
 }
-
-
-/* DERECHA 2 */
 
 .hydro-decoration-4 {
-  width:
-    180px;
-
-  height:
-    290px;
-
-  right:
-    70px;
-
-  top:
-    420px;
-
-  animation:
-    hydroFloatTwo 14s
-    ease-in-out infinite reverse;
+  top: 420px;
+  right: 70px;
+  width: 180px;
+  height: 290px;
+  animation: hydroFloatTwo 14s ease-in-out infinite reverse;
 }
-
-
-/* =========================================================
-   FRASE FINAL
-========================================================= */
 
 .hydro-plans-note {
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    center;
-
-  gap:
-    24px;
-
-  margin-top:
-    80px;
-
-  text-align:
-    center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 54px;
+  text-align: center;
 }
-
 
 .hydro-plans-note p {
-  flex:
-    0 0 auto;
-
-  margin:
-    0;
-
-  color:
-    rgba(255, 255, 255, 0.67);
-
-  font-family:
-    'Helvetica',
-    sans-serif;
-
-  font-size:
-    12px;
-
-  letter-spacing:
-    0.3px;
+  flex: 0 0 auto;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: "Helvetica", Arial, sans-serif;
+  font-size: 17px;
+  letter-spacing: 0.02em;
 }
-
 
 .hydro-plans-note strong {
-  color:
-    white;
-
-  font-weight:
-    500;
+  color: #fff;
+  font-weight: 700;
 }
-
 
 .hydro-note-line {
-  width:
-    90px;
-
-  height:
-    1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.42),
-      transparent
-    );
+  width: min(210px, 18vw);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
 }
-
-
-/* =========================================================
-   ANIMACIONES
-========================================================= */
 
 @keyframes hydroFloatOne {
-
   0%,
   100% {
-
-    transform:
-      translate3d(0, 0, 0)
-      scale(1)
-      rotate(4deg);
-
-    opacity:
-      0.58;
-
+    opacity: 0.58;
+    transform: translate3d(0, 0, 0) scale(1) rotate(4deg);
   }
-
-
   50% {
-
-    transform:
-      translate3d(
-        28px,
-        -38px,
-        0
-      )
-      scale(1.13)
-      rotate(0deg);
-
-    opacity:
-      0.28;
-
+    opacity: 0.28;
+    transform: translate3d(28px, -38px, 0) scale(1.13) rotate(0deg);
   }
-
 }
-
 
 @keyframes hydroFloatTwo {
-
   0%,
   100% {
-
-    transform:
-      translate3d(0, 0, 0)
-      scale(0.94)
-      rotate(-3deg);
-
-    opacity:
-      0.36;
-
+    opacity: 0.36;
+    transform: translate3d(0, 0, 0) scale(0.94) rotate(-3deg);
   }
-
-
   50% {
-
-    transform:
-      translate3d(
-        -18px,
-        30px,
-        0
-      )
-      scale(1.12)
-      rotate(3deg);
-
-    opacity:
-      0.65;
-
+    opacity: 0.65;
+    transform: translate3d(-18px, 30px, 0) scale(1.12) rotate(3deg);
   }
-
 }
-
-
-@keyframes hydroPulse {
-
-  0%,
-  100% {
-
-    box-shadow:
-      0 0 0 3px
-      rgba(255, 255, 255, 0.16);
-
-  }
-
-
-  50% {
-
-    box-shadow:
-      0 0 0 8px
-      rgba(255, 255, 255, 0);
-
-  }
-
-}
-
-
-/* =========================================================
-   ANIMACIÓN AL ENTRAR
-========================================================= */
 
 .hydro-reveal {
-  opacity:
-    0;
-
-  transform:
-    translateY(38px);
-
-  transition:
-    opacity 0.85s
-    cubic-bezier(.2, .8, .2, 1),
-
-    transform 0.85s
-    cubic-bezier(.2, .8, .2, 1);
+  opacity: 0;
+  transform: translateY(38px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-
 
 .hydro-reveal.hydro-visible {
-  opacity:
-    1;
-
-  transform:
-    translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
 
-
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media (max-width: 1050px) {
-
+@media (max-width: 1120px) {
   .hydro-plans {
-    padding:
-      95px 25px
-      105px;
+    padding-inline: 20px;
   }
-
 
   .hydro-plans-grid {
-    gap:
-      15px;
+    gap: 16px;
   }
-
 
   .hydro-plan-card {
-    padding:
-      30px 23px
-      25px;
+    min-height: 650px;
+    padding: 40px 25px 24px;
   }
-
 
   .hydro-plan-featured {
-    padding-top:
-      57px;
+    padding-top: 65px;
   }
 
-
-  .hydro-plan-card h2 {
-    font-size:
-      30px;
+  .hydro-plan-icon {
+    flex-basis: 92px;
+    width: 92px;
+    height: 92px;
   }
 
+  .hydro-plan-level {
+    font-size: 14px;
+  }
 
   .hydro-plan-description {
-    min-height:
-      100px;
+    font-size: 15px;
   }
 
+  .hydro-features li {
+    font-size: 14px;
+  }
+
+  .hydro-plan-button {
+    font-size: 24px;
+  }
 }
 
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 850px) {
-
+@media (max-width: 880px) {
   .hydro-plans {
-    padding:
-      75px 20px
-      85px;
+    padding: 72px 20px 82px;
   }
-
 
   .hydro-plans-header {
-    margin-bottom:
-      55px;
+    margin-bottom: 44px;
   }
-
-
-  .hydro-plans-header h1 {
-    font-size:
-      clamp(
-        40px,
-        10vw,
-        58px
-      );
-
-    letter-spacing:
-      -1.5px;
-  }
-
 
   .hydro-plans-grid {
-    grid-template-columns:
-      1fr;
-
-    gap:
-      24px;
-
-    max-width:
-      560px;
-
-    margin:
-      auto;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    width: min(100%, 590px);
+    margin: 0 auto;
   }
 
-
-  /* Go Green aparece primero */
+  .hydro-plan-card,
+  .hydro-plan-featured {
+    min-height: 0;
+    padding: 38px 34px 26px;
+  }
 
   .hydro-plan-featured {
-    order:
-      -1;
-
-    margin:
-      0;
+    padding-top: 68px;
   }
-
-
-  .hydro-plan-card {
-    padding:
-      32px 27px;
-  }
-
-
-  .hydro-plan-featured {
-    padding-top:
-      58px;
-  }
-
 
   .hydro-plan-description {
-    min-height:
-      initial;
+    min-height: 0;
   }
 
-
-  .hydro-decoration-1 {
-    left:
-      -190px;
-  }
-
-
+  .hydro-decoration-1,
   .hydro-decoration-2 {
-    left:
-      -120px;
+    left: -180px;
   }
 
-
-  .hydro-decoration-3 {
-    right:
-      -190px;
-  }
-
-
+  .hydro-decoration-3,
   .hydro-decoration-4 {
-    right:
-      -120px;
+    right: -180px;
   }
-
-
-  .hydro-plans-note {
-    margin-top:
-      55px;
-  }
-
 }
-
-
-/* =========================================================
-   MOBILE PEQUEÑO
-========================================================= */
 
 @media (max-width: 480px) {
-
   .hydro-plans {
-    padding:
-      65px 14px
-      75px;
+    padding: 58px 13px 68px;
   }
-
-
-  .hydro-plans-header {
-    padding:
-      0 8px;
-  }
-
 
   .hydro-plans-header h1 {
-    font-size:
-      40px;
+    font-size: 48px;
   }
 
-
-  .hydro-plans-header p {
-    font-size:
-      14px;
+  .hydro-plan-card,
+  .hydro-plan-featured {
+    padding: 32px 21px 22px;
+    border-radius: 22px;
   }
-
-
-  .hydro-plan-card {
-    padding:
-      29px 22px
-      25px;
-
-    border-radius:
-      22px;
-  }
-
 
   .hydro-plan-featured {
-    padding-top:
-      58px;
+    padding-top: 64px;
   }
 
+  .hydro-plan-icon {
+    flex-basis: 82px;
+    width: 82px;
+    height: 82px;
+  }
+
+  .hydro-plan-card h2 {
+    font-size: 34px;
+  }
+
+  .hydro-plan-level {
+    gap: 8px;
+    font-size: 13px;
+  }
+
+  .hydro-plan-level::before,
+  .hydro-plan-level::after {
+    width: 20px;
+  }
+
+  .hydro-plan-description {
+    font-size: 15px;
+  }
+
+  .hydro-features li {
+    font-size: 14px;
+  }
+
+  .hydro-plan-button {
+    min-height: 58px;
+    font-size: 23px;
+  }
+
+  .hydro-most-popular {
+    font-size: 12px;
+  }
 
   .hydro-plans-note {
-    gap:
-      10px;
+    gap: 10px;
   }
-
-
-  .hydydro-note-line,
-  .hydro-note-line {
-    width:
-      30px;
-  }
-
 
   .hydro-plans-note p {
-    font-size:
-      10px;
+    font-size: 14px;
   }
-
 }
 
-
-/* =========================================================
-   ACCESIBILIDAD
-========================================================= */
-
 @media (prefers-reduced-motion: reduce) {
-
-  .hydro-decoration,
-  .hydro-popular-dot {
-    animation:
-      none !important;
+  .hydro-decoration {
+    animation: none !important;
   }
-
 
   .hydro-reveal {
-    opacity:
-      1;
-
-    transform:
-      none;
-
-    transition:
-      none;
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 
-
-  .hydro-plan-card {
-    transition:
-      none;
+  .hydro-plan-card,
+  .hydro-plan-button {
+    transition: none;
   }
-
 }

@@ -231,6 +231,50 @@
   text-decoration: none;
 }
 
+.seller-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.btn-contact-seller,
+.btn-exchange {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 28px;
+  border: 2px solid #1e3b17;
+  border-radius: 50px;
+  color: #1e3b17;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn-contact-seller:hover,
+.btn-exchange:hover {
+  background: #1e3b17;
+  color: #fff;
+}
+
+.marketplace-action-feedback {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #eef6ea;
+  color: #285421;
+}
+
+.marketplace-action-feedback.is-error {
+  background: #fff0ec;
+  color: #8b2d1e;
+}
+
+@media (max-width: 575px) {
+  .seller-detail-actions > * {
+    width: 100%;
+  }
+}
+
 /* --- Info adicional del vendedor --- */
 .seller-extra-info {
   max-width: 960px;
