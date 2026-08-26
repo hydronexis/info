@@ -1,3 +1,7 @@
+import { requirePageAccess } from "./plan-guard.js";
+
+const hydroChatSession = await requirePageAccess();
+
 /* =========================================================
    HYDRONEXIS HYDROCHAT
 ========================================================= */
@@ -16,7 +20,7 @@ const hydroChatSellers = [
     {
         id: "chives-pedro-gomez",
 
-        seller: "Omar Sanchez",
+        seller: "Pedro Gomez",
 
         product: "Chives",
 
@@ -798,7 +802,7 @@ let searchValue = "";
 ========================================================= */
 
 const STORAGE_KEY =
-    "hydronexis-hydrochat-messages";
+    `hydronexis-hydrochat-messages.${hydroChatSession.user?.uid || "guest"}`;
 
 
 function loadStoredMessages() {
@@ -1019,7 +1023,7 @@ function createAvatar(
 
 
     image.src =
-        seller.image;
+        seller.image || "";
 
 
     image.alt =
@@ -1042,9 +1046,13 @@ function createAvatar(
     );
 
 
-    avatar.appendChild(
-        image
-    );
+    if (seller.image) {
+
+        avatar.appendChild(
+            image
+        );
+
+    }
 
 
     return avatar;
@@ -1603,7 +1611,7 @@ function openConversation(
 
 
     conversationAvatarImage.style.display =
-        "block";
+        seller.image ? "block" : "none";
 
 
     conversationAvatarImage.src =
@@ -1934,9 +1942,6 @@ document.addEventListener(
 
 function initializeHydroChat() {
 
-    renderContacts();
-
-
     /*
         On desktop we open the first seller automatically.
 
@@ -1944,7 +1949,53 @@ function initializeHydroChat() {
         similar to WhatsApp.
     */
 
-    if (
+    const query = new URLSearchParams(window.location.search);
+    const requestedSeller = query.get("seller");
+    const requestedProduct = query.get("product");
+    let requestedConversation = hydroChatSellers.find(item =>
+        item.id === requestedSeller ||
+        item.id === `${requestedProduct}-${requestedSeller}` ||
+        (item.product === requestedProduct && item.id.includes(requestedSeller || ""))
+    );
+
+    if (requestedConversation) {
+        requestedConversation = {
+            ...requestedConversation,
+            seller: query.get("sellerName") || requestedConversation.seller,
+            product: query.get("productName") || requestedConversation.product,
+            productDisplay: query.get("productName") || requestedConversation.productDisplay,
+            price: Number.isFinite(Number(query.get("price")))
+                ? Number(query.get("price"))
+                : requestedConversation.price
+        };
+    }
+
+    if (!requestedConversation && requestedSeller && requestedProduct) {
+
+        const productName = query.get("productName") || "Marketplace product";
+        const sellerName = query.get("sellerName") || "Marketplace seller";
+        const requestedPrice = Number(query.get("price"));
+        const dynamicConversation = {
+            id: `marketplace-${requestedProduct}-${requestedSeller}`.slice(0, 240),
+            seller: sellerName,
+            product: productName,
+            productDisplay: productName,
+            price: Number.isFinite(requestedPrice) ? requestedPrice : 0,
+            category: "all",
+            image: "",
+            firstMessage: "This conversation was opened from the Marketplace. Messages are saved only on this device until the secure messaging backend is connected."
+        };
+
+        hydroChatSellers.unshift(dynamicConversation);
+        requestedConversation = dynamicConversation;
+
+    }
+
+    renderContacts();
+
+    if (requestedConversation) {
+        openConversation(requestedConversation.id);
+    } else if (
         window.innerWidth >
         700
     ) {

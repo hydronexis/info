@@ -16,16 +16,41 @@
     var tabBtns = document.querySelectorAll('.seller-tab-btn');
     var tabPanels = document.querySelectorAll('.seller-tab-panel');
 
-    tabBtns.forEach(function (btn) {
-      btn.addEventListener('click', function () {
+    function activateTab(btn) {
         var target = btn.getAttribute('data-tab');
 
-        tabBtns.forEach(function (b) { b.classList.remove('active'); });
-        tabPanels.forEach(function (p) { p.classList.remove('active'); });
+        tabBtns.forEach(function (b) {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+          b.tabIndex = -1;
+        });
+        tabPanels.forEach(function (p) {
+          p.classList.remove('active');
+          p.hidden = true;
+        });
 
         btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        btn.tabIndex = 0;
         var panel = document.getElementById('tab-' + target);
-        if (panel) panel.classList.add('active');
+        if (panel) {
+          panel.classList.add('active');
+          panel.hidden = false;
+        }
+    }
+
+    tabBtns.forEach(function (btn, index) {
+      btn.tabIndex = btn.classList.contains('active') ? 0 : -1;
+      btn.addEventListener('click', function () {
+        activateTab(btn);
+      });
+      btn.addEventListener('keydown', function (event) {
+        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+        event.preventDefault();
+        var offset = event.key === 'ArrowRight' ? 1 : -1;
+        var next = tabBtns[(index + offset + tabBtns.length) % tabBtns.length];
+        activateTab(next);
+        next.focus();
       });
     });
   }
@@ -111,6 +136,27 @@
     if (addCart) {
       addCart.href = 'cart-page.html';
       addCart.setAttribute('aria-label', 'Add ' + product.name + ' from ' + seller.name + ' to cart');
+      addCart.dataset.cartProductId = product.id;
+      addCart.dataset.cartSellerId = seller.id;
+      addCart.dataset.cartSellerName = seller.name;
+      addCart.dataset.cartProductName = product.name;
+      addCart.dataset.cartImage = product.image;
+      addCart.dataset.cartDisplayPrice = seller.price;
+    }
+
+    var contactSeller = document.getElementById('btn-contact-seller');
+    if (contactSeller) {
+      contactSeller.href = 'hydrochat.html?mode=purchase&product=' +
+        encodeURIComponent(product.id) + '&seller=' + encodeURIComponent(seller.id) +
+        '&productName=' + encodeURIComponent(product.name) +
+        '&sellerName=' + encodeURIComponent(seller.name) +
+        '&price=' + encodeURIComponent(seller.price);
+    }
+
+    var startExchange = document.getElementById('btn-start-exchange');
+    if (startExchange) {
+      startExchange.href = 'exchanges.html?product=' + encodeURIComponent(product.id) +
+        '&seller=' + encodeURIComponent(seller.id);
     }
 
     /* Seller extra info */
@@ -146,14 +192,5 @@
   document.addEventListener('DOMContentLoaded', function () {
     loadDetail();
     initTabs();
-    /* Tab Enviar review - prevent actual submit for demo */
-    var reviewForm = document.querySelector('.review-form-grid');
-    if (reviewForm) {
-      reviewForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        alert('Thank you for your review! (demo)');
-        reviewForm.reset();
-      });
-    }
   });
 })();

@@ -24,6 +24,7 @@
 		isDesktop = $html.hasClass("desktop"),
 		isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
 		windowReady = false,
+		pageInitialized = false,
 		isNoviBuilder = false,
 		livedemo = true,
 
@@ -92,7 +93,9 @@
 	}
 
 	// Initialize scripts that require a loaded page
-	$window.on('load', function () {
+	function initializePage () {
+		if (pageInitialized) return;
+		pageInitialized = true;
 		// Page loader & Page transition
 		if (plugins.preloader.length && !isNoviBuilder) {
 			pageTransition({
@@ -239,7 +242,7 @@
 				}
 			}
 		}
-	});
+	}
 
 	// Initialize scripts that require a finished document
 	$(function () {
@@ -1714,4 +1717,12 @@
 			}
 		}
 	});
+
+	// header.js puede insertar este archivo despues del evento load. En ese
+	// caso inicializamos inmediatamente para no perder navbar, sliders y WOW.
+	if (document.readyState === 'complete') {
+		initializePage();
+	} else {
+		$window.one('load', initializePage);
+	}
 }());

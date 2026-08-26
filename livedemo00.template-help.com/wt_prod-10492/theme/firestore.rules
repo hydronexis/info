@@ -3,20 +3,26 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    function isGoGreen() {
+      return request.auth != null
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.accountStatus == 'active'
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.plan == 'go_green';
+    }
+
     match /locations/{locationId} {
 
       // Permite leer únicamente ubicaciones activas
-      allow read: if resource.data.active == true;
+      allow read: if isGoGreen() && resource.data.active == true;
 
       // Permite crear ubicaciones a usuarios autenticados
-      allow create: if request.auth != null
+      allow create: if isGoGreen()
         && request.resource.data.ownerId == request.auth.uid
         && request.resource.data.active == true
         && request.resource.data.latitude is number
         && request.resource.data.longitude is number;
 
       // Solo el propietario puede editar o eliminar
-      allow update, delete: if request.auth != null
+      allow update, delete: if isGoGreen()
         && resource.data.ownerId == request.auth.uid;
     }
   }

@@ -1,461 +1,127 @@
-(() => {
-  "use strict";
+import { db } from "./firebase-config.js";
+import {
+  PLAN_LEVELS,
+  PLAN_PRICES,
+  getPlanLabel,
+  normalizePlan
+} from "./plan-manager.js";
+import { requirePageAccess } from "./plan-guard.js";
+import {
+  doc,
+  getDoc,
+  serverTimestamp,
+  setDoc
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-  const form = document.getElementById("paymentForm");
-  const planInputs = [...document.querySelectorAll('input[name="plan"]')];
+const UPGRADE_PLANS = Object.freeze(["blooming", "go_green"]);
+const form = document.getElementById("planRequestForm");
+const button = document.getElementById("planRequestButton");
+const feedback = document.getElementById("planRequestFeedback");
+const summary = document.getElementById("requestedPlanSummary");
+const main = document.getElementById("planRequestMain");
+const options = [...document.querySelectorAll('input[name="requestedPlan"]')];
 
-  const cardFields = document.getElementById("cardFields");
-  const cardNumber = document.getElementById("cardNumber");
-  const expiryDate = document.getElementById("expiryDate");
-  const cvc = document.getElementById("cvc");
-  const firstName = document.getElementById("firstName");
-  const lastName = document.getElementById("lastName");
-  const terms = document.getElementById("terms");
+function showFeedback(message, isError = false) {
+  feedback.textContent = message;
+  feedback.hidden = false;
+  feedback.classList.toggle("is-error", isError);
+}
 
-  const summaryPlan = document.getElementById("summaryPlan");
-  const summaryPrice = document.getElementById("summaryPrice");
-  const submitButton = document.getElementById("submitButton");
-  const submitButtonText = document.getElementById("submitButtonText");
-  const formAlert = document.getElementById("formAlert");
+function selectedPlan() {
+  return options.find((option) => option.checked)?.value || null;
+}
 
-  const mobileMenuButton = document.getElementById("mobileMenuButton");
-  const paymentNav = document.getElementById("paymentNav");
+function renderSummary() {
+  const plan = selectedPlan();
+  summary.textContent = plan
+    ? `${getPlanLabel(plan)} - ${PLAN_PRICES[plan]}`
+    : "No eligible upgrade selected";
+}
 
+const session = await requirePageAccess();
+if (!session.user) {
+  const next = encodeURIComponent(`payment.html${location.search}`);
+  location.replace(`login.html?next=${next}`);
+} else {
+  const currentPlan = normalizePlan(session.plan, "sprout");
+  const currentLabel = getPlanLabel(currentPlan);
+  document.getElementById("currentPlanBadge").textContent = currentLabel;
+  document.getElementById("currentPlanDescription").textContent =
+    `${currentLabel} is active on this account. Only an administrator or trusted backend can change that value.`;
 
-  /* =====================================================
-     MOBILE NAVIGATION
-  ====================================================== */
-  mobileMenuButton?.addEventListener("click", () => {
-    const isOpen = paymentNav.classList.toggle("is-open");
-    mobileMenuButton.setAttribute("aria-expanded", String(isOpen));
+  options.forEach((option) => {
+    const eligible = PLAN_LEVELS[option.value] > PLAN_LEVELS[currentPlan];
+    option.disabled = !eligible;
+    option.closest(".plan-request-option").classList.toggle("is-unavailable", !eligible);
   });
 
+  const rawRequestedPlan = new URLSearchParams(location.search).get("plan");
+  const requestedPlan = normalizePlan(rawRequestedPlan, "");
+  const requestedOption = options.find((option) =>
+    option.value === requestedPlan && !option.disabled
+  );
+  const firstEligible = options.find((option) => !option.disabled);
+  (requestedOption || firstEligible)?.click();
+
+  const hasUpgrade = Boolean(firstEligible);
+  button.disabled = !hasUpgrade;
+  if (!hasUpgrade) {
+    showFeedback("Go Green is already the highest HYDRONEXIS plan on this account.");
+  } else if (requestedPlan === "sprout") {
+    showFeedback("Sprout is the free starting plan and is already assigned when an account is created.");
+  }
+
+  options.forEach((option) => option.addEventListener("change", renderSummary));
+  renderSummary();
+  main.setAttribute("aria-busy", "false");
 
-  /* =====================================================
-     HELPERS
-  ====================================================== */
-  const getSelectedPlan = () => {
-    const selected = planInputs.find((input) => input.checked);
-
-    return {
-      id: selected.value,
-      name: selected.dataset.name,
-      price: Number(selected.dataset.price)
-    };
-  };
-
-  const formatMoney = (value) => {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD"
-    }).format(value);
-  };
-
-  const onlyDigits = (value) => value.replace(/\D/g, "");
-
-  const normalizeName = (value) => {
-    return value.trim().replace(/\s+/g, " ");
-  };
-
-  const showMessage = (field, message, type = "error") => {
-    const messageElement = document.getElementById(`${field.id}Error`);
-
-    field.classList.remove("is-valid", "is-invalid");
-    messageElement.classList.remove("is-success");
-
-    if (!message) {
-      messageElement.textContent = "";
-      return;
-    }
-
-    messageElement.textContent = message;
-
-    if (type === "success") {
-      field.classList.add("is-valid");
-      messageElement.classList.add("is-success");
-    } else {
-      field.classList.add("is-invalid");
-    }
-  };
-
-  const clearFieldState = (field) => {
-    const messageElement = document.getElementById(`${field.id}Error`);
-
-    field.classList.remove("is-valid", "is-invalid");
-
-    if (messageElement) {
-      messageElement.textContent = "";
-      messageElement.classList.remove("is-success");
-    }
-  };
-
-  const showAlert = (message, type) => {
-    formAlert.className = `form-alert is-visible is-${type}`;
-    formAlert.textContent = message;
-  };
-
-  const clearAlert = () => {
-    formAlert.className = "form-alert";
-    formAlert.textContent = "";
-  };
-
-
-  /* =====================================================
-     LUHN ALGORITHM
-     Checks whether the card number has a valid checksum.
-     It does not prove that the card exists or has funds.
-  ====================================================== */
-  const passesLuhn = (cardValue) => {
-    const digits = onlyDigits(cardValue);
-
-    if (digits.length < 13 || digits.length > 19) {
-      return false;
-    }
-
-    let sum = 0;
-    let shouldDouble = false;
-
-    for (let index = digits.length - 1; index >= 0; index -= 1) {
-      let digit = Number(digits[index]);
-
-      if (shouldDouble) {
-        digit *= 2;
-
-        if (digit > 9) {
-          digit -= 9;
-        }
-      }
-
-      sum += digit;
-      shouldDouble = !shouldDouble;
-    }
-
-    return sum % 10 === 0;
-  };
-
-
-  /* =====================================================
-     VALIDATORS
-  ====================================================== */
-  const validateCardNumber = () => {
-    const digits = onlyDigits(cardNumber.value);
-
-    if (!digits) {
-      showMessage(cardNumber, "Enter your card number.");
-      return false;
-    }
-
-    if (digits.length < 13 || digits.length > 19) {
-      showMessage(cardNumber, "The card number must contain 13 to 19 digits.");
-      return false;
-    }
-
-    if (!passesLuhn(digits)) {
-      showMessage(cardNumber, "The card number is not valid.");
-      return false;
-    }
-
-    showMessage(cardNumber, "Valid card number.", "success");
-    return true;
-  };
-
-
-  const validateExpiry = () => {
-    const match = expiryDate.value.match(/^(\d{2})\s*\/\s*(\d{2})$/);
-
-    if (!match) {
-      showMessage(expiryDate, "Use the MM / YY format.");
-      return false;
-    }
-
-    const month = Number(match[1]);
-    const year = 2000 + Number(match[2]);
-
-    if (month < 1 || month > 12) {
-      showMessage(expiryDate, "Enter a valid month between 01 and 12.");
-      return false;
-    }
-
-    const now = new Date();
-    const currentMonth = now.getMonth() + 1;
-    const currentYear = now.getFullYear();
-
-    const hasExpired =
-      year < currentYear ||
-      (year === currentYear && month < currentMonth);
-
-    if (hasExpired) {
-      showMessage(expiryDate, "This card has expired.");
-      return false;
-    }
-
-    if (year > currentYear + 25) {
-      showMessage(expiryDate, "The expiration year is too far in the future.");
-      return false;
-    }
-
-    showMessage(expiryDate, "Valid expiration date.", "success");
-    return true;
-  };
-
-
-  const validateCvc = () => {
-    const digits = onlyDigits(cvc.value);
-
-    if (!/^\d{3,4}$/.test(digits)) {
-      showMessage(cvc, "Enter a 3 or 4 digit security code.");
-      return false;
-    }
-
-    showMessage(cvc, "Valid security code.", "success");
-    return true;
-  };
-
-
-  const validateName = (field, label) => {
-    const value = normalizeName(field.value);
-
-    if (!value) {
-      showMessage(field, `Enter the ${label}.`);
-      return false;
-    }
-
-    if (value.length < 2) {
-      showMessage(field, `The ${label} is too short.`);
-      return false;
-    }
-
-    /*
-      Supports letters, accents, apostrophes, hyphens and spaces.
-      The fallback is included for older browsers.
-    */
-    let validCharacters = true;
-
-    try {
-      validCharacters = /^[\p{L}\p{M}' -]+$/u.test(value);
-    } catch {
-      validCharacters = /^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(value);
-    }
-
-    if (!validCharacters) {
-      showMessage(field, `The ${label} contains invalid characters.`);
-      return false;
-    }
-
-    field.value = value;
-    showMessage(field, `Valid ${label}.`, "success");
-    return true;
-  };
-
-
-  const validateTerms = () => {
-    const termsError = document.getElementById("termsError");
-
-    if (!terms.checked) {
-      termsError.textContent =
-        "You must accept the Terms of Service and Privacy Policy.";
-      return false;
-    }
-
-    termsError.textContent = "";
-    return true;
-  };
-
-
-  const validatePaidPlan = () => {
-    const validations = [
-      validateCardNumber(),
-      validateExpiry(),
-      validateCvc(),
-      validateName(firstName, "first name"),
-      validateName(lastName, "last name"),
-      validateTerms()
-    ];
-
-    return validations.every(Boolean);
-  };
-
-
-  const validateFreePlan = () => {
-    return validateTerms();
-  };
-
-
-  /* =====================================================
-     INPUT FORMATTING
-  ====================================================== */
-  cardNumber.addEventListener("input", () => {
-    const digits = onlyDigits(cardNumber.value).slice(0, 19);
-    cardNumber.value = digits.replace(/(\d{4})(?=\d)/g, "$1 ");
-    clearFieldState(cardNumber);
-    clearAlert();
-  });
-
-  cardNumber.addEventListener("blur", () => {
-    if (getSelectedPlan().price > 0) {
-      validateCardNumber();
-    }
-  });
-
-
-  expiryDate.addEventListener("input", () => {
-    const digits = onlyDigits(expiryDate.value).slice(0, 4);
-
-    if (digits.length <= 2) {
-      expiryDate.value = digits;
-    } else {
-      expiryDate.value = `${digits.slice(0, 2)} / ${digits.slice(2)}`;
-    }
-
-    clearFieldState(expiryDate);
-    clearAlert();
-  });
-
-  expiryDate.addEventListener("blur", () => {
-    if (getSelectedPlan().price > 0) {
-      validateExpiry();
-    }
-  });
-
-
-  cvc.addEventListener("input", () => {
-    cvc.value = onlyDigits(cvc.value).slice(0, 4);
-    clearFieldState(cvc);
-    clearAlert();
-  });
-
-  cvc.addEventListener("blur", () => {
-    if (getSelectedPlan().price > 0) {
-      validateCvc();
-    }
-  });
-
-
-  firstName.addEventListener("input", () => {
-    clearFieldState(firstName);
-    clearAlert();
-  });
-
-  firstName.addEventListener("blur", () => {
-    if (getSelectedPlan().price > 0) {
-      validateName(firstName, "first name");
-    }
-  });
-
-
-  lastName.addEventListener("input", () => {
-    clearFieldState(lastName);
-    clearAlert();
-  });
-
-  lastName.addEventListener("blur", () => {
-    if (getSelectedPlan().price > 0) {
-      validateName(lastName, "last name");
-    }
-  });
-
-
-  terms.addEventListener("change", () => {
-    if (terms.checked) {
-      document.getElementById("termsError").textContent = "";
-    }
-
-    clearAlert();
-  });
-
-
-  /* =====================================================
-     PLAN CHANGES
-  ====================================================== */
-  const updatePlanInterface = () => {
-    const plan = getSelectedPlan();
-    const isFree = plan.price === 0;
-
-    summaryPlan.textContent = plan.name;
-    summaryPrice.textContent = formatMoney(plan.price);
-
-    submitButtonText.textContent = isFree
-      ? `Activate ${plan.name} for ${formatMoney(plan.price)}`
-      : `Pay ${formatMoney(plan.price)} for ${plan.name}`;
-
-    cardFields.classList.toggle("is-disabled", isFree);
-
-    [cardNumber, expiryDate, cvc, firstName, lastName].forEach((field) => {
-      field.disabled = isFree;
-      field.required = !isFree;
-
-      if (isFree) {
-        clearFieldState(field);
-      }
-    });
-
-    clearAlert();
-  };
-
-  planInputs.forEach((input) => {
-    input.addEventListener("change", updatePlanInterface);
-  });
-
-
-  /* =====================================================
-     FORM SUBMISSION
-  ====================================================== */
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    clearAlert();
-
-    const plan = getSelectedPlan();
-    const isValid =
-      plan.price === 0 ? validateFreePlan() : validatePaidPlan();
-
-    if (!isValid) {
-      showAlert(
-        "Please review the highlighted fields before continuing.",
-        "error"
-      );
-
-      const firstInvalid = form.querySelector(
-        ".is-invalid, #terms:not(:checked)"
-      );
-
-      firstInvalid?.focus();
+    const targetPlan = selectedPlan();
+    if (!UPGRADE_PLANS.includes(targetPlan)
+      || PLAN_LEVELS[targetPlan] <= PLAN_LEVELS[currentPlan]) {
+      showFeedback("Choose a plan above your current access level.", true);
       return;
     }
 
-    submitButton.disabled = true;
-    submitButtonText.textContent =
-      plan.price === 0 ? "Activating plan..." : "Validating payment...";
+    button.disabled = true;
+    button.textContent = "Submitting...";
 
-    /*
-      Demo delay only.
+    const requestReference = doc(
+      db,
+      "planUpgradeRequests",
+      `${session.user.uid}_${targetPlan}`
+    );
 
-      IMPORTANT:
-      No real payment is processed here. For production, replace this block
-      with a secure Stripe Payment Element / Checkout integration and create
-      the PaymentIntent or Checkout Session on your server.
-    */
-    await new Promise((resolve) => setTimeout(resolve, 900));
+    try {
+      const existingRequest = await getDoc(requestReference);
+      if (existingRequest.exists()) {
+        showFeedback(`A ${getPlanLabel(targetPlan)} request already exists for this account.`);
+        return;
+      }
 
-    if (plan.price === 0) {
-      showAlert(
-        `Success! The ${plan.name} plan has been selected at ${formatMoney(
-          plan.price
-        )}.`,
-        "success"
+      await setDoc(requestReference, {
+        userId: session.user.uid,
+        currentPlan,
+        requestedPlan: targetPlan,
+        status: "pending",
+        source: "web",
+        createdAt: serverTimestamp()
+      });
+
+      showFeedback(
+        `${getPlanLabel(targetPlan)} was requested. Your current plan has not changed and no payment was charged.`
       );
-    } else {
-      showAlert(
-        `The information passed the browser validation for the ${plan.name} plan (${formatMoney(
-          plan.price
-        )}). No real charge was made.`,
-        "success"
+      form.querySelectorAll("input").forEach((input) => { input.disabled = true; });
+    } catch (error) {
+      console.error("Plan request could not be submitted.", error);
+      showFeedback(
+        "The request could not be submitted. Verify your Firestore rules and try again.",
+        true
       );
+      button.disabled = false;
+    } finally {
+      button.textContent = "Submit Plan Request";
     }
-
-    submitButton.disabled = false;
-    updatePlanInterface();
   });
-
-
-  updatePlanInterface();
-})();
+}

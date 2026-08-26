@@ -1,11 +1,19 @@
-import { auth } from "./firebase-config.js";
+import { auth, db } from "./firebase-config.js";
+import { getCurrentUserPlan, getPlanLandingPage } from "./plan-manager.js";
 
 import {
   signInWithEmailAndPassword,
   signInWithPopup,
-  signInAnonymously,
+  signOut,
   GoogleAuthProvider
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+
+import {
+  doc,
+  getDoc,
+  setDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 const signinForm = document.getElementById("signin");
 const emailInput = document.getElementById("signinEmail");
@@ -40,8 +48,42 @@ function setButtonLoading(button, loading, loadingText, normalText) {
   button.textContent = loading ? loadingText : normalText;
 }
 
-function redirectToDashboard() {
-  window.location.replace("about-us.html");
+function getSafeNextPage() {
+  const next = new URLSearchParams(window.location.search).get("next");
+  if (!next || !/^[a-z0-9-]+\.html(?:\?[^#]*)?(?:#.*)?$/i.test(next)) return null;
+  return next.toLowerCase().startsWith("login.html") ? null : next;
+}
+
+async function redirectAfterLogin() {
+  const safeNextPage = getSafeNextPage();
+  if (safeNextPage) {
+    window.location.replace(safeNextPage);
+    return;
+  }
+
+  const { plan } = await getCurrentUserPlan();
+  window.location.replace(getPlanLandingPage(plan));
+}
+
+async function ensureSproutProfile(user) {
+  const profileReference = doc(db, "users", user.uid);
+  const profileSnapshot = await getDoc(profileReference);
+  if (profileSnapshot.exists()) return;
+
+  const provider = user.providerData?.[0]?.providerId || "password";
+  const fallbackName = user.email?.split("@")[0] || "Hydronexis user";
+  await setDoc(profileReference, {
+    uid: user.uid,
+    name: user.displayName?.trim() || fallbackName,
+    email: user.email || "",
+    plan: "sprout",
+    requestedPlan: "sprout",
+    role: "user",
+    accountStatus: "active",
+    provider,
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp()
+  });
 }
 
 function getLoginErrorMessage(code) {
@@ -95,16 +137,19 @@ signinForm?.addEventListener("submit", async (event) => {
     "Sign In"
   );
 
+  let credential = null;
   try {
-    await signInWithEmailAndPassword(auth, email, password);
+    credential = await signInWithEmailAndPassword(auth, email, password);
+    await ensureSproutProfile(credential.user);
 
     showMessage(
       "Login successful. Redirecting...",
       "success"
     );
 
-    redirectToDashboard();
+    await redirectAfterLogin();
   } catch (error) {
+    if (credential?.user) await signOut(auth).catch(() => {});
     showMessage(getLoginErrorMessage(error.code));
   } finally {
     setButtonLoading(
@@ -127,16 +172,19 @@ googleLoginButton?.addEventListener("click", async () => {
     "Continue with Google"
   );
 
+  let credential = null;
   try {
-    await signInWithPopup(auth, googleProvider);
+    credential = await signInWithPopup(auth, googleProvider);
+    await ensureSproutProfile(credential.user);
 
     showMessage(
       "Google sign-in successful. Redirecting...",
       "success"
     );
 
-    redirectToDashboard();
+    await redirectAfterLogin();
   } catch (error) {
+    if (credential?.user) await signOut(auth).catch(() => {});
     showMessage(getLoginErrorMessage(error.code));
   } finally {
     setButtonLoading(
@@ -148,34 +196,28 @@ googleLoginButton?.addEventListener("click", async () => {
   }
 });
 
-/* Invitado */
+/* Visitante público: no crea una sesión ni concede un plan. */
 guestLoginButton?.addEventListener("click", async () => {
   clearMessage();
 
   setButtonLoading(
     guestLoginButton,
     true,
-    "Entering...",
-    "Continue as Guest"
+    "Opening public site...",
+    "Continue without an account"
   );
 
   try {
-    await signInAnonymously(auth);
-
-    showMessage(
-      "Guest access granted. Redirecting...",
-      "success"
-    );
-
-    redirectToDashboard();
+    await signOut(auth);
+    window.location.replace("index.html");
   } catch (error) {
     showMessage(getLoginErrorMessage(error.code));
   } finally {
     setButtonLoading(
       guestLoginButton,
       false,
-      "Entering...",
-      "Continue as Guest"
+      "Opening public site...",
+      "Continue without an account"
     );
   }
 });

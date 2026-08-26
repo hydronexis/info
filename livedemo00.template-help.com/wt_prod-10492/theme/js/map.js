@@ -1,7 +1,15 @@
 import { demoPlaces } from "./demo-data.js";
 import { getFirebaseServices, isFirebaseConfigured } from "./firebase-service.js";
+import { requirePageAccess } from "./plan-guard.js";
+
+await requirePageAccess();
 
 if (typeof L === "undefined") {
+  const mapError = document.getElementById("mapMessage");
+  if (mapError) {
+    mapError.textContent = "The interactive map could not be loaded. Check your connection and try again.";
+    mapError.classList.remove("hidden");
+  }
   throw new Error("Leaflet no cargó correctamente.");
 }
 
@@ -56,6 +64,7 @@ function setBadge(text) {
 }
 
 function showMessage(text) {
+  if (!elements.message) return;
   elements.message.textContent = text;
   elements.message.classList.remove("hidden");
   setTimeout(() => elements.message.classList.add("hidden"), 4000);
@@ -118,11 +127,20 @@ function renderPlaces(places, fit = true) {
 
     const card = document.createElement("article");
     card.className = "place-card";
+    card.tabIndex = 0;
+    card.setAttribute("role", "button");
+    card.setAttribute("aria-label", `Show ${place.name} on the map`);
     card.innerHTML = `<h3>${escapeHtml(place.name)}</h3>
       <p>${escapeHtml(place.address)}</p>
       <p>Vendedor: ${escapeHtml(place.seller)}</p>
       <span class="product-pill">${escapeHtml(place.product)}</span>`;
     card.addEventListener("click", () => focusPlace(place.id));
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        focusPlace(place.id);
+      }
+    });
     elements.list.appendChild(card);
   });
 
@@ -182,7 +200,14 @@ function useCurrentLocation() {
         weight: 3
       }).addTo(map).bindPopup("Tu ubicación aproximada").openPopup();
     },
-    () => showMessage("No fue posible obtener tu ubicación. Usa HTTPS o localhost y concede el permiso."),
+    error => {
+      const messages = {
+        1: "Location permission was denied. You can still search the map manually.",
+        2: "Your location is currently unavailable. Try again or search manually.",
+        3: "Getting your location took too long. Please try again."
+      };
+      showMessage(messages[error.code] || "Your location could not be determined.");
+    },
     { enableHighAccuracy: true, timeout: 12000 }
   );
 }
@@ -204,54 +229,42 @@ async function start() {
       firestore.where("active", "==", true)
     );
 
-    firestore.onSnapshot(
-      locationsQuery,
-      snapshot => {
-        const firebasePlaces = snapshot.docs.map(doc => {
-          const data = doc.data();
-          return {
-            id: doc.id,
-            name: data.businessName || "",
-            seller: data.sellerName || "",
-            product: data.product || "",
-            district: data.district || "",
-            township: data.township || "",
-            address: data.address || "",
-            phone: data.phone || "",
-            latitude: Number(data.latitude),
-            longitude: Number(data.longitude),
-            keywords: Array.isArray(data.keywords) ? data.keywords : []
-          };
-        });
+    const snapshot = await firestore.getDocs(locationsQuery);
+    const firebasePlaces = snapshot.docs.map(documentSnapshot => {
+      const data = documentSnapshot.data();
+      return {
+        id: documentSnapshot.id,
+        name: data.businessName || "",
+        seller: data.sellerName || "",
+        product: data.product || "",
+        district: data.district || "",
+        township: data.township || "",
+        address: data.address || "",
+        phone: data.phone || "",
+        latitude: Number(data.latitude),
+        longitude: Number(data.longitude),
+        keywords: Array.isArray(data.keywords) ? data.keywords : []
+      };
+    });
 
-        if (firebasePlaces.length === 0) {
-          placesDatabase = demoPlaces;
-          setBadge("Firebase conectado · demo");
-          showMessage("Firestore está vacío. Se muestran datos de demostración.");
-        } else {
-          placesDatabase = firebasePlaces;
-          setBadge("Firebase conectado");
-        }
+    if (firebasePlaces.length === 0) {
+      placesDatabase = demoPlaces;
+      setBadge("Firebase connected - demo");
+      showMessage("No verified locations are available yet. Clearly labeled demonstration data is shown.");
+    } else {
+      placesDatabase = firebasePlaces;
+      setBadge("Firebase connected");
+    }
 
-        populateFilters();
-        renderPlaces(placesDatabase);
-      },
-      error => {
-        console.error(error);
-        placesDatabase = demoPlaces;
-        setBadge("Error Firebase · demo");
-        populateFilters();
-        renderPlaces(placesDatabase);
-        showMessage("No se pudo leer Firestore. Se muestran datos de demostración.");
-      }
-    );
+    populateFilters();
+    renderPlaces(placesDatabase);
   } catch (error) {
     console.error(error);
     placesDatabase = demoPlaces;
-    setBadge("Error Firebase · demo");
+    setBadge("Firebase unavailable - demo");
     populateFilters();
     renderPlaces(placesDatabase);
-    showMessage("Firebase no pudo iniciar. Se muestran datos de demostración.");
+    showMessage("Verified map locations could not be loaded. Clearly labeled demonstration data is shown.");
   }
 }
 

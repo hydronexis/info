@@ -1,120 +1,138 @@
-const quantities = document.querySelectorAll(".quantity");
-const totalPrice = document.getElementById("totalPrice");
+import {
+  clearCart,
+  getCart,
+  getCartSummary,
+  initializeCart,
+  removeCartItem,
+  updateCartQuantity
+} from "./cart-store.js";
+import { requirePageAccess } from "./plan-guard.js";
 
+await requirePageAccess();
 
-function actualizarCarrito() {
+const list = document.getElementById("cartItems");
+const emptyState = document.getElementById("cartEmptyState");
+const subtotal = document.getElementById("cartSubtotal");
+const total = document.getElementById("cartTotal");
+const count = document.getElementById("cartItemCount");
+const checkoutLink = document.getElementById("cartCheckoutLink");
+const feedback = document.getElementById("cartFeedback");
 
-    let total = 0;
-    let cantidad = 0;
-
-    quantities.forEach(input => {
-
-        const precio = parseFloat(input.dataset.price);
-        const cant = parseInt(input.value);
-
-        cantidad += cant;
-        total += precio * cant;
-
-        const itemPrice = input
-            .closest(".group-middle")
-            ?.querySelector(".item-price");
-
-        if (itemPrice) {
-            itemPrice.textContent = "$" + (precio * cant).toFixed(2);
-        }
-
-    });
-
-
-    // TOTAL DEL CARRITO
-    if (totalPrice) {
-        totalPrice.textContent = "$" + total.toFixed(2);
-    }
-
-
-    // Estos elementos están dentro de header.html,
-    // por eso los buscamos CADA VEZ que actualizamos.
-    const cartCount = document.getElementById("cartCount");
-    const cartIcon = document.getElementById("cartIcon");
-    const cartIconMobile = document.getElementById("cartIconMobile");
-
-
-    if (cartCount) {
-        cartCount.textContent = cantidad;
-    }
-
-    if (cartIcon) {
-        cartIcon.textContent = cantidad;
-    }
-
-    if (cartIconMobile) {
-        cartIconMobile.textContent = cantidad;
-    }
-
+function formatMoney(value) {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD"
+  }).format(Number(value) || 0);
 }
 
+function showFeedback(message, isError = false) {
+  if (!feedback) return;
+  feedback.textContent = message;
+  feedback.hidden = false;
+  feedback.classList.toggle("is-error", isError);
+}
 
-// BOTÓN +
-document.querySelectorAll(".mas").forEach(btn => {
+function createItem(item) {
+  const card = document.createElement("article");
+  card.className = "commerce-cart-item";
+  card.dataset.productId = item.productId;
+  card.dataset.sellerId = item.sellerId;
 
-    btn.addEventListener("click", () => {
+  let media;
+  if (item.image) {
+    media = document.createElement("img");
+    media.src = item.image;
+    media.alt = item.name;
+    media.width = 110;
+    media.height = 90;
+  } else {
+    media = document.createElement("div");
+    media.className = "commerce-product-placeholder";
+    media.textContent = "[IMAGE REQUIRED]";
+    media.setAttribute("role", "img");
+    media.setAttribute("aria-label", `Image required for ${item.name}`);
+  }
 
-        const input = btn.previousElementSibling;
+  const copy = document.createElement("div");
+  copy.className = "commerce-cart-copy";
+  const title = document.createElement("h2");
+  title.textContent = item.name;
+  const seller = document.createElement("p");
+  seller.textContent = `Seller: ${item.sellerName}`;
+  const note = document.createElement("small");
+  note.textContent = item.maxQuantity
+    ? `Published stock limit: ${item.maxQuantity}. Price and stock will be revalidated before an order is created.`
+    : "Displayed price and stock will be revalidated before an order is created.";
+  copy.append(title, seller, note);
 
-        input.value = parseInt(input.value) + 1;
+  const controls = document.createElement("div");
+  controls.className = "commerce-cart-controls";
+  const label = document.createElement("label");
+  label.textContent = "Quantity";
+  const input = document.createElement("input");
+  input.type = "number";
+  input.min = "1";
+  input.max = String(item.maxQuantity || 999);
+  input.value = String(item.quantity);
+  input.setAttribute("aria-label", `Quantity for ${item.name}`);
+  const remove = document.createElement("button");
+  remove.type = "button";
+  remove.dataset.action = "remove";
+  remove.textContent = "Remove";
+  const price = document.createElement("strong");
+  price.textContent = formatMoney(item.displayPrice * item.quantity);
+  label.appendChild(input);
+  controls.append(label, price, remove);
+  card.append(media, copy, controls);
+  return card;
+}
 
-        actualizarCarrito();
+async function renderCart() {
+  const items = await getCart();
+  const summary = await getCartSummary();
+  list.replaceChildren(...items.map(createItem));
+  emptyState.hidden = items.length > 0;
+  list.hidden = items.length === 0;
+  subtotal.textContent = formatMoney(summary.displaySubtotal);
+  total.textContent = formatMoney(summary.displaySubtotal);
+  count.textContent = `${summary.itemCount} ${summary.itemCount === 1 ? "item" : "items"}`;
+  checkoutLink.setAttribute("aria-disabled", String(items.length === 0));
+  checkoutLink.classList.toggle("is-disabled", items.length === 0);
+}
 
-    });
-
+list?.addEventListener("change", async (event) => {
+  const input = event.target.closest('input[type="number"]');
+  if (!input) return;
+  const item = input.closest("[data-product-id]");
+  await updateCartQuantity(item.dataset.productId, item.dataset.sellerId, input.value);
+  await renderCart();
 });
 
-
-// BOTÓN -
-document.querySelectorAll(".menos").forEach(btn => {
-
-    btn.addEventListener("click", () => {
-
-        const input = btn.nextElementSibling;
-
-        if (parseInt(input.value) > 1) {
-
-            input.value = parseInt(input.value) - 1;
-
-            actualizarCarrito();
-
-        }
-
-    });
-
+list?.addEventListener("click", async (event) => {
+  const button = event.target.closest('[data-action="remove"]');
+  if (!button) return;
+  const item = button.closest("[data-product-id]");
+  button.disabled = true;
+  await removeCartItem(item.dataset.productId, item.dataset.sellerId);
+  await renderCart();
 });
 
-
-// CAMBIO MANUAL DE CANTIDAD
-quantities.forEach(input => {
-
-    input.addEventListener("change", () => {
-
-        if (input.value < 1) {
-            input.value = 1;
-        }
-
-        actualizarCarrito();
-
-    });
-
+document.getElementById("cartClearButton")?.addEventListener("click", async () => {
+  await clearCart();
+  await renderCart();
+  showFeedback("Your cart is empty.");
 });
 
-
-// CUANDO EL HEADER TERMINE DE CARGAR
-document.addEventListener("headerLoaded", () => {
-
-    console.log("Header listo → actualizando carrito");
-
-    actualizarCarrito();
-
+checkoutLink?.addEventListener("click", (event) => {
+  if (checkoutLink.classList.contains("is-disabled")) {
+    event.preventDefault();
+    showFeedback("Add at least one available product before checkout.", true);
+  }
 });
 
+document.addEventListener("hydronexisCartSyncError", (event) => {
+  showFeedback(event.detail.message, true);
+});
 
-// ACTUALIZAR EL RESTO DE LA PÁGINA
-actualizarCarrito();
+await initializeCart();
+await renderCart();

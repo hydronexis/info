@@ -81,57 +81,142 @@
               </li>
 
               <li class="rd-nav-item">
-                <a class="rd-nav-link" href="grid-blog.html">
-                  Tutorials
-                </a>
-              </li>
-
-              <li class="rd-nav-item">
                 <a class="rd-nav-link" href="what-we-offer.html">
                   Offerings
                 </a>
               </li>
 
-              <li class="rd-nav-item">
+              <li class="rd-nav-item" data-min-plan="blooming">
                 <a class="rd-nav-link" href="grid-shop.html">
                   Marketplace
                 </a>
               </li>
 
-              <li class="rd-nav-item">
-                <a class="rd-nav-link" href="maps.html">
-                  Maps
+              <li
+                class="rd-nav-item"
+                data-requires-permission="tutorials"
+                data-locked-preview
+              >
+                <a class="rd-nav-link" href="grid-blog.html">
+                  Tutorials
+                  <span class="plan-lock">🔒</span>
                 </a>
               </li>
+
+              <li
+                class="rd-nav-item"
+                data-requires-permission="maps"
+                data-locked-preview
+              >
+                <a class="rd-nav-link" href="maps.html">
+                  Maps
+                  <span class="plan-lock">🔒</span>
+                </a>
+              </li>
+
             </ul>
 
           </div>
 
 
-<!-- =========================================
-     ICONOS DEL NAVBAR
-========================================== -->
-<div class="rd-navbar-main-element">
+          <!-- =========================================
+              ICONOS DEL NAVBAR
+          ========================================== -->
+          <div class="rd-navbar-main-element">
 
-  <div class="navbar-actions">
-<!-- ===============================
-     USUARIO
-================================ -->
-<div class="navbar-action">
+            <div class="navbar-actions">
 
-    <a
-        class="navbar-user-link"
-        href="login.html"
-        aria-label="Iniciar sesion">
+              
+              <!-- ===============================
+              USUARIO / PERFIL
+          ================================ -->
+          <div class="navbar-action navbar-user">
 
-        <img
-            src="images/icon/user-icon.png"
-            alt="Usuario"
-            class="navbar-icon">
+            <button
+              class="navbar-user-trigger"
+              id="navbarUserTrigger"
+              type="button"
+              aria-label="Abrir perfil"
+              aria-expanded="false"
+            >
 
-    </a>
+              <span class="navbar-user-avatar-small" id="navbarUserAvatarSmall">
+                <img
+                  src="images/icon/user-icon.png"
+                  alt="Usuario"
+                  class="navbar-icon"
+                >
+              </span>
 
-</div>
+              <span class="navbar-user-arrow"></span>
+
+            </button>
+
+
+            <!-- DROPDOWN -->
+            <div class="navbar-user-menu" id="navbarUserMenu">
+
+              <p class="navbar-user-menu-label">
+                My Account
+              </p>
+
+              <a href="profile.html" class="navbar-user-profile">
+
+                <div
+                  class="navbar-user-avatar"
+                  id="navbarUserAvatar"
+                >
+                  HN
+                </div>
+
+                <div class="navbar-user-details">
+
+                  <strong
+                    class="navbar-user-name"
+                    id="navbarUserName"
+                  >
+                    Hydronexis User
+                  </strong>
+
+                  <span
+                    class="navbar-user-plan"
+                    id="navbarPlanBadge"
+                  >
+                    Sprout
+                  </span>
+
+                  <span
+                    class="navbar-user-email"
+                    id="navbarUserEmail"
+                  >
+                    usuario@email.com
+                  </span>
+
+                </div>
+
+              </a>
+
+              <div class="navbar-user-divider"></div>
+
+              <a
+                href="profile.html"
+                class="navbar-user-option"
+              >
+                My profile
+              </a>
+
+              <button
+                type="button"
+                id="navbarLogoutButton"
+                class="navbar-user-option navbar-logout"
+                hidden
+              >
+                Sign Out
+              </button>
+
+            </div>
+
+          </div>
 
     <!-- ===============================
          MENu HAMBURGUESA LATERAL
