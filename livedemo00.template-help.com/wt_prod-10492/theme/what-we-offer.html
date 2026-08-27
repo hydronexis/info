@@ -40,397 +40,218 @@
     <!-- ===========================
          ENCABEZADO
     ============================ -->
-
     <div class="hydro-plans-header hydro-reveal">
-
       <h1>Plans</h1>
-
+      <div class="hydro-title-ornament" aria-hidden="true">
+        <span></span>
+        <svg viewBox="0 0 48 28">
+          <path d="M24 25C18 14 12 8 3 6c1 9 8 17 21 19Z"></path>
+          <path d="M24 25c6-11 12-17 21-19-1 9-8 17-21 19Z"></path>
+        </svg>
+        <span></span>
+      </div>
     </div>
-
 
     <!-- ===========================
-         PLANES
+         TABLA COMPARATIVA
     ============================ -->
+    <div class="hydro-comparison-scroll hydro-reveal" data-delay="80">
+      <div class="hydro-comparison-table" role="table" aria-label="HydroNexis plan comparison">
 
-    <div class="hydro-plans-grid">
+        <!-- CABECERAS -->
+        <div class="hydro-cell hydro-feature-head" role="columnheader">
+          <span>Feature</span>
+        </div>
 
-      <!-- =============================================
-           SPROUT
-      ============================================== -->
+        <div class="hydro-cell hydro-plan-head hydro-sprout-head" role="columnheader">
+          <div class="hydro-plan-round-icon" aria-hidden="true">
+            <!-- REEMPLAZA ESTE ARCHIVO POR TU ICONO DE SPROUT -->
+            <img src="images/icono1.png" alt="">
+          </div>
+          <h2>Sprout</h2>
+          <p><span></span>FREE PLAN<span></span></p>
+        </div>
 
-      <article
-        class="hydro-plan-card hydro-plan-sprout hydro-reveal"
-        data-delay="0"
-      >
-
-        <div class="hydro-plan-top">
-
-          <div class="hydro-plan-icon" aria-hidden="true"></div>
-
-          <div>
-
-            <span class="hydro-plan-level">
-              FREE PLAN
-            </span>
-
-            <h2>
-              Sprout
-            </h2>
-
+        <div class="hydro-cell hydro-plan-head hydro-blooming-head" role="columnheader">
+          <div class="hydro-most-popular">
+            <span class="hydro-popular-dot" aria-hidden="true"></span>
+            <span>MOST POPULAR</span>
           </div>
 
-        </div>
-
-
-        <p class="hydro-plan-description">
-          Everyone can enter and buy products.
-        </p>
-
-
-        <div class="hydro-plan-divider"></div>
-
-
-        <div class="hydro-plan-access">
-
-          <span>
-            Access level
-          </span>
-
-          <strong>
-            Essential
-          </strong>
-
-        </div>
-
-
-        <ul class="hydro-features">
-
-          <li>
-
-            <span class="hydro-check">
-              <svg viewBox="0 0 24 24">
-                <path d="m5 12 4 4L19 6"></path>
-              </svg>
-            </span>
-
-            Browse and buy hydroponic products
-
-          </li>
-
-
-          <li>
-
-            <span class="hydro-check">
-              <svg viewBox="0 0 24 24">
-                <path d="m5 12 4 4L19 6"></path>
-              </svg>
-            </span>
-
-            Seeds, systems and more
-
-          </li>
-
-
-          <li>
-
-            <span class="hydro-check">
-              <svg viewBox="0 0 24 24">
-                <path d="m5 12 4 4L19 6"></path>
-              </svg>
-            </span>
-
-            Secure payments
-
-          </li>
-
-          <li>
-
-            <span class="hydro-check">
-              <svg viewBox="0 0 24 24">
-                <path d="m5 12 4 4L19 6"></path>
-              </svg>
-            </span>
-
-            Track your orders
-
-          </li>
-
-        </ul>
-
-        <a href="login.html?mode=signup" data-plan-choice="sprout" class="hydro-plan-button hydro-plan-button-outline" aria-label="Create a free Sprout account">
-          <span>FREE</span>
-        </a>
-
-        <div class="hydro-card-footer">
-          Perfect for discovering the HydroNexis ecosystem.
-        </div>
-
-      </article>
-
-
-      <!-- =============================================
-           BLOOMING
-      ============================================== -->
-
-      <article
-        class="hydro-plan-card hydro-plan-blooming hydro-plan-featured hydro-reveal"
-        data-delay="120"
-      >
-
-        <div class="hydro-most-popular">
-
-          <span class="hydro-popular-dot"></span>
-
-          MOST POPULAR
-
-        </div>
-
-
-        <div class="hydro-plan-top">
-
-          <div class="hydro-plan-icon hydro-plan-icon-featured" aria-hidden="true"></div>
-
-
-          <div>
-
-            <span class="hydro-plan-level">
-              COMMUNITY PLAN
-            </span>
-
-            <h2>
-              Blooming
-            </h2>
-
+          <div class="hydro-plan-round-icon hydro-plan-round-icon-gold" aria-hidden="true">
+            <!-- REEMPLAZA ESTE ARCHIVO POR TU ICONO DE BLOOMING -->
+            <img src="images/icono2.png" alt="">
           </div>
-
+          <h2>Blooming</h2>
+          <p><span></span>COMMUNITY PLAN<span></span></p>
         </div>
 
-
-        <p class="hydro-plan-description">
-          Be part of a community that helps you grow.
-        </p>
-
-
-        <div class="hydro-plan-divider"></div>
-
-
-        <div class="hydro-plan-access">
-
-          <span>
-            Access level
-          </span>
-
-          <strong>
-            Community
-          </strong>
-
-        </div>
-
-
-        <ul class="hydro-features">
-
-          <li>
-
-            <span class="hydro-check">
-              <svg viewBox="0 0 24 24">
-                <path d="m5 12 4 4L19 6"></path>
-              </svg>
-            </span>
-
-            Buy &amp; exchange products
-
-          </li>
-
-
-          <li>
-
-            <span class="hydro-check">
-              <svg viewBox="0 0 24 24">
-                <path d="m5 12 4 4L19 6"></path>
-              </svg>
-            </span>
-
-            Join user community
-
-          </li>
-
-
-          <li>
-
-            <span class="hydro-check">
-              <svg viewBox="0 0 24 24">
-                <path d="m5 12 4 4L19 6"></path>
-              </svg>
-            </span>
-
-            Tutorials, guides &amp; courses
-
-          </li>
-
-
-          <li>
-
-            <span class="hydro-check">
-              <svg viewBox="0 0 24 24">
-                <path d="m5 12 4 4L19 6"></path>
-              </svg>
-            </span>
-
-            Interactive plant growth tracking
-
-          </li>
-
-
-        </ul>
-
-        <a href="payment.html?plan=blooming" data-plan-choice="blooming" class="hydro-plan-button hydro-plan-button-main" aria-label="Choose the Blooming plan for B/. 90.00">
-          <span>B/. 90.00</span>
-        </a>
-
-        <div class="hydro-card-footer hydro-card-footer-featured">
-
-          <span class="hydro-community-indicator"></span>
-
-          Grow with tools, learning and community.
-
-        </div>
-
-      </article>
-
-
-      <!-- =============================================
-           GO GREEN
-      ============================================== -->
-
-      <article
-        class="hydro-plan-card hydro-plan-go-green hydro-reveal"
-        data-delay="240"
-      >
-
-        <div class="hydro-plan-top">
-
-          <div class="hydro-plan-icon" aria-hidden="true"></div>
-
-
-          <div>
-
-            <span class="hydro-plan-level">
-              PREMIUM PLAN
-            </span>
-
-            <h2>
-              Go Green
-            </h2>
-
+        <div class="hydro-cell hydro-plan-head hydro-green-head" role="columnheader">
+          <div class="hydro-plan-round-icon hydro-plan-round-icon-light" aria-hidden="true">
+            <!-- REEMPLAZA ESTE ARCHIVO POR TU ICONO DE GO GREEN -->
+            <img src="images/icono3.png" alt="">
           </div>
-
+          <h2>Go Green</h2>
+          <p><span></span>PREMIUM PLAN<span></span></p>
         </div>
 
+        <!-- FILA 1 -->
+        <div class="hydro-cell hydro-feature-cell" role="rowheader">
+          <span class="hydro-feature-number">1</span>
+          <span>Buy Product</span>
+        </div>
+        <div class="hydro-cell hydro-status hydro-sprout-cell"><span class="hydro-yes" aria-label="Included">✓</span></div>
+        <div class="hydro-cell hydro-status hydro-blooming-cell"><span class="hydro-yes" aria-label="Included">✓</span></div>
+        <div class="hydro-cell hydro-status hydro-green-cell"><span class="hydro-yes" aria-label="Included">✓</span></div>
 
-        <p class="hydro-plan-description">
-          The complete hydroponic experience. We guide you every step of the way.
-        </p>
+        <!-- FILA 2 -->
+        <div class="hydro-cell hydro-feature-cell" role="rowheader">
+          <span class="hydro-feature-number">2</span>
+          <span>Buy hydroponic systems</span>
+        </div>
+        <div class="hydro-cell hydro-status hydro-sprout-cell"><span class="hydro-yes" aria-label="Included">✓</span></div>
+        <div class="hydro-cell hydro-status hydro-blooming-cell"><span class="hydro-yes" aria-label="Included">✓</span></div>
+        <div class="hydro-cell hydro-status hydro-green-cell"><span class="hydro-yes" aria-label="Included">✓</span></div>
 
+        <!-- FILA 3 -->
+        <div class="hydro-cell hydro-feature-cell" role="rowheader">
+          <span class="hydro-feature-number">3</span>
+          <span>Order Tracking</span>
+        </div>
+        <div class="hydro-cell hydro-status hydro-sprout-cell"><span class="hydro-yes" aria-label="Included">✓</span></div>
+        <div class="hydro-cell hydro-status hydro-blooming-cell"><span class="hydro-yes" aria-label="Included">✓</span></div>
+        <div class="hydro-cell hydro-status hydro-green-cell"><span class="hydro-yes" aria-label="Included">✓</span></div>
 
-        <div class="hydro-plan-divider"></div>
+        <!-- FILA 4 -->
+        <div class="hydro-cell hydro-feature-cell" role="rowheader">
+          <span class="hydro-feature-number">4</span>
+          <span>Hydroponic systems</span>
+        </div>
+        <div class="hydro-cell hydro-status hydro-sprout-cell"><span class="hydro-no" aria-label="Not included">—</span></div>
+        <div class="hydro-cell hydro-status hydro-blooming-cell"><span class="hydro-yes" aria-label="Included">✓</span></div>
+        <div class="hydro-cell hydro-status hydro-green-cell"><span class="hydro-yes" aria-label="Included">✓</span></div>
 
+        <!-- FILA 5 -->
+        <div class="hydro-cell hydro-feature-cell" role="rowheader">
+          <span class="hydro-feature-number">5</span>
+          <span>Exchange Products</span>
+        </div>
+        <div class="hydro-cell hydro-status hydro-sprout-cell"><span class="hydro-no" aria-label="Not included">—</span></div>
+        <div class="hydro-cell hydro-status hydro-blooming-cell"><span class="hydro-yes" aria-label="Included">✓</span></div>
+        <div class="hydro-cell hydro-status hydro-green-cell"><span class="hydro-yes" aria-label="Included">✓</span></div>
 
-        <div class="hydro-plan-access">
+        <!-- FILA 6 -->
+        <div class="hydro-cell hydro-feature-cell" role="rowheader">
+          <span class="hydro-feature-number">6</span>
+          <span>Community</span>
+        </div>
+        <div class="hydro-cell hydro-status hydro-sprout-cell"><span class="hydro-no" aria-label="Not included">—</span></div>
+        <div class="hydro-cell hydro-status hydro-blooming-cell"><span class="hydro-yes" aria-label="Included">✓</span></div>
+        <div class="hydro-cell hydro-status hydro-green-cell"><span class="hydro-yes" aria-label="Included">✓</span></div>
 
-          <span>
-            Access level
-          </span>
+        <!-- FILA 7 -->
+        <div class="hydro-cell hydro-feature-cell" role="rowheader">
+          <span class="hydro-feature-number">7</span>
+          <span>Tutorials, guides &amp; courses</span>
+        </div>
+        <div class="hydro-cell hydro-status hydro-sprout-cell"><span class="hydro-no" aria-label="Not included">—</span></div>
+        <div class="hydro-cell hydro-status hydro-blooming-cell"><span class="hydro-yes" aria-label="Included">✓</span></div>
+        <div class="hydro-cell hydro-status hydro-green-cell"><span class="hydro-yes" aria-label="Included">✓</span></div>
 
-          <strong>
-            Premium
-          </strong>
+        <!-- FILA 8 -->
+        <div class="hydro-cell hydro-feature-cell" role="rowheader">
+          <span class="hydro-feature-number">8</span>
+          <span>Interactive maps</span>
+        </div>
+        <div class="hydro-cell hydro-status hydro-sprout-cell"><span class="hydro-no" aria-label="Not included">—</span></div>
+        <div class="hydro-cell hydro-status hydro-blooming-cell"><span class="hydro-yes" aria-label="Included">✓</span></div>
+        <div class="hydro-cell hydro-status hydro-green-cell"><span class="hydro-yes" aria-label="Included">✓</span></div>
 
+        <!-- FILA 9 -->
+        <div class="hydro-cell hydro-feature-cell" role="rowheader">
+          <span class="hydro-feature-number">9</span>
+          <span>Sell Products</span>
+        </div>
+        <div class="hydro-cell hydro-status hydro-sprout-cell"><span class="hydro-no" aria-label="Not included">—</span></div>
+        <div class="hydro-cell hydro-status hydro-blooming-cell"><span class="hydro-no" aria-label="Not included">—</span></div>
+        <div class="hydro-cell hydro-status hydro-green-cell"><span class="hydro-yes" aria-label="Included">✓</span></div>
+
+        <!-- FILA 10 -->
+        <div class="hydro-cell hydro-feature-cell" role="rowheader">
+          <span class="hydro-feature-number">10</span>
+          <span>Plant Growth Tracking</span>
+        </div>
+        <div class="hydro-cell hydro-status hydro-sprout-cell"><span class="hydro-no" aria-label="Not included">—</span></div>
+        <div class="hydro-cell hydro-status hydro-blooming-cell"><span class="hydro-no" aria-label="Not included">—</span></div>
+        <div class="hydro-cell hydro-status hydro-green-cell"><span class="hydro-yes" aria-label="Included">✓</span></div>
+
+        <!-- FILA 11 -->
+        <div class="hydro-cell hydro-feature-cell" role="rowheader">
+          <span class="hydro-feature-number">11</span>
+          <span>Setup &amp; maintenance</span>
+        </div>
+        <div class="hydro-cell hydro-status hydro-sprout-cell"><span class="hydro-no" aria-label="Not included">—</span></div>
+        <div class="hydro-cell hydro-status hydro-blooming-cell"><span class="hydro-no" aria-label="Not included">—</span></div>
+        <div class="hydro-cell hydro-status hydro-green-cell"><span class="hydro-yes" aria-label="Included">✓</span></div>
+
+        <!-- FILA 12 -->
+        <div class="hydro-cell hydro-feature-cell hydro-feature-last" role="rowheader">
+          <span class="hydro-feature-number">12</span>
+          <span>Solar hydroponic system</span>
+        </div>
+        <div class="hydro-cell hydro-status hydro-sprout-cell"><span class="hydro-no" aria-label="Not included">—</span></div>
+        <div class="hydro-cell hydro-status hydro-blooming-cell"><span class="hydro-no" aria-label="Not included">—</span></div>
+        <div class="hydro-cell hydro-status hydro-green-cell"><span class="hydro-yes" aria-label="Included">✓</span></div>
+
+        <!-- PRECIOS / CTA -->
+        <div class="hydro-cell hydro-feature-footer" aria-hidden="true"></div>
+
+        <div class="hydro-cell hydro-plan-footer hydro-sprout-footer">
+          <a
+            href="login.html?mode=signup"
+            data-plan-choice="sprout"
+            class="hydro-plan-button hydro-plan-button-sprout"
+            aria-label="Create a free Sprout account"
+          >
+            FREE
+          </a>
         </div>
 
-
-        <ul class="hydro-features">
-
-          <li>
-
-            <span class="hydro-check">
-              <svg viewBox="0 0 24 24">
-                <path d="m5 12 4 4L19 6"></path>
-              </svg>
-            </span>
-
-            Everything included in Blooming
-
-          </li>
-
-
-          <li>
-
-            <span class="hydro-check">
-              <svg viewBox="0 0 24 24">
-                <path d="m5 12 4 4L19 6"></path>
-              </svg>
-            </span>
-
-            Full Hardware &amp; Solar System
-
-          </li>
-
-
-          <li>
-
-            <span class="hydro-check">
-              <svg viewBox="0 0 24 24">
-                <path d="m5 12 4 4L19 6"></path>
-              </svg>
-            </span>
-
-            Setup &amp; Maintenance Included
-
-          </li>
-
-
-          <li>
-
-            <span class="hydro-check">
-              <svg viewBox="0 0 24 24">
-                <path d="m5 12 4 4L19 6"></path>
-              </svg>
-            </span>
-
-            Personalized Mentoring &amp; Guide
-
-          </li>
-
-        </ul>
-
-        <a href="payment.html?plan=go_green" data-plan-choice="go_green" class="hydro-plan-button hydro-plan-button-outline" aria-label="Choose the Go Green plan for B/. 149.00">
-          <span>B/. 149.00</span>
-        </a>
-
-        <div class="hydro-card-footer">
-          Full access to the Hydronexis experience.
+        <div class="hydro-cell hydro-plan-footer hydro-blooming-footer">
+          <a
+            href="payment.html?plan=blooming"
+            data-plan-choice="blooming"
+            class="hydro-plan-button hydro-plan-button-blooming"
+            aria-label="Choose the Blooming plan for B/. 90.00"
+          >
+            B/. 90.00
+          </a>
         </div>
 
-      </article>
+        <div class="hydro-cell hydro-plan-footer hydro-green-footer">
+          <a
+            href="payment.html?plan=go_green"
+            data-plan-choice="go_green"
+            class="hydro-plan-button hydro-plan-button-green"
+            aria-label="Choose the Go Green plan for B/. 149.00"
+          >
+            B/. 149.00
+          </a>
+        </div>
 
+      </div>
     </div>
-
 
     <!-- =============================================
          FRASE FINAL
     ============================================== -->
-
     <div class="hydro-plans-note hydro-reveal">
-
       <div class="hydro-note-line"></div>
-
       <p>
         <strong>Grow smart.</strong>
         Live greener.
       </p>
-
       <div class="hydro-note-line"></div>
-
     </div>
 
   </div>
