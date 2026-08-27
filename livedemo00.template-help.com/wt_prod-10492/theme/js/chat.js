@@ -9,7 +9,14 @@ const closeChatbot = document.querySelector("#close-chatbot");
 const chatForm = document.querySelector(".chat-form");
 
 const BOT_AVATAR = "images/Nexis_bot.png";
-const API_URL = "http://127.0.0.1:5000/chat";
+
+const IS_LOCAL =
+    window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1";
+
+const API_URL = IS_LOCAL
+    ? "http://127.0.0.1:5000/chat"
+    : "https://hydronexis-chatbot.onrender.com/chat";
 
 const userData = {
     message: "",
