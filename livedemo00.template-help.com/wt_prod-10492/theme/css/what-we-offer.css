@@ -382,26 +382,83 @@
   background: linear-gradient(145deg, #d9f58d, #a9d75c);
 }
 
+/* =====================================================
+   MOST POPULAR — BLOOMING
+===================================================== */
+.hydro-popular-dot {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #fdf7e8 100%
+  );
+
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 72%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.14),
+    0 3px 8px rgba(255, 255, 255, 0.16);
+
+  position: relative;
+  left: -6px;
+}
+
 .hydro-most-popular {
   position: absolute;
-  top: -29px;
+
+  /* Lo subimos para que NO tape el icono */
+  top: -58px;
   left: 50%;
-  z-index: 5;
+  z-index: 10;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  min-width: 232px;
-  min-height: 42px;
-  padding: 8px 22px;
-  border: 1px solid #b97008;
-  border-radius: 0 0 13px 13px;
-  color: #fff;
-  background: linear-gradient(180deg, #eea31d 0%, #d3800a 100%);
-  box-shadow: 0 8px 16px rgba(130, 74, 5, 0.28);
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: .045em;
+
+  min-width: 170px;
+  height: 34px;
+  padding: 0 20px;
+
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #d88b15 0%,
+      #e99a19 50%,
+      #c9790c 100%
+    );
+
+  box-shadow:
+    0 8px 18px rgba(130, 74, 5, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+
+  font-family: "Helvetica", Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.10em;
+
+  white-space: nowrap;
+
   transform: translateX(-50%);
 }
 
