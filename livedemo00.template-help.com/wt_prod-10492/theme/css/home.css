@@ -1,8 +1,10 @@
 @font-face {
     font-family: "Optima";
-    src: url("../fonts/OPTIMA.TTF") format("truetype");
+    src: url("../fonts/Optima.woff") format("woff"),
+         url("../fonts/OPTIMA.TTF") format("truetype");
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
@@ -15,18 +17,18 @@
 
 
 body{
-    font-family:'Optima';
+    font-family: "Optima", "Segoe UI", Tahoma, Arial, sans-serif;
 }
 
 h1,h2,h3,h4,h5,h6{
-    font-family:'Optima';
+    font-family: "Optima", "Segoe UI", Tahoma, Arial, sans-serif;
 }
 
 .product-price,
 .product-price-old,/* Fuente general segura para textos y números */
 html,
 body {
-    font-family: "Optima", Arial, Helvetica, sans-serif !important;
+    font-family: "Optima", "Segoe UI", Tahoma, Arial, sans-serif !important;
 }
 
 /* Títulos */
@@ -36,7 +38,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Optima", Georgia, serif !important;
+    font-family: "Optima", "Segoe UI", Tahoma, Arial, sans-serif !important;
 }
 
 /* Teléfonos, horarios, correos y precios */
@@ -49,7 +51,7 @@ h6 {
 .product-creative-price,
 .product-dawn-price,
 .product-terri-price {
-    font-family: Arial, Helvetica, sans-serif !important;
+    font-family: "Optima", "Segoe UI", Tahoma, Arial, sans-serif !important;
 }
 .product-creative-price,
 .product-creative-price-old,
@@ -58,7 +60,7 @@ h6 {
 .product-minimal-price,
 .single-product-price,
 .pricing-classic-price {
-    font-family: Arial, Helvetica, sans-serif !important;
+    font-family: "Optima", "Segoe UI", Tahoma, Arial, sans-serif !important;
     font-variant-numeric: normal;
     font-feature-settings: normal;
 }
@@ -1219,4 +1221,24 @@ h6 {
     animation: none !important;
   }
 
+}
+
+/* Tipografia global HYDRONEXIS. El navegador usa los respaldos por caracter
+   cuando Optima no contiene una tilde, una enie u otro glifo. */
+:root {
+  --hydronexis-font-family: "Optima", "Segoe UI", Tahoma, Arial, sans-serif;
+}
+
+html,
+body,
+button,
+input,
+select,
+textarea,
+optgroup {
+  font-family: var(--hydronexis-font-family) !important;
+}
+
+body *:not(.fa):not([class^="fa-"]):not([class*=" fa-"]):not(.mdi):not([class^="mdi-"]):not([class*=" mdi-"]):not(.material-symbols-rounded):not([class^="fl-"]):not([class*=" fl-"]):not(.lg-icon):not(.owl-video-play-icon) {
+  font-family: var(--hydronexis-font-family) !important;
 }
