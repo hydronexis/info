@@ -5820,10 +5820,7 @@ textarea.textarea-lg {
 	display: none;
 }
 
-.breadcrumbs-custom-path a:hover,
-.breadcrumbs-custom-path li.active {
-	color: #151515;
-}
+
 
 * + .breadcrumbs-custom-path {
 	margin-top: 14px;
