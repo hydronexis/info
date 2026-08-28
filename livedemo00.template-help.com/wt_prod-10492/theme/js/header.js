@@ -26,6 +26,90 @@ const loadScriptOnce = (src) => new Promise((resolve, reject) => {
 
 let renderedSessionKey = null;
 
+
+/* =====================================================
+   DROPDOWN EXPLORE
+===================================================== */
+
+function initExploreDropdown(target) {
+
+  const exploreNav =
+    target.querySelector("#exploreNavItem");
+
+  const exploreTrigger =
+    target.querySelector("#exploreTrigger");
+
+  const exploreMenu =
+    target.querySelector("#exploreMenu");
+
+
+  if (!exploreNav || !exploreTrigger || !exploreMenu) {
+
+    console.warn(
+      "Explore dropdown: no se encontraron los elementos."
+    );
+
+    return;
+
+  }
+
+
+  const closeExplore = () => {
+
+    exploreNav.classList.remove("explore-open");
+
+    exploreTrigger.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+  };
+
+
+  exploreTrigger.addEventListener(
+    "click",
+    (event) => {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      const isOpen =
+        exploreNav.classList.toggle("explore-open");
+
+      exploreTrigger.setAttribute(
+        "aria-expanded",
+        String(isOpen)
+      );
+
+    }
+  );
+
+
+  document.addEventListener(
+    "click",
+    (event) => {
+
+      if (!exploreNav.contains(event.target)) {
+        closeExplore();
+      }
+
+    }
+  );
+
+
+  document.addEventListener(
+    "keydown",
+    (event) => {
+
+      if (event.key === "Escape") {
+        closeExplore();
+      }
+
+    }
+  );
+
+}
+
 function setCurrentNavigation(target) {
   const currentFile = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
   const marketplaceChildren = new Set([
@@ -40,15 +124,60 @@ function setCurrentNavigation(target) {
       : currentFile;
 
   target.querySelectorAll(".rd-navbar-nav .rd-nav-item").forEach((item) => item.classList.remove("active"));
-  target.querySelectorAll(".rd-navbar-nav .rd-nav-link").forEach((link) => {
+  target
+  .querySelectorAll(".rd-navbar-nav .rd-nav-link")
+  .forEach((link) => {
+
     link.removeAttribute("aria-current");
-    const hrefFile = new URL(link.getAttribute("href"), document.baseURI)
-      .pathname.split("/").pop().toLowerCase();
-    if (hrefFile === currentNavFile) {
-      link.closest(".rd-nav-item")?.classList.add("active");
-      link.setAttribute("aria-current", "page");
+
+    const href =
+      link.getAttribute("href");
+
+    if (!href) {
+      return;
     }
+
+    const hrefFile =
+      new URL(href, document.baseURI)
+        .pathname
+        .split("/")
+        .pop()
+        .toLowerCase();
+
+    if (hrefFile === currentNavFile) {
+
+      link
+        .closest(".rd-nav-item")
+        ?.classList.add("active");
+
+      link.setAttribute(
+        "aria-current",
+        "page"
+      );
+
+    }
+
   });
+
+  const explorePages = new Set([
+    "grid-shop.html",
+    "maps.html",
+    "community.html",
+    "exchange.html",
+    "seller.html",
+    "grid-blog.html"
+  ]);
+
+  if (explorePages.has(currentNavFile)) {
+    const exploreNav =
+      target.querySelector("#exploreNavItem");
+
+    const exploreLink =
+      exploreNav?.querySelector(":scope > .rd-nav-link");
+
+    exploreNav?.classList.add("active");
+    exploreLink?.setAttribute("aria-current", "page");
+  }
 }
 
 document.addEventListener("hydronexisSessionChanged", (event) => {
@@ -79,6 +208,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     target.innerHTML = await response.text();
     headerInserted = true;
     setCurrentNavigation(target);
+    initExploreDropdown(target);
   } catch (error) {
     console.error("Error cargando el header:", error);
   }
@@ -99,7 +229,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     const {
       getCurrentUserPlan,
       applyPlanPermissions,
-      signOutCurrentUser
+      signOutCurrentUser,
+      getRequiredPlanForPermission,
+      getPlanLabel
     } = await import("./plan-manager.js");
 
     const session = await getCurrentUserPlan();
@@ -112,6 +244,56 @@ document.addEventListener("DOMContentLoaded", async () => {
       `${session.user?.uid || "guest"}:${session.plan}:${session.status}`;
 
     applyPlanPermissions(currentPlan, target);
+
+    /* =====================================================
+      LINKS BLOQUEADOS POR PLAN
+    ===================================================== */
+
+    target
+      .querySelectorAll("[data-requires-permission]")
+      .forEach((link) => {
+
+        const permission =
+          link.dataset.requiresPermission;
+
+        const requiredPlan =
+          getRequiredPlanForPermission(permission);
+
+        if (
+          link.classList.contains("is-plan-locked") &&
+          requiredPlan
+        ) {
+
+          const requiredPlanLabel =
+            getPlanLabel(requiredPlan);
+
+          link.title =
+            `Available with ${requiredPlanLabel}`;
+
+        }
+
+        link.addEventListener("click", (event) => {
+
+          if (!link.classList.contains("is-plan-locked")) {
+            return;
+          }
+
+          event.preventDefault();
+          event.stopPropagation();
+
+          const plan =
+            getRequiredPlanForPermission(permission);
+
+          const label =
+            getPlanLabel(plan);
+
+          console.log(
+            `${permission} requires ${label}`
+          );
+
+        });
+
+      });
 
 
     /* =====================================================

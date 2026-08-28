@@ -355,6 +355,46 @@ form.active {
   transform: translateY(-1px);
 }
 
+/* =========================================
+   PASSWORD VISIBILITY
+========================================= */
+
+.password-box {
+  position: relative;
+}
+
+.password-box input {
+  padding-right: 60px;
+}
+
+.password-toggle {
+  position: absolute;
+
+  top: 50%;
+  right: 20px;
+
+  transform: translateY(-50%);
+
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+
+  font-size: 18px;
+
+  padding: 5px;
+
+  opacity: 0.65;
+}
+
+.password-toggle:hover {
+  opacity: 1;
+}
+
+.password-toggle:focus {
+  outline: none;
+}
+
 /* ================================
    BOTÓN PRINCIPAL
 ================================ */
