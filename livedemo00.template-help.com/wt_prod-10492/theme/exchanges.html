@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" class="plan-guard-pending">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product Exchange | HYDRONEXIS</title>
+  <link rel="icon" href="images/futurehydri.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/account.css">
+  <link rel="stylesheet" href="css/commerce.css">
+  <style>.plan-guard-pending body { visibility: hidden; }</style>
+  <script type="module" src="js/plan-guard.js"></script>
+</head>
+<body class="account-page" data-required-permission="exchange">
+  <div class="page">
+    <div id="header"></div>
+    <main class="account-main">
+      <section class="account-hero">
+        <h1>Product Exchange</h1>
+        <p>Blooming and Go Green members can register exchange-only items and manage requests without receiving Seller permissions.</p>
+      </section>
+
+      <p class="account-feedback" id="exchangeFeedback" role="status" hidden></p>
+      <div class="account-grid">
+        <aside class="account-card">
+          <section class="account-section">
+            <h2>Add an Exchange Item</h2>
+            <form class="account-form" id="exchangeItemForm">
+              <label for="exchangeItemName">Item Name
+                <input id="exchangeItemName" name="name" type="text" minlength="2" maxlength="100" required>
+              </label>
+              <label for="exchangeItemDescription">Description
+                <textarea id="exchangeItemDescription" name="description" rows="4" maxlength="500" required></textarea>
+              </label>
+              <p class="account-feedback">Image upload is not configured. Add the approved asset later; no image will be generated.</p>
+              <button class="button button-secondary button-zakaria" type="submit">Register for Exchange</button>
+            </form>
+          </section>
+
+          <section class="account-section">
+            <h2>Start an Exchange</h2>
+            <form class="account-form" id="exchangeRequestForm">
+              <label for="offeredItem">Your Offered Item
+                <select id="offeredItem" name="offeredItem" required></select>
+              </label>
+              <label for="requestedItem">Requested Item
+                <select id="requestedItem" name="requestedItem" required></select>
+              </label>
+              <label for="exchangeMessage">Message
+                <textarea id="exchangeMessage" name="message" rows="4" maxlength="500"></textarea>
+              </label>
+              <button class="button button-secondary button-zakaria" id="exchangeSubmitButton" type="submit">Send Request</button>
+            </form>
+          </section>
+        </aside>
+
+        <section class="account-card" aria-labelledby="myExchangesTitle">
+          <h2 id="myExchangesTitle">My Exchanges</h2>
+          <div class="account-list" id="exchangeList" aria-live="polite">
+            <p class="account-empty">Loading exchanges...</p>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script src="js/header.js"></script>
+  <script type="module" src="js/exchanges.js"></script>
+</body>
+</html>
