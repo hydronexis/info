@@ -11084,7 +11084,7 @@ html.tablet .ui-to-top {
 .rd-navbar-static .rd-nav-item > .rd-navbar-submenu-toggle {
 	display: none;
 	margin-left: 4px;
-	font-family: "Material Design Icons";
+	font-family: "Material Design Icons" !important;
 	font-size: 16px;
 	cursor: pointer;
 }
@@ -18784,12 +18784,13 @@ html:not(.ie-11):not(.ios) .parallax-disabled {
 	height: 38px;
 	font-size: 14px;
 	line-height: 38px;
-	font-weight: 400;
-	font-family: "Material Design Icons";
+	font-weight: 700;
+	font-family: "Segoe UI", Arial, sans-serif !important;
 	cursor: pointer;
-	color: #151515;
+	color: #1e3b17;
 	border-radius: 0;
 	transition: .3s all ease;
+	user-select: none;
 }
 
 .stepper-arrow:hover {
@@ -18801,7 +18802,7 @@ html:not(.ie-11):not(.ios) .parallax-disabled {
 }
 
 .stepper-arrow.up:before {
-	content: '\f504';
+	content: "+";
 }
 
 .stepper-arrow.down {
@@ -18809,7 +18810,15 @@ html:not(.ie-11):not(.ios) .parallax-disabled {
 }
 
 .stepper-arrow.down:before {
-	content: '\f465';
+	content: "\2212";
+}
+
+.stepper-arrow::before {
+	display: block;
+	font-family: "Segoe UI", Arial, sans-serif !important;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: inherit;
 }
 
 .stepper.disabled .stepper-arrow {
@@ -19887,6 +19896,6 @@ optgroup {
   font-family: var(--hydronexis-font-family) !important;
 }
 
-body *:not(.fa):not([class^="fa-"]):not([class*=" fa-"]):not(.mdi):not([class^="mdi-"]):not([class*=" mdi-"]):not(.material-symbols-rounded):not([class^="fl-"]):not([class*=" fl-"]):not(.lg-icon):not(.owl-video-play-icon) {
+body :where(*:not(.fa):not([class^="fa-"]):not([class*=" fa-"]):not(.mdi):not([class^="mdi-"]):not([class*=" mdi-"]):not(.material-symbols-rounded):not([class^="fl-"]):not([class*=" fl-"]):not(.lg-icon):not(.owl-video-play-icon)) {
   font-family: var(--hydronexis-font-family) !important;
 }
