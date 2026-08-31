@@ -9,6 +9,27 @@
     src: url('../fonts/OPTIMA.TTF');
 }
 
+/*
+ * Respaldo por caracter para espanol y simbolos Unicode.
+ * Al estar limitado con unicode-range, las letras comunes siguen usando
+ * Optima y solo las tildes, la enie y otros caracteres especiales usan
+ * una fuente con glifos completos.
+ */
+@font-face {
+    font-family: 'Hydronexis Special Characters';
+    src: local('Segoe UI'),
+         url('../fonts/Helvetica.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    unicode-range:
+        U+0080-024F,
+        U+0300-036F,
+        U+1E00-1EFF,
+        U+2000-206F,
+        U+20A0-20CF;
+}
+
 @font-face {
     font-family: 'Helvetica';
     src: url('../fonts/helvetica-light-587ebe5a59211.ttf')

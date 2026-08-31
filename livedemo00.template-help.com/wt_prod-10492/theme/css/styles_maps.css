@@ -12,6 +12,21 @@
 }
 
 @font-face {
+    font-family: "Hydronexis Special Characters";
+    src: local("Segoe UI"),
+         url("../fonts/Helvetica.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    unicode-range:
+        U+0080-024F,
+        U+0300-036F,
+        U+1E00-1EFF,
+        U+2000-206F,
+        U+20A0-20CF;
+}
+
+@font-face {
     font-family: "Optima Italic";
     src: url("../fonts/Optima_Italic.ttf") format("truetype");
     font-weight: normal;
@@ -694,7 +709,7 @@ select:focus {
 
 /* Tipografia global de las pantallas de mapas. */
 :root {
-  --hydronexis-font-family: "Optima", "Segoe UI", Tahoma, Arial, sans-serif;
+  --hydronexis-font-family: "Hydronexis Special Characters", "Optima", "Segoe UI", Tahoma, Arial, sans-serif;
 }
 
 html,
@@ -707,6 +722,6 @@ optgroup {
   font-family: var(--hydronexis-font-family) !important;
 }
 
-body *:not(.fa):not([class^="fa-"]):not([class*=" fa-"]):not(.mdi):not([class^="mdi-"]):not([class*=" mdi-"]):not(.material-symbols-rounded):not([class^="fl-"]):not([class*=" fl-"]):not(.lg-icon):not(.owl-video-play-icon) {
+body *:not(.fa):not([class^="fa-"]):not([class*=" fa-"]):not(.mdi):not([class^="mdi-"]):not([class*=" mdi-"]):not(.material-symbols-rounded):not(.material-symbols-outlined):not([class^="fl-"]):not([class*=" fl-"]):not(.lg-icon):not(.owl-video-play-icon) {
   font-family: var(--hydronexis-font-family) !important;
 }

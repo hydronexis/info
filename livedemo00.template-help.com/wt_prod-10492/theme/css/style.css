@@ -19879,11 +19879,11 @@ html#ecwid_html body#ecwid_body .ec-size.ec-size--m .ec-store .details-gallery__
 
 /* ===============================================================
    TIPOGRAFIA GLOBAL HYDRONEXIS
-   Optima es la fuente principal. Los respaldos se usan por glifo
-   para conservar correctamente tildes, enie y caracteres especiales.
+   Optima se mantiene para las letras comunes. La primera familia esta
+   limitada por unicode-range y solo atiende caracteres especiales.
 ================================================================ */
 :root {
-  --hydronexis-font-family: "Optima", "Segoe UI", Tahoma, Arial, sans-serif;
+  --hydronexis-font-family: "Hydronexis Special Characters", "Optima", "Segoe UI", Tahoma, Arial, sans-serif;
 }
 
 html,
@@ -19896,6 +19896,6 @@ optgroup {
   font-family: var(--hydronexis-font-family) !important;
 }
 
-body :where(*:not(.fa):not([class^="fa-"]):not([class*=" fa-"]):not(.mdi):not([class^="mdi-"]):not([class*=" mdi-"]):not(.material-symbols-rounded):not([class^="fl-"]):not([class*=" fl-"]):not(.lg-icon):not(.owl-video-play-icon)) {
+body :where(*:not(.fa):not([class^="fa-"]):not([class*=" fa-"]):not(.mdi):not([class^="mdi-"]):not([class*=" mdi-"]):not(.material-symbols-rounded):not(.material-symbols-outlined):not([class^="fl-"]):not([class*=" fl-"]):not(.lg-icon):not(.owl-video-play-icon)) {
   font-family: var(--hydronexis-font-family) !important;
 }

@@ -17,18 +17,18 @@
 
 
 body{
-    font-family: "Optima", "Segoe UI", Tahoma, Arial, sans-serif;
+    font-family: "Hydronexis Special Characters", "Optima", "Segoe UI", Tahoma, Arial, sans-serif;
 }
 
 h1,h2,h3,h4,h5,h6{
-    font-family: "Optima", "Segoe UI", Tahoma, Arial, sans-serif;
+    font-family: "Hydronexis Special Characters", "Optima", "Segoe UI", Tahoma, Arial, sans-serif;
 }
 
 .product-price,
 .product-price-old,/* Fuente general segura para textos y números */
 html,
 body {
-    font-family: "Optima", "Segoe UI", Tahoma, Arial, sans-serif !important;
+    font-family: "Hydronexis Special Characters", "Optima", "Segoe UI", Tahoma, Arial, sans-serif !important;
 }
 
 /* Títulos */
@@ -38,7 +38,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Optima", "Segoe UI", Tahoma, Arial, sans-serif !important;
+    font-family: "Hydronexis Special Characters", "Optima", "Segoe UI", Tahoma, Arial, sans-serif !important;
 }
 
 /* Teléfonos, horarios, correos y precios */
@@ -51,7 +51,7 @@ h6 {
 .product-creative-price,
 .product-dawn-price,
 .product-terri-price {
-    font-family: "Optima", "Segoe UI", Tahoma, Arial, sans-serif !important;
+    font-family: "Hydronexis Special Characters", "Optima", "Segoe UI", Tahoma, Arial, sans-serif !important;
 }
 .product-creative-price,
 .product-creative-price-old,
@@ -60,7 +60,7 @@ h6 {
 .product-minimal-price,
 .single-product-price,
 .pricing-classic-price {
-    font-family: "Optima", "Segoe UI", Tahoma, Arial, sans-serif !important;
+    font-family: "Hydronexis Special Characters", "Optima", "Segoe UI", Tahoma, Arial, sans-serif !important;
     font-variant-numeric: normal;
     font-feature-settings: normal;
 }
@@ -1223,10 +1223,10 @@ h6 {
 
 }
 
-/* Tipografia global HYDRONEXIS. El navegador usa los respaldos por caracter
-   cuando Optima no contiene una tilde, una enie u otro glifo. */
+/* Tipografia global HYDRONEXIS. La primera familia solo contiene caracteres
+   especiales; el resto del texto conserva Optima. */
 :root {
-  --hydronexis-font-family: "Optima", "Segoe UI", Tahoma, Arial, sans-serif;
+  --hydronexis-font-family: "Hydronexis Special Characters", "Optima", "Segoe UI", Tahoma, Arial, sans-serif;
 }
 
 html,
@@ -1239,6 +1239,6 @@ optgroup {
   font-family: var(--hydronexis-font-family) !important;
 }
 
-body :where(*:not(.fa):not([class^="fa-"]):not([class*=" fa-"]):not(.mdi):not([class^="mdi-"]):not([class*=" mdi-"]):not(.material-symbols-rounded):not([class^="fl-"]):not([class*=" fl-"]):not(.lg-icon):not(.owl-video-play-icon)) {
+body :where(*:not(.fa):not([class^="fa-"]):not([class*=" fa-"]):not(.mdi):not([class^="mdi-"]):not([class*=" mdi-"]):not(.material-symbols-rounded):not(.material-symbols-outlined):not([class^="fl-"]):not([class*=" fl-"]):not(.lg-icon):not(.owl-video-play-icon)) {
   font-family: var(--hydronexis-font-family) !important;
 }
