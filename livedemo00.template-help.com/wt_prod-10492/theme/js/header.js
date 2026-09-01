@@ -213,6 +213,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Error cargando el header:", error);
   }
 
+  const globalCartPromise = headerInserted
+    ? import("./global-cart.js")
+      .then(({ initializeGlobalCart }) => initializeGlobalCart(target))
+      .catch((error) => {
+        console.error("No se pudo inicializar el carrito global:", error);
+      })
+    : Promise.resolve();
+
   // Los estilos ya mantienen visible el contenido. Estos plugins se cargan
   // aunque Firebase o el componente del header no esten disponibles.
   const themeScriptsPromise = loadThemeScripts().catch((error) => {
@@ -579,7 +587,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 }
 
   if (target) target.removeAttribute("aria-busy");
-  await themeScriptsPromise;
+  await Promise.all([themeScriptsPromise, globalCartPromise]);
   document.dispatchEvent(new CustomEvent("headerLoaded", {
     detail: { user, profile: currentProfile, plan: currentPlan }
   }));

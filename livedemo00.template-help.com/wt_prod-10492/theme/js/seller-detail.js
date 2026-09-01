@@ -140,6 +140,7 @@
       addCart.dataset.cartSellerId = seller.id;
       addCart.dataset.cartSellerName = seller.name;
       addCart.dataset.cartProductName = product.name;
+      addCart.dataset.cartCategory = product.category || '';
       addCart.dataset.cartImage = product.image;
       addCart.dataset.cartDisplayPrice = seller.price;
     }

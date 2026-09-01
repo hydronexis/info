@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="plan-guard-pending" lang="en">
   
 <!-- Mirrored from livedemo00.template-help.com/wt_prod-10492/theme/cart-page.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Jun 2026 15:36:44 GMT -->
 <head>
@@ -12,9 +12,10 @@
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/commerce.css">
 
   </head>
-  <body>
+  <body class="commerce-page" data-required-permission="cart">
 
 
     <div id="header"></div>
@@ -37,70 +38,63 @@
           </div>
         </div>
       </section>
-      <!-- Shopping Cart-->
-      <section class="section section-xl bg-default">
+      <!-- Shopping Cart connected to the shared persistent store. -->
+      <section class="section section-xl commerce-cart-section">
         <div class="container">
-          <!-- shopping-cart-->
-          <div class="table-custom-responsive">
-            <table class="table-custom table-cart" id="cart-table">
-              <thead>
-                <tr>
-                  <th>Product name</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr data-unit-price="20.00">
-                  <td><a class="table-cart-figure" href="single-product.html"><img src="images/product-mini-1-106x104.png" alt="" width="106" height="104"/></a><a class="table-cart-link" href="single-product.html">Tomatoes</a></td>
-                  <td class="cart-row-price">$1.25</td>
-                  <td>
-                    <div class="stepper table-cart-stepper">
-                      <span class="stepper-arrow down"></span>
-                      <input class="form-input" type="number" data-zeros="true" value="1" min="1" max="1000">
-                      <span class="stepper-arrow up"></span>
-                    </div>
-                  </td>
-                  <td class="cart-row-total">$1.25</td>
-                </tr>
-                <tr data-unit-price="23.00">
-                  <td><a class="table-cart-figure" href="single-product.html"><img src="images/product-mini-3-106x104.png" alt="" width="106" height="104"/></a><a class="table-cart-link" href="single-product.html">lettuce</a></td>
-                  <td class="cart-row-price">$1.45</td>
-                  <td>
-                    <div class="stepper table-cart-stepper">
-                      <span class="stepper-arrow down"></span>
-                      <input class="form-input" type="number" data-zeros="true" value="1" min="1" max="1000">
-                      <span class="stepper-arrow up"></span>
-                    </div>
-                  </td>
-                  <td class="cart-row-total">$1.45</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="group-xl group-justify justify-content-center justify-content-md-between">
+          <header class="commerce-header">
             <div>
-              <form class="rd-form rd-mailform rd-form-inline rd-form-inline rd-form-coupon">
-                <div class="form-wrap">
-                  <input class="form-input form-input-inverse" id="coupon-code" type="text" name="code">
-                  <label class="form-label" for="coupon-code">Coupon code</label>
-                </div>
-                <div class="form-button">
-                  <button class="button button-lg button-secondary button-zakaria" type="submit">Apply</button>
-                </div>
-              </form>
+              <span class="commerce-eyebrow">HYDRONEXIS MARKETPLACE</span>
+              <h1>Shopping Cart</h1>
+              <p>Review your products, adjust quantities and continue when your order is ready.</p>
             </div>
-            <div>
-              <div class="group-xl group-middle">
-                <div>
-                  <div class="group-md group-middle">
-                    <div class="heading-5 fw-medium text-gray-500">Total</div>
-                    <div class="heading-3 fw-normal" id="cart-grand-total">$2.70</div>
-                  </div>
-                </div><a class="button button-lg button-primary button-zakaria" href="checkout.html">Proceed to checkout</a>
+            <strong class="commerce-cart-count" id="cartItemCount">0 items</strong>
+          </header>
+
+          <p class="commerce-feedback" id="cartFeedback" role="status" hidden></p>
+          <span class="sr-only" id="cartLiveStatus" aria-live="polite" aria-atomic="true"></span>
+
+          <div class="commerce-layout">
+            <section class="commerce-card" aria-labelledby="cartProductsTitle">
+              <h2 id="cartProductsTitle">Your products</h2>
+              <p class="commerce-empty" id="cartEmptyState" tabindex="-1">
+                Your cart is empty. Visit the Marketplace to add a product.
+              </p>
+              <div
+                class="commerce-cart-list"
+                id="cartItems"
+                role="list"
+                hidden
+              ></div>
+            </section>
+
+            <aside class="commerce-card commerce-summary" aria-labelledby="cartSummaryTitle">
+              <h2 id="cartSummaryTitle">Order Summary</h2>
+              <div class="commerce-summary-row">
+                <span>Subtotal</span>
+                <strong id="cartSubtotal">$0.00</strong>
               </div>
-            </div>
+              <div class="commerce-summary-row">
+                <span>Tax (7%)</span>
+                <strong id="cartTax">$0.00</strong>
+              </div>
+              <div class="commerce-summary-row commerce-summary-total">
+                <span>Total</span>
+                <strong id="cartTotal">$0.00</strong>
+              </div>
+              <a
+                class="button button-lg button-primary button-zakaria is-disabled"
+                id="cartCheckoutLink"
+                href="checkout.html"
+                aria-disabled="true"
+              >Proceed to checkout</a>
+              <button
+                class="commerce-clear-button"
+                id="cartClearButton"
+                type="button"
+                disabled
+              >Clear Cart</button>
+              <p class="commerce-note">Prices and availability are validated again before the order is created.</p>
+            </aside>
           </div>
         </div>
       </section>
@@ -393,125 +387,7 @@
   <!-- <script src="js/core.min.js"></script> -->
   <!-- <script src="js/script.js"></script> -->
 
-    <!-- Carrito funcional: suma/resta cantidad y recalcula totales -->
-    <script>
-      (function () {
-        function formatMoney(value) {
-          // Si es entero, sin decimales (igual que el diseno original: "$20" en vez de "$20.00")
-          return value % 1 === 0 ? '$' + value.toFixed(0) : '$' + value.toFixed(2);
-        }
-
-        function clamp(value, min, max) {
-          if (isNaN(value)) value = min;
-          if (value < min) value = min;
-          if (value > max) value = max;
-          return value;
-        }
-
-        function initStepper(stepper) {
-          if (stepper.dataset.stepperInit) return;
-          stepper.dataset.stepperInit = 'true';
-
-          var input = stepper.querySelector('input[type="number"]');
-          var btnDown = stepper.querySelector('.stepper-arrow.down');
-          var btnUp = stepper.querySelector('.stepper-arrow.up');
-          if (!input) return;
-
-          var min = parseInt(input.getAttribute('min'), 10) || 1;
-          var max = parseInt(input.getAttribute('max'), 10) || 1000;
-
-          // step(): cambia el valor y refresca los totales EN EL MISMO instante,
-          // sin esperar ningún otro evento.
-          function step(delta) {
-            if (stepper.classList.contains('disabled')) return;
-            var current = parseInt(input.value, 10);
-            if (isNaN(current)) current = min;
-            input.value = clamp(current + delta, min, max);
-            recalcAll();
-          }
-
-          // wireHold(): responde en pointerdown (no espera al "click", que en
-          // móvil puede tardar) y repite rápido mientras se mantiene presionado.
-          function wireHold(btn, delta) {
-            if (!btn) return;
-            var holdTimeout = null;
-            var holdInterval = null;
-
-            function clearHold() {
-              clearTimeout(holdTimeout);
-              clearInterval(holdInterval);
-              holdTimeout = null;
-              holdInterval = null;
-            }
-
-            btn.addEventListener('pointerdown', function (e) {
-              e.preventDefault();
-              step(delta);
-              clearHold();
-              holdTimeout = setTimeout(function () {
-                holdInterval = setInterval(function () {
-                  step(delta);
-                }, 90);
-              }, 350);
-            });
-
-            ['pointerup', 'pointerleave', 'pointercancel'].forEach(function (evt) {
-              btn.addEventListener(evt, clearHold);
-            });
-
-            // Respaldo para navegadores sin soporte de Pointer Events
-            btn.addEventListener('click', function (e) {
-              e.preventDefault();
-            });
-          }
-
-          wireHold(btnDown, -1);
-          wireHold(btnUp, 1);
-
-          input.addEventListener('input', function () {
-            recalcAll();
-          });
-
-          input.addEventListener('change', function () {
-            input.value = clamp(parseInt(input.value, 10) || min, min, max);
-            recalcAll();
-          });
-        }
-
-        function recalcMainTable() {
-          var table = document.getElementById('cart-table');
-          if (!table) return 0;
-
-          var rows = table.querySelectorAll('tbody tr');
-          var grandTotal = 0;
-
-          rows.forEach(function (row) {
-            var unitPrice = parseFloat(row.getAttribute('data-unit-price')) || 0;
-            var qtyInput = row.querySelector('input[type="number"]');
-            var totalCell = row.querySelector('.cart-row-total');
-            var qty = qtyInput ? (parseInt(qtyInput.value, 10) || 1) : 1;
-            var rowTotal = unitPrice * qty;
-
-            if (totalCell) totalCell.textContent = formatMoney(rowTotal);
-            grandTotal += rowTotal;
-          });
-
-          var grandTotalEl = document.getElementById('cart-grand-total');
-          if (grandTotalEl) grandTotalEl.textContent = formatMoney(grandTotal);
-
-          return grandTotal;
-        }
-
-        function recalcAll() {
-          recalcMainTable();
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-          document.querySelectorAll('#cart-table .table-cart-stepper').forEach(initStepper);
-          recalcAll();
-        });
-      })();
-    </script>
+    <script type="module" src="js/cart.js"></script>
 
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9FT69" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

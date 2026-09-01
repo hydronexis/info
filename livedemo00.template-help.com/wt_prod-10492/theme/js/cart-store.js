@@ -8,6 +8,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 const STORAGE_PREFIX = "hydronexis.cart.v2";
+export const CART_TAX_RATE = 0.07;
 let initialized = false;
 let initializationPromise = null;
 let session = null;
@@ -35,6 +36,7 @@ function sanitizeItem(item) {
     sellerId: String(item.sellerId || "hydronexis").trim(),
     sellerName: String(item.sellerName || "HYDRONEXIS").trim(),
     name,
+    category: String(item.category || "").trim(),
     image: String(item.image || "").trim(),
     displayPrice: Math.max(0, Number(item.displayPrice) || 0),
     quantity: Math.max(1, Math.min(maxQuantity || 999, Math.trunc(Number(item.quantity) || 1))),
@@ -210,11 +212,15 @@ export async function clearCart() {
 }
 
 export function getCartSummarySync() {
-  return cart.reduce((summary, item) => {
-    summary.itemCount += item.quantity;
-    summary.displaySubtotal += item.displayPrice * item.quantity;
-    return summary;
+  const summary = cart.reduce((result, item) => {
+    result.itemCount += item.quantity;
+    result.displaySubtotal += item.displayPrice * item.quantity;
+    return result;
   }, { itemCount: 0, displaySubtotal: 0 });
+  summary.displaySubtotal = Math.round(summary.displaySubtotal * 100) / 100;
+  summary.displayTax = Math.round(summary.displaySubtotal * CART_TAX_RATE * 100) / 100;
+  summary.displayTotal = Math.round((summary.displaySubtotal + summary.displayTax) * 100) / 100;
+  return summary;
 }
 
 export async function getCartSummary() {

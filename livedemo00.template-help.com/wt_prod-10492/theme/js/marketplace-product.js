@@ -58,6 +58,7 @@ try {
   cartButton.dataset.cartSellerId = product.sellerId;
   cartButton.dataset.cartSellerName = product.sellerName || "HYDRONEXIS Seller";
   cartButton.dataset.cartProductName = product.name;
+  cartButton.dataset.cartCategory = product.category || "";
   cartButton.dataset.cartImage = product.image || "";
   cartButton.dataset.cartDisplayPrice = String(product.price);
   cartButton.dataset.cartMaxQuantity = String(Math.max(0, Math.trunc(Number(product.stock) || 0)));

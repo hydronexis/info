@@ -1,6 +1,7 @@
 <!-- =====================================================
      HEADER / NAVBAR HYDRONEXIS
 ===================================================== -->
+
 <header class="section page-header">
 
   <div class="rd-navbar-wrap">
@@ -29,11 +30,13 @@
 
         <div class="rd-navbar-main">
 
+
           <!-- =========================================
-               PANEL: BOToN MoVIL Y LOGO
+               PANEL: BOTÓN MÓVIL Y LOGO
           ========================================== -->
+
           <div class="rd-navbar-panel">
-          
+
             <button
               class="rd-navbar-toggle"
               type="button"
@@ -42,6 +45,7 @@
             >
               <span></span>
             </button>
+
 
             <div class="rd-navbar-brand">
 
@@ -62,60 +66,67 @@
           </div>
 
 
-          <!--MENu PRINCIPAL-->
+          <!-- =====================================================
+               MENÚ PRINCIPAL
+          ====================================================== -->
+
           <div class="rd-navbar-nav-wrap">
 
             <ul class="rd-navbar-nav">
 
+
+              <!-- HOME -->
+
               <li class="rd-nav-item active">
+
                 <a
-                  class="rd-nav-link" href="index.html"aria-current="page">
+                  class="rd-nav-link"
+                  href="index.html"
+                  aria-current="page"
+                >
                   Home
                 </a>
+
               </li>
 
+
+              <!-- ABOUT US -->
+
               <li class="rd-nav-item">
-                <a class="rd-nav-link" href="about-us.html">
+
+                <a
+                  class="rd-nav-link"
+                  href="about-us.html"
+                >
                   About Us
                 </a>
+
               </li>
+
+
+              <!-- OFFERINGS -->
 
               <li class="rd-nav-item">
-                <a class="rd-nav-link" href="what-we-offer.html">
+
+                <a
+                  class="rd-nav-link"
+                  href="what-we-offer.html"
+                >
                   Offerings
                 </a>
+
               </li>
 
-              <!-- <li class="rd-nav-item" data-min-plan="blooming">
-                <a class="rd-nav-link" href="grid-shop.html">
-                  Marketplace
-                </a>
-              </li>
+
+
+              <!-- =====================================================
+                   EXPLORE
+              ====================================================== -->
 
               <li
-                class="rd-nav-item"
-                data-requires-permission="tutorials"
-                data-locked-preview
+                class="rd-nav-item explore-nav"
+                id="exploreNavItem"
               >
-                <a class="rd-nav-link" href="grid-blog.html">
-                  Tutorials
-                </a>
-              </li>
-
-              <li
-                class="rd-nav-item"
-                data-requires-permission="maps"
-                data-locked-preview
-              >
-                <a class="rd-nav-link" href="maps.html">
-                  Maps
-                </a>
-              </li> -->
-
-              <!-- =========================================
-                  EXPLORE
-              ========================================== -->
-              <li class="rd-nav-item explore-nav" id="exploreNavItem">
 
                 <button
                   class="rd-nav-link explore-trigger"
@@ -124,17 +135,31 @@
                   aria-expanded="false"
                   aria-controls="exploreMenu"
                 >
+
                   Explore
+
                   <span class="explore-arrow"></span>
+
                 </button>
+
+
+
+                <!-- =================================================
+                     EXPLORE DROPDOWN
+                ================================================== -->
 
                 <ul
                   class="hydronexis-explore-menu"
                   id="exploreMenu"
                 >
 
-                  <!-- MARKETPLACE -->
+
+                  <!-- =============================================
+                       1. MARKETPLACE
+                  ============================================== -->
+
                   <li>
+
                     <a
                       href="grid-shop.html"
                       class="explore-menu-link"
@@ -143,58 +168,17 @@
                     >
                       Marketplace
                     </a>
+
                   </li>
 
-                  <!-- COMMUNITY -->
-                  <li>
-                    <a
-                      href="community.html"
-                      class="explore-menu-link"
-                      data-requires-permission="community"
-                      data-locked-preview
-                    >
-                      Community
-                    </a>
-                  </li>
 
-                  <!-- EXCHANGE -->
-                  <li>
-                    <a
-                      href="exchanges.html"
-                      class="explore-menu-link"
-                      data-requires-permission="exchange"
-                      data-locked-preview
-                    >
-                      Exchanges
-                    </a>
-                  </li>
 
-                  <!-- MAPS -->
-                  <li>
-                    <a
-                      href="maps.html"
-                      class="explore-menu-link"
-                      data-requires-permission="maps"
-                      data-locked-preview
-                    >
-                      Maps
-                    </a>
-                  </li>
+                  <!-- =============================================
+                       2. TUTORIALS
+                  ============================================== -->
 
-                  <!-- SELLER -->
                   <li>
-                    <a
-                      href="seller-dashboard.html"
-                      class="explore-menu-link"
-                      data-requires-permission="seller"
-                      data-locked-preview
-                    >
-                      Seller
-                    </a>
-                  </li>
 
-                  <!-- TUTORIALS -->
-                  <li>
                     <a
                       href="grid-blog.html"
                       class="explore-menu-link"
@@ -203,172 +187,336 @@
                     >
                       Tutorials
                     </a>
+
                   </li>
+
+
+
+                  <!-- =============================================
+                       3. COMMUNITY
+                  ============================================== -->
+
+                  <li>
+
+                    <a
+                      href="community.html"
+                      class="explore-menu-link"
+                      data-requires-permission="community"
+                      data-locked-preview
+                    >
+                      Community
+                    </a>
+
+                  </li>
+
+
+
+                  <!-- =============================================
+                       4. EXCHANGES
+                  ============================================== -->
+
+                  <li>
+
+                    <a
+                      href="exchanges.html"
+                      class="explore-menu-link"
+                      data-requires-permission="exchange"
+                      data-locked-preview
+                    >
+                      Exchanges
+                    </a>
+
+                  </li>
+
+
+
+                  <!-- =============================================
+                       5. MAPS
+                  ============================================== -->
+
+                  <li>
+
+                    <a
+                      href="maps.html"
+                      class="explore-menu-link"
+                      data-requires-permission="maps"
+                      data-locked-preview
+                    >
+                      Maps
+                    </a>
+
+                  </li>
+
+
+
+                  <!-- =============================================
+                       6. SELLER
+                  ============================================== -->
+
+                  <li>
+
+                    <a
+                      href="seller-dashboard.html"
+                      class="explore-menu-link"
+                      data-requires-permission="seller"
+                      data-locked-preview
+                    >
+                      Seller
+                    </a>
+
+                  </li>
+
 
                 </ul>
 
               </li>
+
 
             </ul>
 
           </div>
 
 
-          <!-- =========================================
-              ICONOS DEL NAVBAR
-          ========================================== -->
+
+          <!-- =====================================================
+               ICONOS DEL NAVBAR
+          ====================================================== -->
+
           <div class="rd-navbar-main-element">
 
             <div class="navbar-actions">
 
-              
-              <!-- ===============================
-              USUARIO / PERFIL
-          ================================ -->
-          <div class="navbar-action navbar-user">
 
-            <button
-              class="navbar-user-trigger"
-              id="navbarUserTrigger"
-              type="button"
-              aria-label="Abrir perfil"
-              aria-expanded="false"
-            >
 
-              <span class="navbar-user-avatar-small" id="navbarUserAvatarSmall">
-                <img
-                  src="images/icon/user-icon.png"
-                  alt="Usuario"
-                  class="navbar-icon"
+              <!-- =================================================
+                   USUARIO / PERFIL
+              ================================================== -->
+
+              <div class="navbar-action navbar-user">
+
+
+                <button
+                  class="navbar-user-trigger"
+                  id="navbarUserTrigger"
+                  type="button"
+                  aria-label="Abrir perfil"
+                  aria-expanded="false"
                 >
-              </span>
 
-              <span class="navbar-user-arrow"></span>
+                  <span
+                    class="navbar-user-avatar-small"
+                    id="navbarUserAvatarSmall"
+                  >
 
-            </button>
+                    <img
+                      src="images/icon/user-icon.png"
+                      alt="Usuario"
+                      class="navbar-icon"
+                    >
+
+                  </span>
 
 
-            <!-- DROPDOWN -->
-            <div class="navbar-user-menu" id="navbarUserMenu">
+                  <span class="navbar-user-arrow"></span>
 
-              <p class="navbar-user-menu-label">
-                My Account
-              </p>
+                </button>
 
-              <a href="profile.html" class="navbar-user-profile">
+
+
+                <!-- ===============================================
+                     DROPDOWN PERFIL
+                ================================================ -->
 
                 <div
-                  class="navbar-user-avatar"
-                  id="navbarUserAvatar"
+                  class="navbar-user-menu"
+                  id="navbarUserMenu"
                 >
-                  HN
+
+
+                  <p class="navbar-user-menu-label">
+                    My Account
+                  </p>
+
+
+
+                  <a
+                    href="profile.html"
+                    class="navbar-user-profile"
+                  >
+
+
+                    <div
+                      class="navbar-user-avatar"
+                      id="navbarUserAvatar"
+                    >
+                      HN
+                    </div>
+
+
+
+                    <div class="navbar-user-details">
+
+
+                      <strong
+                        class="navbar-user-name"
+                        id="navbarUserName"
+                      >
+                        Hydronexis User
+                      </strong>
+
+
+                      <span
+                        class="navbar-user-plan"
+                        id="navbarPlanBadge"
+                      >
+                        Sprout
+                      </span>
+
+
+                      <span
+                        class="navbar-user-email"
+                        id="navbarUserEmail"
+                      >
+                        usuario@email.com
+                      </span>
+
+
+                    </div>
+
+
+                  </a>
+
+
+
+                  <div class="navbar-user-divider"></div>
+
+
+
+                  <a
+                    href="profile.html"
+                    class="navbar-user-option"
+                  >
+                    My profile
+                  </a>
+
+
+
+                  <button
+                    type="button"
+                    id="navbarLogoutButton"
+                    class="navbar-user-option navbar-logout"
+                    hidden
+                  >
+                    Sign Out
+                  </button>
+
+
                 </div>
 
-                <div class="navbar-user-details">
+              </div>
 
-                  <strong
-                    class="navbar-user-name"
-                    id="navbarUserName"
-                  >
-                    Hydronexis User
-                  </strong>
 
-                  <span
-                    class="navbar-user-plan"
-                    id="navbarPlanBadge"
-                  >
-                    Sprout
-                  </span>
 
-                  <span
-                    class="navbar-user-email"
-                    id="navbarUserEmail"
-                  >
-                    usuario@email.com
-                  </span>
-
-                </div>
-
-              </a>
-
-              <div class="navbar-user-divider"></div>
-
-              <a
-                href="profile.html"
-                class="navbar-user-option"
-              >
-                My profile
-              </a>
+              <!-- =================================================
+                   MENÚ HAMBURGUESA LATERAL
+              ================================================== -->
 
               <button
+                class="
+                  rd-navbar-project-hamburger
+                  rd-navbar-project-hamburger-open
+                  rd-navbar-fixed-element-1
+                  navbar-action
+                "
                 type="button"
-                id="navbarLogoutButton"
-                class="navbar-user-option navbar-logout"
-                hidden
+                data-multitoggle=".rd-navbar-main"
+                data-multitoggle-blur=".rd-navbar-wrap"
+                data-multitoggle-isolate="data-multitoggle-isolate"
+                aria-label="Abrir panel lateral"
               >
-                Sign Out
+
+                <span class="project-hamburger">
+
+                  <span class="project-hamburger-line"></span>
+                  <span class="project-hamburger-line"></span>
+                  <span class="project-hamburger-line"></span>
+                  <span class="project-hamburger-line"></span>
+
+                </span>
+
               </button>
+
 
             </div>
 
           </div>
 
-    <!-- ===============================
-         MENu HAMBURGUESA LATERAL
-    ================================ -->
-    <button
-      class="rd-navbar-project-hamburger rd-navbar-project-hamburger-open rd-navbar-fixed-element-1 navbar-action"
-      type="button"
-      data-multitoggle=".rd-navbar-main"
-      data-multitoggle-blur=".rd-navbar-wrap"
-      data-multitoggle-isolate="data-multitoggle-isolate"
-      aria-label="Abrir panel lateral"
-    >
 
-      <span class="project-hamburger">
-        <span class="project-hamburger-line"></span>
-        <span class="project-hamburger-line"></span>
-        <span class="project-hamburger-line"></span>
-        <span class="project-hamburger-line"></span>
-      </span>
 
-    </button>
+          <!-- =====================================================
+               PANEL LATERAL
+          ====================================================== -->
 
-  </div>
-
-</div>
-          <!-- PANEL LATERAL -->
           <div class="rd-navbar-project">
+
+
+            <!-- PANEL HEADER -->
 
             <div class="rd-navbar-project-header">
 
+
               <button
-                class="rd-navbar-project-hamburger rd-navbar-project-hamburger-close"
+                class="
+                  rd-navbar-project-hamburger
+                  rd-navbar-project-hamburger-close
+                "
                 type="button"
                 data-multitoggle=".rd-navbar-main"
                 data-multitoggle-blur=".rd-navbar-wrap"
                 data-multitoggle-isolate="data-multitoggle-isolate"
                 aria-label="Cerrar panel lateral"
               >
+
                 <span class="project-close">
+
                   <span></span>
                   <span></span>
+
                 </span>
+
               </button>
+
+
 
               <h5 class="rd-navbar-project-title">
                 Our Contacts
               </h5>
 
+
             </div>
+
+
+
+            <!-- =================================================
+                 PANEL CONTENT
+            ================================================== -->
 
             <div class="rd-navbar-project-content">
 
+
               <div>
+
+
+
+                <!-- LOGO -->
 
                 <div class="navbar-contact-logo">
 
-                  <a class="brand" href="index.html">
+
+                  <a
+                    class="brand"
+                    href="index.html"
+                  >
 
                     <img
                       src="images/logo20.png"
@@ -378,9 +526,15 @@
 
                   </a>
 
+
                 </div>
 
+
+
+                <!-- IMAGEN LA CHORRERA -->
+
                 <div class="navbar-contact-image">
+
 
                   <img
                     src="images/home/imagen_nav/chorrera.jpeg"
@@ -389,67 +543,132 @@
                     height="269"
                   >
 
+
                 </div>
+
+
+
+                <!-- =================================================
+                     INFORMACIÓN DE CONTACTO
+                ================================================== -->
 
                 <ul class="contacts-modern navbar-contact-info">
 
-                <li>
-                  <a href="https://maps.app.goo.gl/LCVufk1TyPbZHoJ68"
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    Superate Fundacion Alberto Motta
-                    <br>
-                    La Chorrera, Panama Oeste
-                    <br>
-                    Panama
-                  </a>
-                </li>
 
                   <li>
-                    <a href="tel:+50769857901">
-                      (+507) 6985-7901
+
+
+                    <a
+                      href="https://maps.app.goo.gl/LCVufk1TyPbZHoJ68"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+
+                      Superate Fundacion Alberto Motta
+
+                      <br>
+
+                      La Chorrera, Panama Oeste
+
+                      <br>
+
+                      Panama
+
                     </a>
+
+
                   </li>
+
+
+
+                  <li>
+
+
+                    <a href="tel:+50769857901">
+
+                      (+507) 6985-7901
+
+                    </a>
+
+
+                  </li>
+
 
                 </ul>
 
+
+
+                <!-- =================================================
+                     REDES SOCIALES
+                ================================================== -->
+
                 <div class="navbar-contact-social">
 
-                  <ul class="list-inline list-social list-inline-xl">
+
+                  <ul
+                    class="
+                      list-inline
+                      list-social
+                      list-inline-xl
+                    "
+                  >
+
+
+                    <!-- FACEBOOK -->
 
                     <li>
+
                       <a
                         class="icon mdi mdi-facebook"
                         href="https://www.facebook.com/profile.php?id=61592514343911&mibextid=wwXIfr&rdid=832Ux9HTHNTAu76G&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F19NXnrFn9S%2F%3Fmibextid%3DwwXIfr#"
                         aria-label="Facebook"
                       ></a>
+
                     </li>
 
+
+
+                    <!-- TWITTER / X -->
+
                     <li>
+
                       <a
                         class="icon mdi mdi-twitter"
                         href="https://x.com/hydronexisinfo?s=11"
                         aria-label="Twitter"
                       ></a>
+
                     </li>
 
+
+
+                    <!-- INSTAGRAM -->
+
                     <li>
+
                       <a
                         class="icon mdi mdi-instagram"
                         href="https://www.instagram.com/hydronexis.pa?igsh=dTYwbHd5dDN4a2ds"
                         aria-label="Instagram"
                       ></a>
+
                     </li>
+
 
                   </ul>
 
+
                 </div>
+
 
               </div>
 
+
             </div>
 
+
           </div>
+
 
         </div>
 

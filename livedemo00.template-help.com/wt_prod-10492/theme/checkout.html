@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="plan-guard-pending" lang="en">
   
 <!-- Mirrored from livedemo00.template-help.com/wt_prod-10492/theme/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Jun 2026 15:36:44 GMT -->
 <head>
@@ -12,9 +12,10 @@
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/commerce.css">
 
   </head>
-  <body>
+  <body class="commerce-page" data-required-permission="checkout">
     <div class="preloader">
       <div class="preloader-body">
       </div>
@@ -42,213 +43,75 @@
           </div>
         </div>
       </section>
-      <!-- Section checkout form-->
-      <section class="section section-sm section-first bg-default text-md-start">
+      <!-- Checkout connected to the shared persistent cart. -->
+      <section class="section section-xl commerce-checkout-section">
         <div class="container">
-          <div class="row row-50 justify-content-center">
-            <div class="col-md-10 col-lg-6">
-              <h3 class="fw-medium">Billing Address</h3>
-              <form class="rd-form rd-mailform form-checkout">
-                <div class="row row-30">
-                  <div class="col-sm-6">
-                    <div class="form-wrap">
-                      <input class="form-input" id="checkout-first-name-1" type="text" name="first-name" data-constraints="@Required"/>
-                      <label class="form-label" for="checkout-first-name-1">First Name</label>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-wrap">
-                      <input class="form-input" id="checkout-last-name-1" type="text" name="last-name" data-constraints="@Required"/>
-                      <label class="form-label" for="checkout-last-name-1">Last Name</label>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="form-wrap">
-                      <input class="form-input" id="checkout-company-1" type="text" name="company" data-constraints="@Required"/>
-                      <label class="form-label" for="checkout-company-1">Company</label>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="form-wrap">
-                      <input class="form-input" id="checkout-address-1" type="text" name="address" data-constraints="@Required"/>
-                      <label class="form-label" for="checkout-address-1">Address</label>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="form-wrap">
-                      <input class="form-input" id="checkout-city-1" type="text" name="city" data-constraints="@Required"/>
-                      <label class="form-label" for="checkout-city-1">City/Town</label>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-wrap">
-                      <input class="form-input" id="checkout-email-1" type="email" name="email" data-constraints="@Email @Required"/>
-                      <label class="form-label" for="checkout-email-1">E-Mail</label>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-wrap">
-                      <input class="form-input" id="checkout-phone-1" type="text" name="phone" data-constraints="@Numeric"/>
-                      <label class="form-label" for="checkout-phone-1">Phone</label>
-                    </div>
-                  </div>
-                </div>
-                <label class="checkbox-inline text-transform-capitalize">
-                  <input name="input-checkbox" value="checkbox-1" type="checkbox"/>My Billing Address and Shipping Address are the same
+          <header class="commerce-header">
+            <div>
+              <span class="commerce-eyebrow">SECURE ORDER REQUEST</span>
+              <h1>Checkout</h1>
+              <p>Confirm your contact and delivery details. Stock and prices are validated before an order is approved.</p>
+            </div>
+            <a class="button button-sm button-secondary button-zakaria" href="cart-page.html">Back to cart</a>
+          </header>
+
+          <p class="commerce-feedback" id="checkoutFeedback" role="status" hidden></p>
+
+          <form class="commerce-layout" id="checkoutForm">
+            <section class="commerce-card" aria-labelledby="checkoutDetailsTitle">
+              <h2 id="checkoutDetailsTitle">Billing &amp; Delivery</h2>
+              <div class="commerce-form">
+                <label class="commerce-field-wide" for="checkoutName">
+                  Full name
+                  <input id="checkoutName" name="name" type="text" autocomplete="name" required>
                 </label>
-              </form>
-            </div>
-            <div class="col-md-10 col-lg-6">
-              <h3 class="fw-medium">Delivery Address</h3>
-              <form class="rd-form rd-mailform form-checkout">
-                <div class="row row-30">
-                  <div class="col-sm-6">
-                    <div class="form-wrap">
-                      <input class="form-input" id="checkout-first-name-2" type="text" name="first-name" data-constraints="@Required"/>
-                      <label class="form-label" for="checkout-first-name-2">First Name</label>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-wrap">
-                      <input class="form-input" id="checkout-last-name-2" type="text" name="last-name" data-constraints="@Required"/>
-                      <label class="form-label" for="checkout-last-name-2">Last Name</label>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="form-wrap">
-                      <input class="form-input" id="checkout-company-2" type="text" name="company" data-constraints="@Required"/>
-                      <label class="form-label" for="checkout-company-2">Company</label>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="form-wrap">
-                      <input class="form-input" id="checkout-address-2" type="text" name="address" data-constraints="@Required"/>
-                      <label class="form-label" for="checkout-address-2">Address</label>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="form-wrap">
-                      <input class="form-input" id="checkout-city-2" type="text" name="city" data-constraints="@Required"/>
-                      <label class="form-label" for="checkout-city-2">City/Town</label>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-wrap">
-                      <input class="form-input" id="checkout-email-2" type="email" name="email" data-constraints="@Email @Required"/>
-                      <label class="form-label" for="checkout-email-2">E-Mail</label>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-wrap">
-                      <input class="form-input" id="checkout-phone-2" type="text" name="phone" data-constraints="@Numeric"/>
-                      <label class="form-label" for="checkout-phone-2">Phone</label>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- Shopping Cart-->
-      <section class="section section-sm bg-default text-md-start">
-        <div class="container">
-          <h3 class="fw-medium">Your shopping cart</h3>
-          <div class="table-custom-responsive">
-            <table class="table-custom table-cart" id="cart-table">
-              <thead>
-                <tr>
-                  <th>Product name</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr data-unit-price="20.00">
-                  <td><a class="table-cart-figure" href="single-product.html"><img src="images/product-mini-4-146x132.png" alt="" width="146" height="132"/></a><a class="table-cart-link" href="single-product.html">Oranges</a></td>
-                  <td class="cart-row-price">$20.00</td>
-                  <td>
-                    <div class="stepper table-cart-stepper">
-                      <span class="stepper-arrow down"></span>
-                      <input class="form-input" type="number" data-zeros="true" value="1" min="1" max="1000">
-                      <span class="stepper-arrow up"></span>
-                    </div>
-                  </td>
-                  <td class="cart-row-total">$20</td>
-                </tr>
-                <tr data-unit-price="23.00">
-                  <td><a class="table-cart-figure" href="single-product.html"><img src="images/product-mini-5-146x132.png" alt="" width="146" height="132"/></a><a class="table-cart-link" href="single-product.html">Bananas</a></td>
-                  <td class="cart-row-price">$23.00</td>
-                  <td>
-                    <div class="stepper table-cart-stepper">
-                      <span class="stepper-arrow down"></span>
-                      <input class="form-input" type="number" data-zeros="true" value="1" min="1" max="1000">
-                      <span class="stepper-arrow up"></span>
-                    </div>
-                  </td>
-                  <td class="cart-row-total">$23</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-      <!-- Section Payment-->
-      <section class="section section-sm section-last bg-default text-md-start">
-        <div class="container">
-          <div class="row row-50 justify-content-center">
-            <div class="col-md-10 col-lg-6">
-              <h3 class="fw-medium">Payment methods</h3>
-              <div class="box-radio">
-                <div class="radio-panel">
-                  <label class="radio-inline active">
-                    <input name="input-group-radio" value="checkbox-1" type="radio" checked>Direct Bank Transfer
-                  </label>
-                  <div class="radio-panel-content">
-                    <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will be shipped right away.</p>
-                  </div>
-                </div>
-                <div class="radio-panel">
-                  <label class="radio-inline">
-                    <input name="input-group-radio" value="checkbox-1" type="radio">PayPal
-                  </label>
-                  <div class="radio-panel-content">
-                    <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
-                  </div>
-                </div>
-                <div class="radio-panel">
-                  <label class="radio-inline">
-                    <input name="input-group-radio" value="checkbox-1" type="radio">Cheque Payment
-                  </label>
-                  <div class="radio-panel-content">
-                    <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-                  </div>
-                </div>
+                <label for="checkoutEmail">
+                  Email
+                  <input id="checkoutEmail" name="email" type="email" autocomplete="email" readonly required>
+                </label>
+                <label for="checkoutPhone">
+                  Phone
+                  <input id="checkoutPhone" name="phone" type="tel" autocomplete="tel" required>
+                </label>
+                <label for="checkoutDistrict">
+                  District
+                  <input id="checkoutDistrict" name="district" type="text" autocomplete="address-level2" required>
+                </label>
+                <label class="commerce-field-wide" for="checkoutAddress">
+                  Delivery address
+                  <textarea id="checkoutAddress" name="address" rows="4" autocomplete="street-address" required></textarea>
+                </label>
               </div>
-            </div>
-            <div class="col-md-10 col-lg-6">
-              <h3 class="fw-medium">Cart total</h3>
-              <div class="table-custom-responsive">
-                <table class="table-custom table-custom-primary table-checkout">
-                  <tbody>
-                    <tr>
-                      <td>Cart Subtotal</td>
-                      <td id="checkout-subtotal">$43</td>
-                    </tr>
-                    <tr>
-                      <td>Shipping</td>
-                      <td>Free</td>
-                    </tr>
-                    <tr>
-                      <td>Total</td>
-                      <td id="checkout-total">$43</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <p class="commerce-note">No payment is charged here. HYDRONEXIS first validates availability, seller and final price.</p>
+            </section>
+
+            <aside class="commerce-card commerce-summary" aria-labelledby="checkoutSummaryTitle">
+              <h2 id="checkoutSummaryTitle">Order Summary</h2>
+              <p class="commerce-cart-count">
+                <span id="checkoutItemCount">0</span>&nbsp;<span id="checkoutItemLabel">items</span>
+              </p>
+              <div class="commerce-checkout-items" id="checkoutItems" role="list"></div>
+              <div class="commerce-summary-row">
+                <span>Subtotal</span>
+                <strong id="checkoutSubtotal">$0.00</strong>
               </div>
-            </div>
-          </div>
+              <div class="commerce-summary-row">
+                <span>Tax (7%)</span>
+                <strong id="checkoutTax">$0.00</strong>
+              </div>
+              <div class="commerce-summary-row commerce-summary-total">
+                <span>Total</span>
+                <strong id="checkoutDisplayTotal">$0.00</strong>
+              </div>
+              <button
+                class="button button-lg button-primary button-zakaria"
+                id="checkoutSubmitButton"
+                type="submit"
+                disabled
+              >Submit for Validation</button>
+              <p class="commerce-note">Your request is recorded once. An authorized backend must validate it before creating an order.</p>
+            </aside>
+          </form>
         </div>
       </section>
 
@@ -535,129 +398,13 @@
 </footer>
 <!-- FIN DEL PIE DE PÁGINA -->
 
+    </div><!-- .page -->
+
     <div class="snackbars" id="form-output-global"></div>
     <script src="js/header.js"></script>
     <!-- <script src="js/core.min.js"></script> -->
     <!-- <script src="js/script.js"></script> -->
-
-    <!-- Carrito funcional: suma/resta cantidad y recalcula el resumen de pago -->
-    <script>
-      (function () {
-        function formatMoney(value) {
-          return value % 1 === 0 ? '$' + value.toFixed(0) : '$' + value.toFixed(2);
-        }
-
-        function clamp(value, min, max) {
-          if (isNaN(value)) value = min;
-          if (value < min) value = min;
-          if (value > max) value = max;
-          return value;
-        }
-
-        function initStepper(stepper) {
-          if (stepper.dataset.stepperInit) return;
-          stepper.dataset.stepperInit = 'true';
-
-          var input = stepper.querySelector('input[type="number"]');
-          var btnDown = stepper.querySelector('.stepper-arrow.down');
-          var btnUp = stepper.querySelector('.stepper-arrow.up');
-          if (!input) return;
-
-          var min = parseInt(input.getAttribute('min'), 10) || 1;
-          var max = parseInt(input.getAttribute('max'), 10) || 1000;
-
-          function step(delta) {
-            if (stepper.classList.contains('disabled')) return;
-            var current = parseInt(input.value, 10);
-            if (isNaN(current)) current = min;
-            input.value = clamp(current + delta, min, max);
-            recalcAll();
-          }
-
-          function wireHold(btn, delta) {
-            if (!btn) return;
-            var holdTimeout = null;
-            var holdInterval = null;
-
-            function clearHold() {
-              clearTimeout(holdTimeout);
-              clearInterval(holdInterval);
-              holdTimeout = null;
-              holdInterval = null;
-            }
-
-            btn.addEventListener('pointerdown', function (e) {
-              e.preventDefault();
-              step(delta);
-              clearHold();
-              holdTimeout = setTimeout(function () {
-                holdInterval = setInterval(function () {
-                  step(delta);
-                }, 90);
-              }, 350);
-            });
-
-            ['pointerup', 'pointerleave', 'pointercancel'].forEach(function (evt) {
-              btn.addEventListener(evt, clearHold);
-            });
-
-            btn.addEventListener('click', function (e) {
-              e.preventDefault();
-            });
-          }
-
-          wireHold(btnDown, -1);
-          wireHold(btnUp, 1);
-
-          input.addEventListener('input', function () {
-            recalcAll();
-          });
-
-          input.addEventListener('change', function () {
-            input.value = clamp(parseInt(input.value, 10) || min, min, max);
-            recalcAll();
-          });
-        }
-
-        function recalcMainTable() {
-          var table = document.getElementById('cart-table');
-          if (!table) return 0;
-
-          var rows = table.querySelectorAll('tbody tr');
-          var grandTotal = 0;
-
-          rows.forEach(function (row) {
-            var unitPrice = parseFloat(row.getAttribute('data-unit-price')) || 0;
-            var qtyInput = row.querySelector('input[type="number"]');
-            var totalCell = row.querySelector('.cart-row-total');
-            var qty = qtyInput ? (parseInt(qtyInput.value, 10) || 1) : 1;
-            var rowTotal = unitPrice * qty;
-
-            if (totalCell) totalCell.textContent = formatMoney(rowTotal);
-            grandTotal += rowTotal;
-          });
-
-          return grandTotal;
-        }
-
-        function recalcCheckoutSummary(grandTotal) {
-          var subtotalEl = document.getElementById('checkout-subtotal');
-          var totalEl = document.getElementById('checkout-total');
-          if (subtotalEl) subtotalEl.textContent = formatMoney(grandTotal);
-          if (totalEl) totalEl.textContent = formatMoney(grandTotal);
-        }
-
-        function recalcAll() {
-          var grandTotal = recalcMainTable();
-          recalcCheckoutSummary(grandTotal);
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-          document.querySelectorAll('#cart-table .table-cart-stepper').forEach(initStepper);
-          recalcAll();
-        });
-      })();
-    </script>
+    <script type="module" src="js/checkout.js"></script>
 
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9FT69" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

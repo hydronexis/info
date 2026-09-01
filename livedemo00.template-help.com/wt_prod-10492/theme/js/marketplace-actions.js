@@ -20,6 +20,7 @@ document.addEventListener("click", async (event) => {
       sellerId: button.dataset.cartSellerId,
       sellerName: button.dataset.cartSellerName,
       name: button.dataset.cartProductName,
+      category: button.dataset.cartCategory,
       image: button.dataset.cartImage,
       displayPrice: button.dataset.cartDisplayPrice,
       maxQuantity: button.dataset.cartMaxQuantity,

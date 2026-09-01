@@ -3,10 +3,63 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    function isGoGreen() {
+    function hasActiveAccount() {
       return request.auth != null
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
         && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.accountStatus == 'active'
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.plan in ['sprout', 'blooming', 'go_green'];
+    }
+
+    function isGoGreen() {
+      return hasActiveAccount()
         && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.plan == 'go_green';
+    }
+
+    match /carts/{userId} {
+      // Cada cuenta activa solo puede leer y modificar su propio carrito.
+      allow read, delete: if hasActiveAccount()
+        && request.auth.uid == userId;
+
+      allow create, update: if hasActiveAccount()
+        && request.auth.uid == userId
+        && request.resource.data.keys().hasOnly(['userId', 'items', 'updatedAt'])
+        && request.resource.data.userId == userId
+        && request.resource.data.items is list
+        && request.resource.data.items.size() <= 100;
+    }
+
+    match /checkoutRequests/{requestId} {
+      // Una cuenta solo puede consultar solicitudes que ya le pertenecen.
+      allow get: if hasActiveAccount()
+        && resource.data.buyerId == request.auth.uid;
+
+      // El navegador crea una solicitud inmutable; el backend autorizado
+      // valida existencias, precios e impuesto antes de crear una orden.
+      allow create: if hasActiveAccount()
+        && request.resource.data.keys().hasOnly([
+          'buyerId',
+          'items',
+          'customer',
+          'paymentMethod',
+          'status',
+          'idempotencyKey',
+          'createdAt'
+        ])
+        && request.resource.data.buyerId == request.auth.uid
+        && request.resource.data.items is list
+        && request.resource.data.items.size() > 0
+        && request.resource.data.items.size() <= 100
+        && request.resource.data.customer is map
+        && request.resource.data.customer.keys().hasOnly([
+          'name', 'email', 'phone', 'district', 'address'
+        ])
+        && request.resource.data.paymentMethod == 'pending_provider'
+        && request.resource.data.status == 'pending_validation'
+        && request.resource.data.idempotencyKey is string
+        && request.resource.data.idempotencyKey.size() == 64
+        && request.resource.data.createdAt == request.time;
+
+      allow list, update, delete: if false;
     }
 
     match /locations/{locationId} {

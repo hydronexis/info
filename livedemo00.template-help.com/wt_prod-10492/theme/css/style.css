@@ -19899,3 +19899,524 @@ optgroup {
 body :where(*:not(.fa):not([class^="fa-"]):not([class*=" fa-"]):not(.mdi):not([class^="mdi-"]):not([class*=" mdi-"]):not(.material-symbols-rounded):not(.material-symbols-outlined):not([class^="fl-"]):not([class*=" fl-"]):not(.lg-icon):not(.owl-video-play-icon)) {
   font-family: var(--hydronexis-font-family) !important;
 }
+
+/* ===============================================================
+   CARRITO GLOBAL HYDRONEXIS
+================================================================ */
+.hydronexis-cart-trigger {
+  position: relative;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid rgba(30, 59, 23, .18);
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 5px 16px rgba(30, 59, 23, .09);
+  cursor: pointer;
+  transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+.hydronexis-cart-trigger:hover,
+.hydronexis-cart-trigger:focus-visible {
+  border-color: #679e5a;
+  box-shadow: 0 7px 20px rgba(30, 59, 23, .16);
+  outline: none;
+  transform: translateY(-2px);
+}
+
+.hydronexis-cart-trigger-icon {
+  display: block;
+  width: 27px;
+  height: 27px;
+  object-fit: contain;
+}
+
+.hydronexis-cart-badge {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  display: grid;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 5px;
+  place-items: center;
+  border: 2px solid #ffffff;
+  border-radius: 999px;
+  background: #c68c49;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.hydronexis-cart-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000000;
+  background: rgba(30, 59, 23, .2);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .25s ease, visibility .25s ease;
+}
+
+.hydronexis-cart-panel {
+  position: fixed;
+  top: clamp(78px, 10vh, 112px);
+  right: clamp(12px, 3vw, 42px);
+  z-index: 1000001;
+  display: grid;
+  width: min(436px, calc(100vw - 24px));
+  max-height: calc(100vh - clamp(94px, 14vh, 144px));
+  max-height: calc(100dvh - clamp(94px, 14vh, 144px));
+  grid-template-rows: auto minmax(92px, 1fr) auto auto;
+  overflow: hidden;
+  border: 1px solid rgba(30, 59, 23, .12);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 24px 64px rgba(30, 59, 23, .24);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(calc(100% + 54px), 0, 0);
+  transition: opacity .25s ease, transform .32s cubic-bezier(.22, 1, .36, 1), visibility .32s ease;
+}
+
+.hydronexis-cart-backdrop.is-open,
+.hydronexis-cart-panel.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.hydronexis-cart-panel.is-open {
+  transform: translate3d(0, 0, 0);
+}
+
+body.hydronexis-cart-open {
+  overflow: hidden;
+}
+
+body.hydronexis-cart-open #chatbot-toggler,
+body.hydronexis-cart-open .chatbot-popup {
+  pointer-events: none !important;
+}
+
+.hydronexis-cart-header {
+  display: flex;
+  min-height: 80px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 20px;
+  background: #c68c49;
+  color: #ffffff;
+}
+
+.hydronexis-cart-header h2 {
+  margin: 2px 0 0;
+  color: #ffffff;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.hydronexis-cart-eyebrow {
+  display: block;
+  color: rgba(255, 255, 255, .82);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .13em;
+}
+
+.hydronexis-cart-close {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, .44);
+  border-radius: 50%;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 29px;
+  font-weight: 400;
+  line-height: 1;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.hydronexis-cart-close:hover,
+.hydronexis-cart-close:focus-visible {
+  background: rgba(255, 255, 255, .16);
+  outline: none;
+  transform: rotate(8deg);
+}
+
+.hydronexis-cart-content {
+  min-height: 92px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: #ffffff;
+  scrollbar-color: #679e5a transparent;
+  scrollbar-width: thin;
+}
+
+.hydronexis-cart-feedback {
+  margin: 14px 16px 0;
+  padding: 10px 12px;
+  border-left: 4px solid #679e5a;
+  border-radius: 8px;
+  background: rgba(103, 158, 90, .12);
+  color: #1e3b17;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.hydronexis-cart-feedback.is-error {
+  border-left-color: #c68c49;
+  background: rgba(198, 140, 73, .13);
+}
+
+.hydronexis-cart-empty {
+  display: grid;
+  min-height: 172px;
+  padding: 24px;
+  place-items: center;
+  align-content: center;
+  gap: 6px;
+  color: #1e3b17;
+  text-align: center;
+}
+
+.hydronexis-cart-empty[hidden] {
+  display: none;
+}
+
+.hydronexis-cart-empty > span:last-child {
+  color: rgba(30, 59, 23, .68);
+  font-size: 13px;
+}
+
+.hydronexis-cart-empty-icon {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 4px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(103, 158, 90, .14);
+}
+
+.hydronexis-cart-empty-icon img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.hydronexis-cart-items {
+  display: grid;
+}
+
+.hydronexis-cart-items[hidden] {
+  display: none;
+}
+
+.hydronexis-cart-item {
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr);
+  gap: 13px;
+  padding: 16px;
+  border-bottom: 1px solid rgba(30, 59, 23, .1);
+  background: #ffffff;
+}
+
+.hydronexis-cart-item-media {
+  display: grid;
+  width: 68px;
+  height: 68px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(103, 158, 90, .2);
+  border-radius: 12px;
+  background: rgba(103, 158, 90, .08);
+}
+
+.hydronexis-cart-item-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hydronexis-cart-item-placeholder {
+  color: #679e5a;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.hydronexis-cart-item-copy {
+  min-width: 0;
+}
+
+.hydronexis-cart-item-top,
+.hydronexis-cart-item-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.hydronexis-cart-item-copy h3 {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  color: #1e3b17;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hydronexis-cart-item-line-total {
+  flex: 0 0 auto;
+  color: #1e3b17;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.hydronexis-cart-item-seller {
+  margin: 4px 0 11px;
+  overflow: hidden;
+  color: rgba(30, 59, 23, .65);
+  font-size: 12px;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hydronexis-cart-quantity {
+  display: inline-grid;
+  grid-template-columns: 30px 36px 30px;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(30, 59, 23, .18);
+  border-radius: 9px;
+  background: #ffffff;
+}
+
+.hydronexis-cart-quantity button {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  background: rgba(103, 158, 90, .1);
+  color: #1e3b17;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.hydronexis-cart-quantity button:hover:not(:disabled),
+.hydronexis-cart-quantity button:focus-visible {
+  background: #679e5a;
+  color: #ffffff;
+  outline: none;
+}
+
+.hydronexis-cart-quantity button:disabled {
+  cursor: not-allowed;
+  opacity: .38;
+}
+
+.hydronexis-cart-quantity output {
+  color: #1e3b17;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.hydronexis-cart-remove {
+  padding: 3px 0;
+  border: 0;
+  background: transparent;
+  color: #c68c49;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.hydronexis-cart-remove:hover,
+.hydronexis-cart-remove:focus-visible {
+  color: #1e3b17;
+  outline: none;
+}
+
+.hydronexis-cart-summary {
+  padding: 17px 20px;
+  border-top: 1px solid rgba(30, 59, 23, .08);
+  background: rgba(103, 158, 90, .1);
+}
+
+.hydronexis-cart-summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 5px 0;
+  color: #1e3b17;
+  font-size: 16px;
+}
+
+.hydronexis-cart-summary-row strong {
+  font-weight: 600;
+}
+
+.hydronexis-cart-summary-total {
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(30, 59, 23, .13);
+  color: #1e3b17;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.hydronexis-cart-summary-total strong {
+  color: #c68c49;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.hydronexis-cart-footer {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 12px;
+  padding: 18px 20px;
+  border-top: 1px solid rgba(30, 59, 23, .08);
+  background: #ffffff;
+}
+
+.hydronexis-cart-button {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border: 1px solid transparent;
+  border-radius: 11px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  transition: background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;
+}
+
+.hydronexis-cart-button-secondary {
+  border-color: rgba(30, 59, 23, .22);
+  background: #ffffff;
+  color: #1e3b17;
+}
+
+.hydronexis-cart-button-primary {
+  background: #679e5a;
+  color: #ffffff;
+}
+
+.hydronexis-cart-button:hover:not(:disabled):not(.is-disabled),
+.hydronexis-cart-button:focus-visible:not(:disabled):not(.is-disabled) {
+  border-color: #1e3b17;
+  background: #1e3b17;
+  color: #ffffff;
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.hydronexis-cart-button:disabled,
+.hydronexis-cart-button.is-disabled {
+  cursor: not-allowed;
+  opacity: .48;
+  pointer-events: auto;
+}
+
+@media (max-width: 575px) {
+  .hydronexis-cart-panel {
+    top: 62px;
+    right: 8px;
+    width: calc(100vw - 16px);
+    max-height: calc(100vh - 70px);
+    max-height: calc(100dvh - 70px);
+    border-radius: 16px;
+  }
+
+  .hydronexis-cart-header {
+    min-height: 70px;
+    padding: 14px 16px;
+  }
+
+  .hydronexis-cart-header h2 {
+    font-size: 22px;
+  }
+
+  .hydronexis-cart-footer {
+    padding: 14px 16px;
+  }
+}
+
+@media (max-width: 991px) {
+  .rd-navbar-fixed .navbar-actions {
+    position: fixed;
+    top: 4px;
+    right: 4px;
+    z-index: 1082;
+    height: 48px;
+    gap: 5px;
+  }
+
+  .rd-navbar-fixed .navbar-user-trigger {
+    gap: 0;
+    padding: 0;
+  }
+
+  .rd-navbar-fixed .navbar-user-arrow {
+    display: none;
+  }
+
+  .rd-navbar-fixed .navbar-user-avatar-small,
+  .rd-navbar-fixed .hydronexis-cart-trigger,
+  .rd-navbar-fixed .navbar-actions .rd-navbar-project-hamburger-open {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+  }
+
+  .rd-navbar-fixed .navbar-user-avatar-small {
+    border-width: 1px;
+  }
+
+  .rd-navbar-fixed .hydronexis-cart-trigger-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .rd-navbar-fixed .hydronexis-cart-badge {
+    top: -4px;
+    right: -4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hydronexis-cart-trigger,
+  .hydronexis-cart-backdrop,
+  .hydronexis-cart-panel,
+  .hydronexis-cart-close,
+  .hydronexis-cart-button {
+    transition: none !important;
+  }
+}

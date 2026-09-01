@@ -23,6 +23,7 @@ function formatMoney(value) {
 }
 
 function showFeedback(message, isError = false) {
+  if (!feedback) return;
   feedback.textContent = message;
   feedback.hidden = false;
   feedback.classList.toggle("is-error", isError);
@@ -32,8 +33,9 @@ function showFeedback(message, isError = false) {
 function createSummaryItem(item) {
   const row = document.createElement("div");
   row.className = "commerce-checkout-item";
+  row.setAttribute("role", "listitem");
   const name = document.createElement("span");
-  name.textContent = `${item.name} × ${item.quantity}`;
+  name.textContent = `${item.name} \u00d7 ${item.quantity}`;
   const price = document.createElement("strong");
   price.textContent = formatMoney(item.displayPrice * item.quantity);
   row.append(name, price);
@@ -46,10 +48,13 @@ async function renderCheckout() {
   const list = document.getElementById("checkoutItems");
   list.replaceChildren(...cartItems.map(createSummaryItem));
   document.getElementById("checkoutItemCount").textContent = String(summary.itemCount);
-  document.getElementById("checkoutDisplayTotal").textContent = formatMoney(summary.displaySubtotal);
+  document.getElementById("checkoutItemLabel").textContent = summary.itemCount === 1 ? "item" : "items";
+  document.getElementById("checkoutSubtotal").textContent = formatMoney(summary.displaySubtotal);
+  document.getElementById("checkoutTax").textContent = formatMoney(summary.displayTax);
+  document.getElementById("checkoutDisplayTotal").textContent = formatMoney(summary.displayTotal);
+  submitButton.disabled = submitted || !cartItems.length;
   if (!cartItems.length) {
     showFeedback("Your cart is empty. Add a product before checkout.", true);
-    submitButton.disabled = true;
   }
 }
 
@@ -104,13 +109,6 @@ form?.addEventListener("submit", async (event) => {
       "checkoutRequests",
       `${session.user.uid}_${idempotencyKey}`
     );
-    const existingRequest = await getDoc(requestReference);
-    if (existingRequest.exists()) {
-      showFeedback(`Checkout request ${requestReference.id} was already received for this cart. No duplicate request or payment was created.`);
-      submitButton.textContent = "Request Already Submitted";
-      return;
-    }
-
     await setDoc(requestReference, {
       buyerId: session.user.uid,
       items,
@@ -161,5 +159,14 @@ form?.addEventListener("submit", async (event) => {
 session = await requirePageAccess();
 document.getElementById("checkoutName").value = session.profile?.name || session.user.displayName || "";
 document.getElementById("checkoutEmail").value = session.user.email || "";
+document.addEventListener("hydronexisCartSyncError", (event) => {
+  showFeedback(event.detail?.message || "Cloud cart sync is temporarily unavailable.", true);
+});
 await initializeCart();
+document.addEventListener("hydronexisCartChanged", () => {
+  void renderCheckout().catch((error) => {
+    console.error("No se pudo refrescar el checkout:", error);
+    showFeedback("Checkout could not refresh the cart. Please try again.", true);
+  });
+});
 await renderCheckout();
