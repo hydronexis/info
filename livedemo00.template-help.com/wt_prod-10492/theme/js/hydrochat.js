@@ -1,10 +1,14 @@
-import { requirePageAccess } from "./plan-guard.js";
-
-const hydroChatSession = await requirePageAccess();
-
 /* =========================================================
-   HYDRONEXIS HYDROCHAT
+   TEMPORARY HYDROCHAT SESSION TEST
 ========================================================= */
+
+const hydroChatSession = {
+    user: {
+        uid: "test-user"
+    }
+};
+
+console.log("HydroChat JS loaded correctly");
 
 
 /* =========================================================
