@@ -42,9 +42,19 @@
               <label for="profileNameInput">Name
                 <input id="profileNameInput" name="name" type="text" minlength="2" maxlength="80" autocomplete="name" required>
               </label>
-              <label for="profilePhotoInput">Profile Photo URL
-                <input id="profilePhotoInput" name="photoUrl" type="url" maxlength="500" autocomplete="url" placeholder="https://...">
+              <label for="profilePhotoInput">Profile Photo URL (HTTPS)
+                <input id="profilePhotoInput" name="photoUrl" type="url" inputmode="url" pattern="https://.*" maxlength="1000" autocomplete="url" placeholder="https://..." aria-describedby="profilePhotoHelp">
               </label>
+              <div class="account-image-upload">
+                <span class="account-field-label">Upload Photo from Device</span>
+                <label class="account-file-picker" for="profilePhotoFile">
+                  <span>Choose JPG, PNG or WebP</span>
+                  <input id="profilePhotoFile" name="photoFile" type="file" accept="image/jpeg,image/png,image/webp" aria-describedby="profilePhotoHelp profilePhotoStatus">
+                </label>
+                <p class="account-field-help" id="profilePhotoHelp">Maximum size: 5 MB. A selected file takes priority over the URL.</p>
+                <p class="account-upload-status" id="profilePhotoStatus" role="status" aria-live="polite"></p>
+                <img class="account-image-preview account-profile-preview" id="profilePhotoPreview" alt="Profile photo preview" hidden>
+              </div>
               <p class="account-feedback" id="profileFeedback" role="status" hidden></p>
               <button class="button button-secondary button-zakaria" id="profileSaveButton" type="submit">Save Changes</button>
             </form>

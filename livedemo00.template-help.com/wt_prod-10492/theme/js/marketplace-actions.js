@@ -10,8 +10,11 @@ document.addEventListener("click", async (event) => {
   const button = event.target.closest("[data-cart-product-id]");
   if (!button) return;
   event.preventDefault();
+  if (button.dataset.cartBusy === "true") return;
+  button.dataset.cartBusy = "true";
   const feedback = document.getElementById("marketplaceActionFeedback");
   button.setAttribute("aria-busy", "true");
+  button.setAttribute("aria-disabled", "true");
   button.classList.add("is-loading");
 
   try {
@@ -41,7 +44,9 @@ document.addEventListener("click", async (event) => {
       feedback.classList.add("is-error");
     }
   } finally {
+    delete button.dataset.cartBusy;
     button.removeAttribute("aria-busy");
+    button.removeAttribute("aria-disabled");
     button.classList.remove("is-loading");
   }
 });

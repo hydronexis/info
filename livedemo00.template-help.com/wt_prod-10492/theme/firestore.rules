@@ -214,7 +214,28 @@ service cloud.firestore {
       allow get: if request.auth != null
         && request.auth.uid == userId;
 
-      allow list, create, update, delete: if false;
+      allow update: if hasActiveAccount()
+        && request.auth.uid == userId
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'name',
+          'photoUrl',
+          'photoStoragePath',
+          'updatedAt'
+        ])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 2
+        && request.resource.data.name.size() <= 80
+        && request.resource.data.photoUrl is string
+        && isHttpsImageOrEmpty(request.resource.data.photoUrl)
+        && request.resource.data.photoStoragePath is string
+        && request.resource.data.photoStoragePath.size() <= 1000
+        && (
+          request.resource.data.photoStoragePath == ''
+          || request.resource.data.photoStoragePath.matches('profile-images/' + userId + '/.+')
+        )
+        && request.resource.data.updatedAt == request.time;
+
+      allow list, create, delete: if false;
     }
 
     match /carts/{userId} {

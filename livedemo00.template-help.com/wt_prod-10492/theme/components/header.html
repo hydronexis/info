@@ -287,6 +287,34 @@
             <div class="navbar-actions">
 
 
+              <!-- =================================================
+                   CARRITO GLOBAL
+              ================================================== -->
+
+              <div class="navbar-action navbar-cart">
+                <button
+                  class="hydronexis-cart-trigger"
+                  type="button"
+                  data-hydronexis-cart-trigger
+                  aria-label="Open shopping cart, 0 items"
+                  aria-controls="hydronexisCartPanel"
+                  aria-expanded="false"
+                >
+                  <img
+                    class="hydronexis-cart-trigger-icon"
+                    src="images/icon/shopping-cart.png"
+                    alt=""
+                    aria-hidden="true"
+                  >
+                  <span
+                    class="hydronexis-cart-badge"
+                    data-hydronexis-cart-badge
+                    aria-hidden="true"
+                  >0</span>
+                </button>
+              </div>
+
+
 
               <!-- =================================================
                    USUARIO / PERFIL
@@ -679,3 +707,92 @@
   </div>
 
 </header>
+
+<!-- ===============================================================
+     CARRITO DE COMPRAS GLOBAL
+================================================================ -->
+
+<div
+  class="hydronexis-cart-backdrop"
+  data-hydronexis-cart-close
+  aria-hidden="true"
+></div>
+
+<aside
+  class="hydronexis-cart-panel"
+  id="hydronexisCartPanel"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="hydronexisCartTitle"
+  aria-hidden="true"
+>
+  <header class="hydronexis-cart-header">
+    <div>
+      <span class="hydronexis-cart-eyebrow">HYDRONEXIS MARKETPLACE</span>
+      <h2 id="hydronexisCartTitle">Shopping Cart</h2>
+    </div>
+    <button
+      class="hydronexis-cart-close"
+      type="button"
+      data-hydronexis-cart-close
+      aria-label="Close shopping cart"
+    >&times;</button>
+  </header>
+
+  <div class="hydronexis-cart-content">
+    <p
+      class="hydronexis-cart-feedback"
+      id="hydronexisCartFeedback"
+      role="status"
+      aria-live="polite"
+      hidden
+    ></p>
+
+    <div class="hydronexis-cart-empty" id="hydronexisCartEmptyState">
+      <span class="hydronexis-cart-empty-icon" aria-hidden="true">
+        <img src="images/icon/shopping-cart.png" alt="">
+      </span>
+      <strong>Your cart is empty</strong>
+      <span>Add a Marketplace product to get started.</span>
+    </div>
+
+    <div
+      class="hydronexis-cart-items"
+      id="hydronexisCartItems"
+      role="list"
+      aria-live="polite"
+      hidden
+    ></div>
+  </div>
+
+  <div class="hydronexis-cart-summary">
+    <div class="hydronexis-cart-summary-row">
+      <span>Subtotal:</span>
+      <strong id="hydronexisCartSubtotal">$0.00</strong>
+    </div>
+    <div class="hydronexis-cart-summary-row">
+      <span>Tax (7%):</span>
+      <strong id="hydronexisCartTax">$0.00</strong>
+    </div>
+    <div class="hydronexis-cart-summary-row hydronexis-cart-summary-total">
+      <span>Total:</span>
+      <strong id="hydronexisCartTotal">$0.00</strong>
+    </div>
+  </div>
+
+  <div class="hydronexis-cart-footer">
+    <button
+      class="hydronexis-cart-button hydronexis-cart-button-secondary"
+      id="hydronexisCartClear"
+      type="button"
+      disabled
+    >Clear Cart</button>
+    <a
+      class="hydronexis-cart-button hydronexis-cart-button-primary is-disabled"
+      id="hydronexisCartCheckout"
+      href="checkout.html"
+      aria-disabled="true"
+      tabindex="-1"
+    >Finalize Order</a>
+  </div>
+</aside>
