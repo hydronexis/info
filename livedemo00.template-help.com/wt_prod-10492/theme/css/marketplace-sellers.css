@@ -5,7 +5,7 @@
 /* --- Banner Vendedores --- */
 .sellers-banner {
   position: relative;
-  background-image: url('../images/bg-shop.jpg');
+  background-image: url('../images/encabezados/panel.png');
   background-size: cover;
   background-position: center;
   min-height: 220px;
