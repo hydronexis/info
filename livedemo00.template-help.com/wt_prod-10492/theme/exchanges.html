@@ -34,9 +34,25 @@
               <label for="exchangeItemDescription">Description
                 <textarea id="exchangeItemDescription" name="description" rows="4" maxlength="500" required></textarea>
               </label>
-              <p class="account-feedback">Image upload is not configured. Add the approved asset later; no image will be generated.</p>
+              <label for="exchangeItemImage">Image URL (HTTPS)
+                <input id="exchangeItemImage" name="image" type="url" inputmode="url" pattern="https://.*" maxlength="1000" placeholder="https://..." aria-describedby="exchangeImageHelp">
+              </label>
+              <div class="account-image-upload">
+                <span class="account-field-label">Upload Image from Device</span>
+                <label class="account-file-picker" for="exchangeItemImageFile">
+                  <span>Choose JPG, PNG or WebP</span>
+                  <input id="exchangeItemImageFile" name="imageFile" type="file" accept="image/jpeg,image/png,image/webp" aria-describedby="exchangeImageHelp exchangeImageStatus">
+                </label>
+                <p class="account-field-help" id="exchangeImageHelp">Maximum size: 5 MB. Manual URLs must use HTTPS. A selected file takes priority over the URL.</p>
+                <p class="account-upload-status" id="exchangeImageStatus" role="status" aria-live="polite"></p>
+                <img class="account-image-preview" id="exchangeImagePreview" alt="Exchange item image preview" hidden>
+              </div>
               <button class="button button-secondary button-zakaria" type="submit">Register for Exchange</button>
             </form>
+            <h3 class="account-subheading" id="exchangeItemListTitle">Your Exchange Items</h3>
+            <div class="account-list" id="exchangeItemList" aria-labelledby="exchangeItemListTitle" aria-live="polite">
+              <p class="account-empty">Loading your exchange items...</p>
+            </div>
           </section>
 
           <section class="account-section">

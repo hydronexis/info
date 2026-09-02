@@ -61,10 +61,19 @@
             <label for="sellerProductLocation">Location
               <input id="sellerProductLocation" name="location" type="text" maxlength="150" required>
             </label>
-            <label for="sellerProductImage">Image URL
-              <input id="sellerProductImage" name="image" type="url" maxlength="500" placeholder="https://...">
+            <label for="sellerProductImage">Image URL (HTTPS)
+              <input id="sellerProductImage" name="image" type="url" inputmode="url" pattern="https://.*" maxlength="1000" placeholder="https://..." aria-describedby="sellerImageHelp">
             </label>
-            <!-- [IMAGE REQUIRED] Product upload is not configured. Approved seller assets should be stored in Firebase Storage and their URL saved here. -->
+            <div class="account-image-upload">
+              <span class="account-field-label">Upload Image from Device</span>
+              <label class="account-file-picker" for="sellerProductImageFile">
+                <span>Choose JPG, PNG or WebP</span>
+                <input id="sellerProductImageFile" name="imageFile" type="file" accept="image/jpeg,image/png,image/webp" aria-describedby="sellerImageHelp sellerImageStatus">
+              </label>
+              <p class="account-field-help" id="sellerImageHelp">Maximum size: 5 MB. Manual URLs must use HTTPS. A selected file takes priority over the URL.</p>
+              <p class="account-upload-status" id="sellerImageStatus" role="status" aria-live="polite"></p>
+              <img class="account-image-preview" id="sellerImagePreview" alt="Product image preview" hidden>
+            </div>
             <label for="sellerProductExchange">
               <input id="sellerProductExchange" name="exchangeEnabled" type="checkbox"> Available for Exchange
             </label>

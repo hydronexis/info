@@ -29,6 +29,7 @@ try {
   const snapshot = await getDoc(doc(db, "products", productId));
   if (!snapshot.exists()) throw new Error("missing-product");
   const product = { id: snapshot.id, ...snapshot.data() };
+  if (product.status === "inactive") throw new Error("inactive-product");
   applyPlanPermissions(session.plan);
 
   document.title = `${product.name} | HYDRONEXIS Marketplace`;
@@ -48,10 +49,12 @@ try {
     const image = document.createElement("img");
     image.src = product.image;
     image.alt = product.name;
-    media.appendChild(image);
+    image.decoding = "async";
+    media.replaceChildren(image);
   } else {
-    media.textContent = "[IMAGE REQUIRED]";
+    media.textContent = "No image available";
   }
+  media.setAttribute("aria-busy", "false");
 
   const cartButton = document.getElementById("marketplaceProductCartButton");
   cartButton.dataset.cartProductId = product.id;
@@ -86,6 +89,7 @@ try {
   if (canExchange) {
     exchange.href = `exchanges.html?product=${encodeURIComponent(product.id)}&seller=${encodeURIComponent(product.sellerId)}`;
   }
+  feedback.hidden = true;
   card.setAttribute("aria-busy", "false");
 } catch {
   fail("This product is unavailable or could not be loaded.");

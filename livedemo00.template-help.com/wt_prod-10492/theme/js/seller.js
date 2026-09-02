@@ -1,4 +1,10 @@
 import { db } from "./firebase-config.js";
+import {
+  deleteUploadedImage,
+  isHttpsImageUrl,
+  uploadImageFile,
+  validateImageFile
+} from "./image-upload.js";
 import { requirePageAccess } from "./plan-guard.js";
 import {
   addDoc,
@@ -17,8 +23,13 @@ const feedback = document.getElementById("sellerFeedback");
 const productList = document.getElementById("sellerProductList");
 const orderList = document.getElementById("sellerOrderList");
 const form = document.getElementById("sellerProductForm");
+const imageUrlInput = document.getElementById("sellerProductImage");
+const imageFileInput = document.getElementById("sellerProductImageFile");
+const imagePreview = document.getElementById("sellerImagePreview");
+const imageStatus = document.getElementById("sellerImageStatus");
 let products = [];
 let orders = [];
+let localPreviewUrl = "";
 
 function displayName() {
   return session.profile?.name?.trim()
@@ -54,8 +65,43 @@ function statusFor(stock, availability = "available") {
   return "available";
 }
 
+function releaseLocalPreview() {
+  if (!localPreviewUrl) return;
+  URL.revokeObjectURL(localPreviewUrl);
+  localPreviewUrl = "";
+}
+
+function showImagePreview(source, message = "") {
+  releaseLocalPreview();
+  if (!source) {
+    imagePreview.hidden = true;
+    imagePreview.removeAttribute("src");
+    imageStatus.textContent = message;
+    return;
+  }
+  imagePreview.src = source;
+  imagePreview.hidden = false;
+  imageStatus.textContent = message;
+}
+
+function previewDeviceImage(file) {
+  validateImageFile(file);
+  releaseLocalPreview();
+  localPreviewUrl = URL.createObjectURL(file);
+  imagePreview.src = localPreviewUrl;
+  imagePreview.hidden = false;
+  imageStatus.textContent = `${file.name} is ready to upload.`;
+}
+
+function resetImageFields() {
+  imageUrlInput.disabled = false;
+  showImagePreview("");
+  imageStatus.textContent = "";
+}
+
 function resetForm() {
   form.reset();
+  resetImageFields();
   document.getElementById("sellerProductId").value = "";
   document.getElementById("sellerFormTitle").textContent = "Create Product";
   document.getElementById("sellerSaveButton").textContent = "Publish Product";
@@ -63,6 +109,8 @@ function resetForm() {
 }
 
 function editProduct(product) {
+  imageFileInput.value = "";
+  imageUrlInput.disabled = false;
   document.getElementById("sellerProductId").value = product.id;
   document.getElementById("sellerProductName").value = product.name || "";
   document.getElementById("sellerProductDescription").value = product.description || "";
@@ -76,13 +124,22 @@ function editProduct(product) {
   document.getElementById("sellerFormTitle").textContent = "Edit Product";
   document.getElementById("sellerSaveButton").textContent = "Save Product";
   document.getElementById("sellerCancelEdit").hidden = false;
+  showImagePreview(product.image || "", product.image ? "Current product image." : "No image saved yet.");
   form.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function productCard(product) {
   const card = document.createElement("article");
-  card.className = "account-list-item";
+  card.className = product.image ? "account-list-item account-list-item-media" : "account-list-item";
   card.dataset.productId = product.id;
+  if (product.image) {
+    const image = document.createElement("img");
+    image.className = "account-list-thumbnail";
+    image.src = product.image;
+    image.alt = "";
+    image.loading = "lazy";
+    card.appendChild(image);
+  }
   const details = document.createElement("div");
   const title = document.createElement("h3");
   title.textContent = product.name;
@@ -172,15 +229,52 @@ function renderOrders() {
 }
 
 async function loadSellerData() {
-  const [productSnapshot, orderSnapshot] = await Promise.all([
+  const [productResult, orderResult] = await Promise.allSettled([
     getDocs(query(collection(db, "products"), where("sellerId", "==", session.user.uid))),
     getDocs(query(collection(db, "orders"), where("sellerIds", "array-contains", session.user.uid)))
   ]);
-  products = productSnapshot.docs.map((entry) => ({ id: entry.id, ...entry.data() }));
-  orders = orderSnapshot.docs.map((entry) => ({ id: entry.id, ...entry.data() }));
+  products = productResult.status === "fulfilled"
+    ? productResult.value.docs.map((entry) => ({ id: entry.id, ...entry.data() }))
+    : [];
+  orders = orderResult.status === "fulfilled"
+    ? orderResult.value.docs.map((entry) => ({ id: entry.id, ...entry.data() }))
+    : [];
   renderProducts();
   renderOrders();
+  return {
+    productError: productResult.status === "rejected",
+    orderError: orderResult.status === "rejected"
+  };
 }
+
+imageFileInput?.addEventListener("change", () => {
+  const file = imageFileInput.files?.[0];
+  if (!file) {
+    imageUrlInput.disabled = false;
+    showImagePreview(imageUrlInput.value.trim(), "");
+    return;
+  }
+  try {
+    previewDeviceImage(file);
+    imageUrlInput.disabled = true;
+  } catch (error) {
+    imageFileInput.value = "";
+    imageUrlInput.disabled = false;
+    showImagePreview(imageUrlInput.value.trim(), error.message);
+  }
+});
+
+imageUrlInput?.addEventListener("change", () => {
+  if (imageFileInput.files?.[0]) return;
+  const url = imageUrlInput.value.trim();
+  showImagePreview(isHttpsImageUrl(url) ? url : "", url && !isHttpsImageUrl(url) ? "Enter a valid HTTPS image URL." : "");
+});
+
+imagePreview?.addEventListener("error", () => {
+  imagePreview.hidden = true;
+  imageStatus.textContent = "The image preview could not be loaded. You can still choose another image.";
+});
+window.addEventListener("pagehide", releaseLocalPreview, { once: true });
 
 form?.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -195,22 +289,48 @@ form?.addEventListener("submit", async (event) => {
 
   const button = document.getElementById("sellerSaveButton");
   button.disabled = true;
-  const payload = {
-    sellerId: session.user.uid,
-    sellerName: displayName(),
-    name: String(data.get("name") || "").trim(),
-    description: String(data.get("description") || "").trim(),
-    category: String(data.get("category") || "").trim(),
-    price,
-    stock,
-    status: statusFor(stock, String(data.get("availability") || "available")),
-    location: String(data.get("location") || "").trim(),
-    image: String(data.get("image") || "").trim(),
-    exchangeEnabled: data.get("exchangeEnabled") === "on",
-    updatedAt: serverTimestamp()
-  };
-
+  const existingProduct = products.find((product) => product.id === productId);
+  const selectedFile = data.get("imageFile");
+  const requestedImageUrl = String(data.get("image") || "").trim();
+  let uploadedImage = null;
   try {
+    if (!isHttpsImageUrl(requestedImageUrl)) {
+      throw new Error("Enter a valid HTTPS image URL.");
+    }
+
+    let image = requestedImageUrl;
+    let imageStoragePath = requestedImageUrl === existingProduct?.image
+      ? existingProduct?.imageStoragePath || ""
+      : "";
+
+    if (selectedFile instanceof File && selectedFile.size) {
+      uploadedImage = await uploadImageFile(selectedFile, {
+        folder: "seller-images",
+        uid: session.user.uid,
+        onProgress: (percent) => {
+          imageStatus.textContent = `Uploading image: ${percent}%`;
+        }
+      });
+      image = uploadedImage.url;
+      imageStoragePath = uploadedImage.path;
+    }
+
+    const payload = {
+      sellerId: session.user.uid,
+      sellerName: displayName(),
+      name: String(data.get("name") || "").trim(),
+      description: String(data.get("description") || "").trim(),
+      category: String(data.get("category") || "").trim(),
+      price,
+      stock,
+      status: statusFor(stock, String(data.get("availability") || "available")),
+      location: String(data.get("location") || "").trim(),
+      image,
+      imageStoragePath,
+      exchangeEnabled: data.get("exchangeEnabled") === "on",
+      updatedAt: serverTimestamp()
+    };
+
     if (productId) {
       await updateDoc(doc(db, "products", productId), payload);
       showFeedback("Product updated.");
@@ -218,10 +338,17 @@ form?.addEventListener("submit", async (event) => {
       await addDoc(collection(db, "products"), { ...payload, createdAt: serverTimestamp() });
       showFeedback("Product published in the Marketplace.");
     }
+
+    if (existingProduct?.imageStoragePath && existingProduct.imageStoragePath !== imageStoragePath) {
+      await deleteUploadedImage(existingProduct.imageStoragePath).catch(() => {});
+    }
     resetForm();
     await loadSellerData();
-  } catch {
-    showFeedback("The product could not be saved.", true);
+  } catch (error) {
+    if (uploadedImage?.path) {
+      await deleteUploadedImage(uploadedImage.path).catch(() => {});
+    }
+    showFeedback(error?.message || "The product could not be saved.", true);
   } finally {
     button.disabled = false;
   }
@@ -262,7 +389,7 @@ productList?.addEventListener("click", async (event) => {
         const nextStock = Math.max(0, Number(snapshot.data().stock || 0) + delta);
         transaction.update(reference, {
           stock: nextStock,
-          status: statusFor(nextStock),
+          status: snapshot.data().status === "inactive" ? "inactive" : statusFor(nextStock),
           updatedAt: serverTimestamp()
         });
       });
@@ -275,12 +402,11 @@ productList?.addEventListener("click", async (event) => {
   }
 });
 
-try {
-  await loadSellerData();
-} catch {
-  products = [];
-  orders = [];
-  renderProducts();
-  renderOrders();
-  showFeedback("Seller data could not be loaded. Verify Firebase Rules and required indexes.", true);
+const initialLoad = await loadSellerData();
+if (initialLoad.productError || initialLoad.orderError) {
+  const unavailable = [
+    initialLoad.productError ? "products" : "",
+    initialLoad.orderError ? "orders" : ""
+  ].filter(Boolean).join(" and ");
+  showFeedback(`Seller ${unavailable} could not be loaded. Verify Firebase Rules and your connection.`, true);
 }

@@ -29,8 +29,10 @@ document.addEventListener("click", async (event) => {
     if (feedback) {
       feedback.textContent = "Product added to your cart. The final price and availability will be verified at checkout.";
       feedback.hidden = false;
+      feedback.classList.remove("is-error");
     }
-    button.textContent = "Added to Cart";
+    button.removeAttribute("data-cart-product-id");
+    button.textContent = "View Cart";
     button.href = "cart-page.html";
   } catch {
     if (feedback) {

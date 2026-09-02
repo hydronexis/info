@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="plan-guard-pending">
   
 <!-- Mirrored from livedemo00.template-help.com/wt_prod-10492/theme/grid-shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Jun 2026 15:36:40 GMT -->
 <head>
-    <title>Grid Shop</title>
+    <title>Marketplace | HYDRONEXIS</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,8 +12,11 @@
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/commerce.css">
+    <style>.plan-guard-pending body { visibility: hidden; }</style>
+    <script type="module" src="js/plan-guard.js"></script>
   </head>
-  <body>
+  <body data-required-permission="marketplace">
     <div id="header"></div>
 
       <section class="breadcrumbs-custom">
@@ -171,6 +174,68 @@
               </div>
             </div>
             <div class="col-lg-8 col-xl-9">
+              <section class="marketplace-live-section" aria-labelledby="marketplace-live-title">
+                <div class="marketplace-live-heading">
+                  <div>
+                    <span class="commerce-eyebrow">GO GREEN SELLERS</span>
+                    <h3 id="marketplace-live-title">Products Published by Our Sellers</h3>
+                  </div>
+                  <p id="marketplace-live-status" role="status" aria-live="polite">Loading published products...</p>
+                </div>
+
+                <div class="marketplace-live-controls" role="search" aria-label="Filter published seller products">
+                  <label class="marketplace-live-search">
+                    <span>Search</span>
+                    <input id="marketplace-search" type="search" placeholder="Product, seller or location">
+                  </label>
+                  <label>
+                    <span>Category</span>
+                    <select id="marketplace-live-category">
+                      <option value="">All categories</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Availability</span>
+                    <select id="marketplace-live-availability">
+                      <option value="">Any availability</option>
+                      <option value="available">Available</option>
+                      <option value="low_stock">Low stock</option>
+                      <option value="out_of_stock">Out of stock</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Seller</span>
+                    <select id="marketplace-live-seller">
+                      <option value="">All sellers</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Location</span>
+                    <select id="marketplace-live-location">
+                      <option value="">All locations</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Operation</span>
+                    <select id="marketplace-live-operation">
+                      <option value="">Sale or exchange</option>
+                      <option value="sale">For sale</option>
+                      <option value="exchange">Exchange enabled</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Minimum price</span>
+                    <input id="marketplace-live-min-price" type="number" min="0" step="0.01" inputmode="decimal" placeholder="$0.00">
+                  </label>
+                  <label>
+                    <span>Maximum price</span>
+                    <input id="marketplace-live-max-price" type="number" min="0" step="0.01" inputmode="decimal" placeholder="No maximum">
+                  </label>
+                </div>
+
+                <div class="row row-30" id="marketplace-live-grid" aria-live="polite" aria-busy="true"></div>
+              </section>
+
               <div class="product-top-panel group-md">
                 <div>
                   <div class="group-sm group-middle">
@@ -712,8 +777,32 @@
       .buyers-map-svg{display:block;width:100%;height:auto;}
       .buyers-map-overlay{position:absolute;left:0;right:0;bottom:0;padding:10px 14px;background:linear-gradient(0deg, rgba(0,0,0,.6), rgba(0,0,0,0));color:#fff;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;}
       .buyers-map-overlay .mdi{font-size:16px;}
+
+      /* Seller products published from Seller Dashboard */
+      .marketplace-live-section{margin-bottom:42px;padding:clamp(22px,4vw,36px);border:1px solid rgba(103,158,90,.28);border-radius:22px;background:#fffdf8;box-shadow:0 16px 38px rgba(30,59,23,.08);}
+      .marketplace-live-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:24px;}
+      .marketplace-live-heading h3{margin:0;color:#1e3b17;font-size:clamp(25px,3vw,34px);}
+      .marketplace-live-heading p{max-width:280px;margin:0;color:rgba(30,59,23,.68);font-size:14px;text-align:right;}
+      .marketplace-live-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:28px;}
+      .marketplace-live-controls label{display:grid;gap:6px;margin:0;color:#1e3b17;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+      .marketplace-live-controls input,.marketplace-live-controls select{width:100%;min-height:44px;padding:9px 11px;border:1px solid #ccd6c8;border-radius:9px;background:#fff;color:#263523;font:inherit;font-size:14px;letter-spacing:normal;text-transform:none;}
+      .marketplace-live-controls input:focus,.marketplace-live-controls select:focus{border-color:#679e5a;outline:3px solid rgba(103,158,90,.18);}
+      .marketplace-live-search{grid-column:span 2;}
+      #marketplace-live-grid{margin-top:0;}
+      #marketplace-live-grid[aria-busy="true"]{min-height:120px;}
+      .marketplace-live-product{display:flex;}
+      .marketplace-live-card{width:100%;height:100%;}
+      .marketplace-live-card .product-body{height:100%;}
+      .marketplace-live-card .product-figure{display:grid;min-height:180px;place-items:center;overflow:hidden;border-radius:12px;background:rgba(103,158,90,.08);}
+      .marketplace-live-card .product-figure img{width:100%;height:180px;object-fit:contain;}
+      .marketplace-live-placeholder{display:grid;width:100%;min-height:180px;place-items:center;padding:20px;color:rgba(30,59,23,.58);font-weight:700;text-align:center;}
+      .marketplace-live-card .product-title{margin-top:18px;}
+      .marketplace-live-card .product-button-wrap .button{width:100%;}
+      @media (max-width:767px){.marketplace-live-heading{display:block;}.marketplace-live-heading p{max-width:none;margin-top:10px;text-align:left;}.marketplace-live-controls{grid-template-columns:1fr 1fr;}.marketplace-live-search{grid-column:1/-1;}}
+      @media (max-width:479px){.marketplace-live-controls{grid-template-columns:1fr;}.marketplace-live-search{grid-column:auto;}}
     </style>
     <script src="js/header.js"></script>
+    <script type="module" src="js/marketplace-firestore.js"></script>
     <!-- header.js carga core.min.js y script.js en orden después de insertar el navbar. -->
     <!-- Functional shop filters: price range + category checkboxes -->
     <script>

@@ -1,4 +1,10 @@
 import { db } from "./firebase-config.js";
+import {
+  deleteUploadedImage,
+  isHttpsImageUrl,
+  uploadImageFile,
+  validateImageFile
+} from "./image-upload.js";
 import { requirePageAccess } from "./plan-guard.js";
 import {
   addDoc,
@@ -15,9 +21,15 @@ const feedback = document.getElementById("exchangeFeedback");
 const offeredSelect = document.getElementById("offeredItem");
 const requestedSelect = document.getElementById("requestedItem");
 const exchangeList = document.getElementById("exchangeList");
+const itemList = document.getElementById("exchangeItemList");
+const imageUrlInput = document.getElementById("exchangeItemImage");
+const imageFileInput = document.getElementById("exchangeItemImageFile");
+const imagePreview = document.getElementById("exchangeImagePreview");
+const imageStatus = document.getElementById("exchangeImageStatus");
 const session = await requirePageAccess();
 let ownItems = [];
 let publicItems = [];
+let localPreviewUrl = "";
 
 function showFeedback(message, isError = false) {
   feedback.textContent = message;
@@ -31,6 +43,73 @@ function option(value, label) {
   node.value = value;
   node.textContent = label;
   return node;
+}
+
+function releaseLocalPreview() {
+  if (!localPreviewUrl) return;
+  URL.revokeObjectURL(localPreviewUrl);
+  localPreviewUrl = "";
+}
+
+function showImagePreview(source, message = "") {
+  releaseLocalPreview();
+  if (!source) {
+    imagePreview.hidden = true;
+    imagePreview.removeAttribute("src");
+    imageStatus.textContent = message;
+    return;
+  }
+  imagePreview.src = source;
+  imagePreview.hidden = false;
+  imageStatus.textContent = message;
+}
+
+function previewDeviceImage(file) {
+  validateImageFile(file);
+  releaseLocalPreview();
+  localPreviewUrl = URL.createObjectURL(file);
+  imagePreview.src = localPreviewUrl;
+  imagePreview.hidden = false;
+  imageStatus.textContent = `${file.name} is ready to upload.`;
+}
+
+function itemById(id) {
+  return [...ownItems, ...publicItems].find((item) => item.id === id);
+}
+
+function renderOwnItems() {
+  itemList.replaceChildren();
+  if (!ownItems.length) {
+    const empty = document.createElement("p");
+    empty.className = "account-empty";
+    empty.textContent = "You have not registered any exchange items yet.";
+    itemList.appendChild(empty);
+    return;
+  }
+
+  ownItems.forEach((item) => {
+    const card = document.createElement("article");
+    card.className = item.image ? "account-list-item account-list-item-media" : "account-list-item";
+    if (item.image) {
+      const image = document.createElement("img");
+      image.className = "account-list-thumbnail";
+      image.src = item.image;
+      image.alt = "";
+      image.loading = "lazy";
+      card.appendChild(image);
+    }
+    const details = document.createElement("div");
+    const title = document.createElement("h3");
+    title.textContent = item.name;
+    const description = document.createElement("p");
+    description.textContent = item.description || "No description.";
+    details.append(title, description);
+    const status = document.createElement("span");
+    status.className = "account-list-item-status";
+    status.textContent = item.status || "active";
+    card.append(details, status);
+    itemList.appendChild(card);
+  });
 }
 
 function fillSelects() {
@@ -54,10 +133,11 @@ async function loadItems() {
   ownItems = ownSnapshot.docs.map((entry) => ({ id: entry.id, ...entry.data() }));
   publicItems = publicSnapshot.docs.map((entry) => ({ id: entry.id, ...entry.data() }));
   fillSelects();
+  renderOwnItems();
 }
 
 function itemName(id) {
-  return [...ownItems, ...publicItems].find((item) => item.id === id)?.name || "Exchange item";
+  return itemById(id)?.name || "Exchange item";
 }
 
 function actionButton(label, status) {
@@ -70,9 +150,18 @@ function actionButton(label, status) {
 }
 
 function renderExchange(exchange) {
+  const offeredItem = itemById(exchange.offeredProductId);
   const card = document.createElement("article");
-  card.className = "account-list-item";
+  card.className = offeredItem?.image ? "account-list-item account-list-item-media" : "account-list-item";
   card.dataset.exchangeId = exchange.id;
+  if (offeredItem?.image) {
+    const image = document.createElement("img");
+    image.className = "account-list-thumbnail";
+    image.src = offeredItem.image;
+    image.alt = "";
+    image.loading = "lazy";
+    card.appendChild(image);
+  }
   const details = document.createElement("div");
   const title = document.createElement("h3");
   title.textContent = `${itemName(exchange.offeredProductId)} for ${itemName(exchange.requestedProductId)}`;
@@ -99,6 +188,35 @@ function renderExchange(exchange) {
   card.append(details, status);
   return card;
 }
+
+imageFileInput?.addEventListener("change", () => {
+  const file = imageFileInput.files?.[0];
+  if (!file) {
+    imageUrlInput.disabled = false;
+    showImagePreview(imageUrlInput.value.trim(), "");
+    return;
+  }
+  try {
+    previewDeviceImage(file);
+    imageUrlInput.disabled = true;
+  } catch (error) {
+    imageFileInput.value = "";
+    imageUrlInput.disabled = false;
+    showImagePreview(imageUrlInput.value.trim(), error.message);
+  }
+});
+
+imageUrlInput?.addEventListener("change", () => {
+  if (imageFileInput.files?.[0]) return;
+  const url = imageUrlInput.value.trim();
+  showImagePreview(isHttpsImageUrl(url) ? url : "", url && !isHttpsImageUrl(url) ? "Enter a valid HTTPS image URL." : "");
+});
+
+imagePreview?.addEventListener("error", () => {
+  imagePreview.hidden = true;
+  imageStatus.textContent = "The image preview could not be loaded. Choose another image or URL.";
+});
+window.addEventListener("pagehide", releaseLocalPreview, { once: true });
 
 const EXCHANGE_GROUPS = Object.freeze([
   { title: "Pending", statuses: ["pending"] },
@@ -155,21 +273,54 @@ document.getElementById("exchangeItemForm")?.addEventListener("submit", async (e
   const button = form.querySelector('button[type="submit"]');
   const data = new FormData(form);
   button.disabled = true;
+  const selectedFile = data.get("imageFile");
+  const requestedImageUrl = String(data.get("image") || "").trim();
+  let uploadedImage = null;
+  let itemSaved = false;
   try {
+    if (!isHttpsImageUrl(requestedImageUrl)) {
+      throw new Error("Enter a valid HTTPS image URL.");
+    }
+
+    let image = requestedImageUrl;
+    let imageStoragePath = "";
+    if (selectedFile instanceof File && selectedFile.size) {
+      uploadedImage = await uploadImageFile(selectedFile, {
+        folder: "exchange-images",
+        uid: session.user.uid,
+        onProgress: (percent) => {
+          imageStatus.textContent = `Uploading image: ${percent}%`;
+        }
+      });
+      image = uploadedImage.url;
+      imageStoragePath = uploadedImage.path;
+    }
+
     await addDoc(collection(db, "exchangeItems"), {
       ownerId: session.user.uid,
       name: String(data.get("name") || "").trim(),
       description: String(data.get("description") || "").trim(),
-      image: "",
+      image,
+      imageStoragePath,
       status: "active",
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp()
     });
+    itemSaved = true;
     form.reset();
-    await loadItems();
-    showFeedback("Your item is now available for exchange.");
-  } catch {
-    showFeedback("The exchange item could not be saved.", true);
+    imageUrlInput.disabled = false;
+    showImagePreview("");
+    try {
+      await loadItems();
+      showFeedback("Your item is now available for exchange.");
+    } catch {
+      showFeedback("Your item was saved, but the list could not be refreshed. Reload the page to see it.", true);
+    }
+  } catch (error) {
+    if (uploadedImage?.path && !itemSaved) {
+      await deleteUploadedImage(uploadedImage.path).catch(() => {});
+    }
+    showFeedback(error?.message || "The exchange item could not be saved.", true);
   } finally {
     button.disabled = false;
   }
@@ -199,8 +350,12 @@ document.getElementById("exchangeRequestForm")?.addEventListener("submit", async
       updatedAt: serverTimestamp()
     });
     form.reset();
-    await loadExchanges();
-    showFeedback("Exchange request sent.");
+    try {
+      await loadExchanges();
+      showFeedback("Exchange request sent.");
+    } catch {
+      showFeedback("The request was sent, but the list could not be refreshed. Reload the page to see it.", true);
+    }
   } catch {
     showFeedback("The exchange request could not be created.", true);
   } finally {
@@ -218,22 +373,37 @@ exchangeList?.addEventListener("click", async (event) => {
       status: button.dataset.nextStatus,
       updatedAt: serverTimestamp()
     });
-    await loadExchanges();
-    showFeedback("Exchange status updated.");
+    try {
+      await loadExchanges();
+      showFeedback("Exchange status updated.");
+    } catch {
+      showFeedback("The status was updated, but the list could not be refreshed. Reload the page to see it.", true);
+    }
   } catch {
     showFeedback("This exchange action is not permitted or could not be saved.", true);
     button.disabled = false;
   }
 });
 
+let itemsLoaded = true;
 try {
   await loadItems();
-  await loadExchanges();
-  if (new URLSearchParams(location.search).has("product")) {
-    showFeedback("Register an eligible item below, then choose an available exchange item. Marketplace products do not automatically become exchange listings.");
-  }
 } catch {
+  itemsLoaded = false;
   fillSelects();
+  itemList.innerHTML = '<p class="account-empty">Exchange items could not be loaded.</p>';
+}
+
+let exchangesLoaded = true;
+try {
+  await loadExchanges();
+} catch {
+  exchangesLoaded = false;
   exchangeList.innerHTML = '<p class="account-empty">Exchange data could not be loaded.</p>';
+}
+
+if (!itemsLoaded || !exchangesLoaded) {
   showFeedback("Exchange data could not be loaded. Verify Firebase Rules and your connection.", true);
+} else if (new URLSearchParams(location.search).has("product")) {
+  showFeedback("Register an eligible item below, then choose an available exchange item. Marketplace products do not automatically become exchange listings.");
 }

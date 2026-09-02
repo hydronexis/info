@@ -2,7 +2,7 @@ import { db } from "./firebase-config.js";
 import { requirePageAccess } from "./plan-guard.js";
 import {
   collection,
-  getDocs,
+  onSnapshot,
   query,
   where
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
@@ -22,6 +22,10 @@ const filters = {
   maximumPrice: document.getElementById("marketplace-live-max-price")
 };
 let products = [];
+
+if (!grid || !status) {
+  throw new Error("Marketplace live product containers are missing.");
+}
 
 function formatMoney(value) {
   return new Intl.NumberFormat("en-US", {
@@ -43,14 +47,16 @@ function productCard(product) {
   if (product.image) {
     const image = document.createElement("img");
     image.src = product.image;
-    image.alt = product.name;
+    image.alt = product.name || "Marketplace product";
     image.width = 220;
     image.height = 160;
+    image.loading = "lazy";
+    image.decoding = "async";
     figure.appendChild(image);
   } else {
     const placeholder = document.createElement("div");
     placeholder.className = "marketplace-live-placeholder";
-    placeholder.textContent = "[IMAGE REQUIRED]";
+    placeholder.textContent = "No image available";
     figure.appendChild(placeholder);
   }
   const title = document.createElement("h5");
@@ -65,7 +71,7 @@ function productCard(product) {
   price.className = "product-price";
   price.textContent = product.status === "out_of_stock"
     ? "Out of stock"
-    : `${formatMoney(product.price)} · ${product.stock} available`;
+    : `${formatMoney(product.price)} · ${Math.max(0, Number(product.stock) || 0)} available`;
   body.append(figure, title, seller, price);
   const buttonWrap = document.createElement("div");
   buttonWrap.className = "product-button-wrap";
@@ -99,6 +105,7 @@ function render() {
       && price <= maximumPrice;
   });
   grid.replaceChildren(...visible.map(productCard));
+  grid.setAttribute("aria-busy", "false");
   status.textContent = products.length
     ? `${visible.length} of ${products.length} published seller products shown.`
     : "No Go Green seller products have been published yet.";
@@ -120,22 +127,39 @@ function prepareFilters() {
   fillFilter(filters.location, products.map((product) => product.location), "All locations");
 }
 
-try {
-  const snapshot = await getDocs(query(
-    collection(db, "products"),
-    where("status", "in", ["available", "low_stock", "out_of_stock"])
-  ));
-  products = snapshot.docs.map((entry) => ({ id: entry.id, ...entry.data() }));
-  prepareFilters();
-  render();
-  let timer;
-  search?.addEventListener("input", () => {
-    clearTimeout(timer);
-    timer = setTimeout(render, 250);
-  });
-  Object.values(filters).forEach((control) => control?.addEventListener("change", render));
-  filters.minimumPrice?.addEventListener("input", render);
-  filters.maximumPrice?.addEventListener("input", render);
-} catch {
-  status.textContent = "Published seller products could not be loaded. Verify Firebase Rules and your connection.";
-}
+let timer;
+search?.addEventListener("input", () => {
+  clearTimeout(timer);
+  timer = setTimeout(render, 250);
+});
+Object.values(filters).forEach((control) => control?.addEventListener("change", render));
+filters.minimumPrice?.addEventListener("input", render);
+filters.maximumPrice?.addEventListener("input", render);
+
+grid.setAttribute("aria-busy", "true");
+const activeProductsQuery = query(
+  collection(db, "products"),
+  where("status", "in", ["available", "low_stock", "out_of_stock"])
+);
+
+const unsubscribe = onSnapshot(
+  activeProductsQuery,
+  (snapshot) => {
+    products = snapshot.docs
+      .map((entry) => ({ id: entry.id, ...entry.data() }))
+      .sort((left, right) => {
+        const leftUpdated = left.updatedAt?.toMillis?.() || left.createdAt?.toMillis?.() || 0;
+        const rightUpdated = right.updatedAt?.toMillis?.() || right.createdAt?.toMillis?.() || 0;
+        return rightUpdated - leftUpdated;
+      });
+    prepareFilters();
+    render();
+  },
+  () => {
+    grid.setAttribute("aria-busy", "false");
+    grid.replaceChildren();
+    status.textContent = "Published seller products could not be loaded. Verify Firebase Rules and your connection.";
+  }
+);
+
+window.addEventListener("pagehide", unsubscribe, { once: true });

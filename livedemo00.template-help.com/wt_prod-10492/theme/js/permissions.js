@@ -52,6 +52,7 @@ const BLOOMING_PERMISSIONS = Object.freeze([
   "community",
   "guides",
   "courses",
+  "tutorials",
   "plant_tracking",
   "hydrochat_blooming"
 ]);
@@ -65,7 +66,6 @@ const GO_GREEN_PERMISSIONS = Object.freeze([
   "seller_orders",
   "sales",
   "seller_analytics",
-  "tutorials",
   "maps",
   "basic_map",
   "advanced_map",
@@ -98,7 +98,7 @@ const PERMISSION_MINIMUM_PLAN = Object.freeze({
   hydrochat_shopping: "sprout",
   exchange: "blooming",
   community: "blooming",
-  tutorials: "go_green",
+  tutorials: "blooming",
   guides: "blooming",
   courses: "blooming",
   maps: "go_green",
