@@ -18995,3 +18995,8 @@ html#ecwid_html body#ecwid_body .ec-size.ec-size--m .ec-store .details-gallery__
 .rd-search-results-live .search-submit:hover {
 	color: #ffffff;
 }
+
+/* Main navbar titles only. */
+.rd-navbar-nav > .rd-nav-item > .rd-nav-link {
+	font-weight: 700 !important;
+}

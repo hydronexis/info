@@ -7,6 +7,15 @@
 @font-face {
     font-family: 'Optima';
     src: url('../fonts/OPTIMA.TTF');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Optima';
+    src: url('../fonts/OPTIMA_B.TTF');
+    font-weight: 700;
+    font-style: normal;
 }
 
 /*
