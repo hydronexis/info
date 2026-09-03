@@ -15364,7 +15364,7 @@ h3 + .card-group-corporate {
 	margin-top: 16px;
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 768px) {
 	.counter-classic-title {
 		font-size: 14px;
 	}
@@ -15372,7 +15372,7 @@ h3 + .card-group-corporate {
 
 @media (min-width: 768px) {
 	.counter-classic-decor::before {
-		width: 66px;
+		width: 66 px;
 	}
 	* + .counter-classic-decor {
 		margin-top: 20px;
