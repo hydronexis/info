@@ -668,6 +668,96 @@
   font-weight: 700;
 }
 
+.hydro-mobile-plans {
+  display: none;
+}
+
+.hydro-mobile-plan {
+  position: relative;
+  width: 100%;
+  padding: 58px 22px 22px;
+  border: 2px solid var(--mobile-plan-border);
+  border-radius: 22px;
+  color: var(--hydro-green-dark);
+  background:
+    radial-gradient(circle at 15% 8%, rgba(103,158,90,.12), transparent 25%),
+    linear-gradient(155deg, #fffefa 0%, #f8f7f1 100%);
+  box-shadow: 0 18px 32px rgba(10, 28, 7, 0.18);
+}
+
+.hydro-mobile-plan h2 {
+  margin: 0 0 8px;
+  color: #16351d;
+  font-family: "Optima", Georgia, serif;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.hydro-mobile-plan-type {
+  margin: 0 0 22px;
+  color: #5d963f;
+  font-family: "Helvetica", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+.hydro-mobile-plan ul {
+  display: grid;
+  gap: 11px;
+  margin: 0 0 24px;
+  padding: 0;
+  list-style: none;
+}
+
+.hydro-mobile-plan li {
+  position: relative;
+  min-height: 30px;
+  padding-left: 38px;
+  color: #172515;
+  font-family: "Helvetica", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.hydro-mobile-plan li::before {
+  content: "\2713";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--mobile-plan-border);
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.hydro-mobile-plan-sprout {
+  --mobile-plan-border: #679e5a;
+}
+
+.hydro-mobile-plan-blooming {
+  --mobile-plan-border: #d88b15;
+  border-width: 3px;
+}
+
+.hydro-mobile-plan-blooming .hydro-mobile-plan-type {
+  color: #c67e12;
+}
+
+.hydro-mobile-plan-green {
+  --mobile-plan-border: #4f813e;
+}
+
 .hydro-note-line {
   width: min(210px, 18vw);
   height: 1px;
@@ -785,6 +875,21 @@
 
   .hydro-title-ornament {
     width: 260px;
+  }
+
+  .hydro-comparison-scroll {
+    display: none;
+  }
+
+  .hydro-mobile-plans {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .hydro-mobile-plan .hydro-most-popular {
+    top: 18px;
+    min-width: 190px;
   }
 
   .hydro-comparison-table {

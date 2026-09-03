@@ -50,7 +50,6 @@ async function renderCheckout() {
   document.getElementById("checkoutItemCount").textContent = String(summary.itemCount);
   document.getElementById("checkoutItemLabel").textContent = summary.itemCount === 1 ? "item" : "items";
   document.getElementById("checkoutSubtotal").textContent = formatMoney(summary.displaySubtotal);
-  document.getElementById("checkoutTax").textContent = formatMoney(summary.displayTax);
   document.getElementById("checkoutDisplayTotal").textContent = formatMoney(summary.displayTotal);
   submitButton.disabled = submitted || !cartItems.length;
   if (!cartItems.length) {

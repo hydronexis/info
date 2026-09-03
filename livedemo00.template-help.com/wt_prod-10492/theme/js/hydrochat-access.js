@@ -13,8 +13,7 @@ const ACTIONS = Object.freeze([
   { permission: "maps", label: "Map", href: "maps.html" },
   { permission: "community", label: "Community", href: "community.html" },
   { permission: "plant_tracking", label: "Tracking", href: "process.html" },
-  { permission: "seller", label: "Seller", href: "seller-dashboard.html" },
-  { permission: "calculator", label: "Calculator", href: "cultivation-calculator.html" }
+  { permission: "seller", label: "Seller", href: "seller-dashboard.html" }
 ]);
 
 const MODE_PERMISSIONS = Object.freeze({

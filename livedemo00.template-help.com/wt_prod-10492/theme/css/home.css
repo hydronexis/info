@@ -1259,3 +1259,14 @@ body :where(*:not(.fa):not([class^="fa-"]):not([class*=" fa-"]):not(.mdi):not([c
 .rd-navbar-nav > .rd-nav-item > .rd-nav-link {
   font-weight: 700 !important;
 }
+
+@media (max-width: 575.98px) {
+  .hydronexis-home-video {
+    display: block;
+    width: 100% !important;
+    max-width: 100%;
+    height: auto !important;
+    aspect-ratio: 576 / 410;
+    object-fit: contain;
+  }
+}

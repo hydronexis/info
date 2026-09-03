@@ -116,7 +116,7 @@ function setCurrentNavigation(target) {
     "marketplace-product.html", "seller-detail.html", "cart-page.html",
     "checkout.html", "orders.html", "shop-list.html", "single-product.html"
   ]);
-  const dashboardChildren = new Set(["profile.html", "process.html", "cultivation-calculator.html", "premium.html"]);
+  const dashboardChildren = new Set(["profile.html", "process.html", "premium.html"]);
   const currentNavFile = currentFile.startsWith("sellers-") || marketplaceChildren.has(currentFile)
     ? "grid-shop.html"
     : dashboardChildren.has(currentFile)

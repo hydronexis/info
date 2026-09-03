@@ -25,7 +25,6 @@ const FEATURES = Object.freeze([
   { permission: "maps", title: "Hydroponic Map", description: "Explore relevant locations and available map information.", href: "maps.html" },
   { permission: "plant_tracking", title: "Plant Growth Tracking", description: "Record and follow the progress of your plants.", href: "process.html" },
   { permission: "seller", title: "Seller Module", description: "Manage your own products, inventory, orders and sales.", href: "seller-dashboard.html" },
-  { permission: "calculator", title: "Cultivation Calculator", description: "Prepare cultivation estimates using verified crop data.", href: "cultivation-calculator.html" },
   { permission: "recipes", title: "Premium Experience", description: "Access recipes, hydroponic menu and mentoring tools.", href: "premium.html" }
 ]);
 
@@ -36,7 +35,6 @@ const QUICK_ACTIONS = Object.freeze([
   { permission: "exchange", label: "My Exchanges", href: "exchanges.html" },
   { permission: "plant_tracking", label: "Track a Plant", href: "process.html" },
   { permission: "seller", label: "Seller Dashboard", href: "seller-dashboard.html" },
-  { permission: "calculator", label: "Open Calculator", href: "cultivation-calculator.html" },
   { permission: "profile", label: "My Profile", href: "profile.html" }
 ]);
 
@@ -179,7 +177,7 @@ function configureUpgrade(plan) {
     card.querySelector("a").hidden = true;
   } else if (plan === "blooming") {
     title.textContent = "Upgrade to Go Green";
-    copy.textContent = "Unlock Seller, inventory, advanced map, calculator and premium tools.";
+    copy.textContent = "Unlock Seller, inventory, advanced map and premium tools.";
   }
 }
 

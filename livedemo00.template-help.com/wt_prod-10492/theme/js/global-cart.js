@@ -19,7 +19,6 @@ function getElements() {
     list: document.getElementById("hydronexisCartItems"),
     empty: document.getElementById("hydronexisCartEmptyState"),
     subtotal: document.getElementById("hydronexisCartSubtotal"),
-    tax: document.getElementById("hydronexisCartTax"),
     total: document.getElementById("hydronexisCartTotal"),
     clear: document.getElementById("hydronexisCartClear"),
     checkout: document.getElementById("hydronexisCartCheckout"),
@@ -184,8 +183,8 @@ function restorePendingFocus() {
 
 async function renderCart({ openWhenIncreased = false } = {}) {
   if (!cartStore) return;
-  const { list, empty, subtotal, tax, total, clear, checkout } = getElements();
-  if (!list || !empty || !subtotal || !tax || !total || !clear || !checkout) return;
+  const { list, empty, subtotal, total, clear, checkout } = getElements();
+  if (!list || !empty || !subtotal || !total || !clear || !checkout) return;
 
   const [items, summary] = await Promise.all([
     cartStore.getCart(),
@@ -195,7 +194,6 @@ async function renderCart({ openWhenIncreased = false } = {}) {
   list.hidden = items.length === 0;
   empty.hidden = items.length > 0;
   subtotal.textContent = formatMoney(summary.displaySubtotal);
-  tax.textContent = formatMoney(summary.displayTax);
   total.textContent = formatMoney(summary.displayTotal);
   clear.disabled = items.length === 0;
   checkout.classList.toggle("is-disabled", items.length === 0);

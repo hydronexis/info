@@ -14,7 +14,6 @@ const elements = {
   list: document.getElementById("cartItems"),
   empty: document.getElementById("cartEmptyState"),
   subtotal: document.getElementById("cartSubtotal"),
-  tax: document.getElementById("cartTax"),
   total: document.getElementById("cartTotal"),
   count: document.getElementById("cartItemCount"),
   checkout: document.getElementById("cartCheckoutLink"),
@@ -162,7 +161,6 @@ async function renderCart() {
     elements.list,
     elements.empty,
     elements.subtotal,
-    elements.tax,
     elements.total,
     elements.count,
     elements.checkout,
@@ -177,7 +175,6 @@ async function renderCart() {
     elements.list.hidden = items.length === 0;
     elements.empty.hidden = items.length > 0;
     elements.subtotal.textContent = formatMoney(summary.displaySubtotal);
-    elements.tax.textContent = formatMoney(summary.displayTax);
     elements.total.textContent = formatMoney(summary.displayTotal);
     elements.count.textContent = `${summary.itemCount} ${summary.itemCount === 1 ? "item" : "items"}`;
     if (elements.live) {

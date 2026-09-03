@@ -8,7 +8,6 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 const STORAGE_PREFIX = "hydronexis.cart.v2";
-export const CART_TAX_RATE = 0.07;
 let initialized = false;
 let initializationPromise = null;
 let session = null;
@@ -218,8 +217,7 @@ export function getCartSummarySync() {
     return result;
   }, { itemCount: 0, displaySubtotal: 0 });
   summary.displaySubtotal = Math.round(summary.displaySubtotal * 100) / 100;
-  summary.displayTax = Math.round(summary.displaySubtotal * CART_TAX_RATE * 100) / 100;
-  summary.displayTotal = Math.round((summary.displaySubtotal + summary.displayTax) * 100) / 100;
+  summary.displayTotal = summary.displaySubtotal;
   return summary;
 }
 
