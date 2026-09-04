@@ -237,7 +237,49 @@ service cloud.firestore {
         )
         && request.resource.data.updatedAt == request.time;
 
-      allow list, create, delete: if false;
+      allow create: if request.auth != null
+        && request.auth.uid == userId
+        && request.resource.data.keys().hasOnly([
+          'uid',
+          'name',
+          'email',
+          'plan',
+          'requestedPlan',
+          'role',
+          'accountStatus',
+          'provider',
+          'createdAt',
+          'updatedAt'
+        ])
+        && request.resource.data.keys().hasAll([
+          'uid',
+          'name',
+          'email',
+          'plan',
+          'requestedPlan',
+          'role',
+          'accountStatus',
+          'provider',
+          'createdAt',
+          'updatedAt'
+        ])
+        && request.resource.data.uid == userId
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 2
+        && request.resource.data.name.size() <= 80
+        && request.resource.data.email is string
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.plan == 'sprout'
+        && request.resource.data.requestedPlan == 'sprout'
+        && request.resource.data.role == 'user'
+        && request.resource.data.accountStatus == 'active'
+        && request.resource.data.provider is string
+        && request.resource.data.provider.size() > 0
+        && request.resource.data.provider.size() <= 40
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time;
+
+      allow list, delete: if false;
     }
 
     match /carts/{userId} {

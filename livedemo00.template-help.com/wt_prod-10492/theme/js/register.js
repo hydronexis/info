@@ -49,6 +49,10 @@ function getRegisterErrorMessage(code) {
       return "Please check your internet connection.";
     case "auth/too-many-requests":
       return "Too many attempts. Please try again later.";
+    case "permission-denied":
+      return "The account was created in Auth, but Firestore denied the profile. Publish the updated firestore.rules.";
+    case "unavailable":
+      return "Firebase is temporarily unavailable. Check your connection and try again.";
     default:
       return "The account could not be created. Please try again.";
   }
@@ -106,6 +110,14 @@ signupForm?.addEventListener("submit", async (event) => {
     showSignupMessage("Account created successfully. Redirecting...", "success");
     window.location.replace(getSafeNextPage() || "Dashboard2.html");
   } catch (error) {
+    console.error("Hydronexis account creation failed.", {
+      code: error?.code || "unknown",
+      message: error?.message || String(error),
+      authUserCreated: Boolean(credential?.user),
+      uid: credential?.user?.uid || null,
+      email
+    });
+
     // Avoid leaving an authenticated account without its required Firestore
     // profile when provisioning fails after Authentication succeeds.
     if (credential?.user) {
