@@ -26,6 +26,7 @@ const imageUrlInput = document.getElementById("exchangeItemImage");
 const imageFileInput = document.getElementById("exchangeItemImageFile");
 const imagePreview = document.getElementById("exchangeImagePreview");
 const imageStatus = document.getElementById("exchangeImageStatus");
+const imageRemoveButton = document.getElementById("exchangeImageRemove");
 const session = await requirePageAccess();
 let ownItems = [];
 let publicItems = [];
@@ -212,6 +213,13 @@ imageUrlInput?.addEventListener("change", () => {
   showImagePreview(isHttpsImageUrl(url) ? url : "", url && !isHttpsImageUrl(url) ? "Enter a valid HTTPS image URL." : "");
 });
 
+imageRemoveButton?.addEventListener("click", () => {
+  imageFileInput.value = "";
+  imageUrlInput.disabled = false;
+  imageUrlInput.value = "";
+  showImagePreview("", "Selected exchange image removed.");
+});
+
 imagePreview?.addEventListener("error", () => {
   imagePreview.hidden = true;
   imageStatus.textContent = "The image preview could not be loaded. Choose another image or URL.";
@@ -286,8 +294,9 @@ document.getElementById("exchangeItemForm")?.addEventListener("submit", async (e
     let imageStoragePath = "";
     if (selectedFile instanceof File && selectedFile.size) {
       uploadedImage = await uploadImageFile(selectedFile, {
-        folder: "exchange-images",
+        folder: "exchanges",
         uid: session.user.uid,
+        recordType: "exchange_item",
         onProgress: (percent) => {
           imageStatus.textContent = `Uploading image: ${percent}%`;
         }

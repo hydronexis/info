@@ -23,6 +23,7 @@ const photoUrlInput = document.getElementById("profilePhotoInput");
 const photoFileInput = document.getElementById("profilePhotoFile");
 const photoPreview = document.getElementById("profilePhotoPreview");
 const photoStatus = document.getElementById("profilePhotoStatus");
+const photoRemoveButton = document.getElementById("profilePhotoRemove");
 let localPreviewUrl = "";
 
 function getDisplayName() {
@@ -165,6 +166,13 @@ photoUrlInput?.addEventListener("change", () => {
   );
 });
 
+photoRemoveButton?.addEventListener("click", () => {
+  photoFileInput.value = "";
+  photoUrlInput.disabled = false;
+  photoUrlInput.value = "";
+  showPhotoPreview("", "Selected profile photo removed.");
+});
+
 photoPreview?.addEventListener("error", () => {
   photoPreview.hidden = true;
   renderAvatar("", document.getElementById("profileNameInput").value.trim() || getDisplayName());
@@ -200,8 +208,10 @@ document.getElementById("profileForm")?.addEventListener("submit", async (event)
 
     if (selectedFile) {
       uploadedPhoto = await uploadImageFile(selectedFile, {
-        folder: "profile-images",
+        folder: "profiles",
         uid: session.user.uid,
+        recordType: "profile",
+        relatedRecordId: session.user.uid,
         onProgress: (percent) => {
           photoStatus.textContent = `Uploading photo: ${percent}%`;
         }
@@ -209,6 +219,17 @@ document.getElementById("profileForm")?.addEventListener("submit", async (event)
       photoUrl = uploadedPhoto.url;
       photoStoragePath = uploadedPhoto.path;
     }
+
+    console.log("Payload a Firestore:", {
+      name,
+      photoUrl,
+      photoStoragePath,
+      uid: session.user.uid,
+      expectedPhotoStoragePathPrefix: `profiles/${session.user.uid}/`,
+      pathMatchesExpectedPrefix: photoStoragePath === "" || photoStoragePath.startsWith(`profiles/${session.user.uid}/`),
+      accountStatus: session.profile?.accountStatus,
+      plan: session.profile?.plan
+    });
 
     await updateDoc(doc(db, "users", session.user.uid), {
       name,

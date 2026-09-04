@@ -28,6 +28,7 @@ const imageUrlInput = document.getElementById("sellerProductImage");
 const imageFileInput = document.getElementById("sellerProductImageFile");
 const imagePreview = document.getElementById("sellerImagePreview");
 const imageStatus = document.getElementById("sellerImageStatus");
+const imageRemoveButton = document.getElementById("sellerImageRemove");
 let products = [];
 let orders = [];
 let localPreviewUrl = "";
@@ -271,6 +272,13 @@ imageUrlInput?.addEventListener("change", () => {
   showImagePreview(isHttpsImageUrl(url) ? url : "", url && !isHttpsImageUrl(url) ? "Enter a valid HTTPS image URL." : "");
 });
 
+imageRemoveButton?.addEventListener("click", () => {
+  imageFileInput.value = "";
+  imageUrlInput.disabled = false;
+  imageUrlInput.value = "";
+  showImagePreview("", "Selected product image removed.");
+});
+
 imagePreview?.addEventListener("error", () => {
   imagePreview.hidden = true;
   imageStatus.textContent = "The image preview could not be loaded. You can still choose another image.";
@@ -306,8 +314,10 @@ form?.addEventListener("submit", async (event) => {
 
     if (selectedFile instanceof File && selectedFile.size) {
       uploadedImage = await uploadImageFile(selectedFile, {
-        folder: "seller-images",
+        folder: "products",
         uid: session.user.uid,
+        recordType: "product",
+        relatedRecordId: productId || "",
         onProgress: (percent) => {
           imageStatus.textContent = `Uploading image: ${percent}%`;
         }

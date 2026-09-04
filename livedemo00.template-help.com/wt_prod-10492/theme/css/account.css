@@ -219,6 +219,12 @@
   object-fit: contain;
 }
 
+.account-image-upload .commerce-clear-button {
+  justify-self: flex-start;
+  width: auto;
+  margin-top: 4px;
+}
+
 .account-profile-preview {
   width: 150px;
   height: 150px;

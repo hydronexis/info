@@ -468,6 +468,10 @@
   grid-column: 3;
 }
 
+.review-form-grid .form-field.review-submit-field {
+  grid-column: 1;
+}
+
 .review-form-grid label {
   font-size: 0.85rem;
   color: #666;

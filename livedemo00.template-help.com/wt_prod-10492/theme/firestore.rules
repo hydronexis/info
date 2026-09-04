@@ -103,7 +103,7 @@ service cloud.firestore {
         && data.location.size() > 0
         && data.location.size() <= 150
         && isHttpsImageOrEmpty(data.image)
-        && hasValidStoragePath(data, 'seller-images', data.sellerId)
+        && hasValidStoragePath(data, 'products', data.sellerId)
         && data.exchangeEnabled is bool
         && data.createdAt is timestamp
         && data.updatedAt is timestamp;
@@ -139,7 +139,7 @@ service cloud.firestore {
         && data.description.size() > 0
         && data.description.size() <= 500
         && isHttpsImageOrEmpty(data.image)
-        && hasValidStoragePath(data, 'exchange-images', data.ownerId)
+        && hasValidStoragePath(data, 'exchanges', data.ownerId)
         && data.status in ['active', 'inactive']
         && data.createdAt is timestamp
         && data.updatedAt is timestamp;
@@ -214,8 +214,10 @@ service cloud.firestore {
       allow get: if request.auth != null
         && request.auth.uid == userId;
 
-      allow update: if hasActiveAccount()
+      allow update: if request.auth != null
         && request.auth.uid == userId
+        && resource.data.accountStatus == 'active'
+        && resource.data.plan in ['sprout', 'blooming', 'go_green']
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
           'name',
           'photoUrl',
@@ -231,7 +233,7 @@ service cloud.firestore {
         && request.resource.data.photoStoragePath.size() <= 1000
         && (
           request.resource.data.photoStoragePath == ''
-          || request.resource.data.photoStoragePath.matches('profile-images/' + userId + '/.+')
+          || request.resource.data.photoStoragePath.matches('profiles/' + userId + '/.+')
         )
         && request.resource.data.updatedAt == request.time;
 
@@ -397,6 +399,55 @@ service cloud.firestore {
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'updatedAt'])
         && request.resource.data.updatedAt == request.time
         && isValidExchangeTransition(resource.data, request.resource.data);
+
+      allow delete: if false;
+    }
+
+    match /community/{postId} {
+      // Solo Blooming y Go Green pueden ver y participar en la comunidad.
+      // La lectura es estricta: solo posts activos.
+      allow get, list: if hasExchangeAccess()
+        && resource.data.status == 'active';
+
+      allow create: if hasExchangeAccess()
+        && request.resource.data.keys().hasOnly([
+          'authorId',
+          'authorName',
+          'category',
+          'content',
+          'status',
+          'createdAt',
+          'updatedAt'
+        ])
+        && request.resource.data.keys().hasAll([
+          'authorId',
+          'authorName',
+          'category',
+          'content',
+          'status',
+          'createdAt',
+          'updatedAt'
+        ])
+        && request.resource.data.authorId == request.auth.uid
+        && request.resource.data.authorName is string
+        && request.resource.data.authorName.size() > 0
+        && request.resource.data.authorName.size() <= 120
+        && request.resource.data.category is string
+        && request.resource.data.category.size() > 0
+        && request.resource.data.category.size() <= 50
+        && request.resource.data.content is string
+        && request.resource.data.content.size() > 0
+        && request.resource.data.content.size() <= 2000
+        && request.resource.data.status == 'active'
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time;
+
+      // Solo el autor puede marcar su propio post como eliminado.
+      allow update: if hasExchangeAccess()
+        && resource.data.authorId == request.auth.uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'updatedAt'])
+        && request.resource.data.status == 'deleted'
+        && request.resource.data.updatedAt == request.time;
 
       allow delete: if false;
     }
