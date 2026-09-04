@@ -425,6 +425,7 @@
 @media (max-width: 767px) {
   .account-main {
     padding-top: 24px;
+    padding-inline: 14px;
   }
 
   .account-grid,
@@ -437,5 +438,27 @@
   .account-list-thumbnail {
     width: 100%;
     height: min(220px, 55vw);
+  }
+
+  .account-card,
+  .account-hero {
+    padding: 24px 18px;
+  }
+
+  .account-form input,
+  .account-form textarea,
+  .account-form select {
+    font-size: 16px;
+  }
+
+  .commerce-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .commerce-actions .button,
+  .commerce-actions .commerce-clear-button {
+    width: 100%;
+    min-height: 46px;
   }
 }

@@ -50,12 +50,12 @@ function showFeedback(message, isError = false) {
 function firebaseErrorMessage(area, error) {
   const code = error?.code || "unknown";
   if (code === "permission-denied") {
-    return `${area} could not be loaded because Firebase denied access. Publish the updated firestore.rules and verify this user has plan blooming or go_green with accountStatus active.`;
+    return "We could not load your exchanges right now. Please refresh the page or contact HYDRONEXIS support.";
   }
   if (code === "failed-precondition") {
-    return `${area} needs a Firebase index. Open the browser console and use the index creation link from Firebase.`;
+    return "We could not organize your exchanges right now. Please try again later.";
   }
-  return `${area} could not be loaded. Firebase error: ${code}.`;
+  return "We could not load your exchanges right now. Please refresh the page or contact HYDRONEXIS support.";
 }
 
 function option(value, label) {
@@ -102,7 +102,7 @@ function renderOwnItems() {
   if (!ownItems.length) {
     const empty = document.createElement("p");
     empty.className = "account-empty";
-    empty.textContent = "You have not registered any exchange items yet.";
+    empty.textContent = "No exchange items yet. Register your first item to start exchanging with the community.";
     itemList.appendChild(empty);
     return;
   }
@@ -267,7 +267,7 @@ async function loadExchanges() {
   if (!exchanges.length) {
     const empty = document.createElement("p");
     empty.className = "account-empty";
-    empty.textContent = "No exchanges found.";
+    empty.textContent = "No exchange requests yet. Send or receive a request and it will appear here.";
     exchangeList.appendChild(empty);
     return;
   }
@@ -286,7 +286,7 @@ async function loadExchanges() {
     } else {
       const empty = document.createElement("p");
       empty.className = "account-empty";
-      empty.textContent = `No ${group.title.toLowerCase()} exchanges.`;
+      empty.textContent = `No ${group.title.toLowerCase()} exchange requests right now.`;
       groupList.appendChild(empty);
     }
     section.append(heading, groupList);
@@ -420,7 +420,7 @@ try {
   reportFirebaseError("Could not load exchange items.", error);
   itemsLoaded = false;
   fillSelects();
-  itemList.innerHTML = '<p class="account-empty">Exchange items could not be loaded.</p>';
+  itemList.innerHTML = '<p class="account-empty">We could not load your exchange items. Please refresh the page.</p>';
   showFeedback(firebaseErrorMessage("Exchange items", error), true);
 }
 
@@ -430,7 +430,7 @@ try {
 } catch (error) {
   reportFirebaseError("Could not load exchange requests.", error);
   exchangesLoaded = false;
-  exchangeList.innerHTML = '<p class="account-empty">Exchange data could not be loaded.</p>';
+  exchangeList.innerHTML = '<p class="account-empty">We could not load your exchange requests. Please refresh the page.</p>';
   showFeedback(firebaseErrorMessage("Exchange requests", error), true);
 }
 

@@ -126,6 +126,7 @@ feed?.addEventListener("click", async (event) => {
 try {
   await loadPosts();
 } catch {
-  feed.innerHTML = '<p class="account-empty">Community posts could not be loaded.</p>';
-  showFeedback("Community data is unavailable. Verify Firebase Rules and your connection.", true);
+  console.error("[Community] Posts could not be loaded. Check Firebase Rules and connection.");
+  feed.innerHTML = '<p class="account-empty">We could not load community posts. Please refresh the page.</p>';
+  showFeedback("Community is unavailable right now. Please try again later.", true);
 }

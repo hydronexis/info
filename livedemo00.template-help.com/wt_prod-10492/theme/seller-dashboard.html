@@ -39,18 +39,23 @@
             <input id="sellerProductId" name="productId" type="hidden">
             <label for="sellerProductName">Product Name
               <input id="sellerProductName" name="name" type="text" minlength="2" maxlength="120" required>
+              <small class="account-field-help">Use a name buyers can recognize quickly, for example “Butterhead lettuce”.</small>
             </label>
             <label for="sellerProductDescription">Description
               <textarea id="sellerProductDescription" name="description" rows="5" maxlength="1500" required></textarea>
+              <small class="account-field-help">Describe freshness, condition, quantity, delivery or pickup details.</small>
             </label>
             <label for="sellerProductCategory">Category
               <input id="sellerProductCategory" name="category" type="text" maxlength="80" required>
+              <small class="account-field-help">Example: Leafy Greens, Herbs, Seeds, Nutrients or Systems.</small>
             </label>
             <label for="sellerProductPrice">Price
               <input id="sellerProductPrice" name="price" type="number" min="0" step="0.01" required>
+              <small class="account-field-help">Use numbers only, for example 2.50.</small>
             </label>
             <label for="sellerProductStock">Stock
               <input id="sellerProductStock" name="stock" type="number" min="0" step="1" required>
+              <small class="account-field-help">Number of available units buyers can request.</small>
             </label>
             <label for="sellerProductAvailability">Availability
               <select id="sellerProductAvailability" name="availability" required>
@@ -63,6 +68,7 @@
             </label>
             <label for="sellerProductImage">Image URL (HTTPS)
               <input id="sellerProductImage" name="image" type="url" inputmode="url" pattern="https://.*" maxlength="1000" placeholder="https://..." aria-describedby="sellerImageHelp">
+              <small class="account-field-help">Paste an HTTPS image URL or upload one from your device below.</small>
             </label>
             <div class="account-image-upload">
               <span class="account-field-label">Upload Image from Device</span>
@@ -77,6 +83,7 @@
             </div>
             <label for="sellerProductExchange">
               <input id="sellerProductExchange" name="exchangeEnabled" type="checkbox"> Available for Exchange
+              <small class="account-field-help">Allow Blooming and Go Green members to request this product as an exchange item.</small>
             </label>
             <div class="commerce-actions">
               <button class="button button-secondary button-zakaria" id="sellerSaveButton" type="submit">Publish Product</button>

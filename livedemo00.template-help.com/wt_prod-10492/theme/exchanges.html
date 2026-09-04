@@ -30,12 +30,15 @@
             <form class="account-form" id="exchangeItemForm">
               <label for="exchangeItemName">Item Name
                 <input id="exchangeItemName" name="name" type="text" minlength="2" maxlength="100" required>
+                <small class="account-field-help">Use a clear name, for example “Romaine lettuce seedlings”.</small>
               </label>
               <label for="exchangeItemDescription">Description
                 <textarea id="exchangeItemDescription" name="description" rows="4" maxlength="500" required></textarea>
+                <small class="account-field-help">Mention condition, quantity, pickup details or what makes the item useful.</small>
               </label>
               <label for="exchangeItemImage">Image URL (HTTPS)
                 <input id="exchangeItemImage" name="image" type="url" inputmode="url" pattern="https://.*" maxlength="1000" placeholder="https://..." aria-describedby="exchangeImageHelp">
+                <small class="account-field-help">Paste an HTTPS image URL or upload one from your device below.</small>
               </label>
               <div class="account-image-upload">
                 <span class="account-field-label">Upload Image from Device</span>
@@ -61,12 +64,15 @@
             <form class="account-form" id="exchangeRequestForm">
               <label for="offeredItem">Your Offered Item
                 <select id="offeredItem" name="offeredItem" required></select>
+                <small class="account-field-help">Choose one of the items you registered for exchange.</small>
               </label>
               <label for="requestedItem">Requested Item
                 <select id="requestedItem" name="requestedItem" required></select>
+                <small class="account-field-help">Choose an available item from another Blooming or Go Green member.</small>
               </label>
               <label for="exchangeMessage">Message
                 <textarea id="exchangeMessage" name="message" rows="4" maxlength="500"></textarea>
+                <small class="account-field-help">Add pickup details, preferred time or any question for the other member.</small>
               </label>
               <button class="button button-secondary button-zakaria" id="exchangeSubmitButton" type="submit">Send Request</button>
             </form>

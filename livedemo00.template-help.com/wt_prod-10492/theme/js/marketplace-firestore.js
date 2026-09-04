@@ -158,7 +158,7 @@ const unsubscribe = onSnapshot(
   () => {
     grid.setAttribute("aria-busy", "false");
     grid.replaceChildren();
-    status.textContent = "Published seller products could not be loaded. Verify Firebase Rules and your connection.";
+    status.textContent = "Published seller products could not be loaded right now. Please refresh the page.";
   }
 );
 

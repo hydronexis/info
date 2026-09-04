@@ -134,7 +134,7 @@ async function initializeInternal() {
     }
   } catch (error) {
     document.dispatchEvent(new CustomEvent("hydronexisCartSyncError", {
-      detail: { message: "Cloud cart could not be loaded. This device copy is still available.", error }
+      detail: { message: "We could not sync your cart right now. This device copy is still available.", error }
     }));
   }
 

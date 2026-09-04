@@ -20369,7 +20369,29 @@ body.hydronexis-cart-open .chatbot-popup {
   }
 
   .hydronexis-cart-footer {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
     padding: 14px 16px;
+  }
+
+  .hydronexis-cart-content {
+    padding: 16px;
+  }
+
+  .hydronexis-cart-item {
+    grid-template-columns: 56px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .hydronexis-cart-item-media {
+    width: 56px;
+    height: 56px;
+  }
+
+  .hydronexis-cart-item-top,
+  .hydronexis-cart-item-bottom {
+    gap: 10px;
   }
 }
 

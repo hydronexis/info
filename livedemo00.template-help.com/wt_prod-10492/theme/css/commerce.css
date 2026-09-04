@@ -384,4 +384,15 @@
   .commerce-form .commerce-field-wide {
     grid-column: auto;
   }
+
+  .commerce-actions,
+  .commerce-summary {
+    width: 100%;
+  }
+
+  .commerce-summary .button,
+  .commerce-clear-button {
+    width: 100%;
+    min-height: 46px;
+  }
 }

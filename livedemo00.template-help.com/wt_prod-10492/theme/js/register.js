@@ -50,7 +50,7 @@ function getRegisterErrorMessage(code) {
     case "auth/too-many-requests":
       return "Too many attempts. Please try again later.";
     case "permission-denied":
-      return "The account was created in Auth, but Firestore denied the profile. Publish the updated firestore.rules.";
+      return "The account was created, but your profile could not be finished. Please contact HYDRONEXIS support.";
     case "unavailable":
       return "Firebase is temporarily unavailable. Check your connection and try again.";
     default:

@@ -155,6 +155,7 @@ list?.addEventListener("click", async (event) => {
 try {
   await loadPlants();
 } catch {
-  list.innerHTML = '<p class="account-empty">Plant tracking data could not be loaded.</p>';
-  showFeedback("Plant tracking is unavailable. Verify Firebase Rules and your connection.", true);
+  console.error("[Plant Tracking] Data could not be loaded. Check Firebase Rules and connection.");
+  list.innerHTML = '<p class="account-empty">We could not load your plant tracking data. Please refresh the page.</p>';
+  showFeedback("Plant tracking is unavailable right now. Please try again later.", true);
 }

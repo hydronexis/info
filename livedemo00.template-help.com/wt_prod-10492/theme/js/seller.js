@@ -146,7 +146,7 @@ function productCard(product) {
   const title = document.createElement("h3");
   title.textContent = product.name;
   const copy = document.createElement("p");
-  copy.textContent = `${formatMoney(product.price)} · Stock: ${product.stock} · ${product.category || "Uncategorized"}`;
+  copy.textContent = `${formatMoney(product.price)} - Stock: ${product.stock} - ${product.category || "Uncategorized"}`;
   const operation = document.createElement("p");
   operation.textContent = product.exchangeEnabled ? "For Sale & Available for Exchange" : "For Sale";
   const controls = document.createElement("div");
@@ -177,7 +177,7 @@ function renderProducts() {
   if (!products.length) {
     const empty = document.createElement("p");
     empty.className = "account-empty";
-    empty.textContent = "You haven't published any products yet.";
+    empty.textContent = "You have not published any products yet. Create your first product and it will appear in the Marketplace.";
     productList.appendChild(empty);
   } else {
     productList.append(...products.map(productCard));
@@ -204,7 +204,7 @@ function orderCard(order) {
   const copy = document.createElement("p");
   const itemsCopy = document.createElement("p");
   itemsCopy.textContent = `${formatDate(order.createdAt)} | ${itemSummary} | Quantity: ${quantity || "Awaiting backend data"}`;
-  copy.textContent = `Status: ${order.status || "pending"} · Seller amount: ${sellerAmount == null ? "Awaiting backend calculation" : formatMoney(sellerAmount)}`;
+  copy.textContent = `Status: ${order.status || "pending"} - Seller amount: ${sellerAmount == null ? "Awaiting backend calculation" : formatMoney(sellerAmount)}`;
   details.append(title, itemsCopy, copy);
   const status = document.createElement("span");
   status.className = "account-list-item-status";
@@ -218,7 +218,7 @@ function renderOrders() {
   if (!orders.length) {
     const empty = document.createElement("p");
     empty.className = "account-empty";
-    empty.textContent = "No seller orders found.";
+    empty.textContent = "You have not received seller orders yet. Once someone buys one of your products, orders will appear here.";
     orderList.appendChild(empty);
   } else {
     orderList.append(...orders.map(orderCard));
@@ -422,5 +422,6 @@ if (initialLoad.productError || initialLoad.orderError) {
     initialLoad.productError ? "products" : "",
     initialLoad.orderError ? "orders" : ""
   ].filter(Boolean).join(" and ");
-  showFeedback(`Seller ${unavailable} could not be loaded. Verify Firebase Rules and your connection.`, true);
+  console.error("[Seller Dashboard] Some seller data could not be loaded. Check Firebase Rules and connection.");
+  showFeedback(`Some seller data could not be loaded right now. Please refresh the page.`, true);
 }

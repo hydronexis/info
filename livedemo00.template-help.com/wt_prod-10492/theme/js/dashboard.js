@@ -38,6 +38,12 @@ const QUICK_ACTIONS = Object.freeze([
   { permission: "profile", label: "My Profile", href: "profile.html" }
 ]);
 
+const PLAN_GUIDES = Object.freeze({
+  sprout: "Start by exploring the Marketplace and adding products to your cart. Sprout keeps shopping simple.",
+  blooming: "You can now access Tutorials, Community, Exchange and Plant Tracking to grow with more support.",
+  go_green: "Publish your first product, register your seller location and manage the complete Marketplace seller flow."
+});
+
 function displayNameFor(session) {
   return session.profile?.name?.trim()
     || session.user?.displayName?.trim()
@@ -190,6 +196,8 @@ async function initializeDashboard() {
   document.getElementById("dashboardUserName").textContent = displayNameFor(session);
   document.getElementById("dashboardPlanName").textContent = planLabel;
   document.getElementById("dashboardPlanPrice").textContent = PLAN_PRICES[session.plan] || "";
+  document.getElementById("dashboardPlanGuide").textContent =
+    PLAN_GUIDES[session.plan] || "Everything available in your account, organized by your current plan.";
   document.getElementById("summaryPlan").textContent = planLabel;
   const cartSummary = await getCartSummary();
   document.getElementById("summaryCartCount").textContent = `${cartSummary.itemCount} items`;
@@ -199,8 +207,8 @@ async function initializeDashboard() {
 
   if (session.error && session.status !== "authenticated") {
     feedback.textContent = session.status === "profile_missing"
-      ? "Your account is using safe Sprout access until its Firestore profile is completed."
-      : "Some account data could not be loaded. Premium features remain protected.";
+      ? "Your account is ready for basic Sprout access while we finish loading the full profile."
+      : "Some account details could not be loaded right now. Please refresh the page.";
     feedback.hidden = false;
   }
 
