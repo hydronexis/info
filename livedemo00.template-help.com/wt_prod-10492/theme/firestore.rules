@@ -208,6 +208,42 @@ service cloud.firestore {
         );
     }
 
+    function hasValidTrackingData(data) {
+      return data.keys().hasOnly([
+          'ownerId',
+          'plant',
+          'variety',
+          'startDate',
+          'stage',
+          'notes',
+          'createdAt',
+          'updatedAt'
+        ])
+        && data.keys().hasAll([
+          'ownerId',
+          'plant',
+          'variety',
+          'startDate',
+          'stage',
+          'notes',
+          'createdAt',
+          'updatedAt'
+        ])
+        && data.ownerId == request.auth.uid
+        && data.plant is string
+        && data.plant.size() >= 2
+        && data.plant.size() <= 100
+        && data.variety is string
+        && data.variety.size() <= 100
+        && data.startDate is string
+        && data.startDate.size() <= 20
+        && data.stage in ['seed', 'germination', 'seedling', 'vegetative', 'ready_to_harvest', 'harvested']
+        && data.notes is string
+        && data.notes.size() <= 1000
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
     match /users/{userId} {
       // El cliente necesita leer su propio perfil para resolver plan y estado.
       // Los campos sensibles de plan/accountStatus solo los administra backend.
@@ -329,6 +365,41 @@ service cloud.firestore {
       allow list, update, delete: if false;
     }
 
+    match /planUpgradeRequests/{requestId} {
+      allow get: if hasActiveAccount()
+        && (
+          requestId.matches(request.auth.uid + '_(blooming|go_green)')
+          || resource.data.userId == request.auth.uid
+        );
+
+      allow create: if hasActiveAccount()
+        && request.resource.data.keys().hasOnly([
+          'userId',
+          'currentPlan',
+          'requestedPlan',
+          'status',
+          'source',
+          'createdAt'
+        ])
+        && request.resource.data.keys().hasAll([
+          'userId',
+          'currentPlan',
+          'requestedPlan',
+          'status',
+          'source',
+          'createdAt'
+        ])
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.currentPlan in ['sprout', 'blooming', 'go_green']
+        && request.resource.data.requestedPlan in ['blooming', 'go_green']
+        && request.resource.data.currentPlan != request.resource.data.requestedPlan
+        && request.resource.data.status == 'pending'
+        && request.resource.data.source == 'web'
+        && request.resource.data.createdAt == request.time;
+
+      allow list, update, delete: if false;
+    }
+
     match /products/{productId} {
       // El Marketplace muestra productos publicables a cualquier cuenta activa;
       // el vendedor también puede consultar sus publicaciones inactivas.
@@ -382,17 +453,30 @@ service cloud.firestore {
     match /orders/{orderId} {
       // Las órdenes se crean y actualizan únicamente desde el backend. El
       // navegador solo puede consultar las propias compras o ventas.
-      allow get, list: if hasActiveAccount()
-        && (
-          resource.data.buyerId == request.auth.uid
-          || (
-            resource.data.keys().hasAny(['sellerIds'])
-            && resource.data.sellerIds is list
-            && request.auth.uid in resource.data.sellerIds
-          )
-        );
+      allow get, list: if hasActiveAccount();
 
       allow create, update, delete: if false;
+    }
+
+    match /plantTracking/{trackingId} {
+      allow get, list: if hasExchangeAccess()
+        && resource.data.ownerId == request.auth.uid;
+
+      allow create: if hasExchangeAccess()
+        && hasValidTrackingData(request.resource.data)
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time;
+
+      allow update: if hasExchangeAccess()
+        && resource.data.ownerId == request.auth.uid
+        && request.resource.data.ownerId == resource.data.ownerId
+        && request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['stage', 'notes', 'updatedAt'])
+        && request.resource.data.updatedAt == request.time
+        && hasValidTrackingData(request.resource.data);
+
+      allow delete: if hasExchangeAccess()
+        && resource.data.ownerId == request.auth.uid;
     }
 
     match /exchangeItems/{itemId} {
@@ -499,7 +583,11 @@ service cloud.firestore {
     match /locations/{locationId} {
 
       // Permite leer únicamente ubicaciones activas
-      allow read: if isGoGreen() && resource.data.active == true;
+      allow read: if isGoGreen()
+        && (
+          locationId == request.auth.uid
+          || resource.data.active == true
+        );
 
       // Permite crear ubicaciones a usuarios autenticados
       allow create: if isGoGreen()

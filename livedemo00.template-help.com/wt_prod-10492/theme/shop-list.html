@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/shop-list.css">
   <style>.plan-guard-pending body { visibility: hidden; }</style>
   <script type="module" src="js/plan-guard.js"></script>
 </head>
@@ -47,8 +48,8 @@
                     <div class="price-slider" id="price-slider">
                       <div class="price-slider-track"></div>
                       <div class="price-slider-range" id="price-slider-range"></div>
-                      <input id="price-min" class="price-range-input" type="range" min="0" max="350" step="1" value="0" aria-label="Minimum price">
-                      <input id="price-max" class="price-range-input" type="range" min="0" max="350" step="1" value="350" aria-label="Maximum price">
+                      <input id="price-min" class="price-range-input" type="range" min="0" max="350" step="0.01" value="0" aria-label="Minimum price">
+                      <input id="price-max" class="price-range-input" type="range" min="0" max="350" step="0.01" value="350" aria-label="Maximum price">
                     </div>
                     <div class="price-slider-footer">
                       <button class="button button-sm button-secondary button-zakaria" type="button" id="price-filter-btn">Filter</button>
@@ -68,17 +69,17 @@
                     <li>
                       <label class="checkbox-inline">
                         <input value="seedlings" data-cat="seedlings" type="checkbox">Seedlings
-                      </label><span class="list-shop-filter-number">(5)</span>
+                      </label><span class="list-shop-filter-number" id="count-seedlings">(5)</span>
                     </li>
                     <li>
                       <label class="checkbox-inline">
                         <input value="seeds" data-cat="seeds" type="checkbox">Seeds
-                      </label><span class="list-shop-filter-number">(2)</span>
+                      </label><span class="list-shop-filter-number" id="count-seeds">(2)</span>
                     </li>
                     <li>
                       <label class="checkbox-inline">
                         <input value="systems" data-cat="systems" type="checkbox">Systems
-                      </label><span class="list-shop-filter-number">(2)</span>
+                      </label><span class="list-shop-filter-number" id="count-systems">(2)</span>
                     </li>
                   </ul>
                 </div>
@@ -91,12 +92,12 @@
                       <article class="product-minimal">
                         <div class="unit unit-spacing-sm flex-column flex-md-row align-items-center">
                           <div class="unit-left">
-                            <a class="product-minimal-figure">
+                            <a class="product-minimal-figure" href="shop-list.html">
                               <img class="product-image-sm" src="images/Sistemas/mini_hydroponic_system.png" alt="Hydroponic starter system">
                             </a>
                           </div>
                           <div class="unit-body">
-                            <p class="product-minimal-title"><a>Starter System</a></p>
+                            <p class="product-minimal-title"><a href="shop-list.html">Starter System</a></p>
                             <p class="product-minimal-price">$150.00</p>
                           </div>
                         </div>
@@ -106,9 +107,9 @@
                       <!-- Producto popular: System Product #2 -->
                       <article class="product-minimal">
                         <div class="unit unit-spacing-sm flex-column flex-md-row align-items-center">
-                          <div class="unit-left"><a class="product-minimal-figure"><img class="product-image-sm" src="images/Sistemas/mini_hydroponic_system_solar.png" alt="Vertical hydroponic grow system"></a></div>
+                          <div class="unit-left"><a class="product-minimal-figure" href="shop-list.html"><img class="product-image-sm" src="images/Sistemas/mini_hydroponic_system_solar.png" alt="Vertical hydroponic grow system"></a></div>
                           <div class="unit-body">
-                            <p class="product-minimal-title"><a>Grow System</a></p>
+                            <p class="product-minimal-title"><a href="shop-list.html">Grow System</a></p>
                             <p class="product-minimal-price">$350.00</p>
                           </div>
                         </div>
@@ -118,9 +119,9 @@
                       <!-- Producto popular: Tomato Seedlings -->
                       <article class="product-minimal">
                         <div class="unit unit-spacing-sm flex-column flex-md-row align-items-center">
-                          <div class="unit-left"><a class="product-minimal-figure"><img class="product-image-sm" src="images/Seedlings/mini_tomato_seedlings.png" alt="Tomato seedlings"></a></div>
+                          <div class="unit-left"><a class="product-minimal-figure" href="shop-list.html"><img class="product-image-sm" src="images/Seedlings/mini_tomato_seedlings.png" alt="Tomato seedlings"></a></div>
                           <div class="unit-body">
-                            <p class="product-minimal-title"><a>Tomato Seedlings</a></p>
+                            <p class="product-minimal-title"><a href="shop-list.html">Tomato Seedlings</a></p>
                             <p class="product-minimal-price">$2.50</p>
                           </div>
                         </div>
@@ -156,37 +157,37 @@
 
                 <!-- ===== SYSTEMS (2 productos) ===== -->
 
-                <div class="col-12" data-category="systems" data-price="69.99" data-name="Hydroponic Starter System" data-order="1" data-popularity="10">
+                <div class="col-12" data-category="systems" data-price="150.00" data-name="Hydroponic Starter System" data-order="1" data-popularity="10">
                   <article class="product-modern text-center text-sm-start">
                     <div class="unit unit-spacing-0 flex-column flex-sm-row">
-                      <div class="unit-left"><a class="product-modern-figure"><img class="product-image-lg" src="images/Sistemas/SISTEMA.BASE.png" alt="Hydroponic Starter System"></a></div>
+                      <div class="unit-left"><a class="product-modern-figure" href="shop-list.html"><img class="product-image-lg" src="images/Sistemas/SISTEMA.BASE.png" alt="Hydroponic Starter System"></a></div>
                       <div class="unit-body">
                         <div class="product-modern-body">
-                          <h4 class="product-modern-title"><a>Hydroponic Starter System</a></h4>
+                          <h4 class="product-modern-title"><a href="shop-list.html">Hydroponic Starter System</a></h4>
                           <div class="product-price-wrap">
                             <div class="product-price">$150.00</div>
                           </div>
                           <p class="product-modern-text">A complete, beginner-friendly hydroponic system designed to grow leafy greens and herbs in small spaces with minimal setup.</p>
-                          <a class="button button-primary button-zakaria" href="cart-page.html" data-cart-product-id="catalog-starter-system" data-cart-seller-id="hydronexis-catalog" data-cart-seller-name="HYDRONEXIS" data-cart-product-name="Hydroponic Starter System" data-cart-image="images/Sistemas/SISTEMA.BASE.png" data-cart-display-price="69.99" data-cart-max-quantity="99">Add to Cart</a>
+                          <a class="button button-primary button-zakaria" href="cart-page.html" data-cart-product-id="catalog-starter-system" data-cart-seller-id="hydronexis-catalog" data-cart-seller-name="HYDRONEXIS" data-cart-product-name="Hydroponic Starter System" data-cart-image="images/Sistemas/SISTEMA.BASE.png" data-cart-display-price="150.00" data-cart-max-quantity="99">Add to Cart</a>
                         </div>
                       </div>
                     </div>
                   </article>
                 </div>
 
-                <div class="col-12" data-category="systems" data-price="110.00" data-name="Grow System" data-order="2" data-popularity="11">
+                <div class="col-12" data-category="systems" data-price="350.00" data-name="Grow System" data-order="2" data-popularity="11">
                   <!-- Producto: Sistema de Torre Vertical -->
                   <article class="product-modern text-center text-sm-start">
                     <div class="unit unit-spacing-0 flex-column flex-sm-row">
-                      <div class="unit-left"><a class="product-modern-figure"><img class="product-image-lg" src="images/Sistemas/big.system.png" alt="Vertical Grow Tower System"></a></div>
+                      <div class="unit-left"><a class="product-modern-figure" href="shop-list.html"><img class="product-image-lg" src="images/Sistemas/big.system.png" alt="Vertical Grow Tower System"></a></div>
                       <div class="unit-body">
                         <div class="product-modern-body">
-                          <h4 class="product-modern-title"><a>Grow System</a></h4>
+                          <h4 class="product-modern-title"><a href="shop-list.html">Grow System</a></h4>
                           <div class="product-price-wrap">
                             <div class="product-price">$350.00</div>
                           </div>
                           <p class="product-modern-text">A space-saving vertical growing tower that lets you cultivate multiple plants indoors with efficient water circulation.</p>
-                          <a class="button button-primary button-zakaria" href="cart-page.html" data-cart-product-id="catalog-grow-system" data-cart-seller-id="hydronexis-catalog" data-cart-seller-name="HYDRONEXIS" data-cart-product-name="Grow System" data-cart-image="images/Sistemas/big.system.png" data-cart-display-price="110.00" data-cart-max-quantity="99">Add to Cart</a>
+                          <a class="button button-primary button-zakaria" href="cart-page.html" data-cart-product-id="catalog-grow-system" data-cart-seller-id="hydronexis-catalog" data-cart-seller-name="HYDRONEXIS" data-cart-product-name="Grow System" data-cart-image="images/Sistemas/big.system.png" data-cart-display-price="350.00" data-cart-max-quantity="99">Add to Cart</a>
                         </div>
                       </div>
                     </div>
@@ -199,10 +200,10 @@
                   <!-- Producto: plantones de Tomate -->
                   <article class="product-modern text-center text-sm-start">
                     <div class="unit unit-spacing-0 flex-column flex-sm-row">
-                      <div class="unit-left"><a class="product-modern-figure"><img class="product-image-lg" src="images/Seedlings/Tomato.seedlings.png" alt="Tomato Seedlings"></a></div>
+                      <div class="unit-left"><a class="product-modern-figure" href="shop-list.html"><img class="product-image-lg" src="images/Seedlings/Tomato.seedlings.png" alt="Tomato Seedlings"></a></div>
                       <div class="unit-body">
                         <div class="product-modern-body">
-                          <h4 class="product-modern-title"><a>Tomato Seedlings</a></h4>
+                          <h4 class="product-modern-title"><a href="shop-list.html">Tomato Seedlings</a></h4>
                           <div class="product-price-wrap">
                             <div class="product-price">$2.50</div>
                           </div>
@@ -218,10 +219,10 @@
                   <!-- Producto: plantones de Lechuga -->
                   <article class="product-modern text-center text-sm-start">
                     <div class="unit unit-spacing-0 flex-column flex-sm-row">
-                      <div class="unit-left"><a class="product-modern-figure"><img class="product-image-lg" src="images/Seedlings/planton romano.png" alt="Romaine Lettuce Seedlings"></a></div>
+                      <div class="unit-left"><a class="product-modern-figure" href="shop-list.html"><img class="product-image-lg" src="images/Seedlings/planton romano.png" alt="Romaine Lettuce Seedlings"></a></div>
                       <div class="unit-body">
                         <div class="product-modern-body">
-                          <h4 class="product-modern-title"><a>Romaine Lettuce Seedlings</a></h4>
+                          <h4 class="product-modern-title"><a href="shop-list.html">Romaine Lettuce Seedlings</a></h4>
                           <div class="product-price-wrap">
                             <div class="product-price">$1.80</div>
                           </div>
@@ -237,10 +238,10 @@
                   <!-- Producto: plantones de Cebollin -->
                   <article class="product-modern text-center text-sm-start">
                     <div class="unit unit-spacing-0 flex-column flex-sm-row">
-                      <div class="unit-left"><a class="product-modern-figure"><img class="product-image-lg" src="images/Seedlings/chives.seedlings.png" alt="Chives Seedlings"></a></div>
+                      <div class="unit-left"><a class="product-modern-figure" href="shop-list.html"><img class="product-image-lg" src="images/Seedlings/chives.seedlings.png" alt="Chives Seedlings"></a></div>
                       <div class="unit-body">
                         <div class="product-modern-body">
-                          <h4 class="product-modern-title"><a>Chives Seedlings</a></h4>
+                          <h4 class="product-modern-title"><a href="shop-list.html">Chives Seedlings</a></h4>
                           <div class="product-price-wrap">
                             <div class="product-price">$2.20</div>
                           </div>
@@ -256,10 +257,10 @@
                   <!-- Producto: Plantones de Peppers-->
                   <article class="product-modern text-center text-sm-start">
                     <div class="unit unit-spacing-0 flex-column flex-sm-row">
-                      <div class="unit-left"><a class="product-modern-figure"><img class="product-image-lg" src="images/Seedlings/red.bell.seedlings.png" alt="Bell Pepper Seedlings"></a></div>
+                      <div class="unit-left"><a class="product-modern-figure" href="shop-list.html"><img class="product-image-lg" src="images/Seedlings/red.bell.seedlings.png" alt="Bell Pepper Seedlings"></a></div>
                       <div class="unit-body">
                         <div class="product-modern-body">
-                          <h4 class="product-modern-title"><a>Bell Pepper Seedlings</a></h4>
+                          <h4 class="product-modern-title"><a href="shop-list.html">Bell Pepper Seedlings</a></h4>
                           <div class="product-price-wrap">
                             <div class="product-price">$1.50</div>
                           </div>
@@ -275,10 +276,10 @@
                   <!-- Producto: Plantones de Espinca -->
                   <article class="product-modern text-center text-sm-start">
                     <div class="unit unit-spacing-0 flex-column flex-sm-row">
-                      <div class="unit-left"><a class="product-modern-figure"><img class="product-image-lg" src="images/Seedlings/spinach.seedlings.png" alt="Spinach Seedlings"></a></div>
+                      <div class="unit-left"><a class="product-modern-figure" href="shop-list.html"><img class="product-image-lg" src="images/Seedlings/spinach.seedlings.png" alt="Spinach Seedlings"></a></div>
                       <div class="unit-body">
                         <div class="product-modern-body">
-                          <h4 class="product-modern-title"><a>Spinach Seedlings</a></h4>
+                          <h4 class="product-modern-title"><a href="shop-list.html">Spinach Seedlings</a></h4>
                           <div class="product-price-wrap">
                             <div class="product-price">$2.75</div>
                           </div>
@@ -292,38 +293,38 @@
 
                 <!-- ===== SEEDS (2 products) ===== -->
 
-                <div class="col-12" data-category="seeds" data-price="1.90" data-name="Romaine Lettuce Seeds" data-order="8" data-popularity="7">
+                <div class="col-12" data-category="seeds" data-price="2.99" data-name="Romaine Lettuce Seeds" data-order="8" data-popularity="7">
                   <!-- Producto: Semillas de Lechuga Romana -->
                   <article class="product-modern text-center text-sm-start">
                     <div class="unit unit-spacing-0 flex-column flex-sm-row">
-                      <div class="unit-left"><a class="product-modern-figure"><img class="product-image-lg" src="images/Semilla/Romana.png" alt="Romaine Lettuce Seeds"></a></div>
+                      <div class="unit-left"><a class="product-modern-figure" href="shop-list.html"><img class="product-image-lg" src="images/Semilla/Romana.png" alt="Romaine Lettuce Seeds"></a></div>
                       <div class="unit-body">
                         <div class="product-modern-body">
-                          <h4 class="product-modern-title"><a>Romaine Lettuce Seeds</a></h4>
+                          <h4 class="product-modern-title"><a href="shop-list.html">Romaine Lettuce Seeds</a></h4>
                           <div class="product-price-wrap">
                             <div class="product-price">$2.99</div>
                           </div>
                           <p class="product-modern-text">High-quality romaine lettuce seeds with excellent germination potential. Ideal for producing healthy, vigorous lettuce plants.</p>
-                          <a class="button button-primary button-zakaria" href="cart-page.html" data-cart-product-id="catalog-romaine-seeds" data-cart-seller-id="hydronexis-catalog" data-cart-seller-name="HYDRONEXIS" data-cart-product-name="Romaine Lettuce Seeds" data-cart-image="images/Semilla/Romana.png" data-cart-display-price="1.90" data-cart-max-quantity="99">Add to Cart</a>
+                          <a class="button button-primary button-zakaria" href="cart-page.html" data-cart-product-id="catalog-romaine-seeds" data-cart-seller-id="hydronexis-catalog" data-cart-seller-name="HYDRONEXIS" data-cart-product-name="Romaine Lettuce Seeds" data-cart-image="images/Semilla/Romana.png" data-cart-display-price="2.99" data-cart-max-quantity="99">Add to Cart</a>
                         </div>
                       </div>
                     </div>
                   </article>
                 </div>
 
-                <div class="col-12" data-category="seeds" data-price="1.60" data-name="Spinach Seeds" data-order="9" data-popularity="9">
+                <div class="col-12" data-category="seeds" data-price="2.99" data-name="Spinach Seeds" data-order="9" data-popularity="9">
                   <!-- Producto: Semillas de Espinaca -->
                   <article class="product-modern text-center text-sm-start">
                     <div class="unit unit-spacing-0 flex-column flex-sm-row">
-                      <div class="unit-left"><a class="product-modern-figure"><img class="product-image-lg" src="images/Semilla/Espinaca.png" alt="Spinach Seeds"></a></div>
+                      <div class="unit-left"><a class="product-modern-figure" href="shop-list.html"><img class="product-image-lg" src="images/Semilla/Espinaca.png" alt="Spinach Seeds"></a></div>
                       <div class="unit-body">
                         <div class="product-modern-body">
-                          <h4 class="product-modern-title"><a>Spinach Seeds</a></h4>
+                          <h4 class="product-modern-title"><a href="shop-list.html">Spinach Seeds</a></h4>
                           <div class="product-price-wrap">
                             <div class="product-price">$2.99</div>
                           </div>
                           <p class="product-modern-text">Premium spinach seeds selected for high germination and consistent growth. Perfect for hydroponic and traditional cultivation.</p>
-                          <a class="button button-primary button-zakaria" href="cart-page.html" data-cart-product-id="catalog-spinach-seeds" data-cart-seller-id="hydronexis-catalog" data-cart-seller-name="HYDRONEXIS" data-cart-product-name="Spinach Seeds" data-cart-image="images/Semilla/Espinaca.png" data-cart-display-price="1.60" data-cart-max-quantity="99">Add to Cart</a>
+                          <a class="button button-primary button-zakaria" href="cart-page.html" data-cart-product-id="catalog-spinach-seeds" data-cart-seller-id="hydronexis-catalog" data-cart-seller-name="HYDRONEXIS" data-cart-product-name="Spinach Seeds" data-cart-image="images/Semilla/Espinaca.png" data-cart-display-price="2.99" data-cart-max-quantity="99">Add to Cart</a>
                         </div>
                       </div>
                     </div>
@@ -628,159 +629,8 @@
 
   <div class="snackbars" id="form-output-global"></div>
 
-  <style>
-    .price-slider-box { margin-top: 6px; }
-    .price-slider { position: relative; height: 44px; margin: 8px 0 24px; }
-    .price-slider-track,
-    .price-slider-range { position: absolute; top: 20px; left: 0; width: 100%; height: 7px; border-radius: 10px; }
-    .price-slider-track { background: #f1f1f1; }
-    .price-slider-range { right: 0; width: auto; background: #c68c49; }
-    .price-range-input { position: absolute; top: 10px; left: 0; width: 100%; height: 27px; margin: 0; background: transparent; pointer-events: none; appearance: none; -webkit-appearance: none; outline: none; }
-    .price-range-input::-webkit-slider-runnable-track { height: 7px; background: transparent; border: 0; }
-    .price-range-input::-webkit-slider-thumb { width: 22px; height: 22px; margin-top: -8px; border: 2px solid #fff; border-radius: 50%; background: #c68c49; box-shadow: 0 1px 4px rgba(0, 0, 0, .22); cursor: pointer; pointer-events: auto; appearance: none; -webkit-appearance: none; }
-    .price-range-input::-moz-range-track { height: 7px; background: transparent; border: 0; }
-    .price-range-input::-moz-range-thumb { width: 18px; height: 18px; border: 2px solid #fff; border-radius: 50%; background: #c68c49; box-shadow: 0 1px 4px rgba(0, 0, 0, .22); cursor: pointer; pointer-events: auto; }
-    .price-slider-footer { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
-    .price-slider-footer .button { flex: 0 0 auto; }
-    .price-slider-values { color: #111; font-size: 16px; line-height: 1.4; white-space: nowrap; }
-    .price-slider-values strong { font-weight: 400; }
-    .product-sort-select { min-width: 220px; padding: 11px 42px 11px 14px; border: 1px solid #d9d9d9; background: #fff; font: inherit; cursor: pointer; }
-    .product-image-lg { display: block; width: 328px; max-width: 100%; height: 330px; object-fit: cover; background: #f4f2ee; }
-    .product-image-sm { display: block; width: 106px; height: 104px; object-fit: cover; background: #f4f2ee; }
-    .shop-list-feedback { margin: 28px 0 0; padding: 14px 18px; border-left: 4px solid #679e5a; background: #eef5ea; color: #1e3b17; }
-    .shop-list-feedback.is-error { border-left-color: #b94a48; background: #f9ecea; color: #7d2725; }
-    .visually-hidden { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
-    #product-list [data-category][style*="display: none"] { display: none; }
-    @media (max-width: 1199px) and (min-width: 992px) {
-      .price-slider-footer { align-items: flex-start; flex-direction: column; gap: 14px; }
-    }
-    @media (max-width: 575px) {
-      .product-sort-select { width: 100%; min-width: 0; }
-      .product-image-lg { width: 100%; height: 260px; }
-    }
-    @media (max-width: 420px) {
-      .price-slider-footer { align-items: flex-start; flex-direction: column; gap: 14px; }
-      .price-slider-values { font-size: 15px; }
-    }
-  </style>
-
   <script src="js/header.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const productContainer = document.getElementById('product-list');
-      const minInput = document.getElementById('price-min');
-      const maxInput = document.getElementById('price-max');
-      const filterBtn = document.getElementById('price-filter-btn');
-      const sliderRange = document.getElementById('price-slider-range');
-      const filterStatus = document.getElementById('price-filter-status');
-      const checkboxList = document.getElementById('category-filter-list');
-      const sortSelect = document.getElementById('sort-select');
-      const resultsText = document.getElementById('results-count-text');
-      const noResultsMsg = document.getElementById('no-results-message');
-
-      if (!productContainer || !minInput || !maxInput) return;
-      const products = Array.from(productContainer.querySelectorAll('[data-category]'));
-
-      function getSelectedCategories() {
-        if (!checkboxList) return ['all'];
-        return Array.from(checkboxList.querySelectorAll('input[type="checkbox"]:checked')).map(function (input) {
-          return input.dataset.cat;
-        });
-      }
-
-      function normalizePrices() {
-        let min = Number(minInput.value);
-        let max = Number(maxInput.value);
-        const lowerLimit = Number(minInput.min);
-        const upperLimit = Number(minInput.max);
-        if (min > max) [min, max] = [max, min];
-        min = Math.max(lowerLimit, min);
-        max = Math.min(upperLimit, max);
-        minInput.value = String(min);
-        maxInput.value = String(max);
-        return { min, max };
-      }
-
-      function updatePriceSlider() {
-        const prices = normalizePrices();
-        const lowerLimit = Number(minInput.min);
-        const upperLimit = Number(minInput.max);
-        const minPercent = ((prices.min - lowerLimit) / (upperLimit - lowerLimit)) * 100;
-        const maxPercent = ((prices.max - lowerLimit) / (upperLimit - lowerLimit)) * 100;
-        if (sliderRange) {
-          sliderRange.style.left = minPercent + '%';
-          sliderRange.style.right = (100 - maxPercent) + '%';
-        }
-        if (filterStatus) filterStatus.textContent = '$' + prices.min.toFixed(2) + ' \u2013 $' + prices.max.toFixed(2);
-        minInput.style.zIndex = prices.min > upperLimit - 25 ? '5' : '3';
-        maxInput.style.zIndex = '4';
-      }
-
-      function sortProducts() {
-        if (!sortSelect) return;
-        const criterion = sortSelect.value;
-        const sorted = products.slice().sort(function (a, b) {
-          if (criterion === 'alphabet') return a.dataset.name.localeCompare(b.dataset.name);
-          if (criterion === 'popularity') return Number(b.dataset.popularity) - Number(a.dataset.popularity);
-          if (criterion === 'price-low') return Number(a.dataset.price) - Number(b.dataset.price);
-          if (criterion === 'price-high') return Number(b.dataset.price) - Number(a.dataset.price);
-          return Number(a.dataset.order) - Number(b.dataset.order);
-        });
-        sorted.forEach(function (product) { productContainer.appendChild(product); });
-      }
-
-      function applyFilters() {
-        const prices = normalizePrices();
-        const categories = getSelectedCategories();
-        const showAll = categories.length === 0 || categories.includes('all');
-        let visible = 0;
-        products.forEach(function (product) {
-          const price = Number(product.dataset.price);
-          const categoryMatches = showAll || categories.includes(product.dataset.category);
-          const shouldShow = categoryMatches && price >= prices.min && price <= prices.max;
-          product.style.display = shouldShow ? '' : 'none';
-          if (shouldShow) visible += 1;
-        });
-        updatePriceSlider();
-        if (resultsText) resultsText.textContent = visible === 0 ? 'No results' : 'Showing 1\u2013' + visible + ' of ' + visible + ' results';
-        if (noResultsMsg) noResultsMsg.style.display = visible === 0 ? 'block' : 'none';
-      }
-
-      if (checkboxList) {
-        checkboxList.addEventListener('change', function (event) {
-          const target = event.target;
-          if (!(target instanceof HTMLInputElement)) return;
-          const allCheckbox = checkboxList.querySelector('input[data-cat="all"]');
-          const categoryCheckboxes = Array.from(checkboxList.querySelectorAll('input[type="checkbox"]:not([data-cat="all"])'));
-          if (target.dataset.cat === 'all' && target.checked) {
-            categoryCheckboxes.forEach(function (checkbox) { checkbox.checked = false; });
-          } else if (target.dataset.cat !== 'all' && target.checked && allCheckbox) {
-            allCheckbox.checked = false;
-          }
-          if (!categoryCheckboxes.some(function (checkbox) { return checkbox.checked; }) && allCheckbox) allCheckbox.checked = true;
-          applyFilters();
-        });
-      }
-
-      if (filterBtn) filterBtn.addEventListener('click', applyFilters);
-      minInput.addEventListener('input', function () {
-        if (Number(minInput.value) > Number(maxInput.value)) minInput.value = maxInput.value;
-        updatePriceSlider();
-      });
-      maxInput.addEventListener('input', function () {
-        if (Number(maxInput.value) < Number(minInput.value)) maxInput.value = minInput.value;
-        updatePriceSlider();
-      });
-      if (sortSelect) sortSelect.addEventListener('change', function () {
-        sortProducts();
-        applyFilters();
-      });
-
-      updatePriceSlider();
-      sortProducts();
-      applyFilters();
-    });
-  </script>
+  <script src="js/shop-list.js"></script>
   <script type="module" src="js/marketplace-actions.js"></script>
 </body>
 </html>
