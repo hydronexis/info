@@ -47,6 +47,17 @@ function showFeedback(message, isError = false) {
   feedback.style.color = isError ? "#8b2d1e" : "#285421";
 }
 
+function firebaseErrorMessage(area, error) {
+  const code = error?.code || "unknown";
+  if (code === "permission-denied") {
+    return `${area} could not be loaded because Firebase denied access. Publish the updated firestore.rules and verify this user has plan blooming or go_green with accountStatus active.`;
+  }
+  if (code === "failed-precondition") {
+    return `${area} needs a Firebase index. Open the browser console and use the index creation link from Firebase.`;
+  }
+  return `${area} could not be loaded. Firebase error: ${code}.`;
+}
+
 function option(value, label) {
   const node = document.createElement("option");
   node.value = value;
@@ -410,6 +421,7 @@ try {
   itemsLoaded = false;
   fillSelects();
   itemList.innerHTML = '<p class="account-empty">Exchange items could not be loaded.</p>';
+  showFeedback(firebaseErrorMessage("Exchange items", error), true);
 }
 
 let exchangesLoaded = true;
@@ -419,10 +431,17 @@ try {
   reportFirebaseError("Could not load exchange requests.", error);
   exchangesLoaded = false;
   exchangeList.innerHTML = '<p class="account-empty">Exchange data could not be loaded.</p>';
+  showFeedback(firebaseErrorMessage("Exchange requests", error), true);
 }
 
 if (!itemsLoaded || !exchangesLoaded) {
-  showFeedback("Exchange data could not be loaded. Verify Firebase Rules and your connection.", true);
+  console.warn("[Exchanges] Some Firebase exchange data could not be loaded.", {
+    itemsLoaded,
+    exchangesLoaded,
+    uid: session.user.uid,
+    plan: session.plan,
+    accountStatus: session.profile?.accountStatus
+  });
 } else if (new URLSearchParams(location.search).has("product")) {
   showFeedback("Register an eligible item below, then choose an available exchange item. Marketplace products do not automatically become exchange listings.");
 }

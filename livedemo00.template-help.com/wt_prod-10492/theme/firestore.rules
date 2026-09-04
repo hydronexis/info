@@ -388,11 +388,7 @@ service cloud.firestore {
     }
 
     match /exchanges/{exchangeId} {
-      allow get, list: if hasExchangeAccess()
-        && (
-          request.auth.uid == resource.data.creatorId
-          || request.auth.uid == resource.data.receiverId
-        );
+      allow get, list: if hasExchangeAccess();
 
       allow create: if hasExchangeAccess()
         && hasValidExchangeRequest(request.resource.data);
