@@ -475,6 +475,7 @@
 }
 
 .review-form-grid input,
+.review-form-grid select,
 .review-form-grid textarea {
   border: none;
   border-bottom: 1px solid #ccc;
@@ -486,6 +487,7 @@
 }
 
 .review-form-grid input:focus,
+.review-form-grid select:focus,
 .review-form-grid textarea:focus {
   border-bottom-color: #4a2c6a;
 }

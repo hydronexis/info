@@ -303,7 +303,16 @@ service cloud.firestore {
       allow update: if isGoGreen()
         && resource.data.sellerId == request.auth.uid
         && request.resource.data.sellerId == resource.data.sellerId
-        && request.resource.data.createdAt == resource.data.createdAt
+        && (
+          (
+            resource.data.keys().hasAny(['createdAt'])
+            && request.resource.data.createdAt == resource.data.createdAt
+          )
+          || (
+            !resource.data.keys().hasAny(['createdAt'])
+            && request.resource.data.createdAt == request.time
+          )
+        )
         && request.resource.data.updatedAt == request.time
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
           'sellerName',
@@ -317,6 +326,7 @@ service cloud.firestore {
           'image',
           'imageStoragePath',
           'exchangeEnabled',
+          'createdAt',
           'updatedAt'
         ])
         && hasValidProductData(request.resource.data);

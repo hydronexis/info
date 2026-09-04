@@ -12,6 +12,56 @@
     };
   }
 
+  function escapeHtml(value) {
+    return String(value || '').replace(/[&<>"']/g, function (character) {
+      return {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[character];
+    });
+  }
+
+  function getReviewStorageKey(productId, sellerId) {
+    return 'hydronexisSellerReviews:' + productId + ':' + sellerId;
+  }
+
+  function loadSavedReviews(productId, sellerId) {
+    try {
+      var rawReviews = localStorage.getItem(getReviewStorageKey(productId, sellerId));
+      var parsedReviews = rawReviews ? JSON.parse(rawReviews) : [];
+      return Array.isArray(parsedReviews) ? parsedReviews : [];
+    } catch (error) {
+      console.warn('Could not load saved seller reviews.', error);
+      return [];
+    }
+  }
+
+  function saveReview(productId, sellerId, review) {
+    var reviews = loadSavedReviews(productId, sellerId);
+    reviews.unshift(review);
+    localStorage.setItem(getReviewStorageKey(productId, sellerId), JSON.stringify(reviews));
+    return reviews;
+  }
+
+  function getFormattedReviewDate() {
+    return new Date().toLocaleDateString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric'
+    });
+  }
+
+  function showReviewFeedback(message, type) {
+    var feedback = document.getElementById('reviewAvailability');
+    if (!feedback) return;
+    feedback.textContent = message;
+    feedback.hidden = false;
+    feedback.classList.toggle('is-error', type === 'error');
+  }
+
   function initTabs() {
     var tabBtns = document.querySelectorAll('.seller-tab-btn');
     var tabPanels = document.querySelectorAll('.seller-tab-panel');
@@ -57,7 +107,12 @@
 
   function renderReviews(reviews) {
     var container = document.getElementById('reviews-list');
-    if (!container || !reviews) return;
+    if (!container) return;
+
+    if (!reviews || !reviews.length) {
+      container.innerHTML = '<p class="account-feedback">No reviews yet. Be the first to send one.</p>';
+      return;
+    }
 
     container.innerHTML = reviews.map(function (review) {
       return (
@@ -66,16 +121,49 @@
           '<div class="review-body">' +
             '<div class="review-header">' +
               '<div class="review-author-stars">' +
-                '<span class="review-author">' + review.author + '</span>' +
+                '<span class="review-author">' + escapeHtml(review.author) + '</span>' +
                 '<span class="review-stars">' + renderStars(review.stars) + '</span>' +
               '</div>' +
-              '<span class="review-date">' + review.date + '</span>' +
+              '<span class="review-date">' + escapeHtml(review.date) + '</span>' +
             '</div>' +
-            '<p class="review-text">' + review.text + '</p>' +
+            '<p class="review-text">' + escapeHtml(review.text) + '</p>' +
           '</div>' +
         '</div>'
       );
     }).join('');
+  }
+
+  function setupReviewForm(product, seller) {
+    var form = document.getElementById('seller-review-form');
+    if (!form) return;
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      var authorInput = document.getElementById('review-author');
+      var starsInput = document.getElementById('review-stars');
+      var messageInput = document.getElementById('review-message');
+      var author = authorInput ? authorInput.value.trim() : '';
+      var stars = starsInput ? Number(starsInput.value) : 5;
+      var message = messageInput ? messageInput.value.trim() : '';
+
+      if (!author || !message) {
+        showReviewFeedback('Please write your name and review message before sending.', 'error');
+        return;
+      }
+
+      var review = {
+        author: author,
+        stars: Math.min(5, Math.max(1, stars || 5)),
+        date: getFormattedReviewDate(),
+        text: message
+      };
+
+      var savedReviews = saveReview(product.id, seller.id, review);
+      renderReviews(savedReviews.concat(seller.reviews || []));
+      form.reset();
+      showReviewFeedback('Review sent successfully. You can see it in the Reviews tab.', 'success');
+    });
   }
 
   function loadDetail() {
@@ -187,7 +275,9 @@
     }
 
     /* Reviews */
-    renderReviews(seller.reviews);
+    var savedReviews = loadSavedReviews(product.id, seller.id);
+    renderReviews(savedReviews.concat(seller.reviews || []));
+    setupReviewForm(product, seller);
   }
 
   document.addEventListener('DOMContentLoaded', function () {

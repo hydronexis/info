@@ -96,14 +96,28 @@
             <div class="seller-tab-panel" id="tab-enviar-review" role="tabpanel" aria-labelledby="seller-tab-send-review" hidden>
               <div class="review-form-section">
                 <h4>Leave a Review</h4>
-                <p class="account-feedback" id="reviewAvailability">[BACKEND REQUIRED] Review submission is not connected. No information entered here is sent or stored.</p>
-                <form class="review-form-grid" aria-describedby="reviewAvailability">
+                <p class="account-feedback" id="reviewAvailability" hidden></p>
+                <form class="review-form-grid" id="seller-review-form" aria-describedby="reviewAvailability">
+                  <div class="form-field">
+                    <label for="review-author">Name</label>
+                    <input id="review-author" name="author" type="text" autocomplete="name" required>
+                  </div>
+                  <div class="form-field">
+                    <label for="review-stars">Rating</label>
+                    <select id="review-stars" name="stars" required>
+                      <option value="5">5 stars</option>
+                      <option value="4">4 stars</option>
+                      <option value="3">3 stars</option>
+                      <option value="2">2 stars</option>
+                      <option value="1">1 star</option>
+                    </select>
+                  </div>
                   <div class="form-field message-field">
                     <label for="review-message">Message</label>
-                    <textarea id="review-message" name="message" disabled></textarea>
+                    <textarea id="review-message" name="message" required></textarea>
                   </div>
                   <div class="form-field" style="grid-column: 1;">
-                    <button class="btn-submit-review" type="button" disabled>UNAVAILABLE</button>
+                    <button class="btn-submit-review" type="submit">Send Review</button>
                   </div>
                 </form>
               </div>

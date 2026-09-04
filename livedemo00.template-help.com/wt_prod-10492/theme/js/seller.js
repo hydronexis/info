@@ -13,6 +13,7 @@ import {
   getDocs,
   query,
   runTransaction,
+  setDoc,
   serverTimestamp,
   updateDoc,
   where
@@ -332,7 +333,10 @@ form?.addEventListener("submit", async (event) => {
     };
 
     if (productId) {
-      await updateDoc(doc(db, "products", productId), payload);
+      await setDoc(doc(db, "products", productId), {
+        ...payload,
+        createdAt: existingProduct?.createdAt || serverTimestamp()
+      }, { merge: true });
       showFeedback("Product updated.");
     } else {
       await addDoc(collection(db, "products"), { ...payload, createdAt: serverTimestamp() });
