@@ -32,6 +32,14 @@ let ownItems = [];
 let publicItems = [];
 let localPreviewUrl = "";
 
+function reportFirebaseError(context, error) {
+  console.error(`[Exchanges] ${context}`, {
+    code: error?.code || "unknown",
+    message: error?.message || String(error),
+    error
+  });
+}
+
 function showFeedback(message, isError = false) {
   feedback.textContent = message;
   feedback.hidden = false;
@@ -397,7 +405,8 @@ exchangeList?.addEventListener("click", async (event) => {
 let itemsLoaded = true;
 try {
   await loadItems();
-} catch {
+} catch (error) {
+  reportFirebaseError("Could not load exchange items.", error);
   itemsLoaded = false;
   fillSelects();
   itemList.innerHTML = '<p class="account-empty">Exchange items could not be loaded.</p>';
@@ -406,7 +415,8 @@ try {
 let exchangesLoaded = true;
 try {
   await loadExchanges();
-} catch {
+} catch (error) {
+  reportFirebaseError("Could not load exchange requests.", error);
   exchangesLoaded = false;
   exchangeList.innerHTML = '<p class="account-empty">Exchange data could not be loaded.</p>';
 }

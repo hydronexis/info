@@ -191,6 +191,11 @@ h6 {
 
 @media (max-width: 767px) {
 
+  /* Baja el carrusel completo sin modificar ni cubrir el navbar. */
+  .swiper-slider-1 {
+    margin-top: 14%;
+  }
+
   .footer-contact-item {
     flex-direction: row !important;
     align-items: flex-start;
